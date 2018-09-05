@@ -24,6 +24,7 @@ class CreateBooksTable extends Migration
             $table->string('sku', 100);
             $table->integer('count_viewed')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

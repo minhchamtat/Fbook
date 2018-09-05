@@ -18,6 +18,7 @@ class CreateFollowUserTable extends Migration
             $table->integer('following_id')->unsigned();
             $table->integer('follower_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
