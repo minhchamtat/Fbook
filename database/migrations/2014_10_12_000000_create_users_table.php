@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('chatwork_id', 50)->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

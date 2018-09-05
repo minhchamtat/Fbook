@@ -15,7 +15,7 @@ class CreateBookUserTable extends Migration
     {
         Schema::create('book_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('target_type', 50);
+            $table->string('type', 50);
             $table->boolean('approved');
             $table->integer('days_to_read');
             $table->integer('owner_id')->unsigned();
