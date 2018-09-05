@@ -17,6 +17,16 @@ return [
         resource_path('views'),
     ],
 
+    'image_paths' => [
+        'img' => 'assets/img/',
+        'logo' => 'assets/img/logo/',
+        'flag' => 'assets/img/flag/',
+        'slide' => 'assets/img/slider/',
+        'banner' => 'assets/img/banner/',
+        'product' => 'assets/img/product/',
+        'post' => 'assets/img/post',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

@@ -9,14 +9,14 @@ class UpdateBook extends Model
     protected $table = 'update_books';
 
     protected $fillable = [
-        'title',
-        'description',
-        'author'
-        'pulish_date',
-        'total_pages',
-        'sku',
         'user_id',
         'book_id',
+        'title',
+        'description',
+        'author',
+        'publish_date',
+        'total_pages',
+        'sku',
     ];
 
     public function user()
