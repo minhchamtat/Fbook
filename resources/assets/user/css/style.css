@@ -6437,11 +6437,9 @@ p.lost-password a:hover {
 
 #search-suggest {
     width: 90%;
-    max-height: 300px;
     z-index: 99;
     margin-top: 0;
     position: absolute;
-    border-radius: 5%;
     border-top: none;
     background: #fff;
     overflow: auto;

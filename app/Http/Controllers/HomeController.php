@@ -9,6 +9,7 @@ use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
 use Auth;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\SearchRequest;
 
 class HomeController extends Controller
 {
@@ -79,33 +80,25 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function searchAjax(Request $request)
+    public function searchAjax(SearchRequest $request)
     {
-        $users = null;
-        if (Auth::check()) {
-            $users = $this->user->search('name', $request->req);
+        if ($request->req != '') {
+            $result = collect([
+                'titles' => $this->book->search('title', $request->req),
+            ]);
         }
-        $result = collect([
-            'title' => $this->book->search('title', $request->req),
-            'author' => $this->book->search('author', $request->req),
-            'description' => $this->book->search('description', $request->req),
-        ]);
 
-        return view('layout.section.search', compact('result', 'users'));
+        return view('layout.section.search', compact('result'));
     }
 
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
-        $users = [];
-        if (Auth::check()) {
-            $users = $this->user->search('name', $request->req);
-        }
-        $result = collect([
-            'title' => $this->book->search('title', $request->req),
-            'author' => $this->book->search('author', $request->req),
-            'description' => $this->book->search('description', $request->req),
-        ]);
+        $data['users'] = $this->user->search('name', $request->req);
+        $data['titles'] = $this->book->search('title', $request->req);
+        $data['authors'] = $this->book->search('author', $request->req);
+        $data['descriptions'] = $this->book->search('description', $request->req);
+        $data['key'] = $request->req;
 
-        return view('search', compact('result', 'users'));
+        return view('search', $data);
     }
 }

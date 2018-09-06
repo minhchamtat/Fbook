@@ -935,3 +935,67 @@ ul.suggestions-list.noti-list .view-all {
     text-align: right;
     padding: 6px 22px 6px 0;
 }
+
+.suggestion ul li:hover {
+    background: #ededed;
+}
+
+.line {
+    border-top: 1px solid #cccccc;
+}
+
+.suggestion-entern {
+    text-align: center;
+    color: #4f7593;
+    margin: 10px 0px 10px 0px;
+}
+
+img.media-search {
+    float: left;
+    border-radius: 3%;
+    border: 1px solid #80808070;
+    border-radius: 50%;
+}
+
+.result-link .media-search {
+    max-width: inherit;
+    width: 50px;
+    border-radius: 3%;
+}
+
+.suggestion-search {
+    border: 1px solid #dddddd;
+    font-weight: 400;
+}
+
+.suggestion-search ul li:hover {
+    background: #ededed;
+}
+
+.suggestion-search ul li:hover ul {
+    display: block;
+}
+
+.media-book {
+    white-space: nowrap;
+    font-family: 'Verdana', sans-serif;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.suggestion ul li:hover {
+    background: #dddddd;
+}
+
+.suggestion ul li:hover ul {
+    display: block;
+}
+
+.result-link .media-object {
+    max-width: inherit;
+    width: 70px;
+}
+
+#search-suggest {
+    width: 150%;
+}
