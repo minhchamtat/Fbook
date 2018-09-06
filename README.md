@@ -12,24 +12,24 @@ Fbook - for sharing and discussing about book
 
 ## Setup
 
- - Clone project:
+ - Clone project:<br/>
 ```git clone```
- - Install composer in project folder:
+ - Install composer in project folder:<br/>
 ```composer install --no-scripts```
- - Make ```.env``` file:
+ - Make ```.env``` file:<br/>
 ```cp .env.example .env```
- - Generate application key:
+ - Generate application key:<br/>
 ```php artisan key:generate```
- - Create an empty database and fill out in .env file:
-`DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=<empty database name>
-DB_USERNAME=<username for phpMyAdmin/etc >
+ - Create an empty database and fill out in .env file:<br/>
+`DB_CONNECTION=mysql<br/>
+DB_HOST=127.0.0.1<br/>
+DB_PORT=3306<br/>
+DB_DATABASE=<empty database name><br/>
+DB_USERNAME=<username for phpMyAdmin/etc><br/>
 DB_PASSWORD=<password for user>`
- - Migrate database:
+ - Migrate database:<br/>
 ```php artisan migrate```
- - Create test database:
+ - Create test database:<br/>
 ```php artisan db:seed```
 
 ## Configs
@@ -49,3 +49,6 @@ Config API_CLIENT_SECRET and API_CLIENT_id in .env
 ```
 $ ./vendor/bin/phpunit
 ```
+ - Install yarn:<br/>
+```npm install -g yarn```<br/>
+```yarn install```
