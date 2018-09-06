@@ -36,7 +36,7 @@ Route::get('/profile', function () {
 });
 
 Route::get('/notifications', function () {
-    return view('user.notifications');
+    view('user.notifications');
 });
 
 Route::get('my-request', function () {
@@ -110,5 +110,19 @@ Route::prefix('admin')->group(function () {
         Route::get('/add', function () {
             return view('admin.reputation.add');
         });
+    });
+    Route::prefix('tag')->group(function () {
+        Route::get('/', function () {
+            return view('admin.tag.list');
+        });
+        Route::get('/edit', function () {
+            return view('admin.tag.edit');
+        });
+        Route::get('/add', function () {
+            return view('admin.tag.add');
+        });
+    });
+    Route::get('/', function () {
+        return view('admin.layout.index');
     });
 });
