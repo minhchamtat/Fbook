@@ -8,6 +8,7 @@ class Category extends Model
 {
     protected $fiilable = [
         'name',
+        'slug',
         'description',
     ];
 

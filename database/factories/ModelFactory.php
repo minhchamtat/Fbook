@@ -24,6 +24,7 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence(3),
+        'slug' => str_random(10),
         'description' => $faker->sentence(12),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now(),
@@ -33,6 +34,7 @@ $factory->define(Category::class, function (Faker $faker) {
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(6),
+        'slug' => str_random(10),
         'description' => $faker->paragraph(200),
         'author' => $faker->name,
         'publish_date' => $faker->date('Y-m-d'),
