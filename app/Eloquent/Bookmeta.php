@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bookmeta extends Model
 {
+    protected $table = 'bookmeta';
+
     protected $fillable = [
         'key',
         'value',

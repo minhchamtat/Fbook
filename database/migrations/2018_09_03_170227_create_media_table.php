@@ -17,9 +17,10 @@ class CreateMediaTable extends Migration
             $table->increments('id');
             $table->string('path');
             $table->string('target_type', 50);
+            $table->integer('target_id')->unsigned();
             $table->integer('priority')->default(0);
-            $table->integer('height');
-            $table->integer('width');
+            $table->integer('height')->nullable();
+            $table->integer('width')->nullable();
             $table->timestamps();
         });
     }

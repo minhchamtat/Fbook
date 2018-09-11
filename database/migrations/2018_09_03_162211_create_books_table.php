@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('author', 100);
             $table->date('publish_date');
             $table->integer('total_pages');
-            $table->double('avg_star', 8, 2);
+            $table->double('avg_star', 8, 2)->default(0)->nullable();
             $table->string('sku', 100);
             $table->integer('count_viewed')->default(0);
             $table->timestamps();

@@ -20,8 +20,8 @@ class CreateReviewsTable extends Migration
             $table->integer('star');
             $table->integer('user_id')->unsigned();
             $table->integer('book_id')->unsigned();
-            $table->integer('upvote');
-            $table->integer('downvote');
+            $table->integer('upvote')->default(0)->nullable();
+            $table->integer('downvote')->default(0)->nullable();
             $table->timestamps();
         });
     }
