@@ -24,7 +24,7 @@ return [
         'slide' => 'assets/img/slider/',
         'banner' => 'assets/img/banner/',
         'product' => 'assets/img/product/',
-        'post' => 'assets/img/post',
+        'post' => 'assets/img/post/',
     ],
 
     /*

@@ -4,6 +4,7 @@ use Faker\Generator as Faker;
 use App\Eloquent\Book;
 use App\Eloquent\User;
 use App\Eloquent\Category;
+use App\Eloquent\Media;
 use Carbon\Carbon;
 
 $factory->define(User::class, function (Faker $faker) {
