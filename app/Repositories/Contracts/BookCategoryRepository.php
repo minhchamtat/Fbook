@@ -2,14 +2,11 @@
 
 namespace App\Repositories\Contracts;
 
-use App\Eloquent\Book;
+use App\Eloquent\BookCategory;
 
-interface BookRepository extends AbstractRepository
+interface BookCategoryRepository extends AbstractRepository
 {
     public function getData($data = [], $with = [], $dataSelect = ['*']);
     public function store($data = []);
     public function find($id);
-    public function update($id, $data = []);
-    public function destroy($id);
-    public function getCategory();
 }
