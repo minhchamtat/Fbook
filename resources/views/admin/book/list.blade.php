@@ -67,6 +67,13 @@
                     <i class="flaticon-exclamation m--font-brand"></i>
                 </div>
                 <div class="m-alert__text">
+                        @if (session('success'))
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            </button>
+                            {{ session('success') }}
+                        </div>
+                        @endif
                     The Metronic Datatable component supports local or remote data source. For the local data you can pass javascript array as data source. In this example the grid fetches its data from a javascript array data source. It also defines the schema model of
                     the data source. In addition to the visualization, the Datatable provides built-in support for operations over data such as sorting, filtering and paging performed in user browser(frontend).
                 </div>
@@ -209,86 +216,37 @@
 
                     <!--end: Search Form -->
 
-                    <!--begin: Datatable -->
-                    <table class="m-datatable" id="html_table" width="100%">
+                    <table class="m-datatable" id="html_table">
                         <thead>
                             <tr>
-                                <th>Action</th>
-                                <th title="Field #1">Index</th>
-                                <th title="Field #2">Title</th>
-                                <th title="Field #3">Description</th>
-                                <th title="Field #4">Author</th>
-                                <th title="Field #5">Publist_date</th>
-                                <th title="Field #6">Total Page</th>
-                                <th title="Field #7">Avg_star</th>
-                                <th title="Field #8">Sku</th>
-                                <th title="Field #9">Count_view</th>
+                                <th title="Title">Title</th>
+                                <th title="Author">Author</th>
+                                <th title="Publist date">Publist date</th>
+                                <th title="Total Page">Total Page</th>
+                                <th title="Avg star">Avg star</th>
+                                <th title="View">View</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <a href="admin/book/edit" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td>1</td>
-                                <td>Book Magic</td>
-                                <td>This book is great</td>
-                                <td>Admin</td>
-                                <td>12/03/2018</td>
-                                <td>52</td>
-                                <td>23</td>
-                                <td>abcdefgh</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="admin/book/edit" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td>2</td>
-                                <td>Book Magic</td>
-                                <td>This book is great</td>
-                                <td>Admin</td>
-                                <td>12/03/2018</td>
-                                <td>52</td>
-                                <td>23</td>
-                                <td>abcdefgh</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td>3</td>
-                                <td>Book Magic</td>
-                                <td>This book is great</td>
-                                <td>Admin</td>
-                                <td>12/03/2018</td>
-                                <td>52</td>
-                                <td>23</td>
-                                <td>abcdefgh</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="admin/book/edit" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td>4</td>
-                                <td>Book Magic</td>
-                                <td>This book is great</td>
-                                <td>Admin</td>
-                                <td>12/03/2018</td>
-                                <td>52</td>
-                                <td>23</td>
-                                <td>abcdefgh</td>
-                                <td>30</td>
-                            </tr>
+                            @foreach($books as $book)
+                                <tr>
+                                    <td>{{ $book->title }}</td>
+                                    <td>{{ $book->author }}</td>
+                                    <td>{{ $book->publish_date }}</td>
+                                    <td>{{ $book->total_pages }}</td>
+                                    <td>{{ $book->avg_star }}</td>
+                                    <td>{{ $book->count_viewed }}</td>
+                                    <td>
+                                        <a href="{{ url("admin/books/$book->id/edit") }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                        {!! Form::open(['method' => 'DELETE', 'url' => "admin/books/$book->id", 'id' => 'submit']) !!}
+                                            {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <!--end: Datatable -->
                 </div>
             </div>
         </div>

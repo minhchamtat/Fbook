@@ -65,54 +65,65 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="m-portlet m-portlet--tab">
-                        <form class="m-form m-form--fit m-form--label-align-right" enctype="multipart/form-data">
+                        {!! Form::open(['url' => 'admin/books', 'file' => 'true', 'enctype' => 'multipart/form-data', 'class' => 'm-form m-form--fit m-form--label-align-right']) !!}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
-                                    <label for="example-text-input" class="col-2 col-form-label">Title</label>
+                                    {!! Form::label('title', 'Title', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-text-input">
+                                        {!! Form::text('title', null, ['class' => 'form-control m-input', 'placeHolder' => 'Title in here ...', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-search-input" class="col-2 col-form-label">Description</label>
+                                    {!! Form::label('description', 'Description', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <textarea id="mytextarea" name="mytextarea"></textarea>
+                                        {!! Form::textarea('description', null, ['id' => 'mytextarea']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="avatar" class="col-2 col-form-label">Avatar book</label>
+                                    {!! Form::label('avatar', 'Avatar Book', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="file" id="avatar">
+                                        {!! Form::file('avatar', ['required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-email-input" class="col-2 col-form-label">Author</label>
+                                    {!! Form::label('author', 'Author', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-email-input">
+                                        {!! Form::text('author', null, ['class' => 'form-control m-input', 'placeHolder' => 'Author ...', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">Publist_date</label>
+                                    {!! Form::label('date', 'Publist_date', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="datetime-local" id="example-datetime-local-input">
+                                        {!! Form::date('publish_date', null, ['class' => 'form-control m-input', 'id' => 'example-datetime-local-input', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-tel-input" class="col-2 col-form-label">Total Page</label>
+                                    {!! Form::label('date', 'Total Pages', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-tel-input">
+                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => 'Total pages', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Sku</label>
+                                    {!! Form::label('sku', 'Sku', ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-number-input">
+                                        {!! Form::text('sku', null, ['class' => 'form-control m-input', 'placeHolder' => 'Sku of book', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Count View</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-number-input">
+                                    {!! Form::label('category', 'Category', ['class' => 'col-2']) !!}
+                                    <div class="col-9">
+                                        <div class="row">
+                                            @foreach ($categories as $cat)
+                                                <div class="col-4 mb-3">
+                                                    <div class="m-checkbox-list">
+                                                        <label class="m-checkbox m-checkbox--bold m-checkbox--state-success">
+                                                            <input type="checkbox" value="{{ $cat->id }}" name="category[]" {{ $loop->first ? 'checked' : '' }}>{{ $cat->name }}
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,13 +133,13 @@
                                         <div class="col-2">
                                         </div>
                                         <div class="col-10">
-                                            <button type="reset" class="btn btn-success">Submit</button>
-                                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                                            {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
+                                            {!! Form::reset('Cancel', ['class' => 'btn btn-secondary']) !!}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close()!!}
                     </div>
                 </div>
             </div>
