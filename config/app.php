@@ -162,7 +162,6 @@ return [
         App\Providers\RepositoryServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-        App\Providers\RepositoryServiceProvider::class,
     ],
 
     /*
@@ -213,7 +212,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        
     ],
 
 ];

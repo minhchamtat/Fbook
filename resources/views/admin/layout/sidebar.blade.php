@@ -30,7 +30,7 @@
                             </span>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ url('admin/books') }}" class="m-menu__link ">
+                            <a href="admin/book" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ url('admin/books/create') }}" class="m-menu__link ">
+                            <a href="admin/book/add" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>

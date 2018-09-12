@@ -25,7 +25,6 @@ return [
         'banner' => 'assets/img/banner/',
         'product' => 'assets/img/product/',
         'post' => 'assets/img/post/',
-        'book' => 'storage/img/book/',
     ],
 
     /*

@@ -36,7 +36,7 @@ Route::get('/profile', function () {
 });
 
 Route::get('/notifications', function () {
-    return view('user.notifications');
+    view('user.notifications');
 });
 
 Route::get('my-request', function () {
@@ -56,7 +56,17 @@ Route::get('/error', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::resource('/books', 'BookController');
+    Route::prefix('book')->group(function () {
+        Route::get('/', function () {
+            return view('admin.book.list');
+        });
+        Route::get('/edit', function () {
+            return view('admin.book.edit');
+        });
+        Route::get('/add', function () {
+            return view('admin.book.add');
+        });
+    });
     Route::prefix('category')->group(function () {
         Route::get('/', function () {
             return view('admin.category.list');
@@ -101,6 +111,18 @@ Route::prefix('admin')->group(function () {
             return view('admin.reputation.add');
         });
     });
+    Route::prefix('tag')->group(function () {
+        Route::get('/', function () {
+            return view('admin.tag.list');
+        });
+        Route::get('/edit', function () {
+            return view('admin.tag.edit');
+        });
+        Route::get('/add', function () {
+            return view('admin.tag.add');
+        });
+    });
+    Route::get('/', function () {
+        return view('admin.layout.index');
+    });
 });
-
-

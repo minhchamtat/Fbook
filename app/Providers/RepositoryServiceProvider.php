@@ -12,16 +12,12 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Eloquents\OfficeEloquentRepository',
         ],
         [
+            'App\Repositories\Contracts\CategoryRepository',
+            'App\Repositories\Eloquents\CategoryEloquentRepository',
+        ],
+        [
             'App\Repositories\Contracts\BookRepository',
             'App\Repositories\Eloquents\BookEloquentRepository',
-        ],
-        [
-            'App\Repositories\Contracts\MediaRepository',
-            'App\Repositories\Eloquents\MediaEloquentRepository',
-        ],
-        [
-            'App\Repositories\Contracts\BookCategoryRepository',
-            'App\Repositories\Eloquents\BookCategoryEloquentRepository',
         ],
     ];
 
