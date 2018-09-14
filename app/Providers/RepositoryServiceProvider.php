@@ -19,6 +19,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\BookRepository',
             'App\Repositories\Eloquents\BookEloquentRepository',
         ],
+        [
+            'App\Repositories\Contracts\CategoryRepository',
+            'App\Repositories\Eloquents\CategoryEloquentRepository',
+        ],
     ];
 
     /**

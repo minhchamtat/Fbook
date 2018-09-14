@@ -56,73 +56,11 @@ Route::get('/error', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::prefix('book')->group(function () {
-        Route::get('/', function () {
-            return view('admin.book.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.book.edit');
-        });
-        Route::get('/add', function () {
-            return view('admin.book.add');
-        });
-    });
-    Route::prefix('category')->group(function () {
-        Route::get('/', function () {
-            return view('admin.category.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.category.edit');
-        });
-        Route::get('/add', function () {
-            return view('admin.category.add');
-        });
-    });
-    Route::prefix('post')->group(function () {
-        Route::get('/', function () {
-            return view('admin.post.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.post.edit');
-        });
-        Route::get('/add', function () {
-            return view('admin.post.add');
-        });
-    });
-    Route::prefix('user')->group(function () {
-        Route::get('/', function () {
-            return view('admin.user.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.user.edit');
-        });
-        Route::get('/add', function () {
-            return view('admin.user.add');
-        });
-    });
-    Route::prefix('reputation')->group(function () {
-        Route::get('/', function () {
-            return view('admin.reputation.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.reputation.edit');
-        });
-        Route::get('/add', function () {
-            return view('admin.reputation.add');
-        });
-    });
-    Route::prefix('tag')->group(function () {
-        Route::get('/', function () {
-            return view('admin.tag.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.tag.edit');
-        });
-        Route::get('/add', function () {
-            return view('admin.tag.add');
-        });
-    });
-    Route::get('/', function () {
-        return view('admin.layout.index');
-    });
+    Route::get('/book', 'HomeController@index');
+    Route::resource('/category', 'CategoryController');
+    Route::get('/post', 'HomeController@index');
+    Route::get('/user', 'HomeController@index');
+    Route::get('/reputation', 'HomeController@index');
+    Route::get('/tag', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
 });
