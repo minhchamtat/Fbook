@@ -4,9 +4,9 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserRole extends Model
+class RoleUSer extends Model
 {
-    protected $table = 'user_role';
+    protected $table = 'role_user';
 
     protected $fillable = [
         'user_id',

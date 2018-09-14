@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Contracts;
 
-use App\Eloquent\Office;
+use App\Eloquent\Role;
 
-interface OfficeRepository extends AbstractRepository
+interface RoleRepository extends AbstractRepository
 {
     public function getData();
 }

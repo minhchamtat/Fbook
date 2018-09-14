@@ -10,3 +10,4 @@
         selector: 'textarea#mytextarea'
       });
 </script>
+{{ Html::script('assets/admin/user.js') }}

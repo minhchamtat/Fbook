@@ -63,4 +63,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/reputation', 'HomeController@index');
     Route::get('/tag', 'HomeController@index');
     Route::get('/', 'HomeController@index');
+
+    Route::resource('/roles', 'RoleController');
+    Route::resource('/offices', 'OfficeController');
+    Route::resource('/users', 'UserController');
 });
