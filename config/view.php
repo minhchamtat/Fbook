@@ -25,6 +25,11 @@ return [
         'banner' => 'assets/img/banner/',
         'product' => 'assets/img/product/',
         'post' => 'assets/img/post/',
+        'user' => 'assets/img/user/avatar/',
+    ],
+
+    'paginate' => [
+        'user' => '10',
     ],
 
     /*

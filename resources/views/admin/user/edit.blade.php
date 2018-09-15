@@ -5,58 +5,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title m-subheader__title--separator">Add New User</h3>
-                </div>
-                <div>
-                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                        <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-                            <i class="la la-plus m--hide"></i>
-                            <i class="la la-ellipsis-h"></i>
-                        </a>
-                        <div class="m-dropdown__wrapper">
-                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                            <div class="m-dropdown__inner">
-                                <div class="m-dropdown__body">
-                                    <div class="m-dropdown__content">
-                                        <ul class="m-nav">
-                                            <li class="m-nav__section m-nav__section--first m--hide">
-                                                <span class="m-nav__section-text">Quick Actions</span>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                    <span class="m-nav__link-text">Activity</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                    <span class="m-nav__link-text">Messages</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                    <span class="m-nav__link-text">FAQ</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                    <span class="m-nav__link-text">Support</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__separator m-nav__separator--fit">
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="m-subheader__title m-subheader__title--separator">{{ trans('settings.admin.layout.edit_page', ['name' => 'user']) }}</h3>
                 </div>
             </div>
         </div>
@@ -65,84 +14,234 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="m-portlet m-portlet--tab">
-                        <form class="m-form m-form--fit m-form--label-align-right">
+                        {!! Form::open(
+                        [
+                            'route' => ['users.update', $user->id],
+                            'method' => 'PATCH',
+                            'class' => 'form-horizontal style-form',
+                            'enctype' => 'multipart/form-data',
+                            'class' => 'm-form m-form--fit m-form--label-align-right',
+                            'name' => 'form_edit',
+                        ]
+                        ) !!}
                             <div class="m-portlet__body">
-                                <div class="form-group m-form__group row">
-                                    <label for="example-text-input" class="col-2 col-form-label">Name</label>
+                                <div class="form-group m-form__group">
+                                    <div class="col-0">
+                                            <img class="rounded float-right" src="{{ asset(config('view.image_paths.user') . $user->avatar) }}">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row input-ne">
+                                    {!! Form::label(
+                                        'name',
+                                        trans('settings.admin.default.name'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-text-input">
+                                        {!! Form::text(
+                                            'name',
+                                            $user->name,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'disabled' => 'disabled',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('name', '<p style="color:red">:message</p>') !!}
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row input-ne">
+                                    {!! Form::label(
+                                        'email',
+                                        trans('settings.admin.user.email'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-10">
+                                        {!! Form::email(
+                                            'email',
+                                            $user->email,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'disabled' => 'disabled',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('email', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-search-input" class="col-2 col-form-label">Email</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="email" id="example-search-input">
+                                    {!! Form::label(
+                                        'phone',
+                                        trans('settings.admin.user.phone'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::text(
+                                            'phone',
+                                            $user->phone,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'disabled' => 'disabled',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('phone', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-email-input" class="col-2 col-form-label">Phone</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-email-input">
+                                    {!! Form::label(
+                                        'position',
+                                        trans('settings.admin.user.position'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::text(
+                                            'position',
+                                            $user->position,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'disabled' => 'disabled',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('position', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Avatar</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="file" id="example-number-input">
+                                    {!! Form::label(
+                                        'roles',
+                                        trans('settings.admin.user.roles'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        @if($roles)
+                                            @foreach($roles as $role)
+                                                <div class="col-4 mb-3">
+                                                    <div class="m-checkbox-list">
+                                                    {!! Form::checkbox(
+                                                        'roles[]',
+                                                        $role->id,
+                                                        $idRoles != null && in_array($role->id, $idRoles),
+                                                        [
+                                                            'class' => 'm-checkbox m-checkbox--bold m-checkbox--state-success role-checkbox',
+                                                        ]
+                                                    )!!}
+                                                    {{ $role->name }}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        {!! $errors->first('roles', '<p style="color:red">:message</p>') !!}
+                                    </div>
+                                    {!! Form::hidden(
+                                        'changed',
+                                        false,
+                                        [
+                                            'id' => 'role-hidden',
+                                        ]
+                                    ) !!}
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    {!! Form::label(
+                                        'reputation_point',
+                                        trans('settings.admin.user.reputation'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::number(
+                                            'reputation_point',
+                                            $user->reputation_point,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'disabled' => 'disabled',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('reputation_point', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">Password</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="password" id="example-datetime-local-input">
+                                    {!! Form::label(
+                                        'employee_code',
+                                        trans('settings.admin.user.employee_code'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::text(
+                                            'employee_code',
+                                            $user->employee_code,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'disabled' => 'disabled',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('employee_code', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">RePassword</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="password" id="example-datetime-local-input">
+                                    {!! Form::label(
+                                        'workspace',
+                                        trans('settings.admin.user.workspace'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::text(
+                                            'workspace',
+                                            $user->workspace,
+                                            [
+                                                'class' => 'form-control m-input',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('workspace', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-tel-input" class="col-2 col-form-label">Position</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-tel-input">
+                                    {!! Form::label(
+                                        'office_id',
+                                        trans('settings.admin.user.office'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::select(
+                                            'office_id',
+                                            $offices,
+                                            $user->office != null ? $user->office->id : null,
+                                            [
+                                                'class' => 'form-control m-input',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('office_id', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-password-input" class="col-2 col-form-label">Role</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-password-input">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Reputation_poi</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-number-input">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">Employee_cod</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-datetime-local-input">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">Workspace</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-datetime-local-input">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">Office_Id</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-datetime-local-input">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">ChatWork_Id</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-datetime-local-input">
+                                    {!! Form::label(
+                                        'chatwork_id',
+                                        trans('settings.admin.user.chatwork_id'),
+                                        [
+                                            'class' => 'col-2 col-form-label',
+                                        ]
+                                    ) !!}
+                                    <div class="col-8">
+                                        {!! Form::text(
+                                            'chatwork_id',
+                                            $user->chatwork_id,
+                                            [
+                                                'class' => 'form-control m-input',
+                                            ]
+                                        )!!}
+                                        {!! $errors->first('chatwork_id', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                             </div>
@@ -151,17 +250,29 @@
                                     <div class="row">
                                         <div class="col-2">
                                         </div>
-                                        <div class="col-10">
-                                            <button type="reset" class="btn btn-success">Submit</button>
-                                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                                        <div class="col-8">
+                                            {!! Form::submit(
+                                                trans('settings.admin.default.submit'),
+                                                [
+                                                    'class' => 'btn btn-success',
+                                                ]
+                                            ) !!}
+                                            {!! Form::reset(
+                                                trans('settings.admin.default.reset'),
+                                                [
+                                                    'class' => 'btn btn-secondary'
+                                                ]
+                                            )!!}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+
