@@ -5,58 +5,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title m-subheader__title--separator">Add New Book</h3>
-                </div>
-                <div>
-                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                        <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-                            <i class="la la-plus m--hide"></i>
-                            <i class="la la-ellipsis-h"></i>
-                        </a>
-                        <div class="m-dropdown__wrapper">
-                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                            <div class="m-dropdown__inner">
-                                <div class="m-dropdown__body">
-                                    <div class="m-dropdown__content">
-                                        <ul class="m-nav">
-                                            <li class="m-nav__section m-nav__section--first m--hide">
-                                                <span class="m-nav__section-text">Quick Actions</span>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                    <span class="m-nav__link-text">Activity</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                    <span class="m-nav__link-text">Messages</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                    <span class="m-nav__link-text">FAQ</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                    <span class="m-nav__link-text">Support</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__separator m-nav__separator--fit">
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.newBook') }}</h3>
                 </div>
             </div>
         </div>
@@ -64,55 +13,68 @@
         <div class="m-content">
             <div class="row">
                 <div class="col-md-12">
+                    @include('admin.layout.notification')
                     <div class="m-portlet m-portlet--tab">
-                        <form class="m-form m-form--fit m-form--label-align-right" enctype="multipart/form-data">
+                        {!! Form::open(['method' => 'POST', 'route' => ['book.store'], 'files' => 'true', 'class' => 'm-form m-form--fit m-form--label-align-right']) !!}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
-                                    <label for="example-text-input" class="col-2 col-form-label">Title</label>
+                                    {!! Form::label('title', __('admin.titleBook'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-text-input">
+                                        {!! Form::text('title', null, ['class' => 'form-control m-input', 'placeHolder' => 'Title in here ...', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-search-input" class="col-2 col-form-label">Description</label>
+                                    {!! Form::label('description', __('admin.description'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <textarea id="mytextarea" name="mytextarea"></textarea>
+                                        {!! Form::textarea('description', null, ['id' => 'mytextarea']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="avatar" class="col-2 col-form-label">Avatar book</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="file" id="avatar">
+                                        {!! Form::label('avatar', __('admin.avatarBook'), ['class' => 'col-2 mb-0']) !!}
+                                    <div class="col-10 custom-file">
+                                        {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'customFile', 'required' => 'requiered']) !!}
+                                        {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-email-input" class="col-2 col-form-label">Author</label>
+                                    {!! Form::label('author', __('admin.author'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-email-input">
+                                        {!! Form::text('author', null, ['class' => 'form-control m-input', 'placeHolder' => 'Author ...', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-datetime-local-input" class="col-2 col-form-label">Publist_date</label>
+                                    {!! Form::label('date', __('admin.publish'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="datetime-local" id="example-datetime-local-input">
+                                        {!! Form::date('publish_date', null, ['class' => 'form-control m-input', 'id' => 'example-datetime-local-input', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-tel-input" class="col-2 col-form-label">Total Page</label>
+                                    {!! Form::label('date', __('admin.totalPage'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-tel-input">
+                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => 'Total pages', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Sku</label>
+                                    {!! Form::label('sku', __('admin.sku'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        <input class="form-control m-input" type="text" id="example-number-input">
+                                        {!! Form::text('sku', null, ['class' => 'form-control m-input', 'placeHolder' => 'Sku of book', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Count View</label>
-                                    <div class="col-10">
-                                        <input class="form-control m-input" type="number" id="example-number-input">
+                                    {!! Form::label('category', __('admin.category'), ['class' => 'col-2']) !!}
+                                    <div class="col-9">
+                                        <div class="row">
+                                            @foreach ($categories as $cat)
+                                                <div class="col-4 mb-3">
+                                                    <div class="m-checkbox-list">
+                                                        <label class="m-checkbox m-checkbox--bold m-checkbox--state-success">
+                                                            <input type="checkbox" value="{{ $cat->id }}" name="category[]" {{ $loop->first ? 'checked' : '' }}>{{ $cat->name }}
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,16 +84,26 @@
                                         <div class="col-2">
                                         </div>
                                         <div class="col-10">
-                                            <button type="reset" class="btn btn-success">Submit</button>
-                                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                                            {!! Form::submit(__('admin.submit'), ['class' => 'btn btn-success']) !!}
+                                            {!! Form::reset(__('admin.cancel'), ['class' => 'btn btn-secondary']) !!}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close()!!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    {{ Html::script('admin_asset/assets/tinymce/js/tinymce/tinymce.min.js') }}
+    <script>
+        jQuery(document).ready(function() {
+            tinymce.init({
+                selector: 'textarea#mytextarea'
+            });
+        });
+    </script>
 @endsection
