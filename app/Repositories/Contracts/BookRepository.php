@@ -15,14 +15,4 @@ interface BookRepository extends AbstractRepository
     public function update($id, $data = []);
 
     public function destroy($id);
-
-    public function getCategory();
-
-    public function getData($with = [], $data = [], $dataSelect = ['*'], $attribute = ['id', 'desc']);
-
-    public function getLatestBook($with = [], $data = [], $dataSelect = ['*']);
-
-    public function getTopReviewBook($with = [], $data = [], $dataSelect = ['*']);
-
-    public function getTopViewedBook($with = [], $data = [], $dataSelect = ['*']);
 }

@@ -26,6 +26,7 @@ return [
         'product' => 'assets/img/product/',
         'post' => 'assets/img/post/',
         'user' => 'assets/img/user/avatar/',
+        'book' => 'storage/img/book/',
     ],
 
     'paginate' => [

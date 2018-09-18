@@ -18,7 +18,7 @@
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-layers"></i>
-                    <span class="m-menu__link-text">Book</span>
+                    <span class="m-menu__link-text">{{ __('admin.book') }}</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -30,19 +30,19 @@
                             </span>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="admin/book" class="m-menu__link ">
+                            <a href="{{ route('book.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">List Book</span>
+                                <span class="m-menu__link-text">{{ __('admin.listBook') }}</span>
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="admin/book/add" class="m-menu__link ">
+                            <a href="{{ route('book.create') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">Add New Book</span>
+                                <span class="m-menu__link-text">{{ __('admin.newBook') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -58,7 +58,7 @@
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ url('admin/category') }}" class="m-menu__link ">
+                            <a href="{{ route('category.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
@@ -66,7 +66,7 @@
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ url('admin/category/create') }}" class="m-menu__link ">
+                            <a href="{{ route('category.create') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>

@@ -56,8 +56,9 @@ Route::get('/error', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/book', 'HomeController@index');
-    Route::resource('/category', 'CategoryController');
+    Route::get('/listbook', 'BookController@ajaxShow')->name('book.show');
+    Route::resource('/book', 'BookController')->except(['show']);
+    Route::resource('/category', 'CategoryController')->except(['show']);
     Route::get('/post', 'HomeController@index');
     Route::get('/user', 'HomeController@index');
     Route::get('/reputation', 'HomeController@index');
