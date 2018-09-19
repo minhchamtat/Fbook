@@ -71,4 +71,13 @@ return [
         'summary' => 'Summary',
     ],
 
+    'home' => [
+        'best_sharing' => 'Best Sharing',
+        'latest_books' => 'Latest Books',
+        'top_interesting' => 'Top Interesting',
+        'top_rating' => 'Top Rating',
+        'top_review' => 'Top Review',
+        'top_view' => 'Top View',
+    ],
+
 ];

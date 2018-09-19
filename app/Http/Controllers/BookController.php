@@ -38,7 +38,7 @@ class BookController extends Controller
     public function ajaxShow()
     {
         try {
-            $books = $this->book->getJson(
+            $books = $this->book->getData(
                 [],
                 [],
                 ['id', 'title', 'author', 'publish_date', 'total_pages', 'avg_star', 'count_viewed']
