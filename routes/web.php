@@ -15,12 +15,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/book-detail', function () {
-    return view('book.book_detail');
-});
-
-Route::get('/add-a-book', function () {
-    return view('book.add');
+Route::group(['namespace' => 'User'], function() {
+    Route::resource('/books', 'BookController');
 });
 
 Route::get('/review', function () {
