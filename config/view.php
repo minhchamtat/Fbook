@@ -33,6 +33,16 @@ return [
         'user' => '10',
     ],
 
+    'taking_numb' => [
+        'book_best_sharing' => 5,
+        'book_top' => 6,
+        'book_latest' => 12,
+    ],
+
+    'random_numb' => [
+        'book' => 3,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path
