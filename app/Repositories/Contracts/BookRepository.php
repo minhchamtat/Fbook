@@ -6,8 +6,6 @@ use App\Eloquent\Book;
 
 interface BookRepository extends AbstractRepository
 {
-    public function getAll($data = []);
-
     public function store($data = []);
 
     public function find($id);

@@ -12,22 +12,33 @@ use App\Repositories\Contracts\CategoryRepository;
 class BookController extends Controller
 {
     protected $book;
-    protected $media;
-    protected $category;
-    protected $bCategory;
 
-    public function __construct(
-        BookRepository $book,
-        MediaRepository $media,
-        CategoryRepository $category,
-        BookCategoryRepository $bCategory
-    ) {
+    protected $category;
+
+    protected $bookCategory;
+
+    protected $media;
+
+    protected $with = [
+        'medias',
+        'categories',
+        'owners',
+        'reviews',
+    ];
+
+    public function __construct(BookRepository $book, CategoryRepository $category, BookCategoryRepository $bookCategory, MediaRepository $media)
+    {
         $this->book = $book;
-        $this->media = $media;
         $this->category = $category;
-        $this->bCategory = $bCategory;
+        $this->bookCategory = $bookCategory;
+        $this->media = $media;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
@@ -49,7 +60,7 @@ class BookController extends Controller
             $request->merge(['book_id' => $book->id]);
             //save category
             if ($request->has('category')) {
-                $this->bCategory->store($request->all());
+                $this->bookCategory->store($request->all());
             }
             //create image
             $this->media->store($request->all());
@@ -68,7 +79,12 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $id = last(explode('-', $id));
+        $book = $this->book->find($id, $this->with);
+        $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
+        $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
+        
+        return view('book.book_detail', compact('book', 'relatedBooks'));
     }
 
     /**

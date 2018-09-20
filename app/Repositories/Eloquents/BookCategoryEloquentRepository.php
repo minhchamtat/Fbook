@@ -12,11 +12,6 @@ class BookCategoryEloquentRepository extends AbstractEloquentRepository implemen
         return new BookCategory;
     }
 
-    public function getData($data = [], $with = [], $dataSelect = ['*'])
-    {
-        return $this->model()->all();
-    }
-
     public function store($data = [])
     {
         foreach ($data['category'] as $category) {
@@ -28,5 +23,23 @@ class BookCategoryEloquentRepository extends AbstractEloquentRepository implemen
     public function find($id)
     {
         return $this->model()->findOrFail($id);
+    }
+
+    public function getData($with = [], $data = [], $dataSelect = ['*'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->get();
+    }
+
+    public function getBooks($categoryIds = [])
+    {
+        $books = collect();
+        foreach ($categoryIds as $id) {
+            $books = $books->merge($this->model()->where('category_id', $id)->get());
+        }
+
+        return $books->pluck('book_id')->unique()->take(8);
     }
 }

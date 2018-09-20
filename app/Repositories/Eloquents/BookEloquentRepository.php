@@ -13,11 +13,6 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         return new Book;
     }
 
-    public function getAll($data = [])
-    {
-        return $this->model()->all();
-    }
-
     public function store($data = [])
     {
         return $this->model()->create($data);
@@ -55,5 +50,14 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->get();
 
         return $books;
+    }
+
+    public function getData($with = [], $data = [], $dataSelect = ['*'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->whereIn('id', $data)
+            ->with($with)
+            ->paginate(config('view.paginate.Book'));
     }
 }

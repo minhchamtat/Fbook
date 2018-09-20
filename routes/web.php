@@ -15,40 +15,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::group(['namespace' => 'User'], function() {
-    Route::resource('/books', 'BookController');
-});
-
-Route::get('/review', function () {
-    return view('book.review');
-});
-
-Route::get('/books', function () {
-    return view('book.books');
-});
-
-Route::get('/profile', function () {
-    return view('user.profile');
-});
-
-Route::get('/notifications', function () {
-    view('user.notifications');
-});
-
-Route::get('my-request', function () {
-    return view('user.my_request');
-});
-
-Route::get('/posts', function () {
-    return view('post.list');
-});
-
-Route::get('/post-detail', function () {
-    return view('post.post_detail');
-});
-
-Route::get('/error', function () {
-    return view('error');
+Route::group(['namespace' => 'User'], function () {
+    Route::resource('books', 'BookController');
 });
 
 Route::prefix('admin')->group(function () {
