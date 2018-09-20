@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Eloquent\Book;
 use App\Eloquent\Category;
+use App\Eloquent\User;
 
 class BookTableSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class BookTableSeeder extends Seeder
     {
         factory(Book::class, 26)->create()->each(function ($book) {
             $book->categories()->saveMany(
-                Category::all()->random(1)
+                Category::all()->random(3)
             );
             DB::table('media')->insert([
                 'path' => rand(10, 20) . '.jpg',
@@ -23,6 +24,9 @@ class BookTableSeeder extends Seeder
                 'target_type' => 'App\Eloquent\Book',
                 'target_id' => $book->id,
             ]);
+            $book->owners()->saveMany(
+                User::all()->random(2)
+            );
         });
     }
 }

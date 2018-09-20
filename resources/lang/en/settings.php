@@ -46,4 +46,29 @@ return [
         ],
     ],
 
+    'default' => [
+        'home' => 'Home',
+        'show_more' => 'Show More',
+        'submit' => 'Submit',
+    ],
+
+    'book' => [
+        'author' => 'Author',
+        'borrow_book' => 'Borrow Book',
+        'categories' => 'Categories',
+        'detail' => 'Detail',
+        'detail_book' => 'Detail Book',
+        'i_have_this_book' => 'I have this book',
+        'new' => 'New',
+        'review' => 'Review',
+        'reviews' => ':avg Reviews',
+        'related_books' => 'Related Books',
+        'owners' => 'Share By',
+    ],
+
+    'review' => [
+        'rating' => 'Rating',
+        'summary' => 'Summary',
+    ],
+
 ];
