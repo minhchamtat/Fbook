@@ -19,8 +19,19 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="account-area text-right">
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Sign in</a></li>
+                            @auth
+                                <li>
+                                    {!! Form::open([
+                                        'route' => 'logout',
+                                        'method' => 'POST',
+                                    ]) !!}
+                                    <button class="btn btn-danger">Log out</button>
+                                    {!! Form::close() !!}
+                                </li>
+                            @else
+                                <li><a href="{{ route('login') }}">Log in</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                            @endauth
                         </ul>
                     </div>
                 </div>
