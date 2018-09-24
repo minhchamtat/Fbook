@@ -20,8 +20,12 @@ class UserController extends Controller
 
     protected $roleUserRepository;
 
-    public function __construct(UserRepository $repository, RoleRepository $roleRepository, RoleUserRepository $roleUserRepository, OfficeRepository $officeRepository)
-    {
+    public function __construct(
+        UserRepository $repository,
+        RoleRepository $roleRepository,
+        RoleUserRepository $roleUserRepository,
+        OfficeRepository $officeRepository
+    ) {
         $this->repository = $repository;
         $this->roleRepository = $roleRepository;
         $this->officeRepository = $officeRepository;
@@ -66,19 +70,19 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         try {
-            if($request->hasFile('img')) {
+            if ($request->hasFile('img')) {
                 $img = $request->file('img');
-                $fileName = md5(date('Y-m-d H:i:s') . $img->getClientOriginalName()) . '.' . $img->getClientOriginalExtension();
+                $fileName = md5(date('Y-m-d H:i:s') . $img->getClientOriginalName())
+                . '.' . $img->getClientOriginalExtension();
                 $img->move(config('view.image_paths.user'), $fileName);
                 $request->merge(['avatar' => $fileName]);
             }
 
             $id = $this->repository->store($request->all())->id;
-            if($id) {
+            if ($id) {
                 $this->roleUserRepository->store($request->roles, $id);
             }
         } catch (Exception $e) {
-            
         }
         
         return redirect()->route('users.index');
@@ -102,7 +106,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $with = [
             'roles',
             'office',
@@ -126,7 +130,7 @@ class UserController extends Controller
     {
         $this->repository->update($request->all(), $id);
 
-        if($request->changed) {
+        if ($request->changed) {
             $this->updateRole($request->roles, $id);
         }
 

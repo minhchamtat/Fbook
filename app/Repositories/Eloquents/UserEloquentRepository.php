@@ -32,7 +32,7 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
         return $this->model()->create($data);
     }
 
-    public function update($data = [], $id)
+    public function update($id, $data = [])
     {
         $user = $this->model()->findOrFail($id);
         

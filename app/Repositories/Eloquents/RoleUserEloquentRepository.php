@@ -14,7 +14,7 @@ class RoleUSerEloquentRepository extends AbstractEloquentRepository implements R
 
     public function store($roles, $userId)
     {
-        if($roles) {
+        if ($roles) {
             foreach ($roles as $role) {
                 $this->model()->create([
                     'user_id' => $userId,
@@ -24,14 +24,15 @@ class RoleUSerEloquentRepository extends AbstractEloquentRepository implements R
         }
     }
 
-    public function destroy($userId){
-        $role_users = $this->model()
+    public function destroy($userId)
+    {
+        $roleUsers = $this->model()
             ->where('user_id', $userId)
             ->get();
 
-        if($role_users) {
-            foreach ($role_users as $role_user) {
-                $role_user->delete();
+        if ($roleUsers) {
+            foreach ($roleUsers as $roleUser) {
+                $roleUser->delete();
             }
         }
     }

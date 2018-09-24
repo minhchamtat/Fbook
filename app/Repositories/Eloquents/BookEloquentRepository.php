@@ -24,7 +24,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         return $this->model()->create($data);
     }
 
-    public function find($id, $with = ['medias','categories'], $dataSelect = ['*'])
+    public function find($id, $with = ['medias', 'categories'], $dataSelect = ['*'])
     {
         $book = $this->model()->findOrFail($id);
 
