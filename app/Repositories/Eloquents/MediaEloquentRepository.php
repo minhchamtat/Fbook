@@ -19,7 +19,6 @@ class MediaEloquentRepository extends AbstractEloquentRepository implements Medi
 
     public function store($data = [])
     {
-
         if (isset($data['avatar'])) {
             $imgBook = $data['avatar'];
             $filename = str_random(4) . '_' . preg_replace('/\s+/', '', $imgBook->getClientOriginalName());

@@ -24,7 +24,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         return $this->model()->create($data);
     }
 
-    public function find($id, $with = ['medias','categories'], $dataSelect = ['*'])
+    public function find($id, $with = ['medias', 'categories'], $dataSelect = ['*'])
     {
         $book = $this->model()->findOrFail($id);
 
@@ -62,7 +62,10 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'created_at',
             'desc',
         ];
-        $books = $this->getData($with, $data, $dataSelect, $attribute)->take(config('view.random_numb.book_latest'));
+        $books = $this->getData($with, $data, $dataSelect, $attribute);
+        if (count($books) > config('view.taking_numb.latest_book')) {
+            $books = $books->take(config('view.taking_numb.latest_book'));
+        }
         
         return $books;
     }
@@ -71,8 +74,10 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
     {
         $ids = app(Bookmeta::class)->where('key', 'count_review')
             ->orderBy('value', 'desc')
-            ->pluck('book_id')
-            ->take(config('view.random_numb.book_top'));
+            ->pluck('book_id');
+        if (count($ids) > config('view.taking_numb.book_top')) {
+            $ids = $ids->take(config('view.taking_numb.book_top'));
+        }
         if (!empty($ids)) {
             $books = $this->model()
             ->select($dataSelect)
@@ -92,7 +97,10 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'count_viewed',
             'desc',
         ];
-        $books = $this->getData($with, $data, $dataSelect, $attribute)->take(config('view.random_numb.book'));
+        $books = $this->getData($with, $data, $dataSelect, $attribute);
+        if (count($books) > config('view.taking_numb.latest_book')) {
+            $books = $books->take(config('view.taking_numb.latest_book'));
+        }
 
         return $books;
     }
@@ -103,7 +111,10 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'avg_star',
             'desc',
         ];
-        $books = $this->getData($with, $data, $dataSelect, $attribute)->take(config('view.random_numb.book'));
+        $books = $this->getData($with, $data, $dataSelect, $attribute);
+        if (count($books) > config('view.taking_numb.top_book')) {
+            $books = $books->take(config('view.taking_numb.top_book'));
+        }
 
         return $books;
     }
@@ -119,7 +130,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             $ids = app(Owner::class)
                 ->where('user_id', $user->id)
                 ->pluck('book_id')
-                ->take(config('view.taking_numb.book_best_sharing'));
+                ->take(config('view.taking_numb.best_sharing_book'));
 
             if (!empty($ids)) {
                 $books = $this->model()
@@ -146,8 +157,10 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
                         'value' => '1',
                     ]
                 )
-                ->get()
-                ->random(config('view.random_numb.book'));
+                ->get();
+            if (count($ids) > config('view.random_numb.book')) {
+                $ids = $ids->random(config('view.random_numb.book'));
+            }
             $data->push(
                 [
                     'id' => $key,
@@ -160,6 +173,10 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             );
         }
 
-        return $data->random(config('view.random_numb.book'));
+        if (count($data) > config('view.random_numb.book')) {
+            $data = $data->random(config('view.random_numb.book'));
+        }
+
+        return $data;
     }
 }

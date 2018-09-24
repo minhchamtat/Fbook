@@ -26,8 +26,12 @@ class BookController extends Controller
         'reviews',
     ];
 
-    public function __construct(BookRepository $book, CategoryRepository $category, BookCategoryRepository $bookCategory, MediaRepository $media)
-    {
+    public function __construct(
+        BookRepository $book,
+        CategoryRepository $category,
+        BookCategoryRepository $bookCategory,
+        MediaRepository $media
+    ) {
         $this->book = $book;
         $this->category = $category;
         $this->bookCategory = $bookCategory;
