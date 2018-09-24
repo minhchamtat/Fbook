@@ -41,7 +41,15 @@ class HomeController extends Controller
         $hotUser = $bestSharing['user'];
         $bestSharing = $bestSharing['books'];
         $officeBooks = $this->bookRepository->getOfficeBooks($offices, $with);
-        $data = compact('topInteresting', 'topReview', 'topViewed', 'latestBook', 'bestSharing', 'hotUser', 'officeBooks');
+        $data = compact(
+            'topInteresting',
+            'topReview',
+            'topViewed',
+            'latestBook',
+            'bestSharing',
+            'hotUser',
+            'officeBooks'
+        );
 
         return view('index', $data);
     }

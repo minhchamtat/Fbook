@@ -84,7 +84,7 @@ class BookController extends Controller
 
     public function edit($id)
     {
-       try {
+        try {
             $book = $this->book->find($id);
             $categories = $this->category->getData();
 
