@@ -1,4 +1,13 @@
-{{ Html::script('js/app.js') }}
+{{ Html::script('assets/js/vendor/jquery-1.12.0.min.js') }}
+{{ Html::script('assets/js/bootstrap.min.js') }}
+{{ Html::script('assets/js/owl.carousel.min.js') }}
+{{ Html::script('assets/js/jquery.meanmenu.js') }}
+{{ Html::script('assets/js/wow.min.js') }}
+{{ Html::script('assets/js/jquery.parallax-1.1.3.js') }}
+{{ Html::script('assets/js/jquery.countdown.min.js') }}
+{{ Html::script('assets/js/jquery.flexslider.js') }}
+{{ Html::script('assets/js/chosen.jquery.min.js') }}
+{{ Html::script('assets/js/jquery.counterup.min.js') }}
+{{ Html::script('assets/js/waypoints.min.js') }}
 {{ Html::script('assets/js/plugins.js') }}
 {{ Html::script('assets/js/main.js') }}
-{{ Html::script('assets/js/jquery.meanmenu.js') }}

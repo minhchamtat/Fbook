@@ -8,8 +8,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumbs-menu">
                         <ul>
-                            <li><a href="#">{{ trans('settings.default.home') }}</a></li>
-                            <li><a href="#" class="active">{{ trans('settings.book.detail_book') }}</a></li>
+                            <li><a href="{{ asset('/') }}">{{ trans('settings.default.home') }}</a></li>
+                            <li><a class="active">{{ trans('settings.book.detail_book') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,6 @@
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                            
                             <div class="product-info-main">
                                 <div class="page-title">
                                     <h1>{{ $book->title }}</h1>
@@ -111,58 +110,86 @@
                 </div>
                 <div class="product-info-area mt-80">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="active"><a href="#" data-toggle="tab">{{ trans('settings.book.detail') }}</a></li>
-                        <li><a href="#Reviews" data-toggle="tab">{{ trans('settings.book.review') }}</a></li>
+                        <li class="active"><a href="#Details" data-toggle="tab">{{ trans('settings.book.review') }}</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="Details">
-                            <div class="valu">
-                              <p>The sporty Joust Duffle Bag can't be beat - not in the gym, not on the luggage carousel, not anywhere. Big enough to haul a basketball or soccer ball and some sneakers with plenty of room to spare, it's ideal for athletes with places to go.</p>
-                              <ul>
-                                <li><i class="fa fa-circle"></i>Dual top handles.</li>
-                                <li><i class="fa fa-circle"></i>Adjustable shoulder strap.</li>
-                                <li><i class="fa fa-circle"></i>Full-length zipper.</li>
-                                <li><i class="fa fa-circle"></i>L 29" x W 13" x H 11".</li>
-                              </ul>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="Reviews">
-                            <div class="valu valu-2">
-                                <div class="section-title mb-60 mt-60">
-                                    {{-- review --}}
-                                </div>
-                                <div class="review-form">
-                                    <div class="single-form single-form-2">
-                                        <label>{{ trans('settings.review.rating') }}<sup>*</sup></label>
-                                        <form action="#">
-                                            <div>
-                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                <a href="#"><i class="fa fa-star"></i></a>
+                            <div class="row event-list">
+                                <div class="col-xs-12 col-sm-8 col-md-12 revsdv fix" id="load-data">
+                                    @if($reviews->count() > 0)
+                                        @foreach ($reviews as $review)
+                                            <div class="event-item wow fadeInRight comment-box">
+                                                <div class="well padding5 owner-clear relative-position">
+                                                    <div class="media padding5">
+                                                        <div class="medialeft">
+                                                            <a href="" class="avatar"><img src="/{{ config('view.image_paths.user') . $review->user->avatar }}" class="media-object" alt="avatar"></a>
+                                                        </div>
+                                                        <div class="media-body relative-position">
+                                                            <div class="content-comment">
+                                                                <div class="show tip-left">
+                                                                    <strong>{{ $review->user->name }}</strong>
+                                                                    <i>{{ $review->created_at }}</i>
+                                                                    @if($review->user == Auth::user())
+                                                                        <div class="action">
+                                                                            <a href="{{ route('review.edit', [$book->slug . '-' . $book->id, $review->id]) }}" class="btn btn-info btn-sm a-btn-slide-text">
+                                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                                            </a>
+                                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['review.destroy', $book->slug . '-' . $book->id, $review->id], 'id' => "$review->id"]) !!}
+                                                                                {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                                            {!! Form::close() !!}
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
+                                                                <h4 class="media-heading list-inline list-unstyled rating-star m-0">
+                                                                    @for($i = 1; $i <= $review->star; $i++)
+                                                                        <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                    @endfor
+                                                                    @for($j = 1; $j <= 5 - ($review->star); $j++)
+                                                                        <li class=""><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                    @endfor
+                                                                </h4>
+                                                                <p class="m-0">{{ $review->title }}</p>
+                                                                <div class="custom-vote">
+                                                                    <div class="float-right">
+                                                                        <div class="vote">
+                                                                            <p class="no-margin">
+                                                                                <i class="fa fa-caret-up" aria-hidden="true"></i>
+                                                                            </p>
+                                                                            <p class="no-margin mtop">
+                                                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="count-vote">
+                                                                            <span>0</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="" class="view_more"><i class="fa fa-eye" aria-hidden="true"></i> View More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="single-form single-form-2">
-                                        <label>{{ trans('settings.review.summary') }}<sup>*</sup></label>
-                                        <form action="#">
-                                            <input type="text" />
-                                        </form>
-                                    </div>
-                                    <div class="single-form">
-                                        <label>{{ trans('settings.book.review') }}<sup>*</sup></label>
-                                        <form action="#">
-                                            <textarea name="massage" cols="10" rows="4"></textarea>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="review-form-button">
-                                    <a href="#">{{ trans('settings.default.submit') }}</a>
+                                        @endforeach
+                                    @else
+                                        <div class="alert alert-info">
+                                            {{ __('page.reviews.noReview') }}
+                                        </div>
+                                    @endif
+                                    @if ($flag == true)
+                                        <div class="button">
+                                            <a href="{{ route('review.create', $book->slug . '-' . $book->id) }}" class="btn btn-primary"> Add Review</a>
+                                        </div>
+                                    @endif
+                                    @if(!Auth::check())
+                                        <div class="alert alert-success">
+                                            {{ __('page.reviews.sign') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
                 <div class="new-book-area mt-60">
                     <div class="section-title text-center mb-30">
@@ -198,7 +225,7 @@
                                             </ul>
                                         </div>
                                         <h4><a href="{{ '/books/' . $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id}}">{{ $relatedBooks[$i]->title }}</a></h4>
-                                    </div>  
+                                    </div>
                                 </div>
                             @endfor
                         @endif
@@ -234,7 +261,7 @@
                                         </div>
                                     @endfor
                                 @endif
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="banner-area mb-30">

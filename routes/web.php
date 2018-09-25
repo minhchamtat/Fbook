@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['namespace' => 'User'], function () {
     Route::resource('books', 'BookController');
+    Route::resource('books/{slug}/review', 'ReviewBookController');
 });
 
 Route::prefix('admin')->group(function () {
@@ -24,12 +25,14 @@ Route::prefix('admin')->group(function () {
     Route::resource('/book', 'BookController')->except(['show']);
     Route::resource('/category', 'CategoryController')->except(['show']);
     Route::get('/post', 'HomeController@index');
-    Route::get('/user', 'HomeController@index');
     Route::get('/reputation', 'HomeController@index');
     Route::get('/tag', 'HomeController@index');
-    Route::get('/', 'HomeController@index');
-
+    Route::get('/', function() {
+        return view('admin.layout.index');
+    }); // create later
     Route::resource('/roles', 'RoleController');
     Route::resource('/offices', 'OfficeController');
     Route::resource('/users', 'UserController');
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
