@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class BookRequest extends FormRequest
 {
@@ -24,9 +25,9 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'min:5|max:191',
-            'description' => 'min:20',
-            'author' => 'min:5|max:191',
+            'title' => 'required|min:5|max:191',
+            'description' => 'required|min:5',
+            'author' => 'required|min:5|max:191',
             'sku' => 'min:5',
             'avatar' => 'mimes:jpg,jpeg,png,gif,bmp',
         ];
@@ -34,13 +35,16 @@ class BookRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.min' => __('admin.errTitleBook'),
-            'title.max' => __('admin.errTitleBook'),
-            'description.min' => __('admin.errDescriptionBook'),
-            'author.min' => __('admin.errAuthor'),
-            'author.max' => __('admin.errAuthor'),
-            'sku.min' => __('admin.errSku'),
-            'avatar.mimes' => __('admin.errImg'),
+            'title.required' => Lang::get('validation.required'),
+            'title.min' => Lang::get('validation.min.string'),
+            'title.max' => Lang::get('validation.max.string'),
+            'description.required' => Lang::get('validation.required'),
+            'description.min' => Lang::get('validation.min.string'),
+            'author.required' => Lang::get('validation.required'),
+            'author.min' => Lang::get('validation.min.string'),
+            'author.max' => Lang::get('validation.max.string'),
+            'sku.min' => Lang::get('validation.min.string'),
+            'avatar.mimes' => Lang::get('validation.mimes'),
         ];
     }
 }

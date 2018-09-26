@@ -30,11 +30,11 @@
                             <div class="flexslider">
                                 @if($book->medias)
                                 <ul class="slides">
-                                    <li data-thumb="{{ asset(config('view.image_paths.product') . $book->medias[0]->path) }}">
-                                      <img src="{{ asset(config('view.image_paths.product') . $book->medias[0]->path) }}" alt="woman" />
+                                    <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
+                                      <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
                                     </li>
-                                    <li data-thumb="{{ asset(config('view.image_paths.product') . $book->medias[0]->path) }}">
-                                      <img src="{{ asset(config('view.image_paths.product') . $book->medias[0]->path) }}" alt="woman" />
+                                    <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
+                                      <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
                                     </li>
                                 </ul>
                                 @endif
@@ -100,7 +100,7 @@
                                         <a href="#"><i class="fa fa-envelope-o"></i></a>
                                     </div>
                                     <div class="product-addto-links-text">
-                                        <p class="more">{{ $book->description }}</p>
+                                        <div class="more">{!! $book->description !!}</div>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@
                                 <div class="product-wrapper">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="{{ asset(config('view.image_paths.product') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary" />
+                                            <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary" />
                                         </a>
                                         <div class="quick-view">
                                             <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
@@ -244,7 +244,7 @@
                                     @for($i = 0; $i < 3; $i++)
                                         <div class="single-most-product bd mb-18">
                                             <div class="most-product-img">
-                                                <a href="#"><img src="{{ asset(config('view.image_paths.product') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" /></a>
+                                                <a href="#"><img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" /></a>
                                             </div>
                                             <div class="most-product-content">
                                                 <div class="product-rating">

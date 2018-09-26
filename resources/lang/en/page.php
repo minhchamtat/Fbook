@@ -7,6 +7,7 @@ return [
     'cancel' => 'Cancel',
     'book' => [
         'add' => 'Add Your Book',
+        'edit' => 'Edit Your Book',
         'avatar' => 'Avatar Book',
         'title' => 'Title',
         'author' => 'Author',

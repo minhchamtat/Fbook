@@ -16,17 +16,17 @@ class BookController extends Controller
 {
     protected $book;
     protected $media;
-    protected $bCategory;
+    protected $bookCategory;
 
     public function __construct(
         BookRepository $book,
         MediaRepository $media,
-        BookCategoryRepository $bCategory,
+        BookCategoryRepository $bookCategory,
         CategoryRepository $category
     ) {
         $this->book = $book;
         $this->media = $media;
-        $this->bCategory = $bCategory;
+        $this->bookCategory = $bookCategory;
         $this->category = $category;
     }
 
@@ -71,7 +71,7 @@ class BookController extends Controller
             $request->merge(['book_id' => $book->id]);
             //save category
             if ($request->has('category')) {
-                $this->bCategory->store($request->all());
+                $this->bookCategory->store($request->all());
             }
             //create image
             $this->media->store($request->all());
@@ -108,7 +108,7 @@ class BookController extends Controller
             if ($request->has('category')) {
                 $book->categories()->detach();
                 $data['category'] = $request->category;
-                $this->bCategory->store($request->all());
+                $this->bookCategory->store($request->all());
             } else {
                 $book->categories()->detach();
             }

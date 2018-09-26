@@ -13,9 +13,9 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['namespace' => 'User'], function () {
+Route::group(['namespace' => 'User', 'middleware' => 'auth'], function () {
     Route::resource('books', 'BookController');
     Route::resource('books/{slug}/review', 'ReviewBookController');
 });

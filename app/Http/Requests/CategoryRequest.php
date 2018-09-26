@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class CategoryRequest extends FormRequest
 {
@@ -31,8 +32,8 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.min' => __('admin.name'),
-            'name.max' => __('admin.name'),
+            'name.min' => Lang::get('validation.min.string'),
+            'name.max' => Lang::get('validation.max.string'),
         ];
     }
 }

@@ -33,11 +33,39 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         ->findOrFail($id);
     }
 
-    public function update($id, $data = [])
+    public function update($id, $userId, $data = [])
     {
-        $model = $this->model()->findOrFail($id);
+        $book = $this->model()->findOrFail($id);
+        $firstOwner = $book->owners[0]->id;
+        if ($userId == $firstOwner) {
+            $book->update($data);
+        } else {
+            $isClone = app(Bookmeta::class)
+                ->where(
+                    [
+                        'key' => 'clone_book',
+                        'value' => $userId,
+                    ]
+                )->first();
+            if($isClone) {
+                $book = $this->model()->findOrFail($isClone->book_id);
+                $book->update($data);
+            } else {
+                $data = array_add($data, 'sku', $book->sku);
+                $book = $this->store($data);
+                app(Owner::class)->create([
+                    'user_id' => $userId,
+                    'book_id' => $book->id,
+                ]);
+                app(Bookmeta::class)->create([
+                    'key' => 'clone_book',
+                    'value' => $userId,
+                    'book_id' => $book->id,
+                ]);
+            }
+        }
 
-        return $model->update($data);
+        return $book;
     }
 
     public function destroy($id)

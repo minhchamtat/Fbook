@@ -80,4 +80,10 @@ return [
         'top_view' => 'Top View',
     ],
 
+    'error' => [
+        '404' => 'Oops! That page can’t be found.',
+        'go_to_home' => 'Go To Home',
+        'sorry' => 'Sorry, but the page you are looking for is not found. Please, make sure you have typed the current URL.',
+    ]
+
 ];

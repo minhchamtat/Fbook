@@ -9,6 +9,7 @@ use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\MediaRepository;
 use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
+use App\Repositories\Contracts\OwnerRepository;
 use Auth;
 
 class BookController extends Controller
@@ -23,6 +24,8 @@ class BookController extends Controller
 
     protected $review;
 
+    protected $owner;
+
     protected $with = [
         'medias',
         'categories',
@@ -35,6 +38,7 @@ class BookController extends Controller
         CategoryRepository $category,
         BookCategoryRepository $bookCategory,
         MediaRepository $media,
+        OwnerRepository $owner,
         ReviewBookRepository $review
     ) {
         $this->book = $book;
@@ -42,6 +46,7 @@ class BookController extends Controller
         $this->bookCategory = $bookCategory;
         $this->media = $media;
         $this->review = $review;
+        $this->owner = $owner;
     }
 
     /**
@@ -57,6 +62,7 @@ class BookController extends Controller
     public function create()
     {
         $categories = $this->category->getData();
+
         return view('book.add', compact('categories'));
     }
 
@@ -75,9 +81,15 @@ class BookController extends Controller
             //create image
             $this->media->store($request->all());
 
-            return back()->with('success', __('page.success'));
+            $data = [
+                'user_id' => Auth::user()->id,
+                'book_id' => $book->id,
+            ];
+            $this->owner->store($data);
+
+            return redirect()->route('books.show', $book->slug . '-' . $book->id);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return view('error');
         }
     }
 
@@ -91,11 +103,10 @@ class BookController extends Controller
     {
         $id = last(explode('-', $slug));
         $book = $this->book->find($id, $this->with);
-
-        if ($slug == $book->slug . '-' . $book->id) {
+        $slugId = $book->slug . '-' . $book->id;
+        if ($slug == $slugId) {
             $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
             $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
-
             $data['book_id'] = $book->id;
             $reviews = $this->review->show($data);
 
@@ -121,9 +132,24 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        try {
+            $userId = Auth::user()->id;
+            $categories = $this->category->getData();
+            $id = last(explode('-', $slug));
+            $book = $this->book->find($id, $this->with);
+            $checked = $book->categories->pluck('id')->toArray();
+            $slugId = $book->slug . '-' . $book->id;
+            $owners = $book->owners->pluck('id')->toArray();
+            if ($slug == $slugId && in_array($userId, $owners)) {
+                return view('book.edit', compact('categories', 'book', 'checked'));
+            }
+
+            return view('error');
+        } catch (Exception $e) {
+            return view('error');
+        }
     }
 
     /**
@@ -133,9 +159,34 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $slug)
     {
-        //
+        try {
+            //update book
+            $id = last(explode('-', $slug));
+            $request->merge(['slug' => str_slug($request->title)]);
+            $userId = Auth::user()->id;
+            $book = $this->book->update($id, $userId, $request->all());
+            $request->merge(['book_id' => $book->id]);
+            if ($book->id == $id) {
+                $book->categories()->detach();
+                $this->media->destroy($request->all());
+                $this->media->store($request->all());
+            } elseif (!$request->hasFile('avatar')) {
+                $media = $this->book->find($id)->medias[0];
+                $media->target_id = $book->id;
+                $this->media->clone($media->toArray());
+            } else {
+                $this->media->store($request->all());
+            }
+            if ($request->has('category')) {
+                $this->bookCategory->store($request->all());
+            }
+
+            return back();
+        } catch (Exception $e) {
+            return view('error');
+        }
     }
 
     /**

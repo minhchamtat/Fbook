@@ -5,7 +5,7 @@ namespace App\Repositories\Eloquents;
 use App\Eloquent\RoleUser;
 use App\Repositories\Contracts\RoleUSerRepository;
 
-class RoleUSerEloquentRepository extends AbstractEloquentRepository implements RoleUSerRepository
+class RoleUserEloquentRepository extends AbstractEloquentRepository implements RoleUserRepository
 {
     public function model()
     {

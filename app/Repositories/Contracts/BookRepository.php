@@ -10,7 +10,7 @@ interface BookRepository extends AbstractRepository
 
     public function find($id);
 
-    public function update($id, $data = []);
+    public function update($id, $userId, $data = []);
 
     public function destroy($id);
 }
