@@ -7,7 +7,7 @@
                 <div class="breadcrumbs-menu">
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#" class="active">{{ __('page.book.add') }}</a></li>
+                        <li><a href="#" class="active">{{ __('page.book.edit') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -22,15 +22,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="login-title text-center mb-30">
-                    <h2>{{ __('page.book.add') }}</h2>
+                    <h2>{{ __('page.book.edit') }}</h2>
                 </div>
             </div>
             <div class="offset-lg-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                 @include('layout.notification')
                 <div class="billing-fields">
                     {!! Form::open([
-                        'method' => 'POST',
-                        'route' => ['books.store'],
+                        'method' => 'PATCH',
+                        'route' => ['books.update', $book->slug . '-' . $book->id],
                         'class' => 'form-groupt',
                         'files' => 'true'
                     ]) !!}
@@ -44,7 +44,7 @@
                         ) !!}
                         {!! Form::text(
                             'title',
-                            null,
+                            $book->title,
                             [
                                 'placeHolder' => 'Title of book ...',
                                 'required' => 'required',
@@ -62,7 +62,7 @@
                                 ) !!}
                                 {!! Form::text(
                                     'author',
-                                    null,
+                                    $book->author,
                                     [
                                         'placeHolder' => 'Author of book ...',
                                         'required' => 'required',
@@ -80,7 +80,7 @@
                                 ) !!}
                                 {!! Form::number(
                                     'total_pages',
-                                    null,
+                                    $book->total_pages,
                                     [
                                         'placeHolder' => 'Total pages',
                                         'required' => 'required',
@@ -102,7 +102,6 @@
                                             'avatar',
                                             [
                                                 'id' => 'img-upload',
-                                                'required' => 'required',
                                                 'class' => 'form-control m-input'
                                             ]
                                         ) !!}
@@ -110,7 +109,7 @@
                                 </span>
                                 {!! Form::text(
                                     null,
-                                    null,
+                                    $book->medias[0]->path,
                                     [
                                         'class' => 'form-control',
                                         'disabled' => 'disabled'
@@ -127,7 +126,8 @@
                                 <div class="col-md-4 mb-10" style="margin-left: 50px !important;">
                                     {!! Form::checkbox(
                                             'category[]',
-                                            $category->id
+                                            $category->id,
+                                            $checked != null && in_array($category->id, $checked)
                                     ) !!}
                                     {{ $category->name }}
                                 </div>
@@ -143,10 +143,10 @@
                                 ) !!}
                                 {!! Form::text(
                                     'sku',
-                                    null,
+                                    $book->slug,
                                     [
                                         'placeHolder' => 'Sku of book ...',
-                                        'required' => 'required',
+                                        'disabled' => 'disabled',
                                         'class' => 'form-control m-input',
                                     ]
                                 ) !!}
@@ -161,7 +161,7 @@
                                 ) !!}
                                 {!! Form::date(
                                     'publish_date',
-                                    null,
+                                    $book->publish_date,
                                     [
                                         'id' => 'example-datetime-local-input',
                                         'required' => 'required',
@@ -179,7 +179,7 @@
                         ) !!}
                         {!! Form::textarea(
                             'description',
-                            null,
+                            $book->description,
                             [
                                 'id' => 'mytextarea',
                                 'class' => 'form-control m-input',

@@ -43,6 +43,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\ReviewBookRepository',
             'App\Repositories\Eloquents\ReviewBookEloquentRepository',
         ],
+        [
+            'App\Repositories\Contracts\OwnerRepository',
+            'App\Repositories\Eloquents\OwnerEloquentRepository',
+        ],
     ];
 
     /**

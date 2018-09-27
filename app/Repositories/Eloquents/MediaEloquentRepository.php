@@ -37,6 +37,10 @@ class MediaEloquentRepository extends AbstractEloquentRepository implements Medi
         return $this->model()->findOrFail($id);
     }
 
+    public function clone($data = []) {
+        return $this->model()->create($data);
+    }
+
     public function destroy($data)
     {
         if (isset($data['avatar_old']) && isset($data['avatar'])) {
