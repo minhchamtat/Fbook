@@ -15,9 +15,13 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['namespace' => 'User', 'middleware' => 'auth'], function () {
+Route::group(['namespace' => 'User'], function () {
     Route::resource('books', 'BookController');
-    Route::resource('books/{slug}/review', 'ReviewBookController');
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('books/{slug}/review', 'ReviewBookController');
+        Route::resource('review/{id}/vote', 'VoteController');
+    });
 });
 
 Route::prefix('admin')->group(function () {

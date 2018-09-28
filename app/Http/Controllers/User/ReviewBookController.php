@@ -7,6 +7,8 @@ use App\Repositories\Contracts\ReviewBookRepository;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\BookRepository;
+use App\Repositories\Contracts\VoteRepository;
+use App\Eloquent\Vote;
 use Auth;
 use Exception;
 
@@ -16,10 +18,14 @@ class ReviewBookController extends Controller
 
     protected $book;
 
-    public function __construct(ReviewBookRepository $review, BookRepository $book)
-    {
+    public function __construct(
+        ReviewBookRepository $review,
+        BookRepository $book,
+        VoteRepository $vote
+    ) {
         $this->review = $review;
         $this->book = $book;
+        $this->vote = $vote;
     }
 
     public function create($slug)
@@ -94,4 +100,35 @@ class ReviewBookController extends Controller
             return view('error');
         }
     }
+
+    public function show($slug, $id)
+    {
+        $idBook = (int)last(explode('-', $slug));
+        $book = $this->book->find($idBook, [], []);
+        $review = $this->review->findOrFail($id);
+        $voteUp = $review->votes->where('status', '=', '1')->count();
+        $voteDown = $review->votes->where('status', '=', '-1')->count();
+        $voted = $voteUp - $voteDown;
+
+        $flag = false;
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+        
+            $vote = Vote::where('review_id', '=', $review->id)
+                ->where('user_id', '=', $userId)->first();
+
+            if ($vote != null) {
+                if ( $vote->status == '1') {
+                    $flag = config('view.vote.up');
+                } elseif ($vote->status == '-1') {
+                    $flag = config('view.vote.down');
+                } else {
+                    $flag = config('view.vote.no');
+                }
+            }
+        }
+
+        return view('book.show_review', compact('review', 'book', 'voted', 'flag'));
+    }
+
 }

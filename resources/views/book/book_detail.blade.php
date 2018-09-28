@@ -159,12 +159,12 @@
                                                                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                                                                             </p>
                                                                         </div>
-                                                                        <div class="count-vote">
+                                                                        <div class="count-voted">
                                                                             <span>0</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <a href="" class="view_more"><i class="fa fa-eye" aria-hidden="true"></i> View More</a>
+                                                                <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}" class="view_more"><i class="fa fa-eye" aria-hidden="true"></i> View More</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -184,6 +184,7 @@
                                     @if(!Auth::check())
                                         <div class="alert alert-success">
                                             {{ __('page.reviews.sign') }}
+                                            <b><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></b>
                                         </div>
                                     @endif
                                 </div>
