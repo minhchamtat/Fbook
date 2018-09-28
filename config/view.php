@@ -43,6 +43,14 @@ return [
         'book' => 3,
     ],
 
+    'vote' => [
+        'login' => 2,
+        'up' => 'up',
+        'down' => 'down',
+        'no' => 'no',
+        'nodown' => 'updown',
+        'noup' => 'noup',
+    ]
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

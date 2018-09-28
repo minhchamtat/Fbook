@@ -1,0 +1,130 @@
+@extends('layout.app')
+
+@section('header')
+    @parent
+    <div class="breadcrumbs-area mb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumbs-menu">
+                        <ul>
+                            <li><a href="/">{{ __('page.home') }}</a></li>
+                            <li><a href="/" class="active">{{ __('page.review') }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('content')
+    <div class="contact-area mb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    @include('layout.notification')
+                    <div class="contact-form text-center">
+                        <h3>{{ $review->title }}</h3>
+                    </div>
+                    <div class="row content">
+                        <div class="col-md-2">
+                            {!! Form::hidden('upvote', 1, ['id' => 'upvote', 'data-id' => $review->id]) !!}
+                            <button class="btn-vote up-vote" data-upvote="{{ $flag }}" value="1"><i class="fa fa-caret-up" aria-hidden="true"></i></button>
+                            <span class="count-vote">{{ $voted }}</span>
+                            <button class="btn-vote down-vote" value="-1"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                            {!! Form::hidden('upvote', -1, ['id' => 'downvote']) !!}
+                        </div>
+                        <div class="col-md-10">
+                            <div class="body">
+                                {!! $review->content !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                    <div class="contact-info text-center">
+                        <h4><a href="#">{{ $book->title }}</a></h4>
+                        <ul>
+                            <li>
+                                <div class="product-rating">
+                                    @if ($book->medias[0]->count() > 0)
+                                        <a href="#"><img src="/{{ config('view.image_paths.product') . $book->medias[0]->path }}" alt="book" /></a>
+                                    @endif
+                                </div>
+                            </li>
+                            <li>
+                                <div class="product-addto-links-text more">
+                                    {!! $book->description !!}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('footer')
+    @parent
+@endsection
+
+@section('script')
+    <script>
+        jQuery(document).ready(function() {
+
+            var upVote = $('.up-vote').data('upvote');
+            $('.btn-vote').removeClass('voted');
+            if (upVote == 'up') {
+                $('.up-vote').addClass('voted');
+            } if (upVote == 'down') {
+                $('.down-vote').addClass('voted');
+            }
+
+            $('.btn-vote').click(function(e) {
+                e.preventDefault();
+                var review = $('#upvote').data('id');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '/review/' + review + '/vote',
+                    dataType: 'JSON',
+                    data: {
+                        vote: $(this).val()
+                    },
+                    success: function(data) {
+                        if (data == 'up') {
+                            $('.btn-vote').removeClass('voted');
+                            $('.up-vote').addClass('voted');
+                            var vote = parseInt($('.count-vote').text());
+                            $('.count-vote').text(vote + 1);
+                        } else if (data == 'down') {
+                            $('.btn-vote').removeClass('voted');
+                            $('.down-vote').addClass('voted');
+                            var vote = parseInt($('.count-vote').text());
+                            $('.count-vote').text(vote - 1);
+                        } else if (data == 'nodown') {
+                            $('.btn-vote').removeClass('voted');
+                            var vote = parseInt($('.count-vote').text());
+                            $('.count-vote').text(vote - 1);
+                        } else if (data == 'noup') {
+                            $('.btn-vote').removeClass('voted');
+                            var vote = parseInt($('.count-vote').text());
+                            $('.count-vote').text(vote + 1);
+                        } else if (data == 2) {
+                            alert('Login to vote!');
+                        } else if (data == 'error') {
+                            alert('You Voted!');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+@endsection

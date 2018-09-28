@@ -47,13 +47,9 @@ class BookController extends Controller
         $this->media = $media;
         $this->review = $review;
         $this->owner = $owner;
+        $this->middleware('auth', ['except' => 'show']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //

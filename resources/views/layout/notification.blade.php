@@ -1,7 +1,5 @@
 @if (session('success'))
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    </button>
+<div class="alert alert-info alert-dismissible" role="alert">
     {{ session('success') }}
 </div>
 @endif
