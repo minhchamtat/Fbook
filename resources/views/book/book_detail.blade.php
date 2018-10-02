@@ -24,11 +24,11 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                 <div class="product-main-area">
-                    @if($book)
+                    @if ($book)
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <div class="flexslider">
-                                @if($book->medias->count() > 0)
+                                @if ($book->medias->count() > 0)
                                     <ul class="slides">
                                         <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
                                         <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
@@ -59,8 +59,8 @@
                                 </div>
                                 <div class="product-reviews-summary">
                                     <div class="rating-summary">
-                                        @if($book->avg_star > 1)
-                                            @for($i = 1; $i < $book->avg_star; $i++)
+                                        @if ($book->avg_star > 1)
+                                            @for ($i = 1; $i < $book->avg_star; $i++)
                                                 <a href="#"><i class="fa fa-star"></i></a>
                                             @endfor
                                         @endif
@@ -74,30 +74,42 @@
                                         {{ trans('settings.book.categories') }}
                                     </div>
                                     <div class="reviews-actions">
-                                        @if($book->categories)
-                                            @foreach($book->categories as $category)
+                                        @if ($book->categories)
+                                            @foreach ($book->categories as $category)
                                                 <span>{{ $category->name }}</span><br>
                                             @endforeach
                                         @endif
                                     </div>
                                 </div>
-                                 <div class="product-reviews-summary">
+                                 <div class="product-reviews-summary owner-list">
                                     <div class="rating-summary">
                                         {{ trans('settings.book.owners') }}
                                     </div>
-                                    <div class="reviews-actions">
-                                        @if($book->owners)
-                                            @foreach($book->owners as $owner)
-                                                <a href="{{ '/users' . $owner->id }}"><span>{{ $owner->name }}</span></a><br>
-                                            @endforeach
-                                        @endif
-                                    </div>
+                                    @if ($book->owners)
+                                        @foreach ($book->owners as $owner)
+                                            <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
+                                                <a href="#" title="{{ $owner->name }}">
+                                                    <img src="{{ asset(config('view.image_paths.user') . $owner->avatar) }}" class="mg-thumbnail avatar-icon">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    @endif                                   
                                 </div>
                                 <div class="product-add-form">
-                                    <form action="#">
-                                        <a href="#">{{ trans('settings.book.borrow_book') }}</a>
-                                        <a href="#">{{ trans('settings.book.i_have_this_book') }}</a>
-                                    </form>
+                                    @auth
+                                        <form>
+                                            @if ($isBooking)
+                                                <a data-toggle="modal" data-id="{{ $book->id }}" class="btn-cancel-borrowing">{{ trans('settings.book.cancel_borrowing') }}</a>
+                                            @else
+                                                <a data-toggle="modal" href="#borrowingModal" data-id="{{ $book->id }}" class="btn-borrow">{{ trans('settings.book.borrow_book') }}</a>
+                                            @endif
+                                            @if ($isOwner)
+                                                <a class="btn-remove-owner"  data-id="{{ $book->id }}">{{ trans('settings.book.remove_owner') }}</a>
+                                            @else
+                                                <a class="btn-share"  data-id="{{ $book->id }}">{{ trans('settings.book.i_have_this_book') }}</a>
+                                            @endif
+                                        </form>
+                                    @endauth
                                 </div>
                                 <div class="product-social-links">
                                     <div class="product-addto-links">
@@ -116,13 +128,14 @@
                 </div>
                 <div class="product-info-area mt-80">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="active"><a href="#Details" data-toggle="tab">{{ trans('settings.book.review') }}</a></li>
+                        <li class="active"><a href="#reviews" data-toggle="tab">{{ trans('settings.book.review') }}</a></li>
+                        <li><a href="#waiting-list" data-toggle="tab">{{ trans('settings.book.waiting') }}</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="Details">
+                        <div class="tab-pane active" id="reviews">
                             <div class="row event-list">
                                 <div class="col-xs-12 col-sm-8 col-md-12 revsdv fix" id="load-data">
-                                    @if($reviews->count() > 0)
+                                    @if ($reviews->count() > 0)
                                         @foreach ($reviews as $review)
                                             <div class="event-item wow fadeInRight comment-box">
                                                 <div class="well padding5 owner-clear relative-position">
@@ -135,7 +148,7 @@
                                                                 <div class="show tip-left">
                                                                     <strong>{{ $review->user->name }}</strong>
                                                                     <i>{{ $review->created_at }}</i>
-                                                                    @if($review->user == Auth::user())
+                                                                    @if ($review->user == Auth::user())
                                                                         <div class="action">
                                                                             <a href="{{ route('review.edit', [$book->slug . '-' . $book->id, $review->id]) }}" class="btn btn-info btn-sm a-btn-slide-text">
                                                                                 <i class="fa fa-edit" aria-hidden="true"></i>
@@ -147,10 +160,10 @@
                                                                     @endif
                                                                 </div>
                                                                 <h4 class="media-heading list-inline list-unstyled rating-star m-0">
-                                                                    @for($i = 1; $i <= $review->star; $i++)
+                                                                    @for ($i = 1; $i <= $review->star; $i++)
                                                                         <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
                                                                     @endfor
-                                                                    @for($j = 1; $j <= 5 - ($review->star); $j++)
+                                                                    @for ($j = 1; $j <= 5 - ($review->star); $j++)
                                                                         <li class=""><i class="fa fa-star" aria-hidden="true"></i></li>
                                                                     @endfor
                                                                 </h4>
@@ -187,13 +200,34 @@
                                             <a href="{{ route('review.create', $book->slug . '-' . $book->id) }}" class="btn btn-primary"> Add Review</a>
                                         </div>
                                     @endif
-                                    @if(!Auth::check())
+                                    @if (!Auth::check())
                                         <div class="alert alert-success">
                                             {{ __('page.reviews.sign') }}
                                             <b><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></b>
                                         </div>
                                     @endif
                                 </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="waiting-list">
+                            <div class="author-destils mb-30">
+                                @if (count($book->waitingList) > 0)
+                                    @foreach ($book->waitingList as $user)
+                                        <div class="author-left">
+                                            <div class="author-img">
+                                                <a href="#"><img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="man" class="mg-thumbnail avatar-icon"/></a>
+                                            </div>
+                                            <div class="author-description">
+                                                <p><a>{{ $user->name }}</a></p>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-info">
+                                        {{ trans('settings.book.no_waiting_user') }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -203,11 +237,11 @@
                         <h3>upsell products</h3>
                     </div>
                     <div class="tab-active-2 owl-carousel">
-                        @if($relatedBooks)
-                            @for($i = 3; $i < count($relatedBooks); $i++)
+                        @if ($relatedBooks)
+                            @for ($i = 3; $i < count($relatedBooks); $i++)
                                 <div class="product-wrapper">
                                     <div class="product-img">
-                                        @if($relatedBooks[$i]->medias->count() > 0)
+                                        @if ($relatedBooks[$i]->medias->count() > 0)
                                             <a href="#">
                                                 <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary" />
                                             </a>
@@ -216,14 +250,14 @@
                                     <div class="product-details text-center">
                                         <div class="product-rating">
                                             <ul>
-                                                @if($relatedBooks[$i]->avg_star > 1)
-                                                    @for($j = 1; $j < $relatedBooks[$i]->avg_star; $j++)
+                                                @if ($relatedBooks[$i]->avg_star > 1)
+                                                    @for ($j = 1; $j < $relatedBooks[$i]->avg_star; $j++)
                                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                                     @endfor
                                                 @endif
                                             </ul>
                                         </div>
-                                        <h4><a href="{{ '/books/' . $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id}}">{{ $relatedBooks[$i]->title }}</a></h4>
+                                        <h4><a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a></h4>
                                     </div>
                                 </div>
                             @endfor
@@ -239,8 +273,8 @@
                     <div class="random-area mb-30">
                         <div class="product-active-2 owl-carousel">
                             <div class="product-total-2">
-                                @if($relatedBooks)
-                                    @for($i = 0; $i < 3; $i++)
+                                @if ($relatedBooks)
+                                    @for ($i = 0; $i < 3; $i++)
                                         <div class="single-most-product bd mb-18">
                                             @if ($relatedBooks[$i]->medias[0])
                                                 <div class="most-product-img">
@@ -250,14 +284,14 @@
                                             <div class="most-product-content">
                                                 <div class="product-rating">
                                                     <ul>
-                                                        @if($relatedBooks[$i]->avg_star > 1)
-                                                            @for($j = 1; $j < $relatedBooks[$i]->avg_star; $j++)
+                                                        @if ($relatedBooks[$i]->avg_star > 1)
+                                                            @for ($j = 1; $j < $relatedBooks[$i]->avg_star; $j++)
                                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                                                             @endfor
                                                         @endif
                                                     </ul>
                                                 </div>
-                                                <h4><a href="{{ '/books/' . $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id}}">{{ $relatedBooks[$i]->title }}</a></h4>
+                                                <h4><a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a></h4>
                                             </div>
                                         </div>
                                     @endfor
@@ -283,6 +317,57 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="borrowingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">{{ trans('settings.modal.close') }}</button>
+                <h4 class="modal-title">{{ trans('settings.modal.borrow_book') }}</h4>
+            </div>
+            {!! Form::open([
+                    'method' => 'POST',
+                    'id' => 'borrowingForm',
+                    'class' => 'form-groupt',
+                    'data-id' => $book->id,
+                ]) !!}
+            <div class="modal-body row">
+                @if ($book->owners)
+                    @foreach ($book->owners as $owner)
+                        <div class="col-xs-12 col-sm-12">
+                            {!! Form::radio(
+                                'owner_id',
+                                $owner->id,
+                                [
+                                    'required' => 'required',
+                                ]
+                            ) !!}
+                            {{ $owner->name }}
+                        </div>
+                    @endforeach
+                @endif
+                <div class="col-sm-8">
+                    {{ trans('settings.modal.choose_time_to_borrow') }}
+                </div>
+                <div class="col-lg-4">
+                    {!! Form::selectRange('days_to_read', 1, 30) !!}
+                    {{ trans('settings.modal.days') }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a data-dismiss="modal" class="btn">{{ trans('settings.modal.btn_close') }}</a>
+                {!! Form::submit(
+                    trans('settings.modal.btn_submit'),
+                    [
+                        'class' => 'btn btn-primary',
+                    ]
+                )!!}
+            </div>
+            {!! Form::close() !!}
+      </div>
+    </div>
+</div>
+
 @endsection
 
 @section('footer')

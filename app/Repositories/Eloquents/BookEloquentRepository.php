@@ -185,7 +185,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
                         'value' => '1',
                     ]
                 )
-                ->get();
+                ->pluck('book_id');
             if (count($ids) > config('view.random_numb.book')) {
                 $ids = $ids->random(config('view.random_numb.book'));
             }

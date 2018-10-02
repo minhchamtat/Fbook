@@ -63,7 +63,11 @@ return [
         'review' => 'Review',
         'reviews' => ':avg Reviews',
         'related_books' => 'Related Books',
+        'remove_owner' => 'Remove Owner',
         'owners' => 'Share By',
+        'waiting' => 'Waiting',
+        'no_waiting_user' => 'No Waiting User',
+        'cancel_borrowing' => 'Cancel Borrowing',
     ],
 
     'review' => [
@@ -84,6 +88,20 @@ return [
         '404' => 'Oops! That page can’t be found.',
         'go_to_home' => 'Go To Home',
         'sorry' => 'Sorry, but the page you are looking for is not found. Please, make sure you have typed the current URL.',
-    ]
+    ],
+
+    'alert' => [
+        'share_book' => 'Are you sure you want to share this book?',
+    ],
+
+    'modal' => [
+        'borrow_book' => 'Borrowing book',
+        'btn_cancel' => 'Cancel',
+        'btn_close' => 'Close',
+        'btn_submit' => 'Submit',
+        'close' => 'x',
+        'choose_time_to_borrow' => 'Choose the time you want to borrow this book:',
+        'days' => 'Days',
+    ],
 
 ];

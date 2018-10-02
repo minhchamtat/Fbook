@@ -51,6 +51,14 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\VoteRepository',
             'App\Repositories\Eloquents\VoteEloquentRepository',
         ],
+        [
+            'App\Repositories\Contracts\BookUserRepository',
+            'App\Repositories\Eloquents\BookUserEloquentRepository',
+        ],
+        [
+            'App\Repositories\Contracts\ReputationRepository',
+            'App\Repositories\Eloquents\ReputationEloquentRepository',
+        ],
     ];
 
     /**
