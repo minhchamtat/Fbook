@@ -1,32 +1,34 @@
 @if(isset($bestSharing) && !empty($bestSharing))
-    @for ($i = 1; $i < count($bestSharing) - 1; $i++)
+    @foreach ($bestSharing as $book)
         <div class="bestseller-total">
             <div class="single-bestseller mb-25">
-                <div class="bestseller-img">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.product') . $bestSharing[$i]->medias[0]->path) }}" alt="book" /></a>
-                    <div class="product-flag">
-                        <ul>
-                            <li><span class="sale">{{ trans('settings.book.new') }}</span></li>
-                        </ul>
+                @if($book->medias->count() > 0)
+                    <div class="bestseller-img">
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}"><img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" /></a>
                     </div>
-                </div>
+                @else
+                    <ul class="slides">
+                        <li data-thumb="{{ asset(config('view.image_paths.book') . 'default.jpg') }}"></li>
+                    </ul>
+                @endif
                 <div class="bestseller-text text-center">
-                    <h3> <a href="{{ '/books/' . $bestSharing[$i]->slug . '-' . $bestSharing[$i]->id }}">{{ $bestSharing[$i]->title }}</a></h3>
+                    <h3> <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h3>
                 </div>
             </div>
             <div class="single-bestseller">
-                <div class="bestseller-img">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.product') . $bestSharing[++$i]->medias[0]->path) }}" alt="book" /></a>
-                    <div class="product-flag">
-                        <ul>
-                            <li><span class="sale">{{ trans('settings.book.new') }}</span></li>
-                        </ul>
+                @if($book->medias->count() > 0)
+                    <div class="bestseller-img">
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}"><img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" /></a>
                     </div>
-                </div>
+                @else
+                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
+                    </a>
+                @endif
                 <div class="bestseller-text text-center">
-                    <h3> <a href="{{ '/books/' . $bestSharing[$i]->slug . '-' . $bestSharing[$i]->id }}">{{ $bestSharing[$i]->title }}</a></h3>
+                    <h3> <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h3>
                 </div>
             </div>
         </div>
-    @endfor
+    @endforeach
 @endif

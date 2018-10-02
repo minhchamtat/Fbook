@@ -136,9 +136,11 @@
                 </div>
                 <div class="banner-img-2">
                     @if($bestSharing)
-                        <a href="#"><img src="{{ asset(config('view.image_paths.product') . $bestSharing[0]->medias[0]->path) }}" alt="banner" /></a>
+                        <a href="{{ route('books.show', $bestSharing[0]->slug . '-' . $bestSharing[0]->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . $bestSharing[0]->medias[0]->path) }}" alt="banner" />
+                        </a>
                     @else
-                        <a href="#"><img src="{{ asset(config('view.image_paths.product') . '6.jpg') }}" alt="banner" /></a>
+                        <a href="#"><img src="{{ asset(config('view.image_paths.book') . '6.jpg') }}" alt="banner" /></a>
                     @endif
                 </div>
             </div>
@@ -208,36 +210,6 @@
         </div>
     </div>
 </div>
-<div class="testimonial-area ptb-100 bg">
-    <div class="container">
-        <div class="row">
-            <div class="testimonial-active owl-carousel">
-                <div class="col-lg-12">
-                    <div class="single-testimonial text-center">
-                        <div class="testimonial-img">
-                            <a href="#"><i class="fa fa-quote-right"></i></a>
-                        </div>
-                        <div class="testimonial-text">
-                            <p>I'm so happy with all of the themes, great support, could not wish for more. These people are <br /> geniuses ! Kudo's from the Netherlands !</p>
-                            <a href="#">Sandy Wilcke/user</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="single-testimonial text-center">
-                        <div class="testimonial-img">
-                            <a href="#"><i class="fa fa-quote-right"></i></a>
-                        </div>
-                        <div class="testimonial-text">
-                            <p>All Perfect !! I have three sites with magento , this theme is the best !! Excellent support ,<br /> advice theme installation package , sorry for English, are Italian but I had no problem !! Thank you !</p>
-                            <a href="#">Sandy Wilcke/user</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="recent-post-area pt-95 pb-100">
     <div class="container">
         <div class="row">
@@ -265,7 +237,7 @@
                     </div>
                     <div class="twitter-text">
                         <p>
-                            Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum notare quam 
+                            Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum notare quam
                         </p>
                         <a href="#">posthemes</a>
                     </div>
@@ -291,6 +263,7 @@
     </div>
 </div>
 @endsection
+@include('layout.section.modal')
 
 @section('footer')
     @parent

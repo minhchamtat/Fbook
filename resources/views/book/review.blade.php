@@ -72,7 +72,7 @@
                                 <li>
                                     <div class="product-rating">
                                         @if ($book->medias[0]->count() > 0)
-                                            <a href="#"><img src="/{{ config('view.image_paths.product') . $book->medias[0]->path }}" alt="book" /></a>
+                                            <a href="#"><img src="/{{ config('view.image_paths.book') . $book->medias[0]->path }}" alt="book" /></a>
                                         @endif
                                     </div>
                                 </li>

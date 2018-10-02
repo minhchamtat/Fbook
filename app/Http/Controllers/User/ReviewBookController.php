@@ -113,7 +113,7 @@ class ReviewBookController extends Controller
         $flag = false;
         if (Auth::check()) {
             $userId = Auth::user()->id;
-        
+
             $vote = Vote::where('review_id', '=', $review->id)
                 ->where('user_id', '=', $userId)->first();
 

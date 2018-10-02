@@ -6,6 +6,7 @@
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.editBook') }}</h3>
+                    <a target="_blank" href="{{ route('books.show', $book->slug . '-' . $book->id) }}" class="btn btn-info">{{ __('admin.showBook') }}</a>
                 </div>
             </div>
         </div>

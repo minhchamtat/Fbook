@@ -21,12 +21,27 @@
                         <ul>
                             @auth
                                 <li>
-                                    {!! Form::open([
-                                        'route' => 'logout',
-                                        'method' => 'POST',
-                                    ]) !!}
-                                    <button class="btn btn-danger">Log out</button>
-                                    {!! Form::close() !!}
+                                    <div class="dropdown">
+                                        <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @if(Auth::user()->avatar)
+                                                <img src="{{ asset(config('view.image_paths.user') . Auth::user()->avatar) }}" alt="avatar" class="avatar">
+                                            @else
+                                                <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="avatar">
+                                            @endif
+                                        </span>
+                                        <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#"><b>{{ Auth::user()->name }}</b></a>
+                                            <a class="dropdown-item" href="#">Profile</a>
+                                            <a class="dropdown-item" href="#">Book of me</a>
+                                            <a class="dropdown-item" href="#">Book request</a>
+                                            {!! Form::open([
+                                                'route' => 'logout',
+                                                'method' => 'POST',
+                                            ]) !!}
+                                            <button class="btn btn-dangera">Log out</button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
                                 </li>
                             @else
                                 <li><a href="{{ route('login') }}">Log in</a></li>
@@ -317,13 +332,13 @@
                                         <li><a href="#">blog-details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Page</a>
+                                <li><a href="#">Page</a> //demo page, edit later
                                     <ul>
                                         <li><a href="/">Homecs</a></li>
                                         <li><a href="/books">Books</a></li>
-                                        <li><a href="/book-detail">Book Detail</a></li>
-                                        <li><a href="/add-a-book">Add your book</a></li>
-                                        <li><a href="/review">Review</a></li>
+                                        <li><a href="/books/sach-hay-1">Book Detail</a></li>
+                                        <li><a href="/book/create">Add your book</a></li>
+                                        <li><a href="/books/sach-hay-1/review/2">Review</a></li>
                                         <li><a href="/profile">Profile</a></li>
                                         <li><a href="/notifications">Notifications</a></li>
                                         <li><a href="/my-request">My request</a></li>

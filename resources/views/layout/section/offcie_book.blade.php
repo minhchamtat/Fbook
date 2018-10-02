@@ -2,9 +2,15 @@
     <div class="product-total-2">
         @foreach($item['books'] as $book)
             <div class="single-most-product bd mb-18">
-                <div class="most-product-img">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.product') . $book->medias[0]->path) }}" alt="book" /></a>
-                </div>
+                @if($book->medias->count() > 0)
+                    <div class="most-product-img">
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}"><img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" /></a>
+                    </div>
+                @else
+                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
+                    </a>
+                @endif
                 <div class="most-product-content">
                     <div class="product-rating">
                         <ul>
@@ -15,7 +21,7 @@
                             @endif
                         </ul>
                     </div>
-                    <h4><a href="{{ '/books/' . $book->slug . '-' . $book->id }}">{{ $book->title }}</a></h4>
+                    <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
                 </div>
             </div>
         @endforeach

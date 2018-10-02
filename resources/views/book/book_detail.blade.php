@@ -28,15 +28,21 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <div class="flexslider">
-                                @if($book->medias)
-                                <ul class="slides">
-                                    <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
-                                      <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
-                                    </li>
-                                    <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
-                                      <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
-                                    </li>
-                                </ul>
+                                @if($book->medias->count() > 0)
+                                    <ul class="slides">
+                                        <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
+                                        <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
+                                        </li>
+                                        <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
+                                        <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman" />
+                                        </li>
+                                    </ul>
+                                @else
+                                    <ul class="slides">
+                                        <li data-thumb="{{ asset(config('view.image_paths.book') . 'default.jpg') }}">
+                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                        </li>
+                                    </ul>
                                 @endif
                             </div>
                         </div>
@@ -201,19 +207,11 @@
                             @for($i = 3; $i < count($relatedBooks); $i++)
                                 <div class="product-wrapper">
                                     <div class="product-img">
-                                        <a href="#">
-                                            <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                                <i class="fa fa-search-plus"></i>
+                                        @if($relatedBooks[$i]->medias->count() > 0)
+                                            <a href="#">
+                                                <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary" />
                                             </a>
-                                        </div>
-                                        <div class="product-flag">
-                                            <ul>
-                                                <li><span class="sale">{{ trans('settings.book.new') }}</span></li>
-                                            </ul>
-                                        </div>
+                                        @endif
                                     </div>
                                     <div class="product-details text-center">
                                         <div class="product-rating">
@@ -244,9 +242,11 @@
                                 @if($relatedBooks)
                                     @for($i = 0; $i < 3; $i++)
                                         <div class="single-most-product bd mb-18">
-                                            <div class="most-product-img">
-                                                <a href="#"><img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" /></a>
-                                            </div>
+                                            @if ($relatedBooks[$i]->medias[0])
+                                                <div class="most-product-img">
+                                                    <a href="#"><img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" /></a>
+                                                </div>
+                                            @endif
                                             <div class="most-product-content">
                                                 <div class="product-rating">
                                                     <ul>
