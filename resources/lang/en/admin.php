@@ -45,4 +45,5 @@ return [
     'errSku' => 'Sku must be min 5 characters',
     'errImg' => 'The avatar must be a file of type: jpg, jpeg, png, gif, bmp.',
     'noImg' => 'No Image',
+    'showBook' => 'Show Book',
 ];

@@ -8,3 +8,4 @@
 {{ Html::style('assets/css/chosen.min.css') }}
 {{ Html::style('assets/css/style.css') }}
 {{ Html::style('assets/css/responsive.css') }}
+{{ Html::style('assets/css/custom.css') }}

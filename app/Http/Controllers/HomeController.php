@@ -32,6 +32,7 @@ class HomeController extends Controller
                 $q->select($this->imageProperties);
             },
         ];
+        $books = $this->bookRepository->getData();
         $offices = $this->officeRepository->getData()->pluck('name', 'id');
         $topViewed = $this->bookRepository->getTopViewedBook($with);
         $topReview = $this->bookRepository->getTopReviewBook($with);
@@ -48,7 +49,8 @@ class HomeController extends Controller
             'latestBook',
             'bestSharing',
             'hotUser',
-            'officeBooks'
+            'officeBooks',
+            'books'
         );
 
         return view('index', $data);

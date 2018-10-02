@@ -8,8 +8,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumbs-menu">
                         <ul>
-                            <li><a href="{{ asset('/') }}">{{ __('page.home') }}</a></li>
-                            <li><a class="active">{{ __('page.review') }}</a></li>
+                            <li><a href="/">{{ __('page.home') }}</a></li>
+                            <li><a href="/" class="active">{{ __('page.review') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single-form-3">
-                                            {!! Form::textarea('content', $review->content, ['id' => 'mytextarea']) !!}
+                                            {!! Form::textarea('content', $review->content, ['placeHolder' => 'Content...', 'required' => 'required']) !!}
                                             {!! Form::button(__('page.submit'), ['type' => 'submit', 'class' => 'submit']) !!}
                                         </div>
                                     </div>
@@ -71,7 +71,7 @@
                             <li>
                                 <div class="product-rating">
                                     @if ($book->medias[0]->count() > 0)
-                                        <a href="#"><img src="/{{ config('view.image_paths.product') . $book->medias[0]->path }}" alt="book" /></a>
+                                        <a href="#"><img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" /></a>
                                     @endif
                                 </div>
                             </li>
@@ -90,15 +90,4 @@
 
 @section('footer')
     @parent
-@endsection
-
-@section('script')
-    {!! Html::script('assets/tinymce/js/tinymce/tinymce.min.js') !!}
-    <script>
-        jQuery(document).ready(function() {
-            tinymce.init({
-                selector: 'textarea#mytextarea'
-            });
-        });
-    </script>
 @endsection

@@ -3,11 +3,17 @@
         <div class="tab-total">
             <div class="product-wrapper mb-40">
                 <div class="product-img">
-                    <a href="#">
-                        <img src="{{ asset(config('view.image_paths.product') . $latestBook[$i]->medias[0]->path) }}" alt="book" class="primary" />
-                    </a>
+                    @if($latestBook[$i]->medias->count() > 0)
+                        <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . $latestBook[$i]->medias[0]->path) }}" alt="book" class="primary" />
+                        </a>
+                    @else
+                       <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
+                        </a>
+                    @endif
                     <div class="quick-view">
-                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                        <a class="action-view" href="#" data-target="#productModal{{ $latestBook[$i]->id }}" data-toggle="modal" title="Quick View">
                             <i class="fa fa-search-plus"></i>
                         </a>
                     </div>
@@ -23,22 +29,23 @@
                         </ul>
                     </div>
                     <h4><a href="{{ '/books/' . $latestBook[$i]->slug . '-' . $latestBook[$i]->id }}">{{ $latestBook[$i]->title }}</a></h4>
-                </div> 
+                </div>
             </div>
             <div class="product-wrapper">
                 <div class="product-img">
-                    <a href="#">
-                        <img src="{{ asset(config('view.image_paths.product') . $latestBook[++$i]->medias[0]->path) }}" alt="book" class="primary" />
-                    </a>
+                    @if($latestBook[$i++]->medias->count() > 0)
+                        <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . $latestBook[++$i]->medias[0]->path) }}" alt="book" class="primary" />
+                        </a>
+                    @else
+                        <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
+                        </a>
+                    @endif
                     <div class="quick-view">
-                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                        <a class="action-view" href="#" data-target="#productModal{{ $latestBook[$i]->id }}" data-toggle="modal" title="Quick View">
                             <i class="fa fa-search-plus"></i>
                         </a>
-                    </div>
-                    <div class="product-flag">
-                        <ul>
-                            <li><span class="sale">{{ trans('settings.book.new') }}</span> <br></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="product-details text-center">
@@ -52,7 +59,7 @@
                         </ul>
                     </div>
                     <h4><a href="{{ '/books/' . $latestBook[$i]->slug . '-' . $latestBook[$i]->id }}">{{ $latestBook[$i]->title }}</a></h4>
-                </div> 
+                </div>
             </div>
         </div>
     @endfor

@@ -10,6 +10,7 @@ use App\Repositories\Contracts\MediaRepository;
 use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
 use App\Repositories\Contracts\OwnerRepository;
+use App\Repositories\Contracts\OfficeRepository;
 use Auth;
 
 class BookController extends Controller
@@ -26,6 +27,8 @@ class BookController extends Controller
 
     protected $owner;
 
+    protected $office;
+
     protected $with = [
         'medias',
         'categories',
@@ -39,7 +42,8 @@ class BookController extends Controller
         BookCategoryRepository $bookCategory,
         MediaRepository $media,
         OwnerRepository $owner,
-        ReviewBookRepository $review
+        ReviewBookRepository $review,
+        OfficeRepository $office
     ) {
         $this->book = $book;
         $this->category = $category;
@@ -47,7 +51,8 @@ class BookController extends Controller
         $this->media = $media;
         $this->review = $review;
         $this->owner = $owner;
-        $this->middleware('auth', ['except' => 'show']);
+        $this->office = $office;
+        $this->middleware('auth', ['except' => ['show', 'index']]);
     }
 
     public function index()
