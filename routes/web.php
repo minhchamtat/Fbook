@@ -17,10 +17,13 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'User'], function () {
     Route::resource('books', 'BookController');
-
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('books/{slug}/review', 'ReviewBookController');
         Route::resource('review/{id}/vote', 'VoteController');
+        Route::post('/books/sharing/{id}', 'UserController@sharingBook');
+        Route::post('/books/remove-owner/{id}', 'UserController@removeOwner');
+        Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
+        Route::post('/books/cancelBorrowing/{id}', 'UserController@cancelBorrowing');
     });
 });
 
@@ -38,5 +41,3 @@ Route::prefix('admin')->group(function () {
     Route::resource('/offices', 'OfficeController');
     Route::resource('/users', 'UserController');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');

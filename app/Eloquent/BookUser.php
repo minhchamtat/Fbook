@@ -9,7 +9,7 @@ class BookUser extends Model
     protected $table = 'book_user';
 
     protected $fillable = [
-        'target_type',
+    	'type',
         'approved',
         'days_to_read',
         'owner_id',

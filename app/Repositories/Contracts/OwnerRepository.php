@@ -6,5 +6,5 @@ use App\Eloquent\Owner;
 
 interface OwnerRepository extends AbstractRepository
 {
-	//
+    //
 }

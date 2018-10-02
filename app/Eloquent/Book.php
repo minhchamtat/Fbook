@@ -38,13 +38,18 @@ class Book extends Model
 
     public function owners()
     {
-        return $this->belongsToMany(User::class, 'owners');
+        return $this->belongsToMany(User::class, 'owners')->wherePivot('deleted_at', NULL);
     }
 
     public function users()
     {
         return $this->belongsToMany(User::class)
             ->withPivot('type', 'approved', 'owner_id', 'created_at', 'days_to_read');
+    }
+
+    public function waitingList()
+    {
+        return $this->users()->wherePivot('type', 'waiting');
     }
 
     public function bookmetas()

@@ -25,6 +25,7 @@ mix.scripts([
     'node_modules/chosen-jquery/lib/chosen.jquery.min.js',
     'node_modules/jquery.counterup/jquery.counterup.min.js',
     'node_modules/waypoints/src/waypoint.js',
+    'node_modules/sweetalert/dist/sweetalert.min.js'
     ], 'public/assets/user/js/app.js');
 mix.copyDirectory('resources/assets/user', 'public/assets/user');
 mix.styles([

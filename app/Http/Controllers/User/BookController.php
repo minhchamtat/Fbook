@@ -34,6 +34,7 @@ class BookController extends Controller
         'categories',
         'owners',
         'reviews',
+        'waitingList',
     ];
 
     public function __construct(
@@ -121,7 +122,16 @@ class BookController extends Controller
                 $flag = false;
             }
 
-            return view('book.book_detail', compact('book', 'relatedBooks', 'flag', 'reviews'));
+            if (Auth::check()) {
+                $userId = Auth::user()->id;
+                $isOwner = in_array($userId, $book->owners->pluck('id')->toArray());
+                $isBooking = in_array($userId, $book->users->pluck('id')->toArray());
+            } else {
+                $isOwner = false;
+                $isBooking = false;
+            }
+
+            return view('book.book_detail', compact('book', 'relatedBooks', 'flag', 'reviews', 'isOwner', 'isBooking'));
         }
 
         return view('error');
