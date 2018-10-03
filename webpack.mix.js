@@ -28,6 +28,7 @@ mix.scripts([
     'node_modules/sweetalert/dist/sweetalert.min.js'
     ], 'public/assets/user/js/app.js');
 mix.copyDirectory('resources/assets/user', 'public/assets/user');
+mix.copyDirectory('resources/assets/fonts', 'public/assets/user/fonts');
 mix.styles([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
     'node_modules/owl.carousel/dist/assets/owl.carousel.css',

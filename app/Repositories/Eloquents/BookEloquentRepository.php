@@ -84,6 +84,15 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->get();
     }
 
+    public function getRandomBook($with = [], $data = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->orderBy($attribute[0], $attribute[1])
+            ->paginate(config('view.paginate.book'));
+    }
+
     public function getLatestBook($with = [], $data = [], $dataSelect = ['*'])
     {
         $attribute = [
@@ -94,7 +103,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         if (count($books) > config('view.taking_numb.latest_book')) {
             $books = $books->take(config('view.taking_numb.latest_book'));
         }
-        
+
         return $books;
     }
 
@@ -115,7 +124,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
             return $books;
         }
-        
+
         return null;
     }
 
@@ -166,11 +175,11 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
                     ->whereIn('id', $ids)
                     ->get();
                 $data = compact('books', 'user');
-                
+
                 return $data;
             }
         }
-        
+
         return null;
     }
 
@@ -179,12 +188,8 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         $data = collect();
         foreach ($offices as $key => $value) {
             $ids = app(Bookmeta::class)
-                ->where(
-                    [
-                        'key' => 'in-' . str_slug($value),
-                        'value' => '1',
-                    ]
-                )
+                ->where('key', 'in-' . str_slug($value))
+                ->where('value', '>', 0)
                 ->pluck('book_id');
             if (count($ids) > config('view.random_numb.book')) {
                 $ids = $ids->random(config('view.random_numb.book'));
@@ -206,5 +211,28 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         }
 
         return $data;
+    }
+
+    public function getBookCategory($id)
+    {
+        $books = $this->model()::whereHas('categories', function($q) use ($id) {
+            return $q->where('category_id', $id);
+        })->paginate(config('view.paginate.book'));
+
+        return $books;
+    }
+
+    public function getBookOffice($data, $with= [])
+    {
+        $ids = app(Bookmeta::class)
+            ->where('key', 'in-' . $data)
+            ->where('value', '>', 0)
+            ->pluck('book_id');
+        $books = $this->model()
+            ->with($with)
+            ->whereIn('id', $ids)
+            ->paginate(config('view.paginate.book'));
+
+        return $books;
     }
 }

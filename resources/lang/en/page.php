@@ -16,6 +16,9 @@ return [
         'sku' => 'Sku code',
         'publish' => 'Publish date',
         'description' => 'Description',
+        'showOption' => 'Show Options',
+        'random' => 'Random',
+        'office' => 'Office',
     ],
     'rate' => 'Rate',
     'home' => 'Home',
@@ -27,5 +30,5 @@ return [
         'noReview' => 'No reviews yet!',
         'hasReview' => 'You have reviewed!',
         'sign' => 'Sign in to review now!',
-    ]
+    ],
 ];

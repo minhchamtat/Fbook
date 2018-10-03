@@ -139,7 +139,7 @@ button.btn-vote i, .content .col-md-2 span {
 }
 
 .modal-pro-content p {
-    max-height: 500px;
+    max-height: 300px;
     overflow-y: scroll;
 }
 
@@ -197,4 +197,18 @@ button.btn.btn-dangera {
     padding: 0;
     text-transform: capitalize;
     transition: .3s;
+}
+
+/* paginator */
+
+.page-numbers {
+    float: right;
+}
+
+.quick-view a i, .bestseller-content .social-author a i {
+    line-height: 36px;
+}
+
+a#scrollUp i {
+    line-height: 1.7;
 }
