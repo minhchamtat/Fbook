@@ -31,6 +31,7 @@ return [
 
     'paginate' => [
         'user' => '10',
+        'book' => '20',
     ],
 
     'taking_numb' => [

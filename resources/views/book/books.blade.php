@@ -1,0 +1,171 @@
+@extends('layout.app')
+
+@section('header')
+    @parent
+    <!-- breadcrumbs-area-start -->
+    <div class="breadcrumbs-area mb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumbs-menu">
+                        <ul>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a class="active">Book List</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumbs-area-end -->
+@endsection
+
+@section('content')
+<!-- shop-main-area-start -->
+<div class="shop-main-area mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="shop-left">
+                    <div class="section-title-5 mb-30">
+                        <h2>{{ __('page.book.showOption') }}</h2>
+                    </div>
+                    <div class="left-title mb-20">
+                        <h4>{{ __('page.book.category') }}</h4>
+                    </div>
+                    <div class="left-menu mb-30">
+                        <ul>
+                            @foreach ($categories as $category)
+                                <li><a href="{{ route('book.category', $category->slug . '-' . $category->id) }}">{{ $category->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="left-title mb-20">
+                        <h4>{{ __('page.book.office') }}</h4>
+                    </div>
+                    <div class="left-menu mb-30">
+                        <ul>
+                            @foreach ($offices as $office)
+                                <li><a href="{{ route('book.office', str_slug($office->name)) }}">{{ $office->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                <div class="section-title-5 mb-30">
+                    <h2>Book</h2>
+                </div>
+                <div class="toolbar mb-30">
+                    <div class="shop-tab">
+                        <div class="tab-3">
+                            <ul>
+                                <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th-large"></i>Grid</a></li>
+                                <li><a href="#list" data-toggle="tab"><i class="fa fa-bars"></i>List</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- tab-area-start -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="th">
+                        <div class="row">
+                            @foreach ($books as $book)
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <!-- single-product-start -->
+                                    <div class="product-wrapper mb-40">
+                                        <div class="product-img">
+                                            @if ($book->medias->count() > 0)
+                                                <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                    <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="primary" />
+                                                </a>
+                                            @else
+                                                <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                            @endif
+                                            <div class="quick-view">
+                                                <a class="action-view" href="#" data-target="#productModal{{ $book->id }}" data-toggle="modal" title="Quick View">
+                                                    <i class="fa fa-search-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-details text-center">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    @if ($book->avg_star > 1)
+                                                        @for ($i = 0; $i < $book->avg_star; $i++)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                        @endfor
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                            <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
+                                        </div>
+                                    </div>
+                                    <!-- single-product-end -->
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list">
+                        @foreach ($books as $book)
+                            <div class="single-shop mb-30">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <div class="product-wrapper-2">
+                                            <div class="product-img">
+                                                @if ($book->medias->count() > 0)
+                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                        <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="primary" />
+                                                    </a>
+                                                @else
+                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="product-wrapper-content">
+                                            <div class="product-details">
+                                                <div class="product-rating">
+                                                    <ul>
+                                                        @if ($book->avg_star > 1)
+                                                            @for ($i = 0; $i < $book->avg_star; $i++)
+                                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            @endfor
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                                <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
+                                                {!! substr($book->description, 0, 200) . '...' !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- tab-area-end -->
+                <!-- pagination-area-start -->
+                <div class="pagination-area mt-50">
+                    <div class="list-page-2">
+                        <p> Showing {{ ($books->currentpage()-1) * $books->perpage()+1 }} to {{ $books->currentpage() * $books->perpage() }}
+                            of  {{ $books->total() }} items
+                        </p>
+                    </div>
+                    <div class="page-numbers">
+                        {{ $books->links() }}
+                    </div>
+                </div>
+                <!-- pagination-area-end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- shop-main-area-end -->
+@include('layout.section.modal')
+@endsection
+
+@section('footer')
+    @parent
+@endsection

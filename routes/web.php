@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'User'], function () {
     Route::resource('books', 'BookController');
+    Route::get('books/category/{slug}', 'BookController@getBookCategory')->name('book.category');
+    Route::get('books/office/{slug}', 'BookController@getBookOffice')->name('book.office');
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('books/{slug}/review', 'ReviewBookController');
         Route::resource('review/{id}/vote', 'VoteController');

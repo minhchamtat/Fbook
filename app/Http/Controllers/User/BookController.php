@@ -53,12 +53,35 @@ class BookController extends Controller
         $this->review = $review;
         $this->owner = $owner;
         $this->office = $office;
-        $this->middleware('auth', ['except' => ['show', 'index']]);
+        $this->middleware('auth', ['except' => ['show', 'index', 'getBookCategory', 'getBookOffice']]);
     }
 
     public function index()
     {
-        //
+        $categories = $this->category->getData();
+        $offices = $this->office->getData();
+        $books = $this->book->getRandomBook();
+
+        return view('book.books', compact('categories', 'offices', 'books'));
+    }
+
+    public function getBookCategory($slug)
+    {
+        $id = last(explode('-', $slug));
+        $categories = $this->category->getData();
+        $offices = $this->office->getData();
+        $books = $this->book->getBookCategory($id);
+
+        return view('book.books', compact('categories', 'offices', 'books'));
+    }
+
+    public function getBookOffice($slug)
+    {
+        $categories = $this->category->getData();
+        $offices = $this->office->getData();
+        $books = $this->book->getBookOffice($slug);
+
+        return view('book.books', compact('categories', 'offices', 'books'));
     }
 
     public function create()
