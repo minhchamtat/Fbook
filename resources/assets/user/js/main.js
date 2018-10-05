@@ -576,6 +576,37 @@
             }
         });
     });
+
+    $('.book-status').hide();
+
+    $('.book-status#sharing0').show();
+    $('.book-status#follower0').show();
+    $('.book-status#following0').show();
+
+    $('.status-tabs a').on('shown.bs.tab', function(event){
+        var e = $(event.target).attr('href');
+        var id = $(e).attr('id');
+        if ($(e).attr('value') == 'true') {
+            $.ajax({
+                url: '/my-profile/' + id,
+                type: 'POST',
+            })
+            .done(function(res) {
+                $(e).attr('value', false);
+                $(e).html(res);
+                $('.book-status#' + id + '0').show();
+            })
+            .fail(function() {
+                console.log("error");
+            });
+        }
+    });
+
+    $('.status-page a').on('click', function(e) {
+        $('.' + $(this).attr('data-target')).hide();
+        $('.book-status' + $(this).attr('href')).show();
+    });
+    
 })(jQuery);
 
 $(document).on('change', '.btn-file :file', function() {

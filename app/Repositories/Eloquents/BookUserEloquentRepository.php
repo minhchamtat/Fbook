@@ -16,6 +16,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     {
         return $this->model()
             ->select($dataSelect)
+            ->with($with)
             ->where($data)
             ->get();
     }

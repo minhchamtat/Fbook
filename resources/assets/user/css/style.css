@@ -6364,3 +6364,69 @@ p.lost-password a:hover {
     border-radius: 50%;
     float: left;
 }
+
+
+.fb-profile img.fb-image-lg {
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile {
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+@media (max-width:768px) {  
+    .fb-profile-text>h1{
+        font-weight: 700;
+        font-size:16px;
+    }
+
+    .fb-image-profile {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%; 
+    }
+}
+
+.intro-list li span {
+    font-size: 18px;
+}
+
+.intro-list li i {
+    margin-right: 5px;
+    width: 20px;
+}
+
+.a-follow img {
+    margin-right: 10px; 
+}
+
+.exhibition-item.user .user-info {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.overflow-hidden:not(.fade) {
+    text-overflow: ellipsis;
+}
+.overflow-hidden {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.btn-follow {
+    margin-top: 5px; 
+    padding: .25rem .25rem;
+    outline: none;
+    color: #5488c7;
+    background-color: #fff;
+    border: 2px solid #5488c7;
+}
+
+.btn-follow.following:not(:disabled) {
+    color: #fff;
+    background-color: #5488c7;
+}

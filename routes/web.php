@@ -26,6 +26,8 @@ Route::group(['namespace' => 'User'], function () {
         Route::post('/books/remove-owner/{id}', 'UserController@removeOwner');
         Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
         Route::post('/books/cancelBorrowing/{id}', 'UserController@cancelBorrowing');
+        Route::get('/my-profile', 'UserController@myProfile')->name('my-profile');
+        Route::post('/my-profile/{request}', 'UserController@getProfileData');
     });
 });
 

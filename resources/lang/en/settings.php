@@ -104,4 +104,15 @@ return [
         'days' => 'Days',
     ],
 
+    'profile' => [
+        'introduction' => 'Introduction',
+        'follow' => 'Follow',
+        'followers' => 'Followers',
+        'following' => 'Following',
+        'sharing' => 'Sharing',
+        'waiting' => 'Waiting',
+        'reading' => 'Reading',
+        'returned' => 'Returned',
+    ],
+
 ];

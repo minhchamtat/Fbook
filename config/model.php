@@ -16,6 +16,8 @@ return [
     'book_user' => [
         'type' => [
             'waiting' => 'waiting',
+            'reading' => 'reading',
+            'returned' => 'returned',
         ],
     ],
 

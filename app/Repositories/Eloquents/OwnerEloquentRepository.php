@@ -13,6 +13,14 @@ class OwnerEloquentRepository extends AbstractEloquentRepository implements Owne
         return new Owner;
     }
 
+    public function getData($data = [], $with = [], $dataSelect = ['*'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->get();
+    }
+
     public function store($data)
     {
         $record = $this->model()->withTrashed()->where($data)->first();

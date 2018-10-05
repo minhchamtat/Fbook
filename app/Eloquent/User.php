@@ -84,4 +84,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(UpdateBook::class);
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'id');
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'id');
+    }
 }
