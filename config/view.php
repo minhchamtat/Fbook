@@ -32,6 +32,8 @@ return [
     'paginate' => [
         'user' => '10',
         'book' => '20',
+        'book_profile' => 12,
+        'follow_user' => 9,
     ],
 
     'taking_numb' => [
@@ -51,6 +53,10 @@ return [
         'no' => 'no',
         'nodown' => 'updown',
         'noup' => 'noup',
+    ],
+
+    'status' => [
+        'sharing' => 'sharing',
     ],
     /*
     |--------------------------------------------------------------------------

@@ -55,17 +55,17 @@ img.media-object {
     border-radius: 50%;
 }
 
-.show.tip-left{
+.show.tip-left {
     margin-bottom: 8px;
 }
 
-li.active i.fa.fa-star{
+li.active i.fa.fa-star{ 
     color: #d7882e;
 }
 p.no-margin{
     margin: 0;
 }
-p.no-margin.mtop{
+p.no-margin.mtop {
     margin-top: -11px;
 }
 .float-right{
@@ -75,27 +75,27 @@ p.no-margin.mtop{
 .vote{
     float: left;
 }
-.list-inline>li{
+.list-inline>li {
     padding-right: 0;
 }
-.action{
+.action {
     float: right;
 }
 
-.action{
+.action {
     transition: 0.5s;
     transform: translateY(-50px);
     opacity: 0;
     visibility: hidden;
 }
-.event-item:hover .action{
+.event-item:hover .action {
     transition: 0.5s;
     transform: translateY(0px);
     display: block;
     opacity: 1;
     visibility: visible;
 }
-.action form{
+.action form {
     display: -webkit-inline-box;
 }
 

@@ -31,7 +31,7 @@
                                         </span>
                                         <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="#"><b>{{ Auth::user()->name }}</b></a>
-                                            <a class="dropdown-item" href="#">Profile</a>
+                                            <a class="dropdown-item" href="{{ route('my-profile') }}">Profile</a>
                                             <a class="dropdown-item" href="#">Book of me</a>
                                             <a class="dropdown-item" href="#">Book request</a>
                                             {!! Form::open([
