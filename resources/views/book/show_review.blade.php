@@ -48,8 +48,14 @@
                         <ul>
                             <li>
                                 <div class="product-rating">
-                                    @if ($book->medias[0]->count() > 0)
-                                        <a href="#"><img src="/{{ config('view.image_paths.product') . $book->medias[0]->path }}" alt="book" /></a>
+                                    @if ($book->medias->count() > 0)
+                                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" />
+                                        </a>
+                                    @else
+                                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                        </a>
                                     @endif
                                 </div>
                             </li>
@@ -118,9 +124,13 @@
                             var vote = parseInt($('.count-vote').text());
                             $('.count-vote').text(vote + 1);
                         } else if (data == 2) {
-                            alert('Login to vote!');
+                            swal({
+                                text: 'Login to vote!',
+                            });
                         } else if (data == 'error') {
-                            alert('You Voted!');
+                            swal({
+                                text: 'You Voted!',
+                            });
                         }
                     }
                 });

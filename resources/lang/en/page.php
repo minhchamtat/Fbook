@@ -19,6 +19,7 @@ return [
         'showOption' => 'Show Options',
         'random' => 'Random',
         'office' => 'Office',
+        'upsell' => 'Upsell products',
     ],
     'rate' => 'Rate',
     'home' => 'Home',

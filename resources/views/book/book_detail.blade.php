@@ -10,6 +10,9 @@
                         <ul>
                             <li><a href="{{ asset('/') }}">{{ trans('settings.default.home') }}</a></li>
                             <li><a class="active">{{ trans('settings.book.detail_book') }}</a></li>
+                            @if ($tmp)
+                                <li><a href="{{ route('book.edit', $book->id) }}" class="btn btn-info mb-4">Edit Book</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -59,14 +62,15 @@
                                 </div>
                                 <div class="product-reviews-summary">
                                     <div class="rating-summary">
-                                        @if ($book->avg_star > 1)
-                                            @for ($i = 1; $i < $book->avg_star; $i++)
-                                                <a href="#"><i class="fa fa-star"></i></a>
-                                            @endfor
-                                        @endif
+                                        @for ($i = 0; $i < $book->avg_star; $i++)
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        @endfor
+                                        @for ($j = 0; $j < 5 - $book->avg_star; $j++)
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @endfor
                                     </div>
                                     <div class="reviews-actions">
-                                        <a href="#">{{ trans('settings.book.reviews', ['avg' => $book->avg_star]) }}</a>
+                                        <a href="#">{{ trans('settings.book.reviews', ['avg' => count($book->reviews)]) }}</a>
                                     </div>
                                 </div>
                                 <div class="product-reviews-summary">
@@ -89,11 +93,15 @@
                                         @foreach ($book->owners as $owner)
                                             <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
                                                 <a href="#" title="{{ $owner->name }}">
-                                                    <img src="{{ asset(config('view.image_paths.user') . $owner->avatar) }}" class="mg-thumbnail avatar-icon">
+                                                    @if ($owner->avatar != '')
+                                                        <img src="{{ asset(config('view.image_paths.user') . $owner->avatar) }}" class="mg-thumbnail avatar-icon">
+                                                    @else
+                                                    <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="mg-thumbnail avatar-icon">
+                                                    @endif
                                                 </a>
                                             </div>
                                         @endforeach
-                                    @endif                                   
+                                    @endif
                                 </div>
                                 <div class="product-add-form">
                                     @auth
@@ -179,11 +187,11 @@
                                                                             </p>
                                                                         </div>
                                                                         <div class="count-voted">
-                                                                            <span>0</span>
+                                                                            <span>{{ $review->upvote - $review->downvote }}</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}" class="view_more"><i class="fa fa-eye" aria-hidden="true"></i> View More</a>
+                                                                <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}" class="view_more {{ Auth::check() ? '' : 'login' }}"><i class="fa fa-eye" aria-hidden="true"></i> View More</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -234,7 +242,7 @@
                 </div>
                 <div class="new-book-area mt-60">
                     <div class="section-title text-center mb-30">
-                        <h3>upsell products</h3>
+                        <h3>{{ __('page.book.upsell') }}</h3>
                     </div>
                     <div class="tab-active-2 owl-carousel">
                         @if ($relatedBooks)
@@ -242,19 +250,24 @@
                                 <div class="product-wrapper">
                                     <div class="product-img">
                                         @if ($relatedBooks[$i]->medias->count() > 0)
-                                            <a href="#">
+                                            <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
                                                 <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary" />
+                                            </a>
+                                        @else
+                                            <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
+                                                <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
                                             </a>
                                         @endif
                                     </div>
                                     <div class="product-details text-center">
                                         <div class="product-rating">
                                             <ul>
-                                                @if ($relatedBooks[$i]->avg_star > 1)
-                                                    @for ($j = 1; $j < $relatedBooks[$i]->avg_star; $j++)
-                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    @endfor
-                                                @endif
+                                                @for ($a = 0; $a < $relatedBooks[$i]->avg_star; $a++)
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                @endfor
+                                                @for ($b = 0; $b < 5 - $relatedBooks[$i]->avg_star; $b++)
+                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                @endfor
                                             </ul>
                                         </div>
                                         <h4><a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a></h4>
@@ -276,19 +289,28 @@
                                 @if ($relatedBooks)
                                     @for ($i = 0; $i < 3; $i++)
                                         <div class="single-most-product bd mb-18">
-                                            @if ($relatedBooks[$i]->medias[0])
+                                            @if ($relatedBooks[$i]->medias->count() > 0)
                                                 <div class="most-product-img">
-                                                    <a href="#"><img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" /></a>
+                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                        <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" />
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="most-product-img">
+                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                                    </a>
                                                 </div>
                                             @endif
                                             <div class="most-product-content">
                                                 <div class="product-rating">
                                                     <ul>
-                                                        @if ($relatedBooks[$i]->avg_star > 1)
-                                                            @for ($j = 1; $j < $relatedBooks[$i]->avg_star; $j++)
-                                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                            @endfor
-                                                        @endif
+                                                        @for ($a = 0; $a < $relatedBooks[$i]->avg_star; $a++)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                        @endfor
+                                                        @for ($b = 0; $b < 5 - $relatedBooks[$i]->avg_star; $b++)
+                                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                                 <h4><a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a></h4>
@@ -303,14 +325,6 @@
                         <div class="banner-img-2">
                             <a href="#"><img src="{{ asset('assets/img/banner/33.jpg') }}" alt="banner" /></a>
                         </div>
-                    </div>
-                    <div class="left-title-2 mb-30">
-                        <h2>Compare Products</h2>
-                        <p>You have no items to compare.</p>
-                    </div>
-                    <div class="left-title-2">
-                        <h2>My Wish List</h2>
-                        <p>You have no items in your wish list.</p>
                     </div>
                 </div>
             </div>
@@ -367,7 +381,6 @@
       </div>
     </div>
 </div>
-
 @endsection
 
 @section('footer')

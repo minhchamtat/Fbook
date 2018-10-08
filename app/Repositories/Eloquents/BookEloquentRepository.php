@@ -21,6 +21,8 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
     public function store($data = [])
     {
+        $data['sku'] = strtotime(Carbon::now());
+
         return $this->model()->create($data);
     }
 

@@ -262,8 +262,8 @@
         </div>
     </div>
 </div>
-@endsection
 @include('layout.section.modal')
+@endsection
 
 @section('footer')
     @parent

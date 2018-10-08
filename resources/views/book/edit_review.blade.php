@@ -70,8 +70,12 @@
                         <ul>
                             <li>
                                 <div class="product-rating">
-                                    @if ($book->medias[0]->count() > 0)
-                                        <a href="#"><img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" /></a>
+                                    @if ($book->medias->count() > 0)
+                                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" />
+                                        </a>
+                                    @else
+                                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
                                     @endif
                                 </div>
                             </li>

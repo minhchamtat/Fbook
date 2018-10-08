@@ -65,4 +65,32 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
 
         return $review->delete();
     }
+
+    public function upVote($id, $data)
+    {
+        $model = $this->model()->findOrFail($id);
+        if ($data[0] == 'up') {
+            $data['upvote'] = $model->upvote + 1;
+
+            return $model->update($data);
+        } elseif ($data[0] == 'noup') {
+            $data['downvote'] = $model->downvote - 1;
+
+            return $model->update($data);
+        }
+    }
+
+    public function downVote($id, $data)
+    {
+        $model = $this->model()->findOrFail($id);
+        if ($data[0] == 'down') {
+            $data['downvote'] = $model->downvote + 1;
+
+            return $model->update($data);
+        } elseif ($data[0] == 'nodown') {
+            $data['upvote'] = $model->upvote - 1;
+
+            return $model->update($data);
+        }
+    }
 }

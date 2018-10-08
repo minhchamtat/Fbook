@@ -51,7 +51,6 @@
                                 'class' => 'form-control m-input'
                             ]
                         ) !!}
-                        {!! $errors->first('title', '<p style="color:red">:message</p>') !!}
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -69,7 +68,6 @@
                                         'class' => 'form-control m-input'
                                     ]
                                 ) !!}
-                                {!! $errors->first('author', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -87,7 +85,6 @@
                                         'class' => 'form-control m-input'
                                     ]
                                 ) !!}
-                                {!! $errors->first('total_pages', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -116,7 +113,6 @@
                                         'disabled' => 'disabled'
                                     ]
                                 ) !!}
-                                {!! $errors->first('avatar', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -125,34 +121,18 @@
                         <div class="row">
                             @foreach ($categories as $category)
                                 <div class="col-md-4 mb-10" style="margin-left: 50px !important;">
-                                    {!! Form::checkbox(
+                                    <label>
+                                        {!! Form::checkbox(
                                             'category[]',
                                             $category->id
-                                    ) !!}
-                                    {{ $category->name }}
+                                        ) !!}
+                                        {{ $category->name }}
+                                    </label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="single-register">
-                                {!! Form::label(
-                                    'sku',
-                                    __('page.book.sku')
-                                ) !!}
-                                {!! Form::text(
-                                    'sku',
-                                    null,
-                                    [
-                                        'placeHolder' => 'Sku of book ...',
-                                        'required' => 'required',
-                                        'class' => 'form-control m-input',
-                                    ]
-                                ) !!}
-                                {!! $errors->first('sku', '<p style="color:red">:message</p>') !!}
-                            </div>
-                        </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="single-register">
                                 {!! Form::label(
@@ -168,7 +148,6 @@
                                         'class' => 'form-control m-input',
                                     ]
                                 ) !!}
-                                {!! $errors->first('publish_date', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -185,7 +164,6 @@
                                 'class' => 'form-control m-input',
                             ]
                         ) !!}
-                        {!! $errors->first('description', '<p style="color:red">:message</p>') !!}
                     </div>
                     <div class="single-register">
                         {!! Form::submit(__('page.submit'), ['class' => 'btn btn-info']) !!}

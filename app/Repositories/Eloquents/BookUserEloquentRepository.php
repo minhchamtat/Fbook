@@ -39,7 +39,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     {
         try {
             $record = $this->model()->where($data);
-            
+
             return $record->delete();
         } catch (Exception $e) {
             return $e->getMessage();

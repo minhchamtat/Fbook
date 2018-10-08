@@ -12,6 +12,7 @@ use App\Repositories\Contracts\ReviewBookRepository;
 use App\Repositories\Contracts\OwnerRepository;
 use App\Repositories\Contracts\OfficeRepository;
 use Auth;
+use App\Repositories\Contracts\BookmetaRepository;
 
 class BookController extends Controller
 {
@@ -44,7 +45,8 @@ class BookController extends Controller
         MediaRepository $media,
         OwnerRepository $owner,
         ReviewBookRepository $review,
-        OfficeRepository $office
+        OfficeRepository $office,
+        BookmetaRepository $bookmeta
     ) {
         $this->book = $book;
         $this->category = $category;
@@ -53,6 +55,7 @@ class BookController extends Controller
         $this->review = $review;
         $this->owner = $owner;
         $this->office = $office;
+        $this->bookmeta = $bookmeta;
         $this->middleware('auth', ['except' => ['show', 'index', 'getBookCategory', 'getBookOffice']]);
     }
 
@@ -99,6 +102,8 @@ class BookController extends Controller
             $request->merge(['slug' => $slug]);
             $book = $this->book->store($request->all());
             $request->merge(['book_id' => $book->id]);
+            //save bookmeta
+            $this->bookmeta->store($request->all());
             //save category
             if ($request->has('category')) {
                 $this->bookCategory->store($request->all());
@@ -154,7 +159,34 @@ class BookController extends Controller
                 $isBooking = false;
             }
 
-            return view('book.book_detail', compact('book', 'relatedBooks', 'flag', 'reviews', 'isOwner', 'isBooking'));
+
+            $tmp = false;
+            if (Auth::check()) {
+                $roles = Auth::user()->roles;
+                if ($roles->count() > 0) {
+                    if ($roles->count() > 1) {
+                        foreach ($roles as $role) {
+                            if ($role->name == 'Admin' || $role->name == 'Editor') {
+                                $tmp = true;
+                            }
+                        }
+                    } elseif ($roles[0]->name == 'Admin' || $roles[0]->name == 'Editor') {
+                        $tmp = true;
+                    }
+                }
+            }
+
+            $data = [
+                'book',
+                'relatedBooks',
+                'flag',
+                'reviews',
+                'isOwner',
+                'isBooking',
+                'tmp'
+            ];
+
+            return view('book.book_detail', compact($data));
         }
 
         return view('error');
