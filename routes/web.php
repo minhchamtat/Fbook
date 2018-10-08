@@ -31,7 +31,7 @@ Route::group(['namespace' => 'User'], function () {
     });
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/listbook', 'BookController@ajaxShow')->name('book.show');
     Route::resource('/book', 'BookController')->except(['show']);
     Route::resource('/category', 'CategoryController')->except(['show']);

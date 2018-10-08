@@ -46,4 +46,12 @@ return [
     'errImg' => 'The avatar must be a file of type: jpg, jpeg, png, gif, bmp.',
     'noImg' => 'No Image',
     'showBook' => 'Show Book',
+    'user' => [
+        'name' => 'User name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'password' => 'Password',
+        'repass' => 'RePassword',
+        'position' => 'Position',
+    ]
 ];

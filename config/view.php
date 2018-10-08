@@ -58,6 +58,11 @@ return [
     'status' => [
         'sharing' => 'sharing',
     ],
+    
+    'role' => [
+        'admin' => 'Admin',
+        'editor' => 'Editor',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

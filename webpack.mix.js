@@ -27,8 +27,9 @@ mix.scripts([
     'node_modules/waypoints/src/waypoint.js',
     'node_modules/sweetalert/dist/sweetalert.min.js'
     ], 'public/assets/user/js/app.js');
-mix.copyDirectory('resources/assets/user', 'public/assets/user');
+mix.copyDirectory('resources/assets/user', 'public/assets/user').browserSync('http://127.0.0.1:8000/');
 mix.copyDirectory('resources/assets/fonts', 'public/assets/user/fonts');
+mix.copyDirectory('resources/assets/admin', 'public/assets/admin');
 mix.styles([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
     'node_modules/owl.carousel/dist/assets/owl.carousel.css',

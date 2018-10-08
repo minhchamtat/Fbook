@@ -4,10 +4,10 @@
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-    
+
     1. Template Default CSS (body, link color, section etc)
     2. Header-area
         2.1 Header top area
@@ -43,7 +43,7 @@
     27. Checkout
     28. Wishlist
     29. 404 page
-    
+
 
 -----------------------------------------------------------------------------------*/
 
@@ -1708,7 +1708,7 @@ body {
 /*----------------------------------------*/
 
 .banner-static-area {
-    background: rgba(0, 0, 0, 0) url("{{{ asset('assets/img/banner/7.jpg') }}") repeat scroll center center;
+    background: rgba(0, 0, 0, 0) url("../../img/banner/7.jpg") repeat scroll center center;
 }
 
 /*----------------------------------------*/
@@ -1741,7 +1741,7 @@ body {
     width: 40px;
     z-index: 1;
 }
-.product-active-2.owl-carousel .owl-nav button i , 
+.product-active-2.owl-carousel .owl-nav button i ,
 .product-active-3.owl-carousel .owl-nav button i {
     position: relative;
     top: -3px;
@@ -1750,20 +1750,20 @@ body {
     background: #f07c29 none repeat scroll 0 0;
     color: #fff;
 }
-.product-active-2.owl-carousel .owl-nav button.owl-next , 
+.product-active-2.owl-carousel .owl-nav button.owl-next ,
 .product-active-3.owl-carousel .owl-nav button.owl-next {
     left: auto;
     right: 40px;
 }
-.product-active-2.owl-carousel:hover .owl-nav button.owl-next , 
+.product-active-2.owl-carousel:hover .owl-nav button.owl-next ,
 .product-active-3.owl-carousel:hover .owl-nav button.owl-next {
     right: 0px;
 }
-.product-active-2.owl-carousel:hover .owl-nav button.owl-prev , 
+.product-active-2.owl-carousel:hover .owl-nav button.owl-prev ,
 .product-active-3.owl-carousel:hover .owl-nav button.owl-prev {
     left: 0px;
 }
-.product-active-2.owl-carousel:hover .owl-nav button , 
+.product-active-2.owl-carousel:hover .owl-nav button ,
 .product-active-3.owl-carousel:hover .owl-nav button {
     opacity: 1;
     visibility: visible;
@@ -1805,7 +1805,7 @@ body {
     border-bottom: 1px solid #e5e5e5;
 }
 .block-newsletter {
-    background: #f07c29 url("{{{ asset('assets/img/banner/10.jpg') }}") no-repeat scroll center top;
+    background: #f07c29 url("../../img/banner/10.jpg") no-repeat scroll center top;
     padding: 45px 25px 25px;
     position: relative;
     text-align: center;
@@ -2932,7 +2932,7 @@ a#scrollUp:hover {
 .home-4 .twitter-text a:hover {
     color: #232323;
 }
-.home-4 .product-active-2.owl-carousel .owl-nav button:hover , 
+.home-4 .product-active-2.owl-carousel .owl-nav button:hover ,
 .home-4 .product-active-3.owl-carousel .owl-nav button:hover {
     background: #00abe0 none repeat scroll 0 0;
     color: #fff;
@@ -3412,7 +3412,7 @@ nav.menu .cr-dropdown ul {
     margin-right: 8px;
 }
 .home-6 .header-mid-area {
-    background: #ffffff url("{{{ asset('assets/img/banner/27.jpg') }}") repeat scroll 0 0;
+    background: #ffffff url("assets/img/banner/27.jpg") repeat scroll 0 0;
 }
 .home-6 .header-top-area {
     background: #499E46 none repeat scroll 0 0;
@@ -5111,7 +5111,7 @@ nav.menu .cr-dropdown ul {
 .contact-form .single-form-3 textarea {
     height: 200px;
 }
-.contact-form form .single-form-3 button {
+.contact-form form .single-form-3 button.submit {
     background: #252525 none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;

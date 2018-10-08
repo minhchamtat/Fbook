@@ -68,6 +68,7 @@
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}
                                             {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
                                         {!! Form::close() !!}
+                                        <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

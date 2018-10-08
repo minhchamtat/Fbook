@@ -31,7 +31,10 @@
                                         </span>
                                         <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="#"><b>{{ Auth::user()->name }}</b></a>
-                                            <a class="dropdown-item" href="{{ route('my-profile') }}">Profile</a>
+                                            @if (session()->get('admin'))
+                                                <a class="dropdown-item" href="{{ url('admin') }}">Dasboard</a>
+                                            @endif
+                                            <a class="dropdown-item" href="#">Profile</a>
                                             <a class="dropdown-item" href="#">Book of me</a>
                                             <a class="dropdown-item" href="#">Book request</a>
                                             {!! Form::open([
@@ -122,136 +125,21 @@
                     <div class="menu-area">
                         <nav>
                             <ul>
-                                <li class="active"><a href="#">Home<i class="fa fa-angle-down"></i></a>
-                                    <div class="sub-menu">
-                                        <ul>
-                                            <li><a href="#">Home-2</a></li>
-                                        </ul>
-                                    </div>
+                                <li class="active"><a href="{{ route('home') }}">Home<i class="fa fa-angle-down"></i></a>
                                 </li>
-                                <li><a href="#">Book<i class="fa fa-angle-down"></i></a>
-                                    <div class="mega-menu">
-                                        <span>
-                                            <a href="#" class="title">Jackets</a>
-                                            <a href="#">Tops & Tees</a>
-                                            <a href="#">Polo Short Sleeve</a>
-                                            <a href="#">Graphic T-Shirts</a>
-                                            <a href="#">Jackets & Coats</a>
-                                            <a href="#">Fashion Jackets</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">weaters</a>
-                                            <a href="#">Crochet</a>
-                                            <a href="#">Sleeveless</a>
-                                            <a href="#">Stripes</a>
-                                            <a href="#">Sweaters</a>
-                                            <a href="#">hoodies</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Bottoms</a>
-                                            <a href="#">Heeled sandals</a>
-                                            <a href="#">Polo Short Sleeve</a>
-                                            <a href="#">Flat sandals</a>
-                                            <a href="#">Short Sleeve</a>
-                                            <a href="#">Long Sleeve</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Jeans Pants</a>
-                                            <a href="#">Polo Short Sleeve</a>
-                                            <a href="#">Sleeveless</a>
-                                            <a href="#">Graphic T-Shirts</a>
-                                            <a href="#">Hoodies</a>
-                                            <a href="#">Jackets</a>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li><a href="#">Audio books<i class="fa fa-angle-down"></i></a>
-                                    <div class="mega-menu">
-                                        <span>
-                                            <a href="#" class="title">Shirts</a>
-                                            <a href="#">Tops & Tees</a>
-                                            <a href="#">Sweaters </a>
-                                            <a href="#">Hoodies</a>
-                                            <a href="#">Jackets & Coats</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Tops & Tees</a>
-                                            <a href="#">Long Sleeve </a>
-                                            <a href="#">Short Sleeve</a>
-                                            <a href="#">Polo Short Sleeve</a>
-                                            <a href="#">Sleeveless</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Jackets</a>
-                                            <a href="#">Sweaters</a>
-                                            <a href="#">Hoodies</a>
-                                            <a href="#">Wedges</a>
-                                            <a href="#">Vests</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Jeans Pants</a>
-                                            <a href="#">Polo Short Sleeve</a>
-                                            <a href="#">Sleeveless</a>
-                                            <a href="#">Graphic T-Shirts</a>
-                                            <a href="#">Hoodies</a>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li><a href="#">children’s books<i class="fa fa-angle-down"></i></a>
-                                    <div class="mega-menu mega-menu-2">
-                                        <span>
-                                            <a href="#" class="title">Tops</a>
-                                            <a href="#">Shirts</a>
-                                            <a href="#">Florals</a>
-                                            <a href="#">Crochet</a>
-                                            <a href="#">Stripes</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Bottoms</a>
-                                            <a href="#">Shorts</a>
-                                            <a href="#">Dresses</a>
-                                            <a href="#">Trousers</a>
-                                            <a href="#">Jeans</a>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="title">Shoes</a>
-                                            <a href="#">Heeled sandals</a>
-                                            <a href="#">Flat sandals</a>
-                                            <a href="#">Wedges</a>
-                                            <a href="#">Ankle boots</a>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li><a href="#">blog<i class="fa fa-angle-down"></i></a>
-                                    <div class="sub-menu sub-menu-2">
-                                        <ul>
-                                            <li><a href="#">blog</a></li>
-                                            <li><a href="#">blog-details</a></li>
-                                        </ul>
-                                    </div>
+                                <li>
+                                    <a href="{{ route('books.index') }}">Book<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li><a href="#">pages<i class="fa fa-angle-down"></i></a>
                                     <div class="sub-menu sub-menu-2">
                                         <ul>
-                                            <li><a href="/">Homecs</a></li>
-                                            <li><a href="/books">Books</a></li>
-                                            <li><a href="/book-detail">Book Detail</a></li>
-                                            <li><a href="/add-a-book">Add your book</a></li>
-                                            <li><a href="/review">Review</a></li>
-                                            <li><a href="/profile">Profile</a></li>
-                                            <li><a href="/notifications">Notifications</a></li>
-                                            <li><a href="/my-request">My request</a></li>
-                                            <li><a href="/posts">Posts</a></li>
-                                            <li><a href="/post-detail">Post detail</a></li>
-                                            <li><a href="/error">404 Page</a></li>
+                                            <li><a href="{{ route('home') }}">Home</a></li>
+                                            <li><a href="{{ route('books.create') }}">Add your book</a></li>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </nav>
-                    </div>
-                    <div class="safe-area">
-                        <a href="#">sales off</a>
                     </div>
                 </div>
             </div>

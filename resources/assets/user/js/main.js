@@ -3,7 +3,7 @@
 
     var header = $('#header-sticky');
     var win = $(window);
-    
+
     win.on('scroll', function() {
         if ($(this).scrollTop() > 120) {
             header.addClass("sticky");
@@ -428,25 +428,25 @@
         }
         sidemenuDropdown();
     }
-    
+
     $('.more').each(function() {
         var moretext = 'Show more >';
         var lesstext = ' Show less';
         var showChar = 500;
         var ellipsestext = '...';
         var content = $(this).html();
- 
+
         if(content.length > showChar) {
- 
+
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
- 
+
             var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span class="content">' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
             $(this).html(html);
         }
- 
+
     });
- 
+
     $('.morelink').click(function(){
         if($(this).hasClass('less')) {
             $(this).removeClass('less');
@@ -616,10 +616,10 @@ $(document).on('change', '.btn-file :file', function() {
     });
 
     $('.btn-file :file').on('fileselect', function(event, label) {
-        
+
         var input = $(this).parents('.input-group').find(':text'),
             log = label;
-        
+
         if( input.length ) {
             input.val(log);
         } else {
@@ -629,11 +629,11 @@ $(document).on('change', '.btn-file :file', function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
+
             reader.onload = function (e) {
                 $('#img-upload').attr('src', e.target.result);
             }
-            
+
             reader.readAsDataURL(input.files[0]);
         }
     }
@@ -641,3 +641,15 @@ $(document).on('change', '.btn-file :file', function() {
     $("#imgInp").change(function(){
         readURL(this);
     });
+
+$(document).on('click', ".login", function(e) {
+    e.preventDefault();
+    var el = document.createElement("a");
+    el.href = "/login";
+    el.innerText = "Login here";
+    swal({
+        title: 'You need login to review!',
+        content: el,
+    });
+})
+

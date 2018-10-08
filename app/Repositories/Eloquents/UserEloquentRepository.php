@@ -29,13 +29,15 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
 
     public function store($data = [])
     {
+        $data['password'] = bcrypt($data['password']);
+
         return $this->model()->create($data);
     }
 
     public function update($id, $data = [])
     {
         $user = $this->model()->findOrFail($id);
-        
+
         return $user->update($data);
     }
 

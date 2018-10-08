@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumbs-menu">
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="#">{{ __('page.home') }}</a></li>
                         <li><a href="#" class="active">{{ __('page.book.edit') }}</a></li>
                     </ul>
                 </div>
@@ -119,17 +119,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-4 col-sm-push-4 single-register">
+                        @if ($book->medias->count() > 0)
+                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book">
+                        @endif
+                    </div>
+                    <div class="both"></div>
                     <div class="single-register">
                         {!! Form::label('category', __('page.book.category')) !!}
                         <div class="row">
                             @foreach ($categories as $category)
                                 <div class="col-md-4 mb-10" style="margin-left: 50px !important;">
-                                    {!! Form::checkbox(
+                                    <label>
+                                        {!! Form::checkbox(
                                             'category[]',
                                             $category->id,
                                             $checked != null && in_array($category->id, $checked)
-                                    ) !!}
-                                    {{ $category->name }}
+                                        ) !!}
+                                        {{ $category->name }}
+                                    </label>
                                 </div>
                             @endforeach
                         </div>
@@ -143,7 +151,7 @@
                                 ) !!}
                                 {!! Form::text(
                                     'sku',
-                                    $book->slug,
+                                    $book->sku,
                                     [
                                         'placeHolder' => 'Sku of book ...',
                                         'disabled' => 'disabled',

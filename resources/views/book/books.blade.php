@@ -80,7 +80,9 @@
                                                     <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="primary" />
                                                 </a>
                                             @else
-                                                <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                                <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                                </a>
                                             @endif
                                             <div class="quick-view">
                                                 <a class="action-view" href="#" data-target="#productModal{{ $book->id }}" data-toggle="modal" title="Quick View">
@@ -91,11 +93,12 @@
                                         <div class="product-details text-center">
                                             <div class="product-rating">
                                                 <ul>
-                                                    @if ($book->avg_star > 1)
-                                                        @for ($i = 0; $i < $book->avg_star; $i++)
-                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        @endfor
-                                                    @endif
+                                                    @for ($i = 0; $i < $book->avg_star; $i++)
+                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    @endfor
+                                                    @for ($j = 0; $j < 5 - $book->avg_star; $j++)
+                                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                    @endfor
                                                 </ul>
                                             </div>
                                             <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
@@ -118,7 +121,9 @@
                                                         <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="primary" />
                                                     </a>
                                                 @else
-                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                                    </a>
                                                 @endif
                                             </div>
                                         </div>
@@ -128,11 +133,12 @@
                                             <div class="product-details">
                                                 <div class="product-rating">
                                                     <ul>
-                                                        @if ($book->avg_star > 1)
-                                                            @for ($i = 0; $i < $book->avg_star; $i++)
-                                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                            @endfor
-                                                        @endif
+                                                        @for ($i = 0; $i < $book->avg_star; $i++)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                        @endfor
+                                                        @for ($j = 0; $j < 5 - $book->avg_star; $j++)
+                                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                                 <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>

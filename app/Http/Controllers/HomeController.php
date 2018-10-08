@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\BookRepository;
-use App\Eloquent\Bookmeta;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -32,7 +32,7 @@ class HomeController extends Controller
                 $q->select($this->imageProperties);
             },
         ];
-        $books = $this->bookRepository->getData();
+        $books = $this->bookRepository->getData([], [], ['id', 'description']);
         $offices = $this->officeRepository->getData()->pluck('name', 'id');
         $topViewed = $this->bookRepository->getTopViewedBook($with);
         $topReview = $this->bookRepository->getTopReviewBook($with);
@@ -42,6 +42,7 @@ class HomeController extends Controller
         $hotUser = $bestSharing['user'];
         $bestSharing = $bestSharing['books'];
         $officeBooks = $this->bookRepository->getOfficeBooks($offices, $with);
+
         $data = compact(
             'topInteresting',
             'topReview',
@@ -50,7 +51,8 @@ class HomeController extends Controller
             'bestSharing',
             'hotUser',
             'officeBooks',
-            'books'
+            'books',
+            'flag'
         );
 
         return view('index', $data);

@@ -1,5 +1,5 @@
 @if(isset($latestBook) && !empty($latestBook))
-    @for($i = 0; $i < count($latestBook); $i++)
+    @for($i = 0; $i < count($latestBook) - 1; $i++)
         <div class="tab-total">
             <div class="product-wrapper mb-40">
                 <div class="product-img">
@@ -21,11 +21,12 @@
                 <div class="product-details text-center">
                     <div class="product-rating">
                         <ul>
-                            @if($latestBook[$i]->avg_star > 1)
-                                @for($j = 1; $j <= $latestBook[$i]->avg_star; $j++)
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                @endfor
-                            @endif
+                            @for ($a = 0; $a < $latestBook[$i]->avg_star; $a++)
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            @endfor
+                            @for ($j = 0; $j < 5 - $latestBook[$i]->avg_star; $j++)
+                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            @endfor
                         </ul>
                     </div>
                     <h4><a href="{{ '/books/' . $latestBook[$i]->slug . '-' . $latestBook[$i]->id }}">{{ $latestBook[$i]->title }}</a></h4>
@@ -33,9 +34,9 @@
             </div>
             <div class="product-wrapper">
                 <div class="product-img">
-                    @if($latestBook[$i++]->medias->count() > 0)
+                    @if ($latestBook[++$i]->medias->count() > 0)
                         <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . $latestBook[++$i]->medias[0]->path) }}" alt="book" class="primary" />
+                            <img src="{{ asset(config('view.image_paths.book') . $latestBook[$i]->medias[0]->path) }}" alt="book" class="primary" />
                         </a>
                     @else
                         <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
@@ -51,11 +52,12 @@
                 <div class="product-details text-center">
                     <div class="product-rating">
                         <ul>
-                            @if($latestBook[$i]->avg_star > 1)
-                                @for($j = 1; $j <= $latestBook[$i]->avg_star; $j++)
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                @endfor
-                            @endif
+                            @for ($a = 0; $a < $latestBook[$i]->avg_star; $a++)
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            @endfor
+                            @for ($j = 0; $j < 5 - $latestBook[$i]->avg_star; $j++)
+                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            @endfor
                         </ul>
                     </div>
                     <h4><a href="{{ '/books/' . $latestBook[$i]->slug . '-' . $latestBook[$i]->id }}">{{ $latestBook[$i]->title }}</a></h4>

@@ -30,6 +30,7 @@ class BookRequest extends FormRequest
             'author' => 'required|min:5|max:191',
             'sku' => 'min:5',
             'avatar' => 'mimes:jpg,jpeg,png,gif,bmp',
+            'category' => 'required',
         ];
     }
     public function messages()

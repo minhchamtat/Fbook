@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\ReviewBookRepository;
 use App\Http\Requests\ReviewRequest;
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\VoteRepository;
 use App\Eloquent\Vote;
@@ -130,5 +129,4 @@ class ReviewBookController extends Controller
 
         return view('book.show_review', compact('review', 'book', 'voted', 'flag'));
     }
-
 }

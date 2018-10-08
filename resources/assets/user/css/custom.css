@@ -106,6 +106,10 @@ p.no-margin.mtop {
     font-size: 16px;
 }
 
+.product-addto-links {
+    margin-bottom: 35px;
+}
+
 /* vote */
 
 button.btn-vote {
@@ -205,10 +209,55 @@ button.btn.btn-dangera {
     float: right;
 }
 
-.quick-view a i, .bestseller-content .social-author a i {
-    line-height: 36px;
+.quick-view a i{
+    line-height: 60px;
 }
 
 a#scrollUp i {
     line-height: 1.7;
+}
+
+.single-register {
+    overflow: unset;
+}
+
+/* product img */
+.product-img {
+    min-height: 272px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-img a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-img a.action-view{
+    display: inline-block;
+}
+
+.product-add-form a {
+    margin-right: 10px;
+}
+
+.social-author i, .header-search i {
+    line-height: 41px;
+}
+
+.link-follow i {
+    line-height: 50px;
+}
+
+.twitter-icon i {
+    line-height: 68px;
+}
+
+.single-register img {
+    max-width: 100%;
+}
+
+.both {
+    clear: both;
 }

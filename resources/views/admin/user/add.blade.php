@@ -7,57 +7,6 @@
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">{{ trans('settings.admin.layout.add_page', ['name' => 'user']) }}</h3>
                 </div>
-                <div>
-                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                        <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-                            <i class="la la-plus m--hide"></i>
-                            <i class="la la-ellipsis-h"></i>
-                        </a>
-                        <div class="m-dropdown__wrapper">
-                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                            <div class="m-dropdown__inner">
-                                <div class="m-dropdown__body">
-                                    <div class="m-dropdown__content">
-                                        <ul class="m-nav">
-                                            <li class="m-nav__section m-nav__section--first m--hide">
-                                                <span class="m-nav__section-text">Quick Actions</span>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                    <span class="m-nav__link-text">Activity</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                    <span class="m-nav__link-text">Messages</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                    <span class="m-nav__link-text">FAQ</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="" class="m-nav__link">
-                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                    <span class="m-nav__link-text">Support</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__separator m-nav__separator--fit">
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -88,8 +37,9 @@
                                             'name',
                                             null,
                                             [
-                                                'placeholder' => '',
+                                                'placeholder' => trans('settings.admin.default.name'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                     {!! $errors->first('name', '<p style="color:red">:message</p>') !!}
@@ -108,8 +58,9 @@
                                             'email',
                                             null,
                                             [
-                                                'placeholder' => '',
+                                                'placeholder' => trans('settings.admin.user.email'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('email', '<p style="color:red">:message</p>') !!}
@@ -128,7 +79,9 @@
                                             'phone',
                                             null,
                                             [
+                                                'placeholder' => trans('settings.admin.user.phone'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('phone', '<p style="color:red">:message</p>') !!}
@@ -144,7 +97,10 @@
                                     ) !!}
                                     <div class="col-10">
                                         {!! Form::file(
-                                            'img'
+                                            'img',
+                                            [
+                                                'required' => 'required'
+                                            ]
                                         )!!}
                                     </div>
                                 </div>
@@ -160,7 +116,9 @@
                                         {!! Form::password(
                                             'password',
                                             [
+                                                'placeholder' => trans('settings.admin.user.password'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('password', '<p style="color:red">:message</p>') !!}
@@ -178,7 +136,9 @@
                                         {!! Form::password(
                                             're_password',
                                             [
+                                                'placeHolder' => trans('settings.admin.user.re_password'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('re_password', '<p style="color:red">:message</p>') !!}
@@ -197,7 +157,9 @@
                                             'position',
                                             null,
                                             [
+                                                'placeHolder' => trans('settings.admin.user.position'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('position', '<p style="color:red">:message</p>') !!}
@@ -212,23 +174,25 @@
                                         ]
                                     ) !!}
                                     <div class="col-10">
-                                        @if($roles)
-                                            @foreach($roles as $role)
-                                                <div class="col-4 mb-3">
-                                                    <div class="m-checkbox-list">
-                                                    {!! Form::checkbox(
-                                                        'roles[]',
-                                                        $role->id,
-                                                        false,
-                                                        [
-                                                            'class' => 'm-checkbox m-checkbox--bold m-checkbox--state-success',
-                                                        ]
-                                                    )!!}
-                                                    {{ $role->name }}
+                                        <div class="row">
+                                            @if($roles)
+                                                @foreach($roles as $role)
+                                                    <div class="col-4 mb-3">
+                                                        <div class="m-checkbox-list">
+                                                        {!! Form::checkbox(
+                                                            'roles[]',
+                                                            $role->id,
+                                                            false,
+                                                            [
+                                                                'class' => 'm-checkbox m-checkbox--bold m-checkbox--state-success',
+                                                            ]
+                                                        )!!}
+                                                        {{ $role->name }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        @endif
+                                                @endforeach
+                                            @endif
+                                        </div>
                                         {!! $errors->first('roles', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
@@ -245,7 +209,9 @@
                                             'employee_code',
                                             null,
                                             [
+                                                'placeHolder' => trans('settings.admin.user.employee_code'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('employee_code', '<p style="color:red">:message</p>') !!}
@@ -264,7 +230,9 @@
                                             'workspace',
                                             null,
                                             [
+                                                'placeHolder' => trans('settings.admin.user.workspace'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('workspace', '<p style="color:red">:message</p>') !!}
@@ -285,6 +253,7 @@
                                             null,
                                             [
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('office_id', '<p style="color:red">:message</p>') !!}
@@ -303,7 +272,9 @@
                                             'chatwork_id',
                                             null,
                                             [
+                                                'placeHolder' => trans('settings.admin.user.chatwork_id'),
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('chatwork_id', '<p style="color:red">:message</p>') !!}

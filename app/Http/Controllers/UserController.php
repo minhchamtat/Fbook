@@ -44,7 +44,7 @@ class UserController extends Controller
             'office',
         ];
         $users = $this->repository->getData($with);
-        
+
         return view('admin.user.list', compact('users'));
     }
 
@@ -56,8 +56,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = $this->roleRepository->getData();
-        $offices = $this->officeRepository->getDAta();
-        
+        $offices = $this->officeRepository->getData()->pluck('name', 'id');
+
         return view('admin.user.add', compact('roles', 'offices'));
     }
 
@@ -84,7 +84,7 @@ class UserController extends Controller
             }
         } catch (Exception $e) {
         }
-        
+
         return redirect()->route('users.index');
     }
 
