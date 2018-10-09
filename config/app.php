@@ -164,6 +164,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
+        Framgia\Fauth\FAuthServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -215,7 +217,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'DataTables' => yajra\Datatables\Facades\Datatables::class,
-
+        'Fauth' => Framgia\Fauth\Facades\Fauth::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

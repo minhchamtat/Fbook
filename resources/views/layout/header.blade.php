@@ -24,7 +24,7 @@
                                     <div class="dropdown">
                                         <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             @if(Auth::user()->avatar)
-                                                <img src="{{ asset(config('view.image_paths.user') . Auth::user()->avatar) }}" alt="avatar" class="avatar">
+                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" class="avatar">
                                             @else
                                                 <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="avatar">
                                             @endif
@@ -34,7 +34,7 @@
                                             @if (session()->get('admin'))
                                                 <a class="dropdown-item" href="{{ url('admin') }}">Dasboard</a>
                                             @endif
-                                            <a class="dropdown-item" href="#">Profile</a>
+                                            <a class="dropdown-item" href="{{ route('my-profile') }}">Profile</a>
                                             <a class="dropdown-item" href="#">Book of me</a>
                                             <a class="dropdown-item" href="#">Book request</a>
                                             {!! Form::open([
@@ -47,8 +47,7 @@
                                     </div>
                                 </li>
                             @else
-                                <li><a href="{{ route('login') }}">Log in</a></li>
-                                <li><a href="{{ route('register') }}">Register</a></li>
+                                <li><a href="{{ route('framgia.login') }}" class="login">WSM Login</a></li>
                             @endauth
                         </ul>
                     </div>

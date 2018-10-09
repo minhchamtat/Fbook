@@ -6,7 +6,7 @@
         <div class="container">
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="/assets/img/banner/32.jpg" alt="banner"/>
-                <img align="left" class="fb-image-profile thumbnail" src="/assets/img/user/avatar/abc.jpg"/>
+                <img align="left" class="fb-image-profile thumbnail" src="{{ $user->avatar }}"/>
                 <div class="fb-profile-text">
                     @if ($user)
                         <h1>{{ $user->name }}</h1>
@@ -111,7 +111,7 @@
                                 <div class="page-number">
                                     <ul class="pagination">
                                         <li class="disabled"><a href="#">«</a></li>
-                                        @for ($i = 0; $i < count($followings); $i++) 
+                                        @for ($i = 0; $i < count($followings); $i++)
                                             <li class="status-page"><a data-target="following" href="#following{{ $i }}">{{ $i + 1 }}</a></li>
                                         @endfor
                                         <li><a href="#">»</a></li>
@@ -151,7 +151,7 @@
                                 <div class="page-number">
                                     <ul class="pagination">
                                         <li class="disabled"><a href="#">«</a></li>
-                                        @for ($i = 0; $i < count($followers); $i++) 
+                                        @for ($i = 0; $i < count($followers); $i++)
                                             <li class="status-page"><a data-target="follower" href="#follower{{ $i }}">{{ $i + 1 }}</a></li>
                                         @endfor
                                         <li><a href="#">»</a></li>

@@ -59,7 +59,7 @@ img.media-object {
     margin-bottom: 8px;
 }
 
-li.active i.fa.fa-star{ 
+li.active i.fa.fa-star{
     color: #d7882e;
 }
 p.no-margin{
@@ -155,6 +155,7 @@ button.btn-vote i, .content .col-md-2 span {
 .avatar {
     width: 15%;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .dropdown-menu {
@@ -260,4 +261,25 @@ a#scrollUp i {
 
 .both {
     clear: both;
+}
+
+.account-area ul li a.login {
+    background: #F07C29 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+    margin-top: 16px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+    width: 140px;
+    font-weight: bold;
+    padding: 8px 12px;
+}
+
+.account-area.text-right {
+    margin-top: 7px;
 }
