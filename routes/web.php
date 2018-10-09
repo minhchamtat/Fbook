@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/header-search', 'HomeController@search');
 
 Route::get('login/framgia', 'Auth\LoginController@redirectToProvider')->name('framgia.login');
 Route::get('login/framgia/callback', 'Auth\LoginController@handleProviderCallback');

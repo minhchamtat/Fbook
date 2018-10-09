@@ -10,19 +10,19 @@ use Auth;
 
 class HomeController extends Controller
 {
-    protected $bookRepository;
+    protected $book;
 
-    protected $officeRepository;
+    protected $office;
 
     protected $imageProperties = [
         'path',
         'target_id',
     ];
 
-    public function __construct(BookRepository $bookRepository, OfficeRepository $officeRepository)
+    public function __construct(BookRepository $book, OfficeRepository $office)
     {
-        $this->bookRepository = $bookRepository;
-        $this->officeRepository = $officeRepository;
+        $this->book = $book;
+        $this->office = $office;
     }
 
     public function index()
@@ -32,16 +32,16 @@ class HomeController extends Controller
                 $q->select($this->imageProperties);
             },
         ];
-        $books = $this->bookRepository->getData([], [], ['id', 'description']);
-        $offices = $this->officeRepository->getData()->pluck('name', 'id');
-        $topViewed = $this->bookRepository->getTopViewedBook($with);
-        $topReview = $this->bookRepository->getTopReviewBook($with);
-        $topInteresting = $this->bookRepository->getTopInterestingBook($with);
-        $latestBook = $this->bookRepository->getLatestBook($with);
-        $bestSharing = $this->bookRepository->getBestSharing($with);
+        $books = $this->book->getData([], [], ['id', 'description']);
+        $offices = $this->office->getData()->pluck('name', 'id');
+        $topViewed = $this->book->getTopViewedBook($with);
+        $topReview = $this->book->getTopReviewBook($with);
+        $topInteresting = $this->book->getTopInterestingBook($with);
+        $latestBook = $this->book->getLatestBook($with);
+        $bestSharing = $this->book->getBestSharing($with);
         $hotUser = $bestSharing['user'];
         $bestSharing = $bestSharing['books'];
-        $officeBooks = $this->bookRepository->getOfficeBooks($offices, $with);
+        $officeBooks = $this->book->getOfficeBooks($offices, $with);
 
         $data = compact(
             'topInteresting',
@@ -56,5 +56,16 @@ class HomeController extends Controller
         );
 
         return view('index', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $result = collect([
+            'title' => $this->book->search('title', $request->req),
+            'author' => $this->book->search('author', $request->req),
+            'description' => $this->book->search('description', $request->req),
+        ]);
+
+        return view('layout.section.search', compact('result'));
     }
 }

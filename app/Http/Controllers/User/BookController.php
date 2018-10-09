@@ -56,7 +56,7 @@ class BookController extends Controller
         $this->owner = $owner;
         $this->office = $office;
         $this->bookmeta = $bookmeta;
-        $this->middleware('auth', ['except' => ['show', 'index', 'getBookCategory', 'getBookOffice']]);
+        // $this->middleware('auth', ['except' => ['show', 'index', 'getBookCategory', 'getBookOffice']]);
     }
 
     public function index()

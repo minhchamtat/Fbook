@@ -82,6 +82,7 @@ return [
         'top_rating' => 'Top Rating',
         'top_review' => 'Top Review',
         'top_view' => 'Top View',
+        'not_found' => 'Not Found',
     ],
 
     'error' => [

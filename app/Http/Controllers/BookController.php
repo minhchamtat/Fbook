@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\CategoryRepository;
