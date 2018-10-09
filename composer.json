@@ -6,8 +6,11 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+        "barryvdh/laravel-debugbar": "^3.2",
         "fideloper/proxy": "^4.0",
+        "framgia/fauth-php": "dev-develop",
         "laravel/framework": "5.6.*",
+        "laravel/socialite": "^3.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "yajra/laravel-datatables-oracle": "^8.0"
@@ -30,7 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Framgia\\Fauth\\": "vendor/framgia/fauth-php/"
         }
     },
     "extra": {
@@ -56,6 +60,12 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
+    "repositories": [
+        {
+            "url": "https://github.com/quanKM/fauth-php",
+            "type": "git"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
