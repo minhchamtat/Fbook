@@ -6430,3 +6430,64 @@ p.lost-password a:hover {
     color: #fff;
     background-color: #5488c7;
 }
+
+#search-suggest {
+    width: 90%;
+    max-height: 300px;
+    z-index: 99;
+    margin-top: 0;
+    position: absolute;
+    border-radius: 5%;
+    border-top: none;
+    background: #fff;
+    overflow: auto;
+}
+
+..result-link {
+    color: #4f7593;
+}
+.result-link .media-body {
+    font-size: 13px;
+    color: gray;
+}
+.result-link .media-heading {
+    font-size: 15px;
+    font-weight: 400;
+    color: #4f7593;
+}
+.result-link:hover,
+.result-link:hover .media-heading,
+.result-link:hover .media-body {
+    text-decoration: none;
+    color: #4f7593
+}
+.result-link .media-object {
+    width: 50px;
+    padding: 3px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+}
+.result-entry + .result-entry {
+    border-top:1px solid #ddd;
+}
+.top-keyword {
+    margin: 3px 0 0;
+    font-size: 12px;
+    font-family: Arial;
+}
+.top-keyword a {
+    font-size: 12px;
+    font-family: Arial;
+}
+.top-keyword a:hover {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.suggestions-list li {
+    padding: 7px 15px;
+}
+
+.bg-light {
+    background-color: #f07c29!important;
+    padding: 10px 17px;
+}

@@ -5,10 +5,11 @@ namespace App\Eloquent;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\FullTextSearch;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, FullTextSearch;
 
     /**
      * The attributes that are mass assignable.
@@ -87,11 +88,11 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'id');
+        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'following_id');
     }
 
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'id');
+        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'follower_id');
     }
 }

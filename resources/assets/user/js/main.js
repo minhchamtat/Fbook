@@ -532,7 +532,7 @@
     $('#borrowingForm').submit(function(e) {
         e.preventDefault();
         var f = $(this);
-        var id = f.attr('data-id');console.log(id);
+        var id = f.attr('data-id');
         $.ajax({
             url: '/books/borrowing/' + id,
             type: f.attr('method'),
@@ -607,6 +607,27 @@
         $('.book-status' + $(this).attr('href')).show();
     });
     
+    $('#header-search').on('keyup', function() {
+        var req = $(this).serialize();
+        $.ajax({
+            url: '/header-search',
+            type: 'POST',
+            data: req,
+        })
+        .done(function(res) {
+            $('#search-suggest').html('');
+            $('#search-suggest').append(res)
+        })
+        .fail(function() {
+            //
+        });
+        
+    });
+
+    $('body').click(function () {
+        $("#search-suggest div").fadeOut();
+    });
+
 })(jQuery);
 
 $(document).on('change', '.btn-file :file', function() {

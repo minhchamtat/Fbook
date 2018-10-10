@@ -4,10 +4,11 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\FullTextSearch;
 
 class Book extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, FullTextSearch;
 
     protected $fillable = [
         'title',
