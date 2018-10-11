@@ -5,11 +5,17 @@
     <div class="breadcrumbs-area mb-70">
         <div class="container">
             <div class="fb-profile">
-                <img align="left" class="fb-image-lg" src="/assets/img/banner/32.jpg" alt="banner"/>
-                <img align="left" class="fb-image-profile thumbnail" src="{{ $user->avatar }}"/>
-                <div class="fb-profile-text">
+                <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
+                <img align="left" class="fb-image-profile thumbnail" src="{{ asset(config('view.image_paths.user') . $user->avatar) }}"/>
+                <div class="fb-profile-text floatleft">
                     @if ($user)
                         <h1>{{ $user->name }}</h1>
+                    @endif
+                    @if (in_array($user->id, $followingIds))
+                        <button data-id="{{ $user->id }}" class="btn btn-follow following floatleft">{{ trans('settings.profile.following') }}</button>
+                    @elseif (Auth::id() == $user->id)
+                    @else
+                        <button data-id="{{ $user->id }}" class="btn btn-follow follow floatleft">{{ trans('settings.profile.follow') }}</button>
                     @endif
                 </div>
             </div>
@@ -98,7 +104,12 @@
                                                     <div class="user-info overflow-hidden">
                                                         <a href="#" class="link"><b>{{ $u->name }}</b></a>
                                                         <div class="subscribe">
-                                                            <button class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>
+                                                            @if (in_array($u->id, $followingIds))
+                                                                <button data-id="{{ $u->id }}" class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>
+                                                            @elseif (Auth::id() == $u->id)
+                                                            @else
+                                                                <button data-id="{{ $u->id }}" class="btn btn-follow  follow">{{ trans('settings.profile.follow') }}</button>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -135,9 +146,10 @@
                                                         <a href="#" class="link"><b>{{ $u->name }}</b></a>
                                                         <div class="subscribe">
                                                             @if (in_array($u->id, $followingIds))
-                                                                <button class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>
+                                                                <button data-id="{{ $u->id }}" class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>
+                                                            @elseif (Auth::id() == $u->id)
                                                             @else
-                                                                <button class="btn btn-follow">{{ trans('settings.profile.follow') }}</button>
+                                                                <button data-id="{{ $u->id }}" class="btn btn-follow  follow">{{ trans('settings.profile.follow') }}</button>
                                                             @endif
                                                         </div>
                                                     </div>

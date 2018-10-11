@@ -20,9 +20,10 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
             ->paginate(config('view.paginate.user'));
     }
 
-    public function find($id, $with = [])
+    public function find($id, $with = [], $dataSelect = ['*'])
     {
         return $this->model()
+            ->select($dataSelect)
             ->with($with)
             ->findOrFail($id);
     }
@@ -39,6 +40,15 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
         $user = $this->model()->findOrFail($id);
 
         return $user->update($data);
+    }
+
+    public function search($attribute, $data, $with = [], $dataSelect = ['*'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->search($attribute, $data)
+            ->get();
     }
 
     public function destroy($id)

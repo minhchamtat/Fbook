@@ -47,6 +47,7 @@ return [
     ],
 
     'default' => [
+        'book' => 'Book',
         'home' => 'Home',
         'show_more' => 'Show More',
         'submit' => 'Submit',
@@ -84,6 +85,7 @@ return [
         'top_review' => 'Top Review',
         'top_view' => 'Top View',
         'not_found' => 'Not Found',
+        'user' => 'USER',
     ],
 
     'error' => [
@@ -132,9 +134,19 @@ return [
         'returned' => 'Returned',
         'delete' => 'Delete',
     ],
+    
     'showing' => 'Showing',
     'to' => 'to',
     'books' => 'Book',
     'grid' => 'Grid',
     'list' => 'List',
+    'header' => [
+        'add_your_book' => 'Add Your Book',
+        'book_of_me' => 'Book Of Me',
+        'book_request' => 'Book Request',
+        'dasboard' => 'Dasboard',
+        'login_wsm' => 'WSM Login',
+        'logout' => 'Logout',
+        'profile' => 'Profile',
+    ],
 ];

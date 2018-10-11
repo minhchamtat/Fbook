@@ -95,4 +95,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'follower_id');
     }
+
+    public static function getRoles($id)
+    {
+        return static::findOrFail($id)->roles->pluck('name', 'id')->toArray();
+    }
 }

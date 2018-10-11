@@ -63,6 +63,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\BookmetaRepository',
             'App\Repositories\Eloquents\BookmetaEloquentRepository',
         ],
+        [
+            'App\Repositories\Contracts\FollowRepository',
+            'App\Repositories\Eloquents\FollowEloquentRepository',
+        ],
     ];
 
     /**

@@ -6391,6 +6391,10 @@ p.lost-password a:hover {
     }
 }
 
+.fb-profile-text button {
+    margin-top: -5px !important;
+}
+
 .intro-list li span {
     font-size: 18px;
 }
@@ -6418,7 +6422,7 @@ p.lost-password a:hover {
 }
 
 .btn-follow {
-    margin-top: 5px; 
+    margin-top: 3px; 
     padding: .25rem .25rem;
     outline: none;
     color: #5488c7;
@@ -6463,9 +6467,7 @@ p.lost-password a:hover {
 }
 .result-link .media-object {
     width: 50px;
-    padding: 3px;
-    border: 1px solid #c1c1c1;
-    border-radius: 3px;
+    border-radius: 3%;
 }
 .result-entry + .result-entry {
     border-top:1px solid #ddd;
@@ -6490,4 +6492,10 @@ p.lost-password a:hover {
 .bg-light {
     background-color: #f07c29!important;
     padding: 10px 17px;
+}
+
+.media-object.avatar-icon {
+    height: 40px;
+    width: 40px !important;
+    border-radius: 50% !important;
 }

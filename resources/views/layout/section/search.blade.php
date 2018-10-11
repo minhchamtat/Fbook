@@ -30,3 +30,30 @@
         </div>
     @endforeach
 @endif
+<div class="suggestion">
+    <h5 class="bg-light">{{ trans('settings.home.user') }}</h5>
+    <ul class="suggestions-list">
+        @if (count($users) > 0)
+            @foreach ($users as $user)
+                <li class="result-entry" data-suggestion="Target 1" data-position="1" data-type="type" data-analytics-type="merchant">
+                    <a href="{{ route('user', $user->id) }}" class="result-link">
+                        <div class="media">
+                            <div>
+                                @if ($user->avatar)
+                                    <img src="{{ asset(config('view.image_paths.user') . $user->avatar) }}" alt="item" class="media-object mg-thumbnail avatar-icon" />
+                                @else
+                                    <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
+                                @endif
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ $user->name }}</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            @endforeach
+        @else
+            {{ trans('settings.home.not_found') }}
+        @endif
+    </ul>
+</div>

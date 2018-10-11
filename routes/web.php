@@ -32,8 +32,11 @@ Route::group(['namespace' => 'User'], function () {
         Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
         Route::post('/books/cancelBorrowing/{id}', 'UserController@cancelBorrowing');
         Route::get('/my-profile', 'UserController@myProfile')->name('my-profile');
-        Route::post('/my-profile/{request}', 'UserController@getProfileData');
         Route::resource('my-request', 'MyRequestController');
+        Route::post('/my-profile/{request}', 'UserController@getBooks');
+        Route::get('/users/{id}', 'UserController@getUser')->name('user');
+        Route::post('follow/{id}', 'UserController@follow');
+        Route::post('/unfollow/{id}', 'UserController@unfollow');
     });
 });
 
