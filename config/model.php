@@ -25,4 +25,9 @@ return [
         'default' => 0,
         'checked' => 1,
     ],
+
+    'roles' => [
+        'admin' => 'Admin',
+        'user' => 'User',
+    ],
 ];

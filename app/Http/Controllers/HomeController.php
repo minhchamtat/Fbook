@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\OfficeRepository;
-use App\Repositories\Contracts\CategoryRepository;
+use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\BookRepository;
 use Auth;
 
@@ -14,15 +14,21 @@ class HomeController extends Controller
 
     protected $office;
 
+    protected $user;
+
     protected $imageProperties = [
         'path',
         'target_id',
     ];
 
-    public function __construct(BookRepository $book, OfficeRepository $office)
-    {
+    public function __construct(
+        BookRepository $book,
+        OfficeRepository $office,
+        UserRepository $user
+    ) {
         $this->book = $book;
         $this->office = $office;
+        $this->user = $user;
     }
 
     public function index()
@@ -60,12 +66,16 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $users = NULL;
+        if (Auth::check()) {
+            $users = $this->user->search('name', $request->req);
+        }
         $result = collect([
             'title' => $this->book->search('title', $request->req),
             'author' => $this->book->search('author', $request->req),
             'description' => $this->book->search('description', $request->req),
         ]);
 
-        return view('layout.section.search', compact('result'));
+        return view('layout.section.search', compact('result', 'users'));
     }
 }

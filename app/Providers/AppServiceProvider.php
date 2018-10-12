@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Eloquent\User;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layout.header', function($view) {
+            if (Auth::check()) {
+                $view->with('roles', User::getRoles(Auth::id()));
+            } else {
+                $view->with('roles', NULL);
+            }
+        });
     }
 
     /**

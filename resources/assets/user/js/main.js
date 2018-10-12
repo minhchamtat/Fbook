@@ -525,12 +525,13 @@
         });
     });
 
-    $(document).on('click', '.btn-borrowing', function() {
-        $('#borrowingModal').show();
+    $(document).on('click', '.btn-borrow', function() {
+        $('#borrowingModal').modal('show');
     });
 
-    $('#borrowingForm').submit(function(e) {
+    $(document).on('submit', '#borrowingForm', function(e) {
         e.preventDefault();
+        var obj = $('.btn-borrow');
         var f = $(this);
         var id = f.attr('data-id');
         $.ajax({
@@ -539,7 +540,6 @@
             data: f.serialize(),
         })
         .done(function(data) {
-            var obj = $('.btn-borrow');
             obj.html('Cancel Borrowing');
             obj.attr('href', '#');
             obj.removeClass().addClass('btn-cancel-borrowing');
@@ -568,7 +568,7 @@
                 .done(function(res) {
                     obj.html('Borrow Book');
                     obj.attr('href', '#modalBorrowing');
-                    obj.removeClass().addClass('btn-borrowing');
+                    obj.removeClass().addClass('btn-borrow');
                 })
                 .fail(function() {
                     //
@@ -626,6 +626,41 @@
 
     $('body').click(function () {
         $("#search-suggest div").fadeOut();
+    });
+
+    $(document).on('click', '.follow', function(event) {
+        event.preventDefault();
+        var obj = $(this);
+        var id = obj.attr('data-id');
+        $.ajax({
+            url: '/follow/' + id,
+            type: 'POST',
+        })
+        .done(function() {
+            obj.html('Following');
+            obj.removeClass('follow').addClass('following');
+        })
+        .fail(function() {
+            //
+        });
+    });
+
+    $(document).on('click', '.following', function(event) {
+        event.preventDefault();
+        var obj = $(this);
+        var id = obj.attr('data-id');
+        $.ajax({
+            url: '/unfollow/' + id,
+            type: 'POST',
+        })
+        .done(function() {
+            obj.html('Follow');
+            obj.removeClass('following').addClass('follow');
+        })
+        .fail(function() {
+            //
+        });
+        
     });
 
 })(jQuery);

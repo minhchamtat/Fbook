@@ -72,7 +72,7 @@ return [
         'returned' => 'returned',
         'cancel' => 'cancel',
         'approve' => 1,
-        'dissmiss' => 0,
+        'dismiss' => 0,
     ],
     /*
     |--------------------------------------------------------------------------

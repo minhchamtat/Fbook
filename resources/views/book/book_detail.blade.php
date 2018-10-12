@@ -92,7 +92,7 @@
                                     @if ($book->owners)
                                         @foreach ($book->owners as $owner)
                                             <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
-                                                <a href="#" title="{{ $owner->name }}">
+                                                <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }}">
                                                     @if ($owner->avatar != '')
                                                         <img src="{{ $owner->avatar }}" class="mg-thumbnail avatar-icon">
                                                     @else
@@ -150,12 +150,11 @@
                                                     <div class="media padding5">
                                                         <div class="medialeft">
                                                             @if ($review->user->avatar != '')
-                                                                <a href="" class="avatar">
+                                                                <a href="{{ route('user', $review->user->id) }}" class="avatar">
                                                                     <img src="{{ $review->user->avatar }}" class="img-thumbnail avatar-icon" alt="avatar"></a>
                                                             @else
-                                                                <a href="#" class="avatar"><img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="img-thumbnail avatar-icon"></a>
+                                                                <a href="{{ route('user', $review->user->id) }}" class="avatar"><img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="img-thumbnail avatar-icon"></a>
                                                             @endif
-
                                                         </div>
                                                         <div class="media-body relative-position">
                                                             <div class="content-comment">
@@ -230,9 +229,9 @@
                                         <div class="author-left">
                                             <div class="author-img">
                                                 @if ($user->avatar != '')
-                                                    <a href="#"><img src="{{ $user->avatar }}" alt="man" class="mg-thumbnail avatar-icon"/></a>
+                                                    <a href="{{ route('user', $user->id) }}"><img src="{{ $user->avatar }}" alt="man" class="mg-thumbnail avatar-icon"/></a>
                                                 @else
-                                                    <a href="#"><img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="mg-thumbnail avatar-icon"></a>
+                                                    <a href="{{ route('user', $user->id) }}"><img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="mg-thumbnail avatar-icon"></a>
                                                 @endif
                                             </div>
                                             <div class="author-description">
