@@ -35,7 +35,7 @@
                                                 <a class="dropdown-item" href="{{ url('admin') }}">Dasboard</a>
                                             @endif
                                             <a class="dropdown-item" href="{{ route('my-profile') }}">Profile</a>
-                                            <a class="dropdown-item" href="#">Book of me</a>
+                                            <a class="dropdown-item" href="#">My book</a>
                                             <a class="dropdown-item" href="#">Book request</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
@@ -47,7 +47,7 @@
                                     </div>
                                 </li>
                             @else
-                                <li><a href="{{ route('framgia.login') }}" class="login">WSM Login</a></li>
+                                <li><a href="{{ route('framgia.login') }}" class="login_wsm">WSM Login</a></li>
                             @endauth
                         </ul>
                     </div>
@@ -87,42 +87,8 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="my-cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i>My Request</a>
-                                <span>2</span>
-                                <div class="mini-cart-sub">
-                                    <div class="cart-product">
-                                        <div class="single-cart">
-                                            <div class="cart-img">
-                                                <a href="#"><img src="{{ asset(config('view.image_paths.product') . '1.jpg') }}" alt="book" /></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h5><a href="#">Joust Duffle Bag</a></h5>
-                                                <p>1 x £60.00</p>
-                                            </div>
-                                            <div class="cart-icon">
-                                                <a href="#"><i class="fa fa-remove"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="single-cart">
-                                            <div class="cart-img">
-                                                <a href="#"><img src="{{ asset(config('view.image_paths.product') . '3.jpg') }}" alt="book" /></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
-                                                <p>1 x £52.00</p>
-                                            </div>
-                                            <div class="cart-icon">
-                                                <a href="#"><i class="fa fa-remove"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-totals">
-                                        <h5>Total <span>£12.00</span></h5>
-                                    </div>
-                                    <div class="cart-bottom">
-                                        <a class="view-cart" href="#">view</a>
-                                    </div>
-                                </div>
+                            <li>
+                                <a href="{{ route('my-request.index') }}" class="{{ Auth::check() ? '' : 'login' }}"><i class="fa fa-bell-o" aria-hidden="true"></i>My Request</a>
                             </li>
                         </ul>
                     </div>
@@ -137,18 +103,13 @@
                     <div class="menu-area">
                         <nav>
                             <ul>
-                                <li class="active"><a href="{{ route('home') }}">Home<i class="fa fa-angle-down"></i></a>
+                                <li class="active"><a href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('books.index') }}">Book<i class="fa fa-angle-down"></i></a>
+                                    <a href="{{ route('books.index') }}">Book</a>
                                 </li>
-                                <li><a href="#">pages<i class="fa fa-angle-down"></i></a>
-                                    <div class="sub-menu sub-menu-2">
-                                        <ul>
-                                            <li><a href="{{ route('home') }}">Home</a></li>
-                                            <li><a href="{{ route('books.create') }}">Add your book</a></li>
-                                        </ul>
-                                    </div>
+                                <li>
+                                    <a href="{{ route('books.create') }}">Add book</a>
                                 </li>
                             </ul>
                         </nav>

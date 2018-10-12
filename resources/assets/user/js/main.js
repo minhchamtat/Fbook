@@ -606,7 +606,7 @@
         $('.' + $(this).attr('data-target')).hide();
         $('.book-status' + $(this).attr('href')).show();
     });
-    
+
     $('#header-search').on('keyup', function() {
         var req = $(this).serialize();
         $.ajax({
@@ -621,7 +621,7 @@
         .fail(function() {
             //
         });
-        
+
     });
 
     $('body').click(function () {
@@ -663,14 +663,35 @@ $(document).on('change', '.btn-file :file', function() {
         readURL(this);
     });
 
-$(document).on('click', ".login", function(e) {
+$(document).on('click', '.login', function(e) {
     e.preventDefault();
     var el = document.createElement("a");
-    el.href = "/login";
-    el.innerText = "Login here";
+    el.href = '/login/framgia';
+    el.class = 'btn btn-info';
+    el.innerText = 'Login WSM';
     swal({
         title: 'You need login to review!',
         content: el,
+        className: 'review',
     });
 })
 
+$(document).on('click', '.notify', function(e) {
+    e.preventDefault();
+    var form = $(this).parents('form').attr('id');
+    console.log(form);
+    swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal('Success!', {
+                icon: 'success',
+            });
+            document.getElementById(form).submit();
+        }
+    });
+})

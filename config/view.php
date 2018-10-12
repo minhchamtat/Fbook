@@ -34,6 +34,7 @@ return [
         'book' => '20',
         'book_profile' => 12,
         'follow_user' => 9,
+        'book_request' => 5,
     ],
 
     'taking_numb' => [
@@ -58,10 +59,20 @@ return [
     'status' => [
         'sharing' => 'sharing',
     ],
-    
+
     'role' => [
         'admin' => 'Admin',
         'editor' => 'Editor',
+    ],
+
+    'request' => [
+        'waiting' => 'waiting',
+        'reading' => 'reading',
+        'returning' => 'returning',
+        'returned' => 'returned',
+        'cancel' => 'cancel',
+        'approve' => 1,
+        'dissmiss' => 0,
     ],
     /*
     |--------------------------------------------------------------------------
