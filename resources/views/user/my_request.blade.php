@@ -69,39 +69,25 @@
                                     <td>{{ $book->days_to_read }}</td>
                                     <td>{{ $book->owner->name }}</td>
                                     <td>{{ $book->created_at }}</td>
-                                    @if ($book->type == config('view.request.waiting'))
-                                        <td class="type"><label class="stt bg-warning">{{ $book->type }}</label></td>
+                                    <td class="type"><label class="stt bg-{{ $book->type }}">{{ $book->type }}</label></td>
+                                    @if ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))
+                                        <td></td>
                                     @elseif ($book->type == config('view.request.reading'))
-                                        <td class="type"><label class="stt bg-success">{{ $book->type }}</label></td>
-                                    @elseif ($book->type == config('view.request.returning'))
-                                        <td class="type"><label class="stt bg-returning">{{ $book->type }}</label></td>
-                                    @else
-                                        <td class="type"><label class="stt bg-primary">{{ $book->type }}</label></td>
-                                    @endif
-
-                                    @if ($book->type == config('view.request.waiting'))
-                                        <td class="product-remove">
-                                            {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
-                                                {!! Form::hidden('approve', 1) !!}
-                                                {!! Form::button(__('settings.request.approve'), ['class' => 'btn btn-info btn-sm approve notify', 'type' => 'submit']) !!}
-                                            {!! Form::close() !!}
-
-                                            {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id]]) !!}
-                                                {!! Form::hidden('dismiss', 1) !!}
-                                                {!! Form::button(__('settings.request.dismiss'), ['class' => 'btn btn-dismiss btn-sm', 'type' => 'submit']) !!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    @elseif ($book->type == config('view.request.reading') || $book->type == config('view.request.returning'))
                                         <td>
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
-                                                {!! Form::hidden('returned', 1) !!}
+                                                {!! Form::hidden('status', $book->type) !!}
                                                 {!! Form::button(__('settings.request.returned'), ['class' => 'btn btn-return btn-sm notify', 'type' => 'submit']) !!}
                                             {!! Form::close() !!}
                                         </td>
-                                    @elseif ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))
-                                        <td>
-                                            {!! Form::open(['method' => 'delete', 'route' => ['my-request.destroy', $book->book->id], 'id' => $book->id]) !!}
-                                                {!! Form::button(__('settings.request.delete'), ['class' => 'btn btn-danger btn-sm notify', 'type' => 'submit']) !!}
+                                    @else
+                                        <td class="product-remove">
+                                            {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
+                                                {!! Form::hidden('status', $book->type) !!}
+                                                {!! Form::button(__('settings.request.approve'), ['class' => 'btn btn-info btn-sm approve notify', 'type' => 'submit']) !!}
+                                            {!! Form::close() !!}
+                                            {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
+                                                {!! Form::hidden('status', 'dismiss') !!}
+                                                {!! Form::button(__('settings.request.dismiss'), ['class' => 'btn btn-dismiss btn-sm notify', 'type' => 'submit']) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     @endif

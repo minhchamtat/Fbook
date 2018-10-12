@@ -66,11 +66,6 @@ class MyRequestController extends Controller
 
     public function destroy($id)
     {
-        $this->bookUser->destroy([
-            'book_id' => $id,
-            'user_id' => Auth::id(),
-        ]);
-
-        return back()->with('success', __('page.success'));
+        //
     }
 }

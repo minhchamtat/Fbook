@@ -6,7 +6,7 @@
         <div class="container">
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
-                <img align="left" class="fb-image-profile thumbnail" src="{{ asset(config('view.image_paths.user') . $user->avatar) }}"/>
+                <img align="left" class="fb-image-profile thumbnail" src="{{ $user->avatar }}"/>
                 <div class="fb-profile-text floatleft">
                     @if ($user)
                         <h1>{{ $user->name }}</h1>
@@ -98,11 +98,11 @@
                                         @foreach ($followings[$i] as $u)
                                             <div class="col-sm-6 col-md-4">
                                                 <div class="d-flex exhibition-item user">
-                                                    <a href="#" class="a-follow">
-                                                        <img src="#" class="avatar-icon">
+                                                    <a href="{{ route('user', $u->id) }}" class="a-follow">
+                                                        <img src="{{ $u->avatar }}" class="avatar-icon">
                                                     </a>
                                                     <div class="user-info overflow-hidden">
-                                                        <a href="#" class="link"><b>{{ $u->name }}</b></a>
+                                                        <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
                                                         <div class="subscribe">
                                                             @if (in_array($u->id, $followingIds))
                                                                 <button data-id="{{ $u->id }}" class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>
@@ -139,11 +139,11 @@
                                         @foreach ($followers[$i] as $u)
                                             <div class="col-sm-6 col-md-4">
                                                 <div class="d-flex exhibition-item user">
-                                                    <a href="#" class="a-follow">
-                                                        <img src="#" class="avatar-icon">
+                                                    <a href="{{ route('user', $u->id) }}" class="a-follow">
+                                                        <img src="{{ $u->avatar }}" class="avatar-icon">
                                                     </a>
                                                     <div class="user-info overflow-hidden">
-                                                        <a href="#" class="link"><b>{{ $u->name }}</b></a>
+                                                        <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
                                                         <div class="subscribe">
                                                             @if (in_array($u->id, $followingIds))
                                                                 <button data-id="{{ $u->id }}" class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>

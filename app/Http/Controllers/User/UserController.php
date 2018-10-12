@@ -50,7 +50,7 @@ class UserController extends Controller
                 'followings',
             ]);
 
-        return $this->getUserInfo($user); 
+        return $this->getUserInfo($user);
     }
 
     public function getBooks($status)
@@ -97,7 +97,7 @@ class UserController extends Controller
                     'followings',
                 ];
                 $user = $this->user->find($id, $with, $selects);
-                
+
                 return $this->getUserInfo($user);
             } else {
                 return redirect()->route('my-profile');
@@ -167,13 +167,13 @@ class UserController extends Controller
             'user_id' => Auth::id(),
         ]);
     }
-    
+
     public function follow($id)
     {
         try {
             $result = $this->follow->store([
-                'following_id' => $id,
-                'follower_id' => Auth::id(),
+                'following_id' => Auth::id(),
+                'follower_id' => $id,
             ]);
 
             if ($result !== true) {
@@ -192,15 +192,15 @@ class UserController extends Controller
                 );
             }
         } catch (Exception $e) {
-            
+
         }
     }
 
     public function unfollow($id)
     {
         return $this->follow->destroy([
-            'following_id' => $id,
-            'follower_id' => Auth::id(),
+            'following_id' => Auth::id(),
+            'follower_id' => $id,
         ]);
     }
 
