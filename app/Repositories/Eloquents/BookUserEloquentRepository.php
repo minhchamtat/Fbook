@@ -45,4 +45,36 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             return $e->getMessage();
         }
     }
+
+    public function UpdateBookRequest($data)
+    {
+        $bookRequest = $this->model()->findOrFail($data['id']);
+
+        if (isset($data['approve']) && $data['approve'] == '1') {
+            $data['approved'] = config('view.request.approve');
+            $data['type'] = config('view.request.reading');
+
+            return $bookRequest->update($data);
+        } elseif (isset($data['dismiss']) && $data['dismiss'] == '1') {
+            $data['approved'] = config('view.request.dismiss');
+            $data['type'] = config('view.request.cancel');
+
+            return $bookRequest->update($data);
+        } elseif (isset($data['returned']) && $data['returned'] == '1') {
+            $data['approved'] = config('view.request.approve');
+            $data['type'] = config('view.request.returned');
+
+            return $bookRequest->update($data);
+        }
+    }
+
+    public function getDataRequest($data = [], $with = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->where($data)
+            ->orderBy($attribute[0], $attribute[1])
+            ->paginate(config('view.paginate.book_request'));
+    }
 }

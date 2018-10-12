@@ -140,7 +140,9 @@
                             <img src="{{ asset(config('view.image_paths.book') . $bestSharing[0]->medias[0]->path) }}" alt="banner" />
                         </a>
                     @else
-                        <a href="#"><img src="{{ asset(config('view.image_paths.book') . '6.jpg') }}" alt="banner" /></a>
+                        <a href="{{ route('books.show', $bestSharing[0]->slug . '-' . $bestSharing[0]->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="banner" />
+                        </a>
                     @endif
                 </div>
             </div>

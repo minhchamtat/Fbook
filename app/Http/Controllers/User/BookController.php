@@ -74,8 +74,9 @@ class BookController extends Controller
         $categories = $this->category->getData();
         $offices = $this->office->getData();
         $books = $this->book->getBookCategory($id);
+        $cate = $this->category->find($id);
 
-        return view('book.books', compact('categories', 'offices', 'books'));
+        return view('book.books', compact('categories', 'offices', 'books', 'cate'));
     }
 
     public function getBookOffice($slug)
@@ -83,8 +84,9 @@ class BookController extends Controller
         $categories = $this->category->getData();
         $offices = $this->office->getData();
         $books = $this->book->getBookOffice($slug);
+        $off = $this->office->find($slug);
 
-        return view('book.books', compact('categories', 'offices', 'books'));
+        return view('book.books', compact('categories', 'offices', 'books', 'off'));
     }
 
     public function create()

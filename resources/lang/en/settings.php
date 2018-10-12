@@ -1,7 +1,7 @@
 <?php
 
-return [    
-    
+return [
+
     'admin' => [
         'default' => [
             'action' => 'Action',
@@ -68,6 +68,7 @@ return [
         'waiting' => 'Waiting',
         'no_waiting_user' => 'No Waiting User',
         'cancel_borrowing' => 'Cancel Borrowing',
+        'booklist' => 'Book List',
     ],
 
     'review' => [
@@ -116,4 +117,24 @@ return [
         'returned' => 'Returned',
     ],
 
+    'req' => 'Request',
+    'request' => [
+        'myReq' => 'My Request',
+        'image' => 'Image',
+        'title' => 'Title',
+        'dayRead' => 'Day of read',
+        'user' => 'User',
+        'date' => 'Date',
+        'status' => 'Status',
+        'action' => 'Action',
+        'approve' => 'Approve',
+        'dismiss' => 'Dismiss',
+        'returned' => 'Returned',
+        'delete' => 'Delete',
+    ],
+    'showing' => 'Showing',
+    'to' => 'to',
+    'books' => 'Book',
+    'grid' => 'Grid',
+    'list' => 'List',
 ];

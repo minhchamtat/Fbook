@@ -9,8 +9,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumbs-menu">
                         <ul>
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a class="active">Book List</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('settings.default.home') }}</a></li>
+                            <li><a class="active">{{ __('settings.book.booklist') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -36,7 +36,11 @@
                     <div class="left-menu mb-30">
                         <ul>
                             @foreach ($categories as $category)
-                                <li><a href="{{ route('book.category', $category->slug . '-' . $category->id) }}">{{ $category->name }}</a></li>
+                                <li>
+                                    <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="{{ isset($cate) && $cate->name == $category->name ? 'active' : '' }}">
+                                        {{ $category->name }}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -46,7 +50,11 @@
                     <div class="left-menu mb-30">
                         <ul>
                             @foreach ($offices as $office)
-                                <li><a href="{{ route('book.office', str_slug($office->name)) }}">{{ $office->name }}</a></li>
+                                <li>
+                                    <a href="{{ route('book.office', str_slug($office->name)) }}" class="{{ isset($off) && $off == $office->name ? 'active' : '' }}">
+                                        {{ $office->name }}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -54,14 +62,14 @@
             </div>
             <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                 <div class="section-title-5 mb-30">
-                    <h2>Book</h2>
+                    <h2>{{ __('settings.books') }}</h2>
                 </div>
                 <div class="toolbar mb-30">
                     <div class="shop-tab">
                         <div class="tab-3">
                             <ul>
-                                <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th-large"></i>Grid</a></li>
-                                <li><a href="#list" data-toggle="tab"><i class="fa fa-bars"></i>List</a></li>
+                                <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th-large"></i>{{ __('settings.grid') }}</a></li>
+                                <li><a href="#list" data-toggle="tab"><i class="fa fa-bars"></i>{{ __('settings.list') }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -155,8 +163,8 @@
                 <!-- pagination-area-start -->
                 <div class="pagination-area mt-50">
                     <div class="list-page-2">
-                        <p> Showing {{ ($books->currentpage()-1) * $books->perpage()+1 }} to {{ $books->currentpage() * $books->perpage() }}
-                            of  {{ $books->total() }} items
+                        <p>
+                            {{ __('settings.showing')  }} {{($books->currentpage()-1) * $books->perpage()+1 }} {{ __('settings.to') }} {{ $books->total() }} items
                         </p>
                     </div>
                     <div class="page-numbers">

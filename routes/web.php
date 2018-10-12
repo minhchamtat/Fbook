@@ -33,6 +33,7 @@ Route::group(['namespace' => 'User'], function () {
         Route::post('/books/cancelBorrowing/{id}', 'UserController@cancelBorrowing');
         Route::get('/my-profile', 'UserController@myProfile')->name('my-profile');
         Route::post('/my-profile/{request}', 'UserController@getProfileData');
+        Route::resource('my-request', 'MyRequestController');
     });
 });
 

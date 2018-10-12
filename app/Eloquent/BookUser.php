@@ -19,6 +19,11 @@ class BookUser extends Model
 
     public function book()
     {
-    	return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
     }
 }

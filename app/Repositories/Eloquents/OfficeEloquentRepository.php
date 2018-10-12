@@ -20,4 +20,16 @@ class OfficeEloquentRepository extends AbstractEloquentRepository implements Off
             ->with($with)
             ->get();
     }
+
+    public function find($slug)
+    {
+        $offices = Office::all();
+        foreach ($offices as $office) {
+            if ($slug == str_slug($office->name)) {
+                $data = $office->name;
+            }
+        }
+
+        return $data;
+    }
 }
