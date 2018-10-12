@@ -341,14 +341,14 @@ img.img-thumbnail.avatar-icon{
     color: white;
     font-weight: 600;
 }
-.bg-warning {
+.bg-waiting {
     background-color: #ffc107!important;
 }
-.bg-success {
+.bg-reading {
     background-color: #28a745!important;
 }
 
-.bg-primary {
+.bg-returned, .bg-cancel {
     background-color:#007bff!important;
 }
 

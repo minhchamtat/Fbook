@@ -49,23 +49,15 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     public function UpdateBookRequest($data)
     {
         $bookRequest = $this->model()->findOrFail($data['id']);
-
-        if (isset($data['approve']) && $data['approve'] == '1') {
-            $data['approved'] = config('view.request.approve');
-            $data['type'] = config('view.request.reading');
-
-            return $bookRequest->update($data);
-        } elseif (isset($data['dismiss']) && $data['dismiss'] == '1') {
-            $data['approved'] = config('view.request.dismiss');
-            $data['type'] = config('view.request.cancel');
-
-            return $bookRequest->update($data);
-        } elseif (isset($data['returned']) && $data['returned'] == '1') {
-            $data['approved'] = config('view.request.approve');
-            $data['type'] = config('view.request.returned');
-
-            return $bookRequest->update($data);
+        if (isset($data['status']) && $data['status'] == config('view.request.waiting')) {
+            $type['type'] = 'reading';
+        } elseif (isset($data['status']) && $data['status'] == config('view.request.reading') ||$data['status'] == config('view.request.returning')) {
+            $type['type'] = 'returned';
+        } elseif (isset($data['status']) && $data['status'] == 'dismiss') {
+            $type['type'] = 'cancel';
         }
+
+        return $bookRequest->update($type);
     }
 
     public function getDataRequest($data = [], $with = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
