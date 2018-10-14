@@ -93,4 +93,13 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
             return $model->update($data);
         }
     }
+
+    public function getData($with = [], $data = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->orderBy($attribute[0], $attribute[1])
+            ->get();
+    }
 }

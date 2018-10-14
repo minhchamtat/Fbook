@@ -22,7 +22,7 @@ class BookUser extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function owner()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

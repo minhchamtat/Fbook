@@ -20,7 +20,7 @@ class MyRequestController extends Controller
     {
         $user = Auth::user();
         $data = [
-            'user_id' => Auth::id(),
+            'owner_id' => Auth::id(),
         ];
         $with = [
             'book',

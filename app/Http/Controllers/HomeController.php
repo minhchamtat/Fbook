@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\BookRepository;
+use App\Repositories\Contracts\ReviewBookRepository;
 use Auth;
 
 class HomeController extends Controller
@@ -16,6 +17,8 @@ class HomeController extends Controller
 
     protected $user;
 
+    protected $review;
+
     protected $imageProperties = [
         'path',
         'target_id',
@@ -24,11 +27,13 @@ class HomeController extends Controller
     public function __construct(
         BookRepository $book,
         OfficeRepository $office,
-        UserRepository $user
+        UserRepository $user,
+        ReviewBookRepository $review
     ) {
         $this->book = $book;
         $this->office = $office;
         $this->user = $user;
+        $this->review = $review;
     }
 
     public function index()
@@ -48,6 +53,9 @@ class HomeController extends Controller
         $hotUser = $bestSharing['user'];
         $bestSharing = $bestSharing['books'];
         $officeBooks = $this->book->getOfficeBooks($offices, $with);
+        $totalUser = $this->user->getData();
+        $totalBook = $this->book->getData()->count();
+        $totalReview = $this->review->getData()->count();
 
         $data = compact(
             'topInteresting',
@@ -58,7 +66,10 @@ class HomeController extends Controller
             'hotUser',
             'officeBooks',
             'books',
-            'flag'
+            'flag',
+            'totalUser',
+            'totalBook',
+            'totalReview'
         );
 
         return view('index', $data);

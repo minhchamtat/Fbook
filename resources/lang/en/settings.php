@@ -51,6 +51,20 @@ return [
         'home' => 'Home',
         'show_more' => 'Show More',
         'submit' => 'Submit',
+        'social' => 'Social',
+        'about' => 'About',
+        'instruction' => 'Instruction',
+        'feedback' => 'Feedback',
+        'contact' => 'Contact',
+        'office' => 'Office',
+        'totalMember' => 'Total Member',
+        'totalBook' => 'Total Book',
+        'totalReview' => 'Total Review',
+        'help' => 'Help & Support',
+        'call' => 'Call us',
+        'books' => 'books',
+        'reviews' => 'reviews',
+        'members' => 'members',
     ],
 
     'book' => [
@@ -134,7 +148,7 @@ return [
         'returned' => 'Returned',
         'delete' => 'Delete',
     ],
-    
+
     'showing' => 'Showing',
     'to' => 'to',
     'books' => 'Book',

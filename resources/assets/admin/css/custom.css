@@ -1,3 +1,22 @@
 .sorting_1 {
     display: -webkit-inline-box;
 }
+.img img {
+    max-width: 100%;
+}
+
+.text {
+    position: absolute;
+    top: 35%;
+    left: 38%;
+    color: #fff;
+    text-align: center;
+}
+
+.img {
+    position: relative;
+}
+
+.text h2 {
+    font-size: 50px;
+}

@@ -4,12 +4,16 @@
             <div class="single-most-product bd mb-18">
                 @if($book->medias->count() > 0)
                     <div class="most-product-img">
-                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}"><img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" /></a>
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" />
+                        </a>
                     </div>
                 @else
-                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
-                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
-                    </a>
+                    <div class="most-product-img">
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                        </a>
+                    </div>
                 @endif
                 <div class="most-product-content">
                     <div class="product-rating">

@@ -8,44 +8,44 @@
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="single-banner">
                         <div class="banner-img">
-                            <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '1.png') }}" alt="banner" /></a>
+                            <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
                         <div class="banner-text">
-                            <h4>Free shipping item</h4>
-                            <p>For all orders over $500</p>
+                            <h4>{{ __('settings.default.totalMember') }}</h4>
+                            <p>{{ $totalUser->total() }} {{__('settings.default.members') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="single-banner">
                         <div class="banner-img">
-                            <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '2.png') }}" alt="banner" /></a>
+                            <i class="fa fa-book" aria-hidden="true"></i>
                         </div>
                         <div class="banner-text">
-                            <h4>Money back guarantee</h4>
-                            <p>100% money back guarante</p>
+                            <h4>{{ __('settings.default.totalBook') }}</h4>
+                            <p>{{ $totalBook }} {{__('settings.default.books') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 hidden-sm col-xs-12">
                     <div class="single-banner">
                         <div class="banner-img">
-                            <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '3.png') }}" alt="banner" /></a>
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
                         </div>
                         <div class="banner-text">
-                            <h4>Cash on delivery</h4>
-                            <p>Lorem ipsum dolor consecte</p>
+                            <h4>{{ __('settings.default.totalReview') }}</h4>
+                            <p>{{ $totalReview }} {{__('settings.default.reviews') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="single-banner mrg-none-xs">
                         <div class="banner-img">
-                            <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '4.png') }}" alt="banner" /></a>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
                         </div>
                         <div class="banner-text">
-                            <h4>Help & Support</h4>
-                            <p>Call us : + 0123.4567.89</p>
+                            <h4>{{ __('settings.default.help') }}</h4>
+                            <p>{{ __('settings.default.call') }} : 84-4-3795-5417</p>
                         </div>
                     </div>
                 </div>
@@ -212,20 +212,7 @@
         </div>
     </div>
 </div>
-<div class="recent-post-area pt-95 pb-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title text-center mb-30 section-title-res">
-                    <h2>Latest from our blog</h2>
-                </div>
-            </div>
-            <div class="post-active owl-carousel text-center">
-                @include('layout.section.blog')
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="social-group-area ptb-60">
     <div class="container">
         <div class="row">
@@ -235,13 +222,12 @@
                 </div>
                 <div class="twitter-content">
                     <div class="twitter-icon">
-                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-book" aria-hidden="true"></i></a>
                     </div>
                     <div class="twitter-text">
                         <p>
-                            Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum notare quam
+                            Sách không đơn thuần chỉ là những trang giấy mà trong đó còn chứa đựng một thế giới mà con người luôn khao khát được khám phá.
                         </p>
-                        <a href="#">posthemes</a>
                     </div>
                 </div>
             </div>
@@ -251,13 +237,41 @@
                 </div>
                 <div class="link-follow">
                     <ul>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="#"><i class="fa fa-flickr"></i></a></li>
-                        <li class="hidden-sm"><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                        <li class="hidden-sm"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'wsm_logo.png') }}" alt=""/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fask_logo.png') }}" alt=""/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'favicon.png') }}" alt=""/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fclub_logo.png') }}" alt=""/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fgas_logo.png') }}" alt=""/>
+                            </a>
+                        </li>
+                        <li class="hidden-sm">
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fsurvey_logo.png') }}" alt=""/>
+                            </a>
+                        </li>
+                        <li class="hidden-sm">
+                            <a href="#">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'logo2.png') }}" alt=""/>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
