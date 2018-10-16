@@ -243,7 +243,6 @@ a#scrollUp i {
     display: flex;
     justify-content: center;
     max-height: 272px;
-    margin-bottom: 15px;
 }
 
 .product-img a {
@@ -371,4 +370,89 @@ img.img-thumbnail.avatar-icon{
 
 .left-menu.mb-30 a.active {
     color: #f07c31;
+}
+
+.space-20 {
+    height: 40px;
+}
+
+h4.text-white {
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 22px;
+}
+
+.list-inline>li {
+    padding-right: 5px;
+}
+
+ul.list-unstyled.footer a {
+    color: #fff;
+}
+
+ul.list-unstyled.social-list i {
+    transition: .3s;
+    min-width: 2px;
+    min-height: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.about li {
+    margin-bottom: 10px;
+}
+
+.contact i {
+    font-weight: 400;
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.contact li {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.banner-img i {
+    font-size: 25px;
+    color: black;
+}
+
+.slider-content.slider-animated-1.text-center h3 {
+    color: #fff;
+    font-size: 50px;
+    margin-top: 75px;
+}
+
+.slider-content a {
+    font-size: 20px;
+    padding: 8px 14px;
+    font-family: inherit;
+}
+
+.twitter-text p {
+    line-height: 28px;
+}
+
+.link-follow ul li a:hover {
+    background: none;
+    border: 1px solid gray;
+    border-radius: 0;
+    height: 100%;
+    text-align: center;
+}
+
+.link-follow ul li a {
+    background: none;
+    border: 1px solid transparent;
+    height: 100%;
+    text-align: center;
+}
+
+.owl-carousel .owl-item img.primary {
+    display: block;
+    width: auto;
+    height: 215px;
+    overflow: hidden;
+    max-width: inherit;
 }

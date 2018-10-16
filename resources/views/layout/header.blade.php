@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                     <div class="logo-area text-center logo-xs-mrg">
-                        <a href="#"><img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo" /></a>
+                        <a href="{{ asset('/') }}"><img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo" /></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -103,18 +103,33 @@
                     <div class="menu-area">
                         <nav>
                             <ul>
-                                <li class="active"><a href="{{ route('home') }}">{{ trans('settings.default.home') }}<i class="fa fa-angle-down"></i></a>
+                                <li class="active">
+                                    <a href="{{ route('home') }}">{{ trans('settings.default.home') }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('books.index') }}">{{ trans('settings.default.book') }}<i class="fa fa-angle-down"></i></a>
+                                    <a href="{{ route('books.index') }}">{{ trans('settings.default.book') }}</a>
                                 </li>
-                                <li><a href="#">pages<i class="fa fa-angle-down"></i></a>
+                                <li><a href="#">{{ __('settings.default.office') }}<i class="fa fa-angle-down"></i></a>
                                     <div class="sub-menu sub-menu-2">
                                         <ul>
-                                            <li><a href="{{ route('books.create') }}">{{ trans('settings.header.add_your_book') }}</a></li>
-                                        </ul>
+                                            <li>
+                                                <a href="{{ route('book.office', 'handico-office') }}">Handico Office</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('book.office', 'tran-khat-chan') }}">Tran Khat Chan</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('book.office', 'hcmc-office') }}">HCMC Office</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('book.office', 'da-nang-office') }}">Da Nang Office</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('book.office', 'hanoi-office') }}">Hanoi Office</a>
+                                            </li>
+                                       </ul>
                                     </div>
-                                </li>
+                                <li>
                             </ul>
                         </nav>
                     </div>

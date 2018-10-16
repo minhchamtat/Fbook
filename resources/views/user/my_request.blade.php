@@ -67,7 +67,7 @@
                                         <a href="{{ route('books.show', $book->book->slug . '-' . $book->book_id) }}">{{ $book->book->title }}</a>
                                     </td>
                                     <td>{{ $book->days_to_read }}</td>
-                                    <td>{{ $book->owner->name }}</td>
+                                    <td>{{ $book->user->name }}</td>
                                     <td>{{ $book->created_at }}</td>
                                     <td class="type"><label class="stt bg-{{ $book->type }}">{{ $book->type }}</label></td>
                                     @if ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))

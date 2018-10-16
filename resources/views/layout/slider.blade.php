@@ -5,10 +5,9 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="slider-content slider-animated-1 text-center">
-                            <h1>Huge Sale</h1>
-                            <h2>koparion</h2>
-                            <h3>Now starting at £99.00</h3>
-                            <a href="#">Shop now</a>
+                            <h1>Fbook</h1>
+                            <h3>PHP Education</h3>
+                            <a href="{{ route('books.create') }}">Create book</a>
                         </div>
                     </div>
                 </div>
@@ -17,10 +16,9 @@
         <div class="single-slider slider-h1-2 pt-215 pb-100 bg-img" style="background-image:url({{ asset(config('view.image_paths.slide') . '2.jpg') }});">
             <div class="container">
                 <div class="slider-content slider-content-2 slider-animated-1">
-                    <h1>We can help get your</h1>
-                    <h2>Books in Order</h2>
-                    <h3>and Accessories</h3>
-                    <a href="#">Contact Us Today!</a>
+                    <h1>We make it awesome!</h1>
+                    <h2>Framgia</h2>
+                    <a href="{{ route('books.create') }}">Create book</a>
                 </div>
             </div>
         </div>
