@@ -138,7 +138,7 @@ class BookController extends Controller
         $slugId = $book->slug . '-' . $book->id;
         if ($slug == $slugId) {
             $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
-            $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
+            $relatedBooks = $this->book->getRelatedBooks($relatedBookIds, ['medias']);
             $data['book_id'] = $book->id;
             $reviews = $this->review->show($data);
 

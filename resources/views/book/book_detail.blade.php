@@ -112,9 +112,9 @@
                                                 <a data-toggle="modal" href="#borrowingModal" data-id="{{ $book->id }}" class="btn-borrow">{{ trans('settings.book.borrow_book') }}</a>
                                             @endif
                                             @if ($isOwner)
-                                                <a class="btn-remove-owner"  data-id="{{ $book->id }}">{{ trans('settings.book.remove_owner') }}</a>
+                                                <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" href="#">{{ trans('settings.book.remove_owner') }}</a>
                                             @else
-                                                <a class="btn-share"  data-id="{{ $book->id }}">{{ trans('settings.book.i_have_this_book') }}</a>
+                                                <a data-toggle="modal" class="btn-share" data-id="{{ $book->id }}" href="#">{{ trans('settings.book.i_have_this_book') }}</a>
                                             @endif
                                         </form>
                                     @endauth

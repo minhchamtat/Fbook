@@ -26,33 +26,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-8 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label>{{ trans('settings.admin.default.status') }}</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <select class="form-control m-bootstrap-select" id="m_form_status">
-                                                    <option value="">{{ trans('settings.admin.default.all') }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label class="m-label m-label--single">{{ trans('settings.admin.default.type') }}</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <select class="form-control m-bootstrap-select" id="m_form_type">
-                                                    <option value="">{{ trans('settings.admin.default.all') }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                    </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-10">
                                         <div class="m-input-icon m-input-icon--left">
                                             <input type="text" class="form-control m-input m-input--solid" placeholder="{{ trans('settings.admin.default.search') }}" id="generalSearch">
                                             <span class="m-input-icon__icon m-input-icon__icon--left">

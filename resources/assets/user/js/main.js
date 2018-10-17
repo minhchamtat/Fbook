@@ -441,7 +441,7 @@
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
 
-            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span class="content">' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span class="contentellipses">' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
             $(this).html(html);
         }
 
@@ -450,13 +450,13 @@
     $('.morelink').click(function(){
         if($(this).hasClass('less')) {
             $(this).removeClass('less');
-            $('.content').hide();
-            $('moreellipses').show();
+            $('.contentellipses').hide();
+            $('.moreellipses').show();
             $(this).html('Show more >');
         } else {
             $(this).addClass('less');
-            $('moreellipses').hide();
-            $('.content').show();
+            $('.moreellipses').hide();
+            $('.contentellipses').show();
             $(this).html('< Show less');
         }
         return false;
