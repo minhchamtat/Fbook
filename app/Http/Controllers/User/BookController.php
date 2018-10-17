@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\BookCategoryRepository;
@@ -11,6 +12,7 @@ use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
 use App\Repositories\Contracts\OwnerRepository;
 use App\Repositories\Contracts\OfficeRepository;
+use App\Repositories\Contracts\BookUserRepository;
 use Auth;
 use App\Repositories\Contracts\BookmetaRepository;
 
@@ -30,12 +32,13 @@ class BookController extends Controller
 
     protected $office;
 
+    protected $bookUser;
+
     protected $with = [
         'medias',
         'categories',
         'owners',
         'reviews',
-        'waitingList',
     ];
 
     public function __construct(
@@ -46,7 +49,8 @@ class BookController extends Controller
         OwnerRepository $owner,
         ReviewBookRepository $review,
         OfficeRepository $office,
-        BookmetaRepository $bookmeta
+        BookmetaRepository $bookmeta,
+        BookUserRepository $bookUser
     ) {
         $this->book = $book;
         $this->category = $category;
@@ -56,7 +60,7 @@ class BookController extends Controller
         $this->owner = $owner;
         $this->office = $office;
         $this->bookmeta = $bookmeta;
-        // $this->middleware('auth', ['except' => ['show', 'index', 'getBookCategory', 'getBookOffice']]);
+        $this->bookUser = $bookUser;
     }
 
     public function index()
@@ -185,7 +189,7 @@ class BookController extends Controller
                 'reviews',
                 'isOwner',
                 'isBooking',
-                'tmp'
+                'tmp',
             ];
 
             return view('book.book_detail', compact($data));
@@ -266,5 +270,21 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getDetailData(Request $request)
+    {
+        $followingIds = null;
+        $req = [
+            'type' => $request->type,
+            'book_id' => $request->book_id,
+        ];
+        $data = $this->bookUser->getDetailData($req);
+        $type = $request->type;
+        if (Auth::check()) {
+            $followingIds = Auth::user()->followings->pluck('id')->toArray();
+        }
+
+        return view('layout.section.user_list', compact('data', 'type', 'followingIds'));
     }
 }

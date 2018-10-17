@@ -29,5 +29,4 @@ class BookmetaEloquentRepository extends AbstractEloquentRepository implements B
 
         return $this->model()->create($data);
     }
-
 }

@@ -12,7 +12,7 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalMember') }}</h4>
-                            <p>{{ $totalUser->total() }} {{__('settings.default.members') }}</p>
+                            <p>{{ $totalUser->count() }} {{__('settings.default.members') }}</p>
                         </div>
                     </div>
                 </div>

@@ -13,14 +13,6 @@ class FollowEloquentRepository extends AbstractEloquentRepository implements Fol
         return new FollowUser;
     }
 
-    public function getData($data = [], $with = [], $dataSelect = ['*'])
-    {
-        return $this->model()
-            ->select($dataSelect)
-            ->with($with)
-            ->get();
-    }
-
     public function store($data = [])
     {
         $record = $this->model()->withTrashed()->where($data)->first();
@@ -30,8 +22,17 @@ class FollowEloquentRepository extends AbstractEloquentRepository implements Fol
             return $record->restore();
         }
     }
+    
+    public function getData($data = [], $with = [], $dataSelect = ['*'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->get();
+    }
 
-     public function destroy($data){
+    public function destroy($data)
+    {
         try {
             $record = $this->model()->where($data);
             

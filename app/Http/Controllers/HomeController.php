@@ -77,7 +77,7 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $users = NULL;
+        $users = null;
         if (Auth::check()) {
             $users = $this->user->search('name', $request->req);
         }

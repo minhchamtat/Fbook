@@ -37,7 +37,8 @@ class MediaEloquentRepository extends AbstractEloquentRepository implements Medi
         return $this->model()->findOrFail($id);
     }
 
-    public function clone($data = []) {
+    public function clone($data = [])
+    {
         return $this->model()->create($data);
     }
 

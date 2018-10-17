@@ -117,7 +117,7 @@ class ReviewBookController extends Controller
                 ->where('user_id', '=', $userId)->first();
 
             if ($vote != null) {
-                if ( $vote->status == '1') {
+                if ($vote->status == '1') {
                     $flag = config('view.vote.up');
                 } elseif ($vote->status == '-1') {
                     $flag = config('view.vote.down');

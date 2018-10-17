@@ -135,12 +135,16 @@
                     @endif
                 </div>
                 <div class="product-info-area mt-80">
-                    <ul class="nav nav-tabs" role="tablist">
+                @auth
+                    <ul class="nav nav-tabs detail-tabs" role="tablist" data-id="{{ $book->id }}">
                         <li class="active"><a href="#reviews" data-toggle="tab">{{ trans('settings.book.review') }}</a></li>
-                        <li><a href="#waiting-list" data-toggle="tab">{{ trans('settings.book.waiting') }}</a></li>
+                        <li><a href="#waiting" data-toggle="tab">{{ trans('settings.book.waiting') }}</a></li>
+                        <li><a href="#reading" data-toggle="tab">{{ trans('settings.book.reading') }}</a></li>
+                        <li><a href="#returning" data-toggle="tab">{{ trans('settings.book.returning') }}</a></li>
+                        <li><a href="#returned" data-toggle="tab">{{ trans('settings.book.returned') }}</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="reviews">
+                        <div class="tab-pane active" id="reviews" status="done">
                             <div class="row event-list">
                                 <div class="col-xs-12 col-sm-8 col-md-12 revsdv fix" id="load-data">
                                     @if ($reviews->count() > 0)
@@ -222,39 +226,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="waiting-list">
-                            <div class="author-destils mb-30">
-                                @if (count($book->waitingList) > 0)
-                                    @foreach ($book->waitingList as $user)
-                                        <div class="author-left">
-                                            <div class="author-img">
-                                                @if ($user->avatar != '')
-                                                    <a href="{{ route('user', $user->id) }}"><img src="{{ $user->avatar }}" alt="man" class="mg-thumbnail avatar-icon"/></a>
-                                                @else
-                                                    <a href="{{ route('user', $user->id) }}"><img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="mg-thumbnail avatar-icon"></a>
-                                                @endif
-                                            </div>
-                                            <div class="author-description">
-                                                <p><a>{{ $user->name }}</a></p>
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <div class="alert alert-info">
-                                        {{ trans('settings.book.no_waiting_user') }}
-                                    </div>
-                                @endif
-                            </div>
+                        <div class="tab-pane" id="waiting" status="none">
+                        </div>
+                        <div class="tab-pane" id="reading" status="none">
+                        </div>
+                        <div class="tab-pane" id="returning" status="none">
+                        </div>
+                        <div class="tab-pane" id="returned" status="none">
                         </div>
                     </div>
+                @endauth
                 </div>
                 <div class="new-book-area mt-60">
                     <div class="section-title text-center mb-30">
                         <h3>{{ __('page.book.upsell') }}</h3>
                     </div>
                     <div class="tab-active-2 owl-carousel">
-                        @if ($relatedBooks)
+                        @if ($relatedBooks && count($relatedBooks) > 0)
                             @for ($i = 3; $i < count($relatedBooks); $i++)
                                 <div class="product-wrapper">
                                     <div class="product-img">
