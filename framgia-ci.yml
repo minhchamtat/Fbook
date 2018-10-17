@@ -1,4 +1,5 @@
 project_type: php
+url: https://civ3-dev.framgia.vn
 build:
   general_test:
     image: framgiaciteam/laravel-workspace:latest

@@ -238,6 +238,15 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         return $books;
     }
 
+    public function getRelatedBooks($bookIds, $with = [])
+    {
+        return $this->model()
+            ->with($with)
+            ->orderBy('created_at', 'desc')
+            ->whereIn('id', $bookIds)
+            ->get();
+    }
+
     public function search($attribute, $data, $with = [], $dataSelect = ['*'])
     {
         return $this->model()

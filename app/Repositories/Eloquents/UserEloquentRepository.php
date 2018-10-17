@@ -17,7 +17,7 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
         return $this->model()
             ->select($dataSelect)
             ->with($with)
-            ->paginate(config('view.paginate.user'));
+            ->get();
     }
 
     public function find($id, $with = [], $dataSelect = ['*'])

@@ -37,9 +37,9 @@ class BookCategoryEloquentRepository extends AbstractEloquentRepository implemen
     {
         $books = collect();
         foreach ($categoryIds as $id) {
-            $books = $books->merge($this->model()->where('category_id', $id)->get());
+            $books = $books->merge($this->model()->orderBy('created_at', 'desc')->where('category_id', $id)->get());
         }
 
-        return $books->pluck('book_id')->unique()->take(8);
+        return $books->pluck('book_id')->unique()->take(config('view.limit.related_book'));
     }
 }

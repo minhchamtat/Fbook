@@ -6499,3 +6499,7 @@ p.lost-password a:hover {
     width: 40px !important;
     border-radius: 50% !important;
 }
+
+.product-addto-links-text.more span {
+    font-weight: 100 !important;
+}

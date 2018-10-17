@@ -114,7 +114,7 @@ class UserController extends Controller
         $user = $this->repository->find($id, $with);
         $idRoles = $user->roles->pluck('id')->toArray();
         $roles = $this->roleRepository->getData();
-        $offices = $this->officeRepository->getDAta();
+        $offices = $this->officeRepository->getData()->pluck('name', 'id');;
 
         return view('admin.user.edit', compact('user', 'roles', 'offices', 'idRoles'));
     }
@@ -128,7 +128,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $this->repository->update($request->all(), $id);
+        $this->repository->update($id, $request->all());
 
         if ($request->changed) {
             $this->updateRole($request->roles, $id);
