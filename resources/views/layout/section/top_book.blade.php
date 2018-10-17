@@ -18,12 +18,19 @@
     <div class="product-details text-center">
         <div class="product-rating">
             <ul>
-                @for ($i = 0; $i < $book->avg_star; $i++)
-                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                @for ($k = 1; $k < $book->avg_star; $k++)
+                    <li><i class="fa fa-star"></i></li>
                 @endfor
-                @for ($j = 0; $j < 5 - $book->avg_star; $j++)
+
+                @if (strpos($book->avg_star, '.'))
+                    <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                    @php $k++ @endphp
+                @endif
+
+                @while ($k <= 5)
                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                @endfor
+                    @php $k++ @endphp
+                @endwhile
             </ul>
         </div>
         <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>

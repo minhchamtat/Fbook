@@ -383,10 +383,6 @@ h4.text-white {
     margin-bottom: 22px;
 }
 
-.list-inline>li {
-    padding-right: 5px;
-}
-
 ul.list-unstyled.footer a {
     color: #fff;
 }
@@ -462,4 +458,12 @@ ul.list-unstyled.social-list i {
     color: black;
     margin: 11px 0 2px 0;
     display: block;
+}
+
+.product-rating li i, .rating-summary i {
+    color: #f07c29;
+}
+
+.product-rating {
+    margin: 14px 0;
 }

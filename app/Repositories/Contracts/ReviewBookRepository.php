@@ -16,7 +16,7 @@ interface ReviewBookRepository extends AbstractRepository
 
     public function checkReview($data);
 
-    public function update($data = []);
+    public function update($id, $data = []);
 
     public function destroy($id);
 }

@@ -53,7 +53,7 @@ class HomeController extends Controller
         $hotUser = $bestSharing['user'];
         $bestSharing = $bestSharing['books'];
         $officeBooks = $this->book->getOfficeBooks($offices, $with);
-        $totalUser = $this->user->getData();
+        $totalUser = $this->user->getData()->count();
         $totalBook = $this->book->getData()->count();
         $totalReview = $this->review->getData()->count();
 

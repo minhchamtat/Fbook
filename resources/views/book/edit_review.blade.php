@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single-form-3">
-                                            {!! Form::textarea('content', $review->content, ['placeHolder' => 'Content...', 'required' => 'required']) !!}
+                                            {!! Form::textarea('content', $review->content, ['placeHolder' => 'Content...', 'required' => 'required', 'id' => 'mytextarea']) !!}
                                             {!! Form::button(__('page.submit'), ['type' => 'submit', 'class' => 'submit']) !!}
                                         </div>
                                     </div>
@@ -94,4 +94,15 @@
 
 @section('footer')
     @parent
+@endsection
+
+@section('script')
+    {!! Html::script('assets/tinymce/js/tinymce/tinymce.min.js') !!}
+    <script>
+        jQuery(document).ready(function() {
+            tinymce.init({
+                selector: 'textarea#mytextarea'
+            });
+        });
+    </script>
 @endsection

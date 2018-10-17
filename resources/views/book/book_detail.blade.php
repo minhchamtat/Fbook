@@ -62,12 +62,19 @@
                                 </div>
                                 <div class="product-reviews-summary">
                                     <div class="rating-summary">
-                                        @for ($i = 0; $i < $book->avg_star; $i++)
-                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        @for ($i = 1; $i <= $book->avg_star; $i++)
+                                            <i class="fa fa-star"></i>
                                         @endfor
-                                        @for ($j = 0; $j < 5 - $book->avg_star; $j++)
+
+                                        @if (strpos($book->avg_star, '.'))
+                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                            @php $i++ @endphp
+                                        @endif
+
+                                        @while ($i <= 5)
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        @endfor
+                                            @php $i++ @endphp
+                                        @endwhile
                                     </div>
                                     <div class="reviews-actions">
                                         <a href="#review" id="review">{{ trans('settings.book.reviews', ['avg' => count($book->reviews)]) }}</a>
@@ -165,19 +172,19 @@
                                                                 <div class="show tip-left">
                                                                     <strong>{{ $review->user->name }}</strong>
                                                                     <i>{{ $review->created_at }}</i>
-                                                                    @if ($review->user == Auth::user())
+                                                                    @if ($review->user->id == Auth::id())
                                                                         <div class="action">
                                                                             <a href="{{ route('review.edit', [$book->slug . '-' . $book->id, $review->id]) }}" class="btn btn-info btn-sm a-btn-slide-text">
                                                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                                                             </a>
                                                                             {!! Form::open(['method' => 'DELETE', 'route' => ['review.destroy', $book->slug . '-' . $book->id, $review->id], 'id' => "$review->id"]) !!}
-                                                                                {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                                                {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm notify', 'type' => 'submit']) !!}
                                                                             {!! Form::close() !!}
                                                                         </div>
                                                                     @endif
                                                                 </div>
                                                                 <h4 class="media-heading list-inline list-unstyled rating-star m-0">
-                                                                    @for ($i = 1; $i <= $review->star; $i++)
+                                                                    @for ($i = 1; $i <= ($review->star); $i++)
                                                                         <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
                                                                     @endfor
                                                                     @for ($j = 1; $j <= 5 - ($review->star); $j++)
@@ -259,12 +266,19 @@
                                     <div class="product-details text-center">
                                         <div class="product-rating">
                                             <ul>
-                                                @for ($a = 0; $a < $relatedBooks[$i]->avg_star; $a++)
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                @for ($a = 1; $a < $relatedBooks[$i]->avg_star; $a++)
+                                                    <li><i class="fa fa-star"></i></li>
                                                 @endfor
-                                                @for ($b = 0; $b < 5 - $relatedBooks[$i]->avg_star; $b++)
+
+                                                @if (strpos($relatedBooks[$i]->avg_star, '.'))
+                                                   <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                                    @php $a++ @endphp
+                                                @endif
+
+                                                @while ($a <= 5)
                                                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                @endfor
+                                                    @php $a++ @endphp
+                                                @endwhile
                                             </ul>
                                         </div>
                                         <h4><a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a></h4>
@@ -288,13 +302,13 @@
                                         <div class="single-most-product bd mb-18">
                                             @if ($relatedBooks[$i]->medias->count() > 0)
                                                 <div class="most-product-img">
-                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                    <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
                                                         <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" />
                                                     </a>
                                                 </div>
                                             @else
                                                 <div class="most-product-img">
-                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                    <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
                                                         <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
                                                     </a>
                                                 </div>
@@ -302,12 +316,19 @@
                                             <div class="most-product-content">
                                                 <div class="product-rating">
                                                     <ul>
-                                                        @for ($a = 0; $a < $relatedBooks[$i]->avg_star; $a++)
-                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                        @for ($k = 1; $k < $relatedBooks[$i]->avg_star; $k++)
+                                                            <li><i class="fa fa-star"></i></li>
                                                         @endfor
-                                                        @for ($b = 0; $b < 5 - $relatedBooks[$i]->avg_star; $b++)
+
+                                                        @if (strpos($relatedBooks[$i]->avg_star, '.'))
+                                                            <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                                            @php $k++ @endphp
+                                                        @endif
+
+                                                        @while ($k <= 5)
                                                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                        @endfor
+                                                            @php $k++ @endphp
+                                                        @endwhile
                                                     </ul>
                                                 </div>
                                                 <h4><a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a></h4>
