@@ -660,7 +660,7 @@
         .fail(function() {
             //
         });
-        
+
     });
 
 })(jQuery);

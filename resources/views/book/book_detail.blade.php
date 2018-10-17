@@ -70,7 +70,7 @@
                                         @endfor
                                     </div>
                                     <div class="reviews-actions">
-                                        <a href="#">{{ trans('settings.book.reviews', ['avg' => count($book->reviews)]) }}</a>
+                                        <a href="#review" id="review">{{ trans('settings.book.reviews', ['avg' => count($book->reviews)]) }}</a>
                                     </div>
                                 </div>
                                 <div class="product-reviews-summary">
