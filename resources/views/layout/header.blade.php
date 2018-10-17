@@ -30,13 +30,11 @@
                                             @endif
                                         </span>
                                         <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#"><b>{{ Auth::user()->name }}</b></a>
+                                            <b>{{ Auth::user()->name }}</b>
                                             @if ($roles && in_array(config('model.roles.admin'), $roles))
                                                 <a class="dropdown-item" href="{{ url('admin') }}">{{ trans('settings.header.dasboard') }}</a>
                                             @endif
                                             <a class="dropdown-item" href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
-                                            <a class="dropdown-item" href="#">{{ trans('settings.header.book_of_me') }}</a>
-                                            <a class="dropdown-item" href="#">{{ trans('settings.header.book_request') }}</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
                                                 'method' => 'POST',

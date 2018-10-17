@@ -233,7 +233,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="section-title-3">
-                    <h3>Stay Connected</h3>
+                    <h3>Framgia Apps</h3>
                 </div>
                 <div class="link-follow">
                     <ul>

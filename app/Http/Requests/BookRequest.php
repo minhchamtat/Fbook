@@ -29,7 +29,7 @@ class BookRequest extends FormRequest
             'description' => 'required|min:5',
             'author' => 'required|min:5|max:191',
             'sku' => 'min:5',
-            'avatar' => 'mimes:jpg,jpeg,png,gif,bmp',
+            'avatar' => 'mimes:jpg,jpeg,png,gif,bmp | max:2000',
             'category' => 'required',
         ];
     }
@@ -46,6 +46,7 @@ class BookRequest extends FormRequest
             'author.max' => Lang::get('validation.max.string'),
             'sku.min' => Lang::get('validation.min.string'),
             'avatar.mimes' => Lang::get('validation.mimes'),
+            'avatar.max' => Lang::get('validation.max.file'),
         ];
     }
 }
