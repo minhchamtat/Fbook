@@ -43,7 +43,7 @@ class UserRequest extends FormRequest
         return [
             'name.name' => Lang::get('validation.max.string'),
             'email.email' => Lang::get('validation.email'),
-            'email.unique' => Lang::get('validation.required'),
+            'email.unique' => Lang::get('validation.unique'),
             'phone.max' => Lang::get('validation.max.string'),
             'password.required' => Lang::get('validation.required'),
             'password.min' => Lang::get('validation.min.string'),

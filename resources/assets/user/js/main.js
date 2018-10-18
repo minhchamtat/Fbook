@@ -544,6 +544,25 @@
             obj.attr('href', '#');
             obj.removeClass().addClass('btn-cancel-borrowing');
             $('#borrowingModal').modal('hide');
+            var book_id = $('.detail-tabs').attr('data-id');
+            $.ajax({
+                url: '/book-detail',
+                type: 'POST',
+                data: {
+                    type: 'waiting',
+                    book_id: book_id
+                },
+            })
+            .done(function(res) {
+                $('#waiting').attr('status', 'done');
+                $('#waiting').html(res);
+                $('.book-status').hide();
+                $('.book-status#' + 'waiting' + '0').show();
+            })
+            .fail(function() {
+                //
+            });
+            $('a[href="#waiting"]').click();
         })
         .fail(function() {
             console.log("error");
@@ -569,6 +588,26 @@
                     obj.html('Borrow Book');
                     obj.attr('href', '#modalBorrowing');
                     obj.removeClass().addClass('btn-borrow');
+                    console.log($('.tab-pane.active').attr('id'));
+                    var book_id = $('.detail-tabs').attr('data-id');
+                    $.ajax({
+                        url: '/book-detail',
+                        type: 'POST',
+                        data: {
+                            type: 'waiting',
+                            book_id: book_id
+                        },
+                    })
+                    .done(function(res) {
+                        $('#waiting').attr('status', 'done');
+                        $('#waiting').html(res);
+                        $('.book-status').hide();
+                        $('.book-status#' + 'waiting' + '0').show();
+                    })
+                    .fail(function() {
+                        //
+                    });
+                    $('a[href="#waiting"]').click();
                 })
                 .fail(function() {
                     //
@@ -602,7 +641,7 @@
         }
     });
 
-    $('.status-page a').on('click', function(e) {
+    $(document).on('click', '.status-page a', function(e) {
         $('.' + $(this).attr('data-target')).hide();
         $('.book-status' + $(this).attr('href')).show();
     });
@@ -661,6 +700,32 @@
             //
         });
 
+    });
+
+    $(document).on('shown.bs.tab', '.detail-tabs a', function(event){
+        var e = $(event.target).attr('href');
+        var type = $(e).attr('id');
+        var book_id = $('.detail-tabs').attr('data-id');
+        if ($(e).attr('status') == 'none') {
+            $.ajax({
+                url: '/book-detail',
+                type: 'POST',
+                data: {
+                    type: type,
+                    book_id: book_id
+                },
+            })
+            .done(function(res) {
+                $(e).attr('status', 'done');
+                $(e).html(res);
+                $('.book-status').hide();
+                $('.book-status#' + type + '0').show();
+            })
+            .fail(function() {
+                //
+            });
+        }
+        $('.book-status#' + type + '0').show();
     });
 
 })(jQuery);

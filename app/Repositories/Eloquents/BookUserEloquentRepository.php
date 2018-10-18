@@ -46,12 +46,14 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
         }
     }
 
-    public function UpdateBookRequest($data)
+    public function updateBookRequest($data)
     {
         $bookRequest = $this->model()->findOrFail($data['id']);
         if (isset($data['status']) && $data['status'] == config('view.request.waiting')) {
             $type['type'] = 'reading';
-        } elseif (isset($data['status']) && $data['status'] == config('view.request.reading') ||$data['status'] == config('view.request.returning')) {
+        } elseif (isset($data['status'])
+            && $data['status'] == config('view.request.reading')
+            || $data['status'] == config('view.request.returning')) {
             $type['type'] = 'returned';
         } elseif (isset($data['status']) && $data['status'] == 'dismiss') {
             $type['type'] = 'cancel';
@@ -68,5 +70,21 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             ->where($data)
             ->orderBy($attribute[0], $attribute[1])
             ->paginate(config('view.paginate.book_request'));
+    }
+
+    public function getDetailData($request)
+    {
+        try {
+            $with = [
+                'user',
+            ];
+
+            return $this->getData($request, $with)
+                ->pluck('user')
+                ->unique()
+                ->chunk(config('view.paginate.follow_user'));
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }

@@ -32,7 +32,6 @@ class VoteEloquentRepository extends AbstractEloquentRepository implements VoteR
 
                 return $userVote;
             } elseif ($userVote->status == '0') {
-
                 $userVote->update(['status' => '1']);
 
                 return $userVote;

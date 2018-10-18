@@ -39,7 +39,7 @@ class Book extends Model
 
     public function owners()
     {
-        return $this->belongsToMany(User::class, 'owners')->wherePivot('deleted_at', NULL);
+        return $this->belongsToMany(User::class, 'owners')->wherePivot('deleted_at', null);
     }
 
     public function users()

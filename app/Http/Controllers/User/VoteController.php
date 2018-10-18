@@ -66,7 +66,7 @@ class VoteController extends Controller
                 $data = ['error'];
             }
         } else {
-            if ( $vote = $this->vote->voteDown($review)) {
+            if ($vote = $this->vote->voteDown($review)) {
                 if ($vote->status == '0') {
                     $data = ['nodown'];
                     $this->review->downVote($id, $data);

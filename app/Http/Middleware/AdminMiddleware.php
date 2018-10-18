@@ -26,7 +26,8 @@ class AdminMiddleware
                             return $next($request);
                         }
                     }
-                } elseif ($roles[0]->name == config('view.role.admin') || $roles[0]->name == config('view.role.editor')) {
+                } elseif ($roles[0]->name == config('view.role.admin')
+                    || $roles[0]->name == config('view.role.editor')) {
                     return $next($request);
                 }
             }

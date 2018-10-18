@@ -49,7 +49,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
                         'value' => $userId,
                     ]
                 )->first();
-            if($isClone) {
+            if ($isClone) {
                 $book = $this->model()->findOrFail($isClone->book_id);
                 $book->update($data);
             } else {
@@ -217,14 +217,14 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
     public function getBookCategory($id)
     {
-        $books = $this->model()::whereHas('categories', function($q) use ($id) {
+        $books = $this->model()::whereHas('categories', function ($q) use ($id) {
             return $q->where('category_id', $id);
         })->paginate(config('view.paginate.book'));
 
         return $books;
     }
 
-    public function getBookOffice($data, $with= [])
+    public function getBookOffice($data, $with = [])
     {
         $ids = app(Bookmeta::class)
             ->where('key', 'in-' . $data)

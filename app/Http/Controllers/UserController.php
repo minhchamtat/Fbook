@@ -114,7 +114,7 @@ class UserController extends Controller
         $user = $this->repository->find($id, $with);
         $idRoles = $user->roles->pluck('id')->toArray();
         $roles = $this->roleRepository->getData();
-        $offices = $this->officeRepository->getData()->pluck('name', 'id');;
+        $offices = $this->officeRepository->getData()->pluck('name', 'id');
 
         return view('admin.user.edit', compact('user', 'roles', 'offices', 'idRoles'));
     }

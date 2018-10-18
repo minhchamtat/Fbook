@@ -31,7 +31,8 @@ class OwnerEloquentRepository extends AbstractEloquentRepository implements Owne
         }
     }
     
-    public function destroy($data){
+    public function destroy($data)
+    {
         try {
             $record = $this->model()->where($data);
             
