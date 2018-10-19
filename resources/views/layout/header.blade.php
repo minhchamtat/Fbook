@@ -5,11 +5,16 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="language-area">
                         <ul>
-                            <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag" /><a href="#">English<i class="fa fa-angle-down"></i></a>
+                            <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
+                                        href="#">English<i class="fa fa-angle-down"></i></a>
                                 <div class="header-sub">
                                     <ul>
-                                        <li><a href="#"><img src="{{ asset(config('view.image_paths.flag') . '2.jpg') }}" alt="flag" />france</a></li>
-                                        <li><a href="#"><img src="{{ asset(config('view.image_paths.flag') . '3.jpg') }}" alt="flag" />croatia</a></li>
+                                        <li><a href="#"><img
+                                                        src="{{ asset(config('view.image_paths.flag') . '2.jpg') }}"
+                                                        alt="flag"/>france</a></li>
+                                        <li><a href="#"><img
+                                                        src="{{ asset(config('view.image_paths.flag') . '3.jpg') }}"
+                                                        alt="flag"/>croatia</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -22,30 +27,36 @@
                             @auth
                                 <li>
                                     <div class="dropdown">
-                                        <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                              aria-expanded="false">
                                             @if(Auth::user()->avatar)
-                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" class="avatar">
+                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar"
+                                                     class="avatar">
                                             @else
-                                                <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="avatar">
+                                                <img src="{{ asset(config('view.image_paths.user') . '1.png') }}"
+                                                     alt="avatar" class="avatar">
                                             @endif
                                         </span>
                                         <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
                                             <b>{{ Auth::user()->name }}</b>
                                             @if ($roles && in_array(config('model.roles.admin'), $roles))
-                                                <a class="dropdown-item" href="{{ url('admin') }}">{{ trans('settings.header.dasboard') }}</a>
+                                                <a class="dropdown-item"
+                                                   href="{{ url('admin') }}">{{ trans('settings.header.dasboard') }}</a>
                                             @endif
-                                            <a class="dropdown-item" href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
+                                            <a class="dropdown-item"
+                                               href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
                                                 'method' => 'POST',
                                             ]) !!}
-                                            <button class="btn btn-dangera">{{ trans('settings.header.logout') }}</button>
+                                            <a class="dropdown-item" href=""><button class="btn-link">{{ trans('settings.header.logout') }}</button></a>
                                             {!! Form::close() !!}
                                         </div>
                                     </div>
                                 </li>
                             @else
-                                <li><a href="{{ route('framgia.login') }}" class="login_wsm">{{ trans('settings.header.login_wsm') }}</a></li>
+                                <li><a href="{{ route('framgia.login') }}"
+                                       class="login_wsm">{{ trans('settings.header.login_wsm') }}</a></li>
                             @endauth
                         </ul>
                     </div>
@@ -79,14 +90,16 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                     <div class="logo-area text-center logo-xs-mrg">
-                        <a href="{{ asset('/') }}"><img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo" /></a>
+                        <a href="{{ asset('/') }}"><img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}"
+                                                        alt="logo"/></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="my-cart">
                         <ul>
                             <li>
-                                <a href="{{ route('my-request.index') }}" class="{{ Auth::check() ? '' : 'login' }}"><i class="fa fa-bell-o" aria-hidden="true"></i>My Request</a>
+                                <a href="{{ route('my-request.index') }}" class="{{ Auth::check() ? '' : 'login' }}"><i
+                                            class="fa fa-bell-o" aria-hidden="true"></i>My Request</a>
                             </li>
                         </ul>
                     </div>
@@ -101,31 +114,35 @@
                     <div class="menu-area">
                         <nav>
                             <ul>
-                                <li class="active">
+                                <li class="{{ Request::is('/') ? 'active' : '' }}">
                                     <a href="{{ route('home') }}">{{ trans('settings.default.home') }}</a>
                                 </li>
-                                <li>
+                                <li @if (Request::route()->getName() == 'books.index' || Request::route()->getName() == 'books.show' || Request::route()->getName() == 'book.category') class={{ "active" }} @endif>
                                     <a href="{{ route('books.index') }}">{{ trans('settings.default.book') }}</a>
                                 </li>
-                                <li><a href="#">{{ __('settings.default.office') }}<i class="fa fa-angle-down"></i></a>
+                                <li class="{{ Request::route()->getName() == 'book.office' ? 'active' : '' }}">
+                                    <a>{{ __('settings.default.office') }}<i class="fa fa-angle-down"></i></a>
                                     <div class="sub-menu sub-menu-2">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('book.office', 'handico-office') }}">Handico Office</a>
+                                                <a href="{{ route('book.office', 'handico-office') }}">Handico
+                                                    Office</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('book.office', 'tran-khat-chan') }}">Tran Khat Chan</a>
+                                                <a href="{{ route('book.office', 'tran-khat-chan') }}">Tran Khat
+                                                    Chan</a>
                                             </li>
                                             <li>
                                                 <a href="{{ route('book.office', 'hcmc-office') }}">HCMC Office</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('book.office', 'da-nang-office') }}">Da Nang Office</a>
+                                                <a href="{{ route('book.office', 'da-nang-office') }}">Da Nang
+                                                    Office</a>
                                             </li>
                                             <li>
                                                 <a href="{{ route('book.office', 'hanoi-office') }}">Hanoi Office</a>
                                             </li>
-                                       </ul>
+                                        </ul>
                                     </div>
                                 <li>
                             </ul>
