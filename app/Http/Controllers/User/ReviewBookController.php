@@ -55,7 +55,12 @@ class ReviewBookController extends Controller
         try {
             $id = (int)last(explode('-', $slug));
             $request->merge(['book_id' => $id]);
+
             $this->review->store($request->all());
+            $data = $this->review->find($id);
+            if (isset($data) && $data != null) {
+                $this->book->updateStar($data, $id);
+            }
 
             return redirect()->route('books.show', $slug);
         } catch (Exception $e) {
@@ -79,9 +84,13 @@ class ReviewBookController extends Controller
     public function update(ReviewRequest $request, $slug, $id)
     {
         try {
-            $review = $this->review->findOrFail($id);
-            $request->merge(['id', $id]);
-            $review->update($request->all());
+            $this->review->update($id, $request->all());
+
+            $idBook = (int)last(explode('-', $slug));
+            $data = $this->review->find($idBook);
+            if (isset($data) && $data != null) {
+                $this->book->updateStar($data, $idBook);
+            }
 
             return redirect()->route('books.show', $slug);
         } catch (Exception $e) {
@@ -93,6 +102,12 @@ class ReviewBookController extends Controller
     {
         try {
             $this->review->destroy($id);
+
+            $idBook = (int)last(explode('-', $slug));
+            $data = $this->review->find($idBook);
+            if (isset($data) && $data != null) {
+                $this->book->updateStar($data, $idBook);
+            }
 
             return back();
         } catch (Exception $e) {

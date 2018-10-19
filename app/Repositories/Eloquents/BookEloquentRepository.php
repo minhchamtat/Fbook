@@ -255,4 +255,24 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->search($attribute, $data)
             ->get();
     }
+
+    public function updateStar($data, $id)
+    {
+        $book = $this->model()->findOrFail($id);
+
+        $star = 0;
+        if (isset($data) && $data != null) {
+            foreach ($data as $review) {
+                $star += $review->star;
+            }
+
+            if ($data->count() > 0) {
+                $avgStar['avg_star'] = $star / count($data);
+            } else {
+                $avgStar['avg_star'] = $star;
+            }
+
+            return $book->update($avgStar);
+        }
+    }
 }

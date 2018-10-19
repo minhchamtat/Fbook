@@ -795,3 +795,10 @@ $(document).on('click', '.notify', function(e) {
         }
     });
 })
+
+$('#review').click(function (e) {
+    e.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#reviews').offset().top - 180
+    }, 1000);
+})

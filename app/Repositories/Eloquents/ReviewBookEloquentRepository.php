@@ -52,9 +52,9 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
         return $isReview;
     }
 
-    public function update($data = [])
+    public function update($id, $data = [])
     {
-        $model = $this->model()->findOrFail($data['id']);
+        $model = $this->model()->findOrFail($id);
 
         return $model->update($data);
     }

@@ -21,12 +21,19 @@
                 <div class="product-details text-center">
                     <div class="product-rating">
                         <ul>
-                            @for ($a = 0; $a < $latestBook[$i]->avg_star; $a++)
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            @for ($k = 1; $k < $latestBook[$i]->avg_star; $k++)
+                                <li><i class="fa fa-star"></i></li>
                             @endfor
-                            @for ($j = 0; $j < 5 - $latestBook[$i]->avg_star; $j++)
+
+                            @if (strpos($latestBook[$i]->avg_star, '.'))
+                                <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                @php $k++ @endphp
+                            @endif
+
+                            @while ($k <= 5)
                                 <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                            @endfor
+                                @php $k++ @endphp
+                            @endwhile
                         </ul>
                     </div>
                     <h4><a href="{{ '/books/' . $latestBook[$i]->slug . '-' . $latestBook[$i]->id }}">{{ $latestBook[$i]->title }}</a></h4>
