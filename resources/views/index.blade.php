@@ -84,6 +84,11 @@
                     @endif
                 </div>
             </div>
+            @if (isset($topInteresting) && !empty($topInteresting))
+                @foreach($topInteresting as $book)
+                    @include('layout.section.modal')
+                @endforeach
+            @endif
             <div class="tab-pane fade" id="books">
                 <div class="tab-active owl-carousel">
                     @if (isset($topReview) && !empty($topReview))
@@ -93,6 +98,11 @@
                     @endif
                 </div>
             </div>
+            @if (isset($topReview) && !empty($topReview))
+                @foreach($topReview as $book)
+                    @include('layout.section.modal')
+                @endforeach
+            @endif
             <div class="tab-pane fade" id="bussiness">
                 <div class="tab-active owl-carousel">
                     @if (isset($topViewed) && !empty($topViewed))
@@ -102,6 +112,11 @@
                     @endif
                 </div>
             </div>
+            @if (isset($topViewed) && !empty($topViewed))
+                @foreach($topViewed as $book)
+                    @include('layout.section.modal')
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
@@ -166,6 +181,10 @@
         <div class="tab-active owl-carousel">
             @include('layout.section.latest_book')
         </div>
+
+        @foreach ($latestBook as $book)
+            @include ('layout.section.modal')
+        @endforeach
     </div>
 </div>
 <div class="banner-static-area bg ptb-100">
@@ -278,7 +297,6 @@
         </div>
     </div>
 </div>
-@include('layout.section.modal')
 @endsection
 
 @section('footer')
