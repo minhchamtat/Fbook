@@ -31,8 +31,8 @@ class UserRequest extends FormRequest
             'phone' => 'nullable|max:50|regex:/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/i',
             'employee_code' => 'unique:users|max:50',
             'reputation_point' => 'nullable',
-            'avatar' => 'nullable|image',
-            'workspace' => 'max:50',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif,bmp',
+            'workspace' => 'required|max:50',
             'office_id' => 'nullable',
             'chatwork_id' => 'nullable|max:50',
         ];
@@ -41,16 +41,17 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.name' => Lang::get('validation.max.string'),
+            'name.max' => Lang::get('validation.max.string'),
             'email.email' => Lang::get('validation.email'),
             'email.unique' => Lang::get('validation.unique'),
             'phone.max' => Lang::get('validation.max.string'),
-            'password.required' => Lang::get('validation.required'),
             'password.min' => Lang::get('validation.min.string'),
             'employee_code.unique' => Lang::get('validation.unique'),
+            'employee_code.max' => Lang::get('validation.max.string'),
             'avatar.image' => Lang::get('validation.image'),
+            'avatar.mimes' => Lang::get('validation.mimes'),
             'workspace.max' => Lang::get('validation.max.string'),
-            'chatwork_id.required' => Lang::get('validation.unique'),
+            'workspace.required' => Lang::get('validation.required'),
             'chatwork_id.max' => Lang::get('validation.max.string'),
         ];
     }

@@ -358,6 +358,7 @@ body {
     display: inline-block;
     margin-right: 22px;
     position: relative;
+    margin: 0;
 }
 .language-area ul > li:last-child,
 .account-area ul > li:last-child {
@@ -6491,6 +6492,7 @@ p.lost-password a:hover {
 .bg-light {
     background-color: #f07c29!important;
     padding: 10px 17px;
+    margin: 0;
 }
 
 .media-object.avatar-icon {
@@ -6535,7 +6537,7 @@ p.lost-password a:hover {
     border-radius: 10px;
     position: absolute;
     background: #fff;
-    overflow: auto;
+    overflow-y: auto;
     left: 50%;
     transform: translate(-90%, 0);
 }
@@ -6555,4 +6557,16 @@ p.lost-password a:hover {
 
 .container .old {
     background-color: #ededed !important;
+}
+
+.container .new {
+    background-color: #fff !important;
+}
+
+.header-ul li {
+    padding-left: 30px;
+}
+
+sup.badge {
+    margin-right: -30px !important; 
 }

@@ -131,7 +131,7 @@ class UserController extends Controller
         $this->repository->update($id, $request->all());
 
         if ($request->changed) {
-            $this->updateRole($request->roles, $id);
+            $this->updateRole($request->role, $id);
         }
 
         return back();

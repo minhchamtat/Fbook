@@ -4,8 +4,8 @@
             <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                        <a href="/" class="m-brand__logo-wrapper">
-                            <img alt="" src="admin_asset/assets/demo/default/media/img/logo/logo_default_dark.png" />
+                        <a href="{{ url('admin') }}" class="m-brand__logo-wrapper">
+                            <img alt="" src="{{ asset(config('view.image_paths.logo_admin') . 'logo_default_dark.png') }}" />
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">

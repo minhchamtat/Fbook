@@ -730,7 +730,7 @@
         $('.book-status#' + type + '0').show();
     });
 
-    $(document).on('click', '#bell-notification', function(event) {
+    $('#bell-notification').on('click', function(event) {
         if ($(this).hasClass('noti-show')) {
             var limit = $(this).attr('data');
             $.ajax({
@@ -768,7 +768,6 @@
             //
         });
     });
-
 })(jQuery);
 
 $(document).on('change', '.btn-file :file', function() {

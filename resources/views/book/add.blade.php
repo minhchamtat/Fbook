@@ -82,7 +82,8 @@
                                     [
                                         'placeHolder' => 'Total pages',
                                         'required' => 'required',
-                                        'class' => 'form-control m-input'
+                                        'class' => 'form-control m-input',
+                                        'min' => 0,
                                     ]
                                 ) !!}
                             </div>
@@ -146,6 +147,7 @@
                                         'id' => 'example-datetime-local-input',
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
+                                        'max' => date('Y/m/d'),
                                     ]
                                 ) !!}
                             </div>
