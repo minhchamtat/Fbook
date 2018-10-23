@@ -3,6 +3,7 @@
 namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Notification extends Model
 {
@@ -22,5 +23,20 @@ class Notification extends Model
     public function userReceive()
     {
         return $this->belongsTo(User::class, 'receive_id');
+    }
+
+    public function target()
+    {
+        return $this->morphTo();
+    }
+
+    public static function countNew($id)
+    {
+        $where = [
+            'receive_id' => $id,
+            'viewed' => 0,
+        ];
+
+        return count(static::where($where)->get());
     }
 }

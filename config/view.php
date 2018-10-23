@@ -35,6 +35,7 @@ return [
         'book_profile' => 12,
         'follow_user' => 9,
         'book_request' => 5,
+        'notifications' => 10,
     ],
 
     'taking_numb' => [
@@ -77,7 +78,24 @@ return [
 
     'limit' => [
         'related_book' => 8,
+        'notifications' => 3,
     ],
+
+    'notifications' => [
+        'review' => 'Review your book: ',
+        'follow' => 'Follow you',
+        'vote' => 'Vote your review for the book: ',
+        'upvote' => 'Upvote your review for the book: ',
+        'downvote' => 'Upvote your review for the book: ',
+        'waiting' => 'Borrowing your book: ',
+        'returning' => 'Return your book: ',
+        'route' => [
+            'book' => 'books.show',
+            'user' => 'user',
+            'review' => 'review.show',
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

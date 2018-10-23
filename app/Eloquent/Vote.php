@@ -26,4 +26,9 @@ class Vote extends Model
     {
         return $this->morphOne(Reputation::class, 'target');
     }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'target');
+    }
 }

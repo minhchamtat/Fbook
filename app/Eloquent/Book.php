@@ -72,4 +72,9 @@ class Book extends Model
     {
         return $this->morphOne(Media::class, 'target')->orderBy('priority', 'desc')->first();
     }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'target');
+    }
 }

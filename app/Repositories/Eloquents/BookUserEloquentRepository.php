@@ -87,4 +87,9 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             return null;
         }
     }
+
+    public function getBorrowingData($data = [], $with = [], $dataSelect = ['*'])
+    {
+        return $this->getData($data)->groupBy('owner_id');
+    }
 }

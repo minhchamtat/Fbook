@@ -23,12 +23,7 @@ class OwnerEloquentRepository extends AbstractEloquentRepository implements Owne
 
     public function store($data)
     {
-        $record = $this->model()->withTrashed()->where($data)->first();
-        if (empty($record)) {
-            return $this->model()->create($data);
-        } else {
-            return $record->restore();
-        }
+        return $this->model()->create($data);
     }
     
     public function destroy($data)

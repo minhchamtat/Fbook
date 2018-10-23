@@ -21,4 +21,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Review::class);
     }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'target');
+    }
 }

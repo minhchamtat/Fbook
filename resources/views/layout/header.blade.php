@@ -25,6 +25,15 @@
                     <div class="account-area text-right">
                         <ul>
                             @auth
+                                <li class="noti">
+                                    <div class="header-noti">
+                                        <a href="#" >
+                                            <i class="fa fa-bell-o noti-show" id="bell-notification" aria-hidden="true" data="{{ $new }}"></i>
+                                            <sup class="badge active-notification" id="notification_298">{{ $new == 0 ? '' : $new }}</sup>
+                                        </a>
+                                    </div>
+                                    <div id="noti-detail" class="s-suggest"></div>
+                                </li>
                                 <li>
                                     <div class="dropdown">
                                         <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -94,16 +103,6 @@
                                                         alt="logo"/></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="my-cart">
-                        <ul>
-                            <li>
-                                <a href="{{ route('my-request.index') }}" class="{{ Auth::check() ? '' : 'login' }}"><i
-                                            class="fa fa-bell-o" aria-hidden="true"></i>My Request</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -151,5 +150,7 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal-dialog" role="dialog" id="noti-dialog">
     </div>
 </header>

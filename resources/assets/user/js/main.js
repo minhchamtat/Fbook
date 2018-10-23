@@ -565,7 +565,7 @@
             $('a[href="#waiting"]').click();
         })
         .fail(function() {
-            console.log("error");
+            //
         });
     });
 
@@ -588,7 +588,6 @@
                     obj.html('Borrow Book');
                     obj.attr('href', '#modalBorrowing');
                     obj.removeClass().addClass('btn-borrow');
-                    console.log($('.tab-pane.active').attr('id'));
                     var book_id = $('.detail-tabs').attr('data-id');
                     $.ajax({
                         url: '/book-detail',
@@ -636,7 +635,7 @@
                 $('.book-status#' + id + '0').show();
             })
             .fail(function() {
-                console.log("error");
+                //
             });
         }
     });
@@ -664,7 +663,11 @@
     });
 
     $('body').click(function () {
-        $("#search-suggest div").fadeOut();
+        $('#search-suggest div').hide();
+        if ($('#noti-detail div').hasClass('suggestion') && !$('#bell-notification').hasClass('noti-show')) {
+            $('#noti-detail').html('');
+            $('#bell-notification').addClass('noti-show');
+        }
     });
 
     $(document).on('click', '.follow', function(event) {
@@ -699,7 +702,6 @@
         .fail(function() {
             //
         });
-
     });
 
     $(document).on('shown.bs.tab', '.detail-tabs a', function(event){
@@ -726,6 +728,45 @@
             });
         }
         $('.book-status#' + type + '0').show();
+    });
+
+    $(document).on('click', '#bell-notification', function(event) {
+        if ($(this).hasClass('noti-show')) {
+            var limit = $(this).attr('data');
+            $.ajax({
+                url: '/notifications/' + limit,
+                type: 'POST',
+            })
+            .done(function(res) {
+                $('#noti-detail').html('');
+                $('#noti-detail').append(res);
+                $('#bell-notification').removeClass('noti-show');
+            })
+            .fail(function() {
+                //
+            });
+        } else {
+            $('#noti-detail').html('');
+            $(this).addClass('noti-show');
+        }
+    });
+
+    $(document).on('click', '.new a', function(event) {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '/notification-update',
+            type: 'POST',
+            data: {
+                id: id,
+                viewed: 1
+            },
+        })
+        .done(function(res) {
+            //
+        })
+        .fail(function() {
+            //
+        });
     });
 
 })(jQuery);
@@ -779,7 +820,6 @@ $(document).on('click', '.login', function(e) {
 $(document).on('click', '.notify', function(e) {
     e.preventDefault();
     var form = $(this).parents('form').attr('id');
-    console.log(form);
     swal({
         title: 'Are you sure?',
         text: 'Once deleted, you will not be able to recover!',
