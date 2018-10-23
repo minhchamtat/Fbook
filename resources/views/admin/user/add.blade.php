@@ -81,7 +81,6 @@
                                             [
                                                 'placeholder' => trans('settings.admin.user.phone'),
                                                 'class' => 'form-control m-input',
-                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('phone', '<p style="color:red">:message</p>') !!}
@@ -126,10 +125,11 @@
                                 </div>
                                 <div class="form-group m-form__group row">
                                     {!! Form::label(
-                                        're_password',
+                                        'password_confirmation',
                                         trans('settings.admin.user.re_password'),
                                         [
                                             'class' => 'col-2 col-form-label',
+                                            'id' => 'password-confirm',
                                         ]
                                     ) !!}
                                     <div class="col-10">
@@ -173,26 +173,22 @@
                                             'class' => 'col-2 col-form-label',
                                         ]
                                     ) !!}
-                                    <div class="col-10">
-                                        <div class="row">
-                                            @if($roles)
-                                                @foreach($roles as $role)
-                                                    <div class="col-4 mb-3">
-                                                        <div class="m-checkbox-list">
-                                                        {!! Form::checkbox(
-                                                            'roles[]',
-                                                            $role->id,
-                                                            false,
-                                                            [
-                                                                'class' => 'm-checkbox m-checkbox--bold m-checkbox--state-success',
-                                                            ]
-                                                        )!!}
-                                                        {{ $role->name }}
-                                                        </div>
+                                    <div class="col-8 role-box">
+                                        @if ($roles)
+                                            <div class="row">
+                                                @foreach ($roles as $role)
+                                                    <div class="col-md-4 mb-10">
+                                                        <label>
+                                                            {!! Form::checkbox(
+                                                                'role[]',
+                                                                $role->id
+                                                            ) !!}
+                                                            {{ $role->name }}
+                                                        </label>
                                                     </div>
                                                 @endforeach
-                                            @endif
-                                        </div>
+                                            </div>
+                                        @endif
                                         {!! $errors->first('roles', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
@@ -232,7 +228,7 @@
                                             [
                                                 'placeHolder' => trans('settings.admin.user.workspace'),
                                                 'class' => 'form-control m-input',
-                                                'required' => 'required'
+                                                'required' => 'required',
                                             ]
                                         )!!}
                                         {!! $errors->first('workspace', '<p style="color:red">:message</p>') !!}
@@ -274,7 +270,6 @@
                                             [
                                                 'placeHolder' => trans('settings.admin.user.chatwork_id'),
                                                 'class' => 'form-control m-input',
-                                                'required' => 'required'
                                             ]
                                         )!!}
                                         {!! $errors->first('chatwork_id', '<p style="color:red">:message</p>') !!}

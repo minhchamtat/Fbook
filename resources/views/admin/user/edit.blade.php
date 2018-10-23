@@ -27,7 +27,7 @@
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group">
                                     <div class="col-0">
-                                            <img class="rounded float-right" src="{{ asset(config('view.image_paths.user') . $user->avatar) }}">
+                                        <img class="rounded float-right avatar-edit" src="{{ $user->avatar }}">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row input-ne">
@@ -118,23 +118,25 @@
                                             'class' => 'col-2 col-form-label',
                                         ]
                                     ) !!}
-                                    <div class="col-8">
-                                        @if($roles)
-                                            @foreach($roles as $role)
-                                                <div class="col-4 mb-3">
-                                                    <div class="m-checkbox-list">
-                                                    {!! Form::checkbox(
-                                                        'roles[]',
-                                                        $role->id,
-                                                        $idRoles != null && in_array($role->id, $idRoles),
-                                                        [
-                                                            'class' => 'm-checkbox m-checkbox--bold m-checkbox--state-success role-checkbox',
-                                                        ]
-                                                    )!!}
-                                                    {{ $role->name }}
+                                    <div class="col-8 role-box">
+                                        @if ($roles)
+                                            <div class="row">
+                                                @foreach ($roles as $role)
+                                                    <div class="col-md-4 mb-10">
+                                                        <div class="m-checkbox-list">
+                                                            {!! Form::checkbox(
+                                                                'role[]',
+                                                                $role->id,
+                                                                $idRoles != null && in_array($role->id, $idRoles),
+                                                                [
+                                                                    'class' => 'm-checkbox m-checkbox--bold m-checkbox--state-success role-checkbox',
+                                                                ]
+                                                            ) !!}
+                                                            {{ $role->name }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         @endif
                                         {!! $errors->first('roles', '<p style="color:red">:message</p>') !!}
                                     </div>
@@ -200,6 +202,7 @@
                                             $user->workspace,
                                             [
                                                 'class' => 'form-control m-input',
+                                                'required' => 'required',
                                             ]
                                         )!!}
                                         {!! $errors->first('workspace', '<p style="color:red">:message</p>') !!}

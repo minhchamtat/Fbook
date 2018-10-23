@@ -1,5 +1,7 @@
-$(document).ready(function (){
+$(document).ready(function(){
     $('.role-checkbox').on('click', function () {
-        $('#role-hidden').val(!$('#role-hidden').val());
+        if ($('#role-hidden').val() == false) {
+            $('#role-hidden').val(true);
+        }
     });
 });
