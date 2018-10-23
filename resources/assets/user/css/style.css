@@ -357,7 +357,6 @@ body {
 .account-area ul > li {
     display: inline-block;
     margin-right: 22px;
-    padding: 8px 0 12px;
     position: relative;
 }
 .language-area ul > li:last-child,
@@ -424,7 +423,7 @@ body {
     position: relative;
 }
 .account-area ul > li::before {
-    background: #666 none repeat scroll 0 0;
+    background: none repeat scroll 0 0;
     content: "";
     height: 12px;
     position: absolute;
@@ -6502,4 +6501,58 @@ p.lost-password a:hover {
 
 .product-addto-links-text.more span {
     font-weight: 100 !important;
+}
+
+.active-notification {
+    margin-right: -10px; 
+}
+
+.header-noti { 
+    font-size: 25px;
+    text-align: center;
+}
+
+.header-noti a {
+    font-size: inherit !important;
+    color: #fff !important;
+}
+
+.badge {
+    margin-left: -10px !important;
+}
+
+.noti {
+    position: relative;
+    text-align: left !important;
+}
+
+#noti-detail {
+    width: 330px;
+    max-width: 400px;
+    max-height: 300px;
+    margin-right: 500px;  
+    z-index: 99;
+    border-radius: 10px;
+    position: absolute;
+    background: #fff;
+    overflow: auto;
+    left: 50%;
+    transform: translate(-90%, 0);
+}
+
+#noti-detail .suggestion {
+    border: 1px solid #f07c29;
+    border-radius: 10px;
+}
+
+.single-noti {
+    height: 60px;
+}
+
+#noti-detail .old {
+    background-color: #ededed !important;
+}
+
+.container .old {
+    background-color: #ededed !important;
 }

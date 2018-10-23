@@ -88,12 +88,22 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'following_id');
+        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'follower_id');
     }
 
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'following_id');
+    }
+
+    public function sendingNotifications()
+    {
+        return $this->hasMany(Notification::class, 'send_id');
+    }
+
+    public function receivingNotifications()
+    {
+        return $this->hasMany(Notification::class, 'receive_id');
     }
 
     public static function getRoles($id)

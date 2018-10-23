@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'name' => 'max:100',
             'email' => 'email|unique:users|max:100',
             'password' => 'min:6',
-            'phone' => 'nullable|max:50',
+            'phone' => 'nullable|max:50|regex:/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/i',
             'employee_code' => 'unique:users|max:50',
             'reputation_point' => 'nullable',
             'avatar' => 'nullable|image',

@@ -67,6 +67,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\FollowRepository',
             'App\Repositories\Eloquents\FollowEloquentRepository',
         ],
+        [
+            'App\Repositories\Contracts\NotificationRepository',
+            'App\Repositories\Eloquents\NotificationEloquentRepository',
+        ],
     ];
 
     /**

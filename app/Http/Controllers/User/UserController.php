@@ -9,6 +9,7 @@ use App\Repositories\Contracts\BookUserRepository;
 use App\Repositories\Contracts\ReputationRepository;
 use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\FollowRepository;
+use App\Repositories\Contracts\NotificationRepository;
 use App\Eloquent\Owner;
 use App\Eloquent\BookUser;
 use Auth;
@@ -25,12 +26,15 @@ class UserController extends Controller
 
     protected $follow;
 
+    protected $notification;
+
     public function __construct(
         OwnerRepository $owner,
         BookUserRepository $bookUser,
         ReputationRepository $reputation,
         UserRepository $user,
-        FollowRepository $follow
+        FollowRepository $follow,
+        NotificationRepository $notification
     ) {
         $this->middleware('auth');
         $this->owner = $owner;
@@ -38,6 +42,7 @@ class UserController extends Controller
         $this->reputation = $reputation;
         $this->user = $user;
         $this->follow = $follow;
+        $this->notification = $notification;
     }
 
     public function myProfile()
@@ -202,5 +207,41 @@ class UserController extends Controller
             'following_id' => Auth::id(),
             'follower_id' => $id,
         ]);
+    }
+
+    public function getNotifications($limit = -1)
+    {
+        $with = [
+            'target',
+            'userSend',
+        ];
+        $where = [
+            'receive_id' => Auth::id(),
+        ];
+
+        return $data = $this->notification->getNotifications($limit, $with, $where);
+    }
+
+    public function getAllNotifications()
+    {
+        $notifications = $this->getNotifications();
+
+        return view('user.notifications', compact('notifications'));
+    }
+
+    public function getLimitNotifications($limit = 0)
+    {
+        if ($limit < config('view.limit.notifications')) {
+            $notifications = $this->getNotifications(config('view.limit.notifications'));
+        } else {
+            $notifications = $this->getNotifications($limit);
+        }
+        
+        return view('layout.section.notifications', compact('notifications'));
+    }
+
+    public function updateNotification(Request $request)
+    {
+        return $this->notification->update($request->all());
     }
 }

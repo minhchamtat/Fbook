@@ -9,7 +9,9 @@ return [
 
     'target_type' => [
     	'book' => 'App\Eloquent\Book',
+        'book_user' => 'App\Eloquent\BookUser',
     	'user' => 'App\Eloquent\User',
+        'review' => 'App\Eloquent\Review',
     	'vote' => 'App\Eloquent\Vote',
     ],
 

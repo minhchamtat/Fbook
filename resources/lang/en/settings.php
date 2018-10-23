@@ -157,6 +157,7 @@ return [
     'books' => 'Book',
     'grid' => 'Grid',
     'list' => 'List',
+
     'header' => [
         'add_your_book' => 'Add Your Book',
         'book_of_me' => 'Book Of Me',
@@ -164,6 +165,14 @@ return [
         'dasboard' => 'Dasboard',
         'login_wsm' => 'WSM Login',
         'logout' => 'Logout',
+        'my_request' => 'My Request',
         'profile' => 'Profile',
+        'notifications' => [
+            'show_more' => 'Show more',
+        ],
+    ],
+
+    'notifications' => [
+        'name' => 'Notifications',
     ],
 ];

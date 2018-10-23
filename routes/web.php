@@ -26,8 +26,8 @@ Route::group(['namespace' => 'User'], function () {
     Route::post('/book-detail', 'BookController@getDetailData');
     
     Route::group(['middleware' => 'auth'], function () {
-        Route::resource('books/{slug}/review', 'ReviewBookController');
-        Route::resource('review/{id}/vote', 'VoteController');
+        Route::resource('/books/{slug}/review', 'ReviewBookController');
+        Route::resource('/review/{id}/vote', 'VoteController');
         Route::post('/books/sharing/{id}', 'UserController@sharingBook');
         Route::post('/books/remove-owner/{id}', 'UserController@removeOwner');
         Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
@@ -36,8 +36,11 @@ Route::group(['namespace' => 'User'], function () {
         Route::resource('my-request', 'MyRequestController');
         Route::post('/my-profile/{request}', 'UserController@getBooks');
         Route::get('/users/{id}', 'UserController@getUser')->name('user');
-        Route::post('follow/{id}', 'UserController@follow');
+        Route::post('/follow/{id}', 'UserController@follow');
         Route::post('/unfollow/{id}', 'UserController@unfollow');
+        Route::post('/notifications/{limit}', 'UserController@getLimitNotifications');
+        Route::get('/notifications', 'UserController@getAllNotifications')->name('notifications');
+        Route::post('/notification-update', 'UserController@updateNotification');
     });
 });
 

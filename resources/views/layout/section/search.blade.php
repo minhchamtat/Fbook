@@ -44,8 +44,7 @@
                         <div class="media">
                             <div>
                                 @if ($user->avatar)
-                                    <img src="{{ $user->avatar }}" alt="item"
-                                         class="media-object mg-thumbnail avatar-icon"/>
+                                    <img src="{{ $user->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon"/>
                                 @else
                                     <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman"
                                          class="media-object mg-thumbnail avatar-icon"/>
