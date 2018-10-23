@@ -82,8 +82,18 @@
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function() {
+            $('table#html_table').DataTable( {
+                "columnDefs": [ {
+                    "targets": 0
+                } ],
+                "order": [[ 2, "asc" ]]
+            } );
+        } );
+    </script>
 {{ Html::script('admin_asset/assets/demo/default/custom/crud/metronic-datatable/base/html-table.js') }}
 {{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
-{{ Html::script('admin_asset/assets/demo/default/custom/crud/datatables/data-sources/ajax-server-side.js') }}
+
 @endsection

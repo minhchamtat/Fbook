@@ -24,7 +24,7 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
     {
         $review = Review::where('book_id', '=', $data)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(config('view.paginate.review'));
 
         return $review;
     }

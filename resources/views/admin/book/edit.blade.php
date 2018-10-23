@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('date', __('admin.publist'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('date', __('admin.publish'), ['class' => 'col-2']) !!}
                                         <div class="col-10">
                                             {!! Form::date('publish_date', $book->publish_date, ['class' => 'form-control m-input', 'id' => 'example-datetime-local-input']) !!}
                                         </div>

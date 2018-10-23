@@ -214,6 +214,8 @@
                                                 </div>
                                             </div>
                                         @endforeach
+
+                                        {{ $reviews->links() }}
                                     @else
                                         <div class="alert alert-info">
                                             {{ __('page.reviews.noReview') }}
