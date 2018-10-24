@@ -9,7 +9,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                {{ __('admin.listcate') }}
+                                {{ __('admin.cate.listCate') }}
                             </h3>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                                 <a href="{{ route('category.create') }}" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                     <span>
                                         <i class="la la-cart-plus"></i>
-                                        <span>{{ __('admin.newcate') }}</span>
+                                        <span>{{ __('admin.cate.newCate') }}</span>
                                     </span>
                                 </a>
                                 <div class="m-separator m-separator--dashed d-xl-none"></div>
@@ -50,10 +50,10 @@
                     <table class="m-datatable" id="html_table" width="100%">
                         <thead>
                             <tr>
-                                <th title="Index">{{ __('admin.index') }}</th>
-                                <th title="Name">{{ __('admin.name') }}</th>
+                                <th title="Index">{{ __('admin.cate.index') }}</th>
+                                <th title="Name">{{ __('admin.cate.name') }}</th>
                                 <th title="Description">{{ __('admin.description') }}</th>
-                                <th>Action</th>
+                                <th>{{ __('admin.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>

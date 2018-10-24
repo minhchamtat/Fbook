@@ -6,7 +6,7 @@
                     <i class="m-menu__link-icon flaticon-line-graph"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
-                            <span class="m-menu__link-text">Dashboard</span>
+                            <span class="m-menu__link-text">{{ __('admin.sidebar.dashboard') }}</span>
                         </span>
                     </span>
                 </a>
@@ -18,7 +18,7 @@
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-layers"></i>
-                    <span class="m-menu__link-text">{{ __('admin.book') }}</span>
+                    <span class="m-menu__link-text">{{ __('admin.sidebar.book') }}</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -34,7 +34,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">{{ __('admin.listBook') }}</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.listBook') }}</span>
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
@@ -42,7 +42,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">{{ __('admin.newBook') }}</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.newBook') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -51,7 +51,7 @@
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-share"></i>
-                    <span class="m-menu__link-text">Category</span>
+                    <span class="m-menu__link-text">{{ __('admin.sidebar.category') }}</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -62,7 +62,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">List Category</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.listCate') }}</span>
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
@@ -70,7 +70,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">Add new Category</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.newCate') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -79,7 +79,7 @@
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-multimedia-1"></i>
-                    <span class="m-menu__link-text">Posts</span>
+                    <span class="m-menu__link-text">{{ __('admin.sidebar.post') }}</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -90,7 +90,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">List Post</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.listPost') }}</span>
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
@@ -98,7 +98,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">Add new Post</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.newPost') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -107,7 +107,7 @@
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-1"></i>
-                    <span class="m-menu__link-text">Users</span>
+                    <span class="m-menu__link-text">{{ __('admin.sidebar.user') }}</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -118,7 +118,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">List User</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.listUser') }}</span>
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
@@ -126,7 +126,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">Add new User</span>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.newUser') }}</span>
                             </a>
                         </li>
                     </ul>

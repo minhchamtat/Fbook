@@ -5,6 +5,7 @@ return [
     'error' => 'Error!',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
+    'search' => 'Enter your keyword here...',
     'book' => [
         'add' => 'Add Your Book',
         'edit' => 'Edit Your Book',
@@ -19,7 +20,8 @@ return [
         'showOption' => 'Show Options',
         'random' => 'Random',
         'office' => 'Office',
-        'upsell' => 'Upsell products',
+        'upsell' => 'Related Books',
+        'browse' => 'Browse...',
     ],
     'rate' => 'Rate',
     'home' => 'Home',
