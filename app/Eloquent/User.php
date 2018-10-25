@@ -88,12 +88,14 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'follow_user', 'following_id', 'follower_id')
+            ->wherePivot('deleted_at', null);
     }
 
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'following_id');
+        return $this->belongsToMany(User::class, 'follow_user', 'follower_id', 'following_id')
+            ->wherePivot('deleted_at', null);
     }
 
     public function sendingNotifications()

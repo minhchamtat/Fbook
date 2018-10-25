@@ -7,6 +7,7 @@ use App\Repositories\Contracts\ReviewBookRepository;
 use App\Http\Requests\ReviewRequest;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\VoteRepository;
+use App\Repositories\Contracts\NotificationRepository;
 use App\Eloquent\Vote;
 use Auth;
 use Exception;
@@ -20,11 +21,14 @@ class ReviewBookController extends Controller
     public function __construct(
         ReviewBookRepository $review,
         BookRepository $book,
-        VoteRepository $vote
+        VoteRepository $vote,
+        NotificationRepository $notification
     ) {
+        $this->middleware('auth');
         $this->review = $review;
         $this->book = $book;
         $this->vote = $vote;
+        $this->notification = $notification;
     }
 
     public function create($slug)
@@ -54,9 +58,22 @@ class ReviewBookController extends Controller
     {
         try {
             $id = (int)last(explode('-', $slug));
+            $owners = $this->book->find($id, ['owners'])->owners;
             $request->merge(['book_id' => $id]);
 
-            $this->review->store($request->all());
+            $review = $this->review->store($request->all());
+            if (count($review) > 0 && $book) {
+                foreach ($owners as $owner) {
+                    $info = [
+                        'send_id' => Auth::id(),
+                        'receive_id' => $owner->id,
+                        'target_type' => config('model.target_type.review'),
+                        'target_id' => $review->id,
+                        'viewed' => config('model.viewed.false'),
+                    ];
+                    $this->notification->store($info);
+                }
+            }
             $data = $this->review->find($id);
             if (isset($data) && $data != null) {
                 $this->book->updateStar($data, $id);

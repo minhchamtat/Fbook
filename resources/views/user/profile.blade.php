@@ -93,7 +93,7 @@
                     <div class="tab-pane" id="following" value="false">
                         @if (count($followings))
                             @for ($i = 0; $i < count($followings); $i++)
-                                <div class="book-status following" id="following{{ $i }}">
+                                <div class="book-status followings" id="following{{ $i }}">
                                     <div class="row">
                                         @foreach ($followings[$i] as $u)
                                             <div class="col-sm-6 col-md-4">
@@ -149,7 +149,7 @@
                                                                 <button data-id="{{ $u->id }}" class="btn btn-follow following">{{ trans('settings.profile.following') }}</button>
                                                             @elseif (Auth::id() == $u->id)
                                                             @else
-                                                                <button data-id="{{ $u->id }}" class="btn btn-follow  follow">{{ trans('settings.profile.follow') }}</button>
+                                                                <button data-id="{{ $u->id }}" class="btn btn-follow follow">{{ trans('settings.profile.follow') }}</button>
                                                             @endif
                                                         </div>
                                                     </div>

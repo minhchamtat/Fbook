@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\ReviewBookRepository;
 use App\Repositories\Contracts\VoteRepository;
+use App\Repositories\Contracts\NotificationRepository;
 use Auth;
 
 class VoteController extends Controller
@@ -14,12 +15,17 @@ class VoteController extends Controller
 
     protected $review;
 
+    protected $notification;
+
     public function __construct(
         ReviewBookRepository $review,
-        VoteRepository $vote
+        VoteRepository $vote,
+        NotificationRepository $notification
     ) {
+        $this->middleware('auth');
         $this->review = $review;
         $this->vote = $vote;
+        $this->notifiaction = $notification;
     }
 
     public function index()
