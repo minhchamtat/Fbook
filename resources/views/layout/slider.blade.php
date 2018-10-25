@@ -7,7 +7,7 @@
                         <div class="slider-content slider-animated-1 text-center">
                             <h1>Fbook</h1>
                             <h3>PHP Education</h3>
-                            <a href="{{ route('books.create') }}">Create book</a>
+                            <a href="{{ route('books.create') }}">{{ __('settings.createBook') }}</a>
                         </div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="slider-content slider-content-2 slider-animated-1">
                     <h1>We make it awesome!</h1>
                     <h2>Framgia</h2>
-                    <a href="{{ route('books.create') }}">Create book</a>
+                    <a href="{{ route('books.create') }}">{{ __('settings.createBook') }}</a>
                 </div>
             </div>
         </div>

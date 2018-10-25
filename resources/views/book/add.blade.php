@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumbs-menu">
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{ route('home') }}">{{ __('page.home') }}</a></li>
                         <li><a href="#" class="active">{{ __('page.book.add') }}</a></li>
                     </ul>
                 </div>
@@ -46,7 +46,6 @@
                             'title',
                             null,
                             [
-                                'placeHolder' => 'Title of book ...',
                                 'required' => 'required',
                                 'class' => 'form-control m-input'
                             ]
@@ -63,7 +62,6 @@
                                     'author',
                                     null,
                                     [
-                                        'placeHolder' => 'Author of book ...',
                                         'required' => 'required',
                                         'class' => 'form-control m-input'
                                     ]
@@ -80,7 +78,6 @@
                                     'total_pages',
                                     null,
                                     [
-                                        'placeHolder' => 'Total pages',
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
                                         'min' => 0,
@@ -95,7 +92,7 @@
                             <div class="input-group">
                                 <span class="input-group-btn">
                                     <span class="btn btn-default btn-file">
-                                        Browse…
+                                        {{ __('page.book.browse') }}
                                         {!! Form::file(
                                             'avatar',
                                             [

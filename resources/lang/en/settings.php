@@ -32,7 +32,7 @@ return [
         ],
         'user' => [
             'avatar' => 'Avatar',
-            'chatwork_id' => 'Chatwork Id',
+            'chatwork_id' => 'Chatwork ID',
             'email' => 'Email',
             'employee_code' => 'Employee Code',
             'password' => 'Password',
@@ -68,9 +68,9 @@ return [
     ],
 
     'book' => [
-        'author' => 'Author',
+        'author' => 'Author:',
         'borrow_book' => 'Borrow Book',
-        'categories' => 'Categories',
+        'categories' => 'Categories:',
         'detail' => 'Detail',
         'detail_book' => 'Detail Book',
         'i_have_this_book' => 'I have this book',
@@ -79,14 +79,15 @@ return [
         'reviews' => ':avg Reviews',
         'related_books' => 'Related Books',
         'remove_owner' => 'Remove Owner',
-        'owners' => 'Share By',
+        'owners' => 'Share By:',
         'waiting' => 'Waiting',
         'reading' => 'Reading',
         'returning' => 'Returning',
         'returned' => 'Returned',
-        'no_user' => 'No User',
+        'no_user' => 'No User!',
         'cancel_borrowing' => 'Cancel Borrowing',
         'booklist' => 'Book List',
+        'edit' => 'Edit Book',
     ],
 
     'review' => [
@@ -122,7 +123,7 @@ return [
         'btn_submit' => 'Submit',
         'close' => 'x',
         'choose_time_to_borrow' => 'Choose the time you want to borrow this book:',
-        'days' => 'Days',
+        'days' => 'days',
     ],
 
     'profile' => [
@@ -137,6 +138,7 @@ return [
     ],
 
     'req' => 'Request',
+    'createBook' => 'Create Book',
     'request' => [
         'myReq' => 'My Request',
         'image' => 'Image',

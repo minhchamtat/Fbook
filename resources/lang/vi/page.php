@@ -1,0 +1,37 @@
+<?php
+
+return [
+    'success' => 'Thành công!',
+    'error' => 'Thất bại!',
+    'submit' => 'Gửi',
+    'cancel' => 'Hủy bỏ',
+    'search' => 'Nhập vào từ khóa...',
+    'book' => [
+        'add' => 'Thêm sách',
+        'edit' => 'Chỉnh sửa sách',
+        'avatar' => 'Ảnh bìa',
+        'title' => 'Tên sách',
+        'author' => 'Tác giả',
+        'totalPage' => 'Tổng số trang',
+        'category' => 'Danh mục',
+        'sku' => 'Mã Sku',
+        'publish' => 'Ngày chia sẻ',
+        'description' => 'Mô tả',
+        'showOption' => 'Các tùy chọn',
+        'random' => 'Ngẫu nhiên',
+        'office' => 'Văn phòng',
+        'upsell' => 'Cùng Danh Mục',
+        'browse' => 'Chọn tệp...',
+    ],
+    'rate' => 'Bình chọn',
+    'home' => 'Trang chủ',
+    'review' => 'Đánh giá',
+    'summary' => 'Tóm tắt',
+    'reviews' => [
+        'title' => 'Bình luận phải dài từ 5 - 191 ký tự.',
+        'content' => 'Nội dung phải chứa ít nhất 5 ký tự.',
+        'noReview' => 'Chưa có đánh giá nào!',
+        'hasReview' => 'Cảm ơn đánh giá của bạn!',
+        'sign' => 'Đăng nhập để gửi đánh giá của bạn!',
+    ],
+];

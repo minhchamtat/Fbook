@@ -6,15 +6,13 @@
                     <div class="language-area">
                         <ul>
                             <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
-                                        href="#">English<i class="fa fa-angle-down"></i></a>
+                                        href="{{ route('user.change-language', ['en']) }}">English<i
+                                            class="fa fa-angle-down"></i></a>
                                 <div class="header-sub">
                                     <ul>
-                                        <li><a href="#"><img
-                                                        src="{{ asset(config('view.image_paths.flag') . '2.jpg') }}"
-                                                        alt="flag"/>france</a></li>
-                                        <li><a href="#"><img
+                                        <li><a href="{{ route('user.change-language', ['vi']) }}"><img
                                                         src="{{ asset(config('view.image_paths.flag') . '3.jpg') }}"
-                                                        alt="flag"/>croatia</a></li>
+                                                        alt="flag"/>Vietnamese</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -58,7 +56,9 @@
                                                 'route' => 'logout',
                                                 'method' => 'POST',
                                             ]) !!}
-                                            <a class="dropdown-item" href=""><button class="btn-link">{{ trans('settings.header.logout') }}</button></a>
+                                            <a class="dropdown-item" href="">
+                                                <button class="btn-link">{{ trans('settings.header.logout') }}</button>
+                                            </a>
                                             {!! Form::close() !!}
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                             'req',
                             null,
                             [
-                                'placeHolder' => 'Search entire store here...',
+                                'placeHolder' => __('page.search'),
                                 'required' => 'required',
                                 'class' => 'form-control m-input'
                             ]

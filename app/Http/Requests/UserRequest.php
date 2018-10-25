@@ -43,8 +43,10 @@ class UserRequest extends FormRequest
         return [
             'name.max' => Lang::get('validation.max.string'),
             'email.email' => Lang::get('validation.email'),
+            'email.max' => Lang::get('validation.max.string'),
             'email.unique' => Lang::get('validation.unique'),
             'phone.max' => Lang::get('validation.max.string'),
+            'phone.regex' => Lang::get('validation.regex'),
             'password.min' => Lang::get('validation.min.string'),
             'employee_code.unique' => Lang::get('validation.unique'),
             'employee_code.max' => Lang::get('validation.max.string'),
@@ -52,6 +54,7 @@ class UserRequest extends FormRequest
             'avatar.mimes' => Lang::get('validation.mimes'),
             'workspace.max' => Lang::get('validation.max.string'),
             'workspace.required' => Lang::get('validation.required'),
+            'chatwork_id.unique' => Lang::get('validation.unique'),
             'chatwork_id.max' => Lang::get('validation.max.string'),
         ];
     }

@@ -5,7 +5,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.newcate') }}</h3>
+                    <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.cate.newCate') }}</h3>
                 </div>
             </div>
         </div>
@@ -18,9 +18,9 @@
                         {!! Form::open(['method' => 'POST', 'route' => ['category.store']]) !!}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('name', __('admin.name'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('name', __('admin.cate.name'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeHolder' => 'Title in here ...', 'required']) !!}
+                                        {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.cate.placeHolder.title'), 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">

@@ -11,7 +11,7 @@
                             <li><a href="{{ asset('/') }}">{{ trans('settings.default.home') }}</a></li>
                             <li><a class="active">{{ trans('settings.book.detail_book') }}</a></li>
                             @if ($tmp)
-                                <li><a href="{{ route('book.edit', $book->id) }}" class="btn btn-info mb-4">Edit Book</a></li>
+                                <li><a href="{{ route('book.edit', $book->id) }}" class="btn btn-info mb-4">{{ __('settings.book.edit') }}</a></li>
                             @endif
                         </ul>
                     </div>

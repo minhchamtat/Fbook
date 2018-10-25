@@ -8,6 +8,7 @@ use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -71,6 +72,13 @@ class HomeController extends Controller
         );
 
         return view('index', $data);
+    }
+
+    public function changeLanguage(Request $request, $language)
+    {
+        $request->session()->put('website-language', $language);
+
+        return redirect()->back();
     }
 
     public function search(Request $request)

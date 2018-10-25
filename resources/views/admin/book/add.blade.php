@@ -5,7 +5,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.newBook') }}</h3>
+                    <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.book.newBook') }}</h3>
                 </div>
             </div>
         </div>
@@ -18,9 +18,9 @@
                         {!! Form::open(['method' => 'POST', 'route' => ['book.store'], 'files' => 'true', 'class' => 'm-form m-form--fit m-form--label-align-right']) !!}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('title', __('admin.titleBook'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('title', __('admin.book.title'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        {!! Form::text('title', null, ['class' => 'form-control m-input', 'placeHolder' => 'Title in here ...', 'required']) !!}
+                                        {!! Form::text('title', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.title'), 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -30,38 +30,38 @@
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                        {!! Form::label('avatar', __('admin.avatarBook'), ['class' => 'col-2 mb-0']) !!}
+                                        {!! Form::label('avatar', __('admin.book.avatar'), ['class' => 'col-2 mb-0']) !!}
                                     <div class="col-10 custom-file">
                                         {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'customFile', 'required' => 'requiered']) !!}
                                         {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('author', __('admin.author'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('author', __('admin.book.author'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        {!! Form::text('author', null, ['class' => 'form-control m-input', 'placeHolder' => 'Author ...', 'required']) !!}
+                                        {!! Form::text('author', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.author'), 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('date', __('admin.publish'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('date', __('admin.book.publishDate'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
                                         {!! Form::date('publish_date', null, ['class' => 'form-control m-input', 'id' => 'example-datetime-local-input', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('date', __('admin.totalPage'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('date', __('admin.book.totalPage'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => 'Total pages', 'required']) !!}
+                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('sku', __('admin.sku'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('sku', __('admin.book.sku'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        {!! Form::text('sku', null, ['class' => 'form-control m-input', 'placeHolder' => 'Sku of book', 'required']) !!}
+                                        {!! Form::text('sku', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.sku'), 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('category', __('admin.category'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('category', __('admin.book.cate'), ['class' => 'col-2']) !!}
                                     <div class="col-9">
                                         <div class="row">
                                             @foreach ($categories as $cat)
