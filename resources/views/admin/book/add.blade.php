@@ -30,10 +30,22 @@
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                        {!! Form::label('avatar', __('admin.book.avatar'), ['class' => 'col-2 mb-0']) !!}
-                                    <div class="col-10 custom-file">
-                                        {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'customFile', 'required' => 'requiered']) !!}
-                                        {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3']) !!}
+                                    {!! Form::label('avatar', __('admin.book.avatar'), ['class' => 'col-2 mb-0']) !!}
+                                    <div class="col-10 custom-file" id="custom">
+                                        {!!
+                                            Form::file('avatar', [
+                                                'class' => 'custom-file-input',
+                                                'id' => 'customFile',
+                                                'required' => 'required',
+                                                'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
+                                                'onchange' => 'changeFile(event)',
+                                                'onclick' => 'clickFile(event)'
+                                            ])
+                                        !!}
+                                        {!! Form::label('customFile', __('admin.book.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
+                                    </div>
+                                    <div class="col-md-4 offset-3 mt-3">
+                                        <img src="" alt="" class="img-book">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -99,6 +111,8 @@
 @endsection
 @section('script')
     {{ Html::script('admin_asset/assets/tinymce/js/tinymce/tinymce.min.js') }}
+    {{ Html::script('assets/admin/js/uploadFile.js') }}
+
     <script>
         jQuery(document).ready(function() {
             tinymce.init({

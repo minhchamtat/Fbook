@@ -32,9 +32,17 @@
                                     </div>
                                     <div class="form-group m-form__group row">
                                         {!! Form::label('avatar', __('admin.book.avatar'), ['class' => 'col-2 mb-0']) !!}
-                                        <div class="col-10 custom-file">
-                                            {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'customFile']) !!}
-                                            {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3']) !!}
+                                        <div class="col-10 custom-file" id="custom">
+                                            {!!
+                                                Form::file('avatar', [
+                                                    'class' => 'custom-file-input',
+                                                    'id' => 'customFile',
+                                                    'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
+                                                    'onchange' => 'changeFile(event)',
+                                                    'onclick' => 'clickFile(event)'
+                                                ])
+                                            !!}
+                                            {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
                                             @if (isset($book->medias[0]->id))
                                                 {!! Form::hidden('avatar_old', $book->medias[0]->id) !!}
                                             @else
@@ -43,9 +51,9 @@
                                         </div>
                                         <div class="col-4 offset-3 mt-3">
                                             @if (isset($book->medias[0]->id))
-                                                <img src="/{{ config('view.image_paths.book') . $book->medias[0]->path }}" alt="" class="imgbook">
+                                                <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="" class="img-book">
                                             @else
-                                                {{ __('admin.noImg') }}
+                                                <img src="" alt="" class="img-book">
                                             @endif
                                         </div>
                                     </div>
@@ -119,6 +127,8 @@
 @endsection
 @section('script')
     {{ Html::script('admin_asset/assets/tinymce/js/tinymce/tinymce.min.js') }}
+    {{ Html::script('assets/admin/js/uploadFile.js') }}
+
     <script>
         jQuery(document).ready(function() {
             tinymce.init({

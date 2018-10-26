@@ -22,7 +22,7 @@
 }
 
 .avatar-edit {
-    margin-top: 30px; 
+    margin-top: 30px;
     height: 100px;
     width: 100px;
 }
@@ -30,4 +30,30 @@
 .role-box {
     margin-left: 5px;
     margin-top: 10px;
+}
+
+img.img-book {
+    width: 160px;
+}
+
+.dataTables_wrapper .dataTable td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 22em;
+}
+
+.dataTables_wrapper .dataTable th {
+    cursor: pointer;
+}
+
+.dataTables_wrapper .dataTable td:last-child {
+    display: -webkit-inline-box;
+}
+
+td.sorting_1 {
+    display: table-cell;
+}
+
+td:last-child {
+    display: -webkit-box;
 }

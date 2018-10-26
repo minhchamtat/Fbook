@@ -92,36 +92,27 @@
                         </div>
                     </div>
                     <div class="single-register mb-4">
-                        <div class="form-group">
+                        <div class="row">
                             {!! Form::label('avatar', __('page.book.avatar')) !!}
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-default btn-file">
-                                        Browse…
-                                        {!! Form::file(
-                                            'avatar',
-                                            [
-                                                'id' => 'img-upload',
-                                                'class' => 'form-control m-input'
-                                            ]
-                                        ) !!}
-                                    </span>
-                                </span>
-                                {!! Form::text(
-                                    null,
-                                    $book->medias[0]->path,
+                            <div class="col-md-10 custom-file" id="custom">
+                                {!!
+                                    Form::file('avatar',
                                     [
-                                        'class' => 'form-control',
-                                        'disabled' => 'disabled'
-                                    ]
-                                ) !!}
-                                {!! $errors->first('avatar', '<p style="color:red">:message</p>') !!}
+                                        'id' => 'customFile',
+                                        'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
+                                        'onchange' => 'changeFile(event)',
+                                        'onclick' => 'clickFile(event)'
+                                    ])
+                                !!}
+                                {!! Form::label('customFile', __('page.book.browse'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4 col-sm-push-4 single-register">
+                    <div class="col-sm-4 col-sm-push-4 single-register mt-3">
                         @if ($book->medias->count() > 0)
-                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book">
+                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="img-book">
+                        @else
+                            <img src="" alt="" class="img-book">
                         @endif
                     </div>
                     <div class="both"></div>
@@ -129,7 +120,7 @@
                         {!! Form::label('category', __('page.book.category')) !!}
                         <div class="row">
                             @foreach ($categories as $category)
-                                <div class="col-md-4 mb-10" style="margin-left: 50px !important;">
+                                <div class="col-md-4">
                                     <label>
                                         {!! Form::checkbox(
                                             'category[]',
@@ -212,7 +203,7 @@
 
 @section('script')
     {!! Html::script('assets/tinymce/js/tinymce//tinymce.min.js') !!}
-    {!! Html::script('assets/js/upload.js') !!}
+    {!! Html::script('assets/admin/js/uploadFile.js') !!}
     <script>
         jQuery(document).ready(function() {
             tinymce.init({

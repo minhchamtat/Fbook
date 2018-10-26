@@ -47,7 +47,8 @@
                             null,
                             [
                                 'required' => 'required',
-                                'class' => 'form-control m-input'
+                                'class' => 'form-control m-input',
+                                'placeHolder' => __('page.book.placeHolder.title')
                             ]
                         ) !!}
                     </div>
@@ -63,7 +64,8 @@
                                     null,
                                     [
                                         'required' => 'required',
-                                        'class' => 'form-control m-input'
+                                        'class' => 'form-control m-input',
+                                        'placeHolder' => __('page.book.placeHolder.author')
                                     ]
                                 ) !!}
                             </div>
@@ -81,36 +83,30 @@
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
                                         'min' => 0,
+                                        'placeHolder' => __('page.book.placeHolder.totalPage')
                                     ]
                                 ) !!}
                             </div>
                         </div>
                     </div>
                     <div class="single-register mb-4">
-                        <div class="form-group">
+                        <div class="row">
                             {!! Form::label('avatar', __('page.book.avatar')) !!}
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-default btn-file">
-                                        {{ __('page.book.browse') }}
-                                        {!! Form::file(
-                                            'avatar',
-                                            [
-                                                'id' => 'img-upload',
-                                                'required' => 'required',
-                                                'class' => 'form-control m-input'
-                                            ]
-                                        ) !!}
-                                    </span>
-                                </span>
-                                {!! Form::text(
-                                    null,
-                                    null,
+                            <div class="col-md-12 custom-file" id="custom">
+                                {!!
+                                    Form::file('avatar',
                                     [
-                                        'class' => 'form-control',
-                                        'disabled' => 'disabled'
-                                    ]
-                                ) !!}
+                                        'id' => 'customFile',
+                                        'required' => 'required',
+                                        'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
+                                        'onchange' => 'changeFile(event)',
+                                        'onclick' => 'clickFile(event)'
+                                    ])
+                                !!}
+                                {!! Form::label('customFile', __('page.book.browse'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
+                            </div>
+                            <div class="col-md-4 col-md-offset-3 mt-3">
+                                <img src="" alt="" class="img-book">
                             </div>
                         </div>
                     </div>
@@ -118,7 +114,7 @@
                         {!! Form::label('category', __('page.book.category')) !!}
                         <div class="row">
                             @foreach ($categories as $category)
-                                <div class="col-md-4 mb-10" style="margin-left: 50px !important;">
+                                <div class="col-md-4">
                                     <label>
                                         {!! Form::checkbox(
                                             'category[]',
@@ -181,7 +177,7 @@
 
 @section('script')
     {!! Html::script('assets/tinymce/js/tinymce//tinymce.min.js') !!}
-    {!! Html::script('assets/js/upload.js') !!}
+    {!! Html::script('assets/admin/js/uploadFile.js') !!}
     <script>
         jQuery(document).ready(function() {
             tinymce.init({

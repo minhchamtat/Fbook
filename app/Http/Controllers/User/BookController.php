@@ -61,6 +61,7 @@ class BookController extends Controller
         $this->office = $office;
         $this->bookmeta = $bookmeta;
         $this->bookUser = $bookUser;
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update']]);
     }
 
     public function index()
