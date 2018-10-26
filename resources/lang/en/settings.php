@@ -161,6 +161,8 @@ return [
     'books' => 'Book',
     'grid' => 'Grid',
     'list' => 'List',
+    'of' => 'of',
+    'items' => 'items',
 
     'header' => [
         'add_your_book' => 'Add Your Book',
@@ -176,6 +178,7 @@ return [
             'show_more' => 'Show more',
         ],
         'search' => 'Search',
+        'dashboard' => 'Dashboard',
     ],
 
     'notifications' => [

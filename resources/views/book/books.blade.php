@@ -100,23 +100,23 @@
                                         </div>
                                         <div class="product-details text-center">
                                             <div class="product-rating">
-                                                <ul>
-                                                    @for ($k = 1; $k < $book->avg_star; $k++)
-                                                        <li><i class="fa fa-star"></i></li>
-                                                    @endfor
-
-                                                    @if (strpos($book->avg_star, '.'))
-                                                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                                                        @php $k++ @endphp
-                                                    @endif
-
-                                                    @while ($k <= 5)
-                                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                        @php $k++ @endphp
-                                                    @endwhile
-                                                </ul>
+                                                {!! Form::select('rating',
+                                                   [
+                                                        '' => '',
+                                                        '1' => 1,
+                                                        '2' => 2,
+                                                        '3' => 3,
+                                                        '4' => 4,
+                                                        '5' => 5
+                                                    ],
+                                                    null,
+                                                    [
+                                                        'class' => 'rating',
+                                                        'data-rating' => $book->avg_star
+                                                    ])
+                                                !!}
                                             </div>
-                                            <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
+                                            <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a></h4>
                                         </div>
                                     </div>
                                     <!-- single-product-end -->
@@ -147,16 +147,23 @@
                                         <div class="product-wrapper-content">
                                             <div class="product-details">
                                                 <div class="product-rating">
-                                                    <ul>
-                                                        @for ($i = 0; $i < $book->avg_star; $i++)
-                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        @endfor
-                                                        @for ($j = 0; $j < 5 - $book->avg_star; $j++)
-                                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                        @endfor
-                                                    </ul>
+                                                    {!! Form::select('rating',
+                                                       [
+                                                            '' => '',
+                                                            '1' => 1,
+                                                            '2' => 2,
+                                                            '3' => 3,
+                                                            '4' => 4,
+                                                            '5' => 5
+                                                        ],
+                                                        null,
+                                                        [
+                                                            'class' => 'rating',
+                                                            'data-rating' => $book->avg_star
+                                                        ])
+                                                    !!}
                                                 </div>
-                                                <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
+                                                <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a></h4>
                                                 {!! substr($book->description, 0, 200) . '...' !!}
                                             </div>
                                         </div>
@@ -171,7 +178,8 @@
                 <div class="pagination-area mt-50">
                     <div class="list-page-2">
                         <p>
-                            {{ __('settings.showing')  }} {{($books->currentpage()-1) * $books->perpage()+1 }} {{ __('settings.to') }} {{ $books->total() }} items
+                            {{ __('settings.showing')  }}
+                            {{ ($books->currentpage() - 1) * $books->perpage() + 1 }} {{ __('settings.to') }} {{ ($books->currentpage() - 1) * $books->perpage() + $books->count() }} {{ __('settings.of') }} {{ $books->total() }} {{ __('settings.items') }}
                         </p>
                     </div>
                     <div class="page-numbers">

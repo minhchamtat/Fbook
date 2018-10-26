@@ -55,13 +55,49 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead class="text-center">
                             <tr>
-                                <th title="Title">{{ __('admin.book.title') }}</th>
-                                <th title="Author">{{ __('admin.book.author') }}</th>
-                                <th title="Publist date">{{ __('admin.book.publishDate') }}</th>
-                                <th title="Total Page">{{ __('admin.book.totalPage') }}</th>
-                                <th title="Avg star">{{ __('admin.book.avgStar') }}</th>
-                                <th title="View">{{ __('admin.book.view') }}</th>
-                                <th title="Actions">{{ __('admin.action') }}</th>
+                                <th title="Title">
+                                    {{ __('admin.book.title') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="Author">
+                                    {{ __('admin.book.author') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="Publist date">
+                                    {{ __('admin.book.publishDate') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="Total Page">
+                                    {{ __('admin.book.totalPage') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="Avg star">
+                                    {{ __('admin.book.avgStar') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="View">
+                                    {{ __('admin.book.view') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+
+                                </th>
+                                <th title="Actions">
+                                    {{ __('admin.action') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
                             </tr>
                         </thead>
                     </table>
@@ -75,5 +111,5 @@
 {{ Html::script('admin_asset/assets/demo/default/custom/crud/metronic-datatable/base/html-table.js') }}
 {{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
-{{ Html::script('admin_asset/assets/demo/default/custom/crud/datatables/data-sources/ajax-server-side.js') }}
+{{ Html::script('assets/admin/js/ajax-server-side.js') }}
 @endsection

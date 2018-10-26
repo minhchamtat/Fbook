@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <div class="contact-info text-center">
-                            <h4><a href="#">{{ $book->title }}</a></h4>
+                            <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
                             <ul>
                                 <li>
                                     <div class="product-rating">

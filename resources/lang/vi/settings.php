@@ -156,11 +156,14 @@ return [
         'delete' => 'Xóa',
     ],
 
-    'showing' => 'Showing',
-    'to' => 'to',
+    'showing' => 'Hiển thị',
+    'to' => 'tới',
     'books' => 'Sách',
     'grid' => 'Lưới',
     'list' => 'Danh sách',
+    'of' => 'của',
+    'items' => 'quyển',
+
     'header' => [
         'add_your_book' => 'Thêm sách của bạn',
         'book_of_me' => 'Sách của tôi',
@@ -171,6 +174,7 @@ return [
         'profile' => 'Trang cá nhân',
         'my_request' => 'Yêu cầu mượn sách',
         'search' => 'Tìm kiếm',
+        'dashboard' => 'Trang Quản Trị',
     ],
     'lang' => [
         'en' => 'English',
