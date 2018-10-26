@@ -88,6 +88,7 @@ return [
         'cancel_borrowing' => 'Hủy yêu cầu mượn',
         'booklist' => 'Danh sách',
         'edit' => 'Chỉnh Sửa',
+        'show_more' => 'Chi tiết',
     ],
 
     'review' => [
@@ -168,5 +169,11 @@ return [
         'login_wsm' => 'Đăng nhập WSM',
         'logout' => 'Đăng xuất',
         'profile' => 'Trang cá nhân',
+        'my_request' => 'Yêu cầu mượn sách',
+        'search' => 'Tìm kiếm',
+    ],
+    'lang' => [
+        'en' => 'English',
+        'vi' => 'Tiếng Việt',
     ],
 ];

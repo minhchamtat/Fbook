@@ -6538,6 +6538,7 @@ p.lost-password a:hover {
     position: absolute;
     background: #fff;
     overflow-y: auto;
+    overflow-x: hidden;
     left: 50%;
     transform: translate(-90%, 0);
 }
@@ -6569,4 +6570,40 @@ p.lost-password a:hover {
 
 sup.badge {
     margin-right: -30px !important; 
+}
+
+.office-book {
+    height: 120px;
+}
+
+.office-book h4 {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.office-book-img {
+    height: 70px;
+    width: 30px;
+}
+
+.header-search form .search-submit {
+    background: #f07c29 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    height: 42px;
+    line-height: 40px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 42px;
+    border-radius: 0 5px 5px 0px;
+    border: none;
+}
+
+.link-detail {
+    padding-top: 10px;
+    float: right;
 }

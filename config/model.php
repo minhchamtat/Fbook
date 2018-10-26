@@ -13,7 +13,7 @@ return [
         'user' => 'App\Eloquent\User',
         'review' => 'App\Eloquent\Review',
         'vote' => 'App\Eloquent\Vote',
-        'follow' => 'App\Eloquent\Follow',
+        'follow' => 'App\Eloquent\FollowUser',
     ],
 
     'viewed' => [

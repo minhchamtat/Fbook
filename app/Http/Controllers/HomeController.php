@@ -20,11 +20,6 @@ class HomeController extends Controller
 
     protected $review;
 
-    protected $imageProperties = [
-        'path',
-        'target_id',
-    ];
-
     public function __construct(
         BookRepository $book,
         OfficeRepository $office,
@@ -40,9 +35,7 @@ class HomeController extends Controller
     public function index()
     {
         $with = [
-            'medias' => function ($q) {
-                $q->select($this->imageProperties);
-            },
+            'medias',
         ];
         $offices = $this->office->getData()->pluck('name', 'id');
         $topViewed = $this->book->getTopViewedBook($with);
@@ -53,9 +46,9 @@ class HomeController extends Controller
         $hotUser = $bestSharing['user'];
         $bestSharing = $bestSharing['books'];
         $officeBooks = $this->book->getOfficeBooks($offices, $with);
-        $totalUser = $this->user->getData()->count();
-        $totalBook = $this->book->getData()->count();
-        $totalReview = $this->review->getData()->count();
+        $totalUser = $this->user->countUser();
+        $totalBook = $this->book->countBook();
+        $totalReview = $this->review->countReview();
 
         $data = compact(
             'topInteresting',
@@ -86,7 +79,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function search(Request $request)
+    public function searchAjax(Request $request)
     {
         $users = null;
         if (Auth::check()) {
@@ -99,5 +92,20 @@ class HomeController extends Controller
         ]);
 
         return view('layout.section.search', compact('result', 'users'));
+    }
+
+    public function search(Request $request)
+    {
+        $users = null;
+        if (Auth::check()) {
+            $users = $this->user->search('name', $request->req);
+        }
+        $result = collect([
+            'title' => $this->book->search('title', $request->req),
+            'author' => $this->book->search('author', $request->req),
+            'description' => $this->book->search('description', $request->req),
+        ]);
+
+        return view('search', compact('result', 'users'));
     }
 }
