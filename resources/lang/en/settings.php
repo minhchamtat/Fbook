@@ -93,6 +93,7 @@ return [
     'review' => [
         'rating' => 'Rating',
         'summary' => 'Summary',
+        'add' => 'Add Review',
     ],
 
     'home' => [
@@ -164,7 +165,7 @@ return [
         'add_your_book' => 'Add Your Book',
         'book_of_me' => 'Book Of Me',
         'book_request' => 'Book Request',
-        'dasboard' => 'Dasboard',
+        'dashboard' => 'Dashboard',
         'login_wsm' => 'WSM Login',
         'logout' => 'Logout',
         'my_request' => 'My Request',

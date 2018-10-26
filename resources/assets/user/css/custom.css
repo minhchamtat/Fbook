@@ -477,3 +477,22 @@ ul.list-unstyled.social-list i {
 .modal-tab img {
     max-width: 240px;
 }
+
+.language-area ul li:hover .header-sub {
+    width: 115px;
+}
+
+.btn-link:focus, .btn-link:hover {
+    color: #f07c29;
+     text-decoration: none;
+    background-color: transparent;
+}
+
+.btn-link {
+    color: #45434e;
+    text-transform: unset;
+}
+
+.single-banner .banner-text {
+    text-align: center;
+}

@@ -24,7 +24,7 @@
                                     <ul>
                                         @if ($item->avg_star > 1)
                                             @for ($j = 0; $j < $item->avg_star; $j++)
-                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><i class="fa fa-star"></i></li>
                                             @endfor
                                         @endif
                                     </ul>
@@ -41,7 +41,7 @@
         <div class="page-number">
             <ul class="pagination">
                 <li class="disabled"><a href="#">«</a></li>
-                @for ($i = 0; $i < count($books); $i++) 
+                @for ($i = 0; $i < count($books); $i++)
                     <li class="status-page"><a data-target="{{ $status }}" href="{{ '#' . $status . $i }}">{{ $i + 1 }}</a></li>
                 @endfor
                 <li><a href="#">»</a></li>

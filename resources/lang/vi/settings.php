@@ -16,7 +16,7 @@ return [
             'messages' => 'Thông báo',
             'name' => 'Tên',
             'no' => 'Không',
-            'reset' => 'Đặt lại',
+            'reset' => 'Làm lại',
             'search' => 'Tìm kiếm',
             'status' => 'Trạng thái',
             'submit' => 'Gửi',
@@ -25,9 +25,9 @@ return [
             'yes' => 'Có',
         ],
         'layout' => [
-            'add_page' => 'Thêm mới :name',
-            'edit_page' => 'Chỉnh sửa :name',
-            'list_page' => 'Danh sách :name',
+            'add_page' => 'Thêm người dùng mới',
+            'edit_page' => 'Chỉnh sửa người dùng',
+            'list_page' => 'Danh sách người dùng',
             'users' => 'Người dùng',
         ],
         'user' => [
@@ -93,6 +93,7 @@ return [
     'review' => [
         'rating' => 'Bình chọn',
         'summary' => 'Tóm tắt',
+        'add' => 'Gửi đánh giá',
     ],
 
     'home' => [
@@ -161,9 +162,9 @@ return [
     'list' => 'Danh sách',
     'header' => [
         'add_your_book' => 'Thêm sách của bạn',
-        'book_of_me' => 'Sách cuả tôi',
+        'book_of_me' => 'Sách của tôi',
         'book_request' => 'Yêu cầu mượn sách',
-        'dasboard' => 'Trang quản trị',
+        'dashboard' => 'Trang quản trị',
         'login_wsm' => 'Đăng nhập WSM',
         'logout' => 'Đăng xuất',
         'profile' => 'Trang cá nhân',

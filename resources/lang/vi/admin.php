@@ -58,7 +58,7 @@ return [
         'author' => 'Tác giả',
         'publishDate' => 'Ngày đăng',
         'totalPage' => 'Tổng số trang',
-        'avgStar' => 'Sao trung bình',
+        'avgStar' => 'Đánh giá trung bình',
         'view' => 'Lượt xem',
         'avatar' => 'Ảnh bìa',
         'edit' => 'Chỉnh sửa sách',

@@ -5,6 +5,7 @@ return [
     'error' => 'Thất bại!',
     'submit' => 'Gửi',
     'cancel' => 'Hủy bỏ',
+    'reset' => 'Làm lại',
     'search' => 'Nhập vào từ khóa...',
     'book' => [
         'add' => 'Thêm sách',
@@ -14,7 +15,7 @@ return [
         'author' => 'Tác giả',
         'totalPage' => 'Tổng số trang',
         'category' => 'Danh mục',
-        'sku' => 'Mã Sku',
+        'sku' => 'Mã SKU',
         'publish' => 'Ngày chia sẻ',
         'description' => 'Mô tả',
         'showOption' => 'Các tùy chọn',
