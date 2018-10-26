@@ -26,10 +26,10 @@ Route::group(['middleware' => 'locale'], function () {
         Route::get('books/category/{slug}', 'BookController@getBookCategory')->name('book.category');
         Route::get('books/office/{slug}', 'BookController@getBookOffice')->name('book.office');
         Route::post('/book-detail', 'BookController@getDetailData');
-
+        
         Route::group(['middleware' => 'auth'], function () {
-            Route::resource('books/{slug}/review', 'ReviewBookController');
-            Route::resource('review/{id}/vote', 'VoteController');
+            Route::resource('/books/{slug}/review', 'ReviewBookController');
+            Route::resource('/review/{id}/vote', 'VoteController');
             Route::post('/books/sharing/{id}', 'UserController@sharingBook');
             Route::post('/books/remove-owner/{id}', 'UserController@removeOwner');
             Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
@@ -38,10 +38,14 @@ Route::group(['middleware' => 'locale'], function () {
             Route::resource('my-request', 'MyRequestController');
             Route::post('/my-profile/{request}', 'UserController@getBooks');
             Route::get('/users/{id}', 'UserController@getUser')->name('user');
-            Route::post('follow/{id}', 'UserController@follow');
+            Route::post('/follow/{id}', 'UserController@follow');
             Route::post('/unfollow/{id}', 'UserController@unfollow');
-        });
+            Route::post('/notifications/{limit}', 'NotificationController@getLimitNotifications');
+            Route::get('/notifications', 'NotificationController@getAllNotifications')->name('notifications');
+            Route::post('/notification-update', 'Notification@updateNotification');
+         });
     });
+
 
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/listbook', 'BookController@ajaxShow')->name('book.show');

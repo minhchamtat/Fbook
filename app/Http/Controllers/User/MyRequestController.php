@@ -5,15 +5,20 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\BookUserRepository;
+use App\Repositories\Contracts\NotificationRepository;
 use Auth;
 
 class MyRequestController extends Controller
 {
     protected $bookUser;
 
-    public function __construct(BookUserRepository $bookUser)
-    {
+    public function __construct(
+        BookUserRepository $bookUser,
+        NotificationRepository $notification
+    ) {
+        $this->middleware('auth');
         $this->bookUser = $bookUser;
+        $this->notification = $notification;
     }
 
     public function index()
@@ -59,7 +64,30 @@ class MyRequestController extends Controller
     public function update(Request $request, $id)
     {
         $request->merge(['id' => $id]);
-        $this->bookUser->UpdateBookRequest($request->all());
+        $record = $this->bookUser->UpdateBookRequest($request->all());
+        if ($record) {
+            $this->notification->find([
+                'send_id' => Auth::id(),
+                'receive_id' => $record->user_id,
+                'target_type' => config('model.target_type.book_user'),
+                'target_id' => $record->id,
+            ]);
+            if ($notification) {
+                $this->notification->update([
+                    'id' => $notification->id,
+                    'view' => config('model.view.false'),
+                ]);
+            } else {
+                $data = [
+                    'send_id' => $record->owner_id,
+                    'receive_id' => Auth::id(),
+                    'target_type' => config('model.target_type.book_user'),
+                    'target_id' => $record->id,
+                    'viewed' => config('model.viewed.false'),
+                ];
+                $this->notification->store($data);
+            }
+        }
 
         return back()->with('success', __('page.success'));
     }

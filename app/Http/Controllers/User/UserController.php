@@ -162,23 +162,50 @@ class UserController extends Controller
             'approved' => config('model.approved.default'),
         ]);
 
-        return $this->bookUser->store($request->all());
+        $bookUser = $this->bookUser->store($request->all());
+
+        if ($bookUser) {
+            $userData = [
+                'send_id' => Auth::id(),
+                'receive_id' => $bookUser->owner_id,
+                'target_type' => config('model.target_type.book_user'),
+                'target_id' => $bookUser->id,
+                'viewed' => config('model.viewed.false'),
+            ];
+            $this->notification->store($userData);
+        }
+
+        return $bookUser;
     }
 
     public function cancelBorrowing($id)
     {
-        return $this->bookUser->destroy([
-            'book_id' => $id,
-            'user_id' => Auth::id(),
-        ]);
+        try {
+            $bookUser = $this->bookUser->destroy([
+                'book_id' => $id,
+                'user_id' => Auth::id(),
+            ]);
+
+            if ($bookUser) {
+                $this->notification->destroy([
+                    'send_id' => Auth::id(),
+                    'target_type' => config('model.target_type.book_user'),
+                    'target_id' => $id,
+                ]);
+            }
+
+            return $bookUser;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function follow($id)
     {
         try {
             $result = $this->follow->store([
-                'following_id' => Auth::id(),
-                'follower_id' => $id,
+                'following_id' => $id,
+                'follower_id' => Auth::id(),
             ]);
 
             if ($result !== true) {
@@ -195,6 +222,14 @@ class UserController extends Controller
                         'reputation_point' => $point,
                     ]
                 );
+                $info = [
+                    'send_id' => Auth::id(),
+                    'receive_id' => $id,
+                    'target_type' => config('model.target_type.follow'),
+                    'target_id' => $result->id,
+                    'viewed' => config('model.viewed.false'),
+                ];
+                $this->notification->store($info);
             }
         } catch (Exception $e) {
             return $e->getMessage();
@@ -204,44 +239,8 @@ class UserController extends Controller
     public function unfollow($id)
     {
         return $this->follow->destroy([
-            'following_id' => Auth::id(),
-            'follower_id' => $id,
+            'following_id' => $id,
+            'follower_id' => Auth::id(),
         ]);
-    }
-
-    public function getNotifications($limit = -1)
-    {
-        $with = [
-            'target',
-            'userSend',
-        ];
-        $where = [
-            'receive_id' => Auth::id(),
-        ];
-
-        return $data = $this->notification->getNotifications($limit, $with, $where);
-    }
-
-    public function getAllNotifications()
-    {
-        $notifications = $this->getNotifications();
-
-        return view('user.notifications', compact('notifications'));
-    }
-
-    public function getLimitNotifications($limit = 0)
-    {
-        if ($limit < config('view.limit.notifications')) {
-            $notifications = $this->getNotifications(config('view.limit.notifications'));
-        } else {
-            $notifications = $this->getNotifications($limit);
-        }
-        
-        return view('layout.section.notifications', compact('notifications'));
-    }
-
-    public function updateNotification(Request $request)
-    {
-        return $this->notification->update($request->all());
     }
 }

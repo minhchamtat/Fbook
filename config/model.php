@@ -8,11 +8,17 @@ return [
     ],
 
     'target_type' => [
-    	'book' => 'App\Eloquent\Book',
+        'book' => 'App\Eloquent\Book',
         'book_user' => 'App\Eloquent\BookUser',
-    	'user' => 'App\Eloquent\User',
+        'user' => 'App\Eloquent\User',
         'review' => 'App\Eloquent\Review',
-    	'vote' => 'App\Eloquent\Vote',
+        'vote' => 'App\Eloquent\Vote',
+        'follow' => 'App\Eloquent\Follow',
+    ],
+
+    'viewed' => [
+        'false' => 0,
+        'true' => 1,
     ],
 
     'book_user' => [

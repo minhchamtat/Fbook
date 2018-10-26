@@ -21,6 +21,11 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
             ->orderBy('viewed', 'asc');
     }
 
+    public function store($data)
+    {
+        return $this->model()->create($data);
+    }
+
     public function getNotifications($limit, $with = [], $data = [], $dataSelect = ['*'])
     {
         if ($limit >= 0) {
@@ -50,7 +55,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     $record = array_add($record, 'link', $link);
                     break;
 
-                case config('model.target_type.user'):
+                case config('model.target_type.follow'):
                     $record = array_add($record, 'message', config('view.notifications.follow'));
                     $record = array_add($record, 'route', config('view.notifications.route.user'));
                     $record = array_add($record, 'link', $record->send_id);
@@ -68,7 +73,6 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     break;
 
                 default:
-                    # code...
                     break;
             }
         }
@@ -84,11 +88,26 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
     public function update($data = [])
     {
         try {
-            $record = $this->model()->findOrFail($data['id']);
-        
-            return $record->update($data);
-        } catch (Exception $e) {
+            if (array_has($data, 'id')) {
+                $record = $this->model()->findOrFail($data['id']);
+
+                return $record->update($data);
+            }
+
             return null;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function destroy($data)
+    {
+        try {
+            $record = $this->model()->where($data);
+            
+            return $record->delete();
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
     }
 }
