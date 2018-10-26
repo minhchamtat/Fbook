@@ -11,8 +11,8 @@
                                 <div class="header-sub">
                                     <ul>
                                         <li><a href="{{ route('user.change-language', ['vi']) }}"><img
-                                                        src="{{ asset(config('view.image_paths.flag') . '3.jpg') }}"
-                                                        alt="flag"/>Vietnamese</a></li>
+                                                        src="{{ asset(config('view.image_paths.flag') . '2.jpg') }}"
+                                                        alt="flag"/>Tiếng Việt</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -48,7 +48,7 @@
                                             <b>{{ Auth::user()->name }}</b>
                                             @if ($roles && in_array(config('model.roles.admin'), $roles))
                                                 <a class="dropdown-item"
-                                                   href="{{ url('admin') }}">{{ trans('settings.header.dasboard') }}</a>
+                                                   href="{{ url('admin') }}">{{ trans('settings.header.dashboard') }}</a>
                                             @endif
                                             <a class="dropdown-item"
                                                href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>

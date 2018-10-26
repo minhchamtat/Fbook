@@ -17,6 +17,6 @@ return [
     'reset' => 'Mật khẩu của bạn đã được đặt lại!',
     'sent' => 'Chúng tôi vừa gửi xác nhận yêu cầu đặt lại mật khẩu vào email của bạn!',
     'token' => 'Mã xác nhận không đúng. Vui lòng kiểm tra lại!',
-    'user' => "Không tìm thấy người dùng với địa chỉ email cung cấp.",
+    'user' => 'Không tìm thấy người dùng với địa chỉ email cung cấp.',
 
 ];

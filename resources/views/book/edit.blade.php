@@ -197,7 +197,7 @@
                     </div>
                     <div class="single-register">
                         {!! Form::submit(__('page.submit'), ['class' => 'btn btn-info']) !!}
-                        {!! Form::reset(__('page.cancel'), ['class' => 'btn btn-secondary']) !!}
+                        {!! Form::reset(__('page.reset'), ['class' => 'btn btn-secondary']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>

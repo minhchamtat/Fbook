@@ -5,6 +5,7 @@ return [
     'error' => 'Error!',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
+    'reset' => 'Reset',
     'search' => 'Enter your keyword here...',
     'book' => [
         'add' => 'Add Your Book',

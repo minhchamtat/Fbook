@@ -74,6 +74,11 @@ class HomeController extends Controller
         return view('index', $data);
     }
 
+    public function adminIndex()
+    {
+        return view('admin.layout.index');
+    }
+
     public function changeLanguage(Request $request, $language)
     {
         $request->session()->put('website-language', $language);

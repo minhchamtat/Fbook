@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="col-10">
                                             {!! Form::submit(__('admin.submit'), ['class' => 'btn btn-success']) !!}
-                                            {!! Form::reset(__('admin.cancel'), ['class' => 'btn btn-secondary']) !!}
+                                            {!! Form::reset(__('admin.reset'), ['class' => 'btn btn-secondary']) !!}
                                         </div>
                                     </div>
                                 </div>

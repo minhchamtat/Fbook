@@ -77,5 +77,8 @@ return [
         'editCate' => 'Edit Category',
         'index' => 'Index',
         'name' => 'Name',
+        'placeHolder' => [
+            'title' => 'Title in here ...',
+        ]
     ],
 ];

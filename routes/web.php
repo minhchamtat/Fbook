@@ -54,9 +54,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::get('/post', 'HomeController@index');
         Route::get('/reputation', 'HomeController@index');
         Route::get('/tag', 'HomeController@index');
-        Route::get('/', function () {
-            return view('admin.layout.index');
-        });
+        Route::get('/', 'HomeController@adminIndex');
         Route::resource('/roles', 'RoleController');
         Route::resource('/offices', 'OfficeController');
         Route::resource('/users', 'UserController');
