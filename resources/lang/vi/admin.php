@@ -69,7 +69,8 @@ return [
             'author' => 'Nhập tên tác giả...',
             'totalPage' => 'Nhập tổng số trang...',
             'sku' => 'Nhập mã Sku của sách...',
-        ]
+            'chooseFile' => 'Choose file',
+        ],
     ],
     'cate' => [
         'listCate' => 'Danh sách danh mục',

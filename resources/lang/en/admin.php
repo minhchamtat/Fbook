@@ -69,7 +69,8 @@ return [
             'author' => 'Author of book...',
             'totalPage' => 'Total pages...',
             'sku' => 'Sku of book...',
-        ]
+            'chooseFile' => 'Choose file',
+        ],
     ],
     'cate' => [
         'listCate' => 'List Category',

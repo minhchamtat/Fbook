@@ -23,6 +23,12 @@ return [
         'office' => 'Văn phòng',
         'upsell' => 'Cùng Danh Mục',
         'browse' => 'Chọn tệp...',
+        'placeHolder' => [
+            'title' => 'Title in here ...',
+            'author' => 'Author of book...',
+            'totalPage' => 'Total pages...',
+            'sku' => 'Sku of book...',
+        ],
     ],
     'rate' => 'Bình chọn',
     'home' => 'Trang chủ',

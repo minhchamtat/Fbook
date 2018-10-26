@@ -30,6 +30,7 @@ mix.scripts([
 mix.copyDirectory('resources/assets/user', 'public/assets/user').browserSync('http://127.0.0.1:8000/');
 mix.copyDirectory('resources/assets/fonts', 'public/assets/user/fonts');
 mix.copyDirectory('resources/assets/admin', 'public/assets/admin');
+mix.copyDirectory('resources/assets/img', 'public/assets/img');
 mix.styles([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
     'node_modules/owl.carousel/dist/assets/owl.carousel.css',

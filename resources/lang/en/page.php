@@ -23,6 +23,12 @@ return [
         'office' => 'Office',
         'upsell' => 'Related Books',
         'browse' => 'Browse...',
+        'placeHolder' => [
+            'title' => 'Title in here ...',
+            'author' => 'Author of book...',
+            'totalPage' => 'Total pages...',
+            'sku' => 'Sku of book...',
+        ],
     ],
     'rate' => 'Rate',
     'home' => 'Home',

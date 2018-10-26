@@ -26,7 +26,7 @@
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('description', __('admin.description'), ['class' => 'col-2']) !!}
                                     <div class="col-10">
-                                        {!! Form::textarea('description', null, ['id' => 'mytextarea']) !!}
+                                        {!! Form::textarea('description', null, ['id' => 'mytextarea', 'required' => 'required']) !!}
                                     </div>
                                 </div>
                             </div>

@@ -99,8 +99,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                     <div class="logo-area text-center logo-xs-mrg">
-                        <a href="{{ asset('/') }}"><img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}"
-                                                        alt="logo"/></a>
+                        <a href="{{ asset('/') }}">
+                            <img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo" class="logo"/>
+                        </a>
                     </div>
                 </div>
             </div>
