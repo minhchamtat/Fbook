@@ -1,20 +1,16 @@
 @if($item['books'])
     <div class="product-total-2">
         @foreach($item['books'] as $book)
-            <div class="single-most-product bd mb-18">
-                @if($book->medias->count() > 0)
-                    <div class="most-product-img">
-                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" />
-                        </a>
-                    </div>
-                @else
-                    <div class="most-product-img">
-                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
-                        </a>
-                    </div>
-                @endif
+            <div class="single-most-product bd mb-18 office-book">
+                <div class="most-product-img">
+                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                        @if($book->medias->count() > 0)
+                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="office-book-img" />
+                        @else
+                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="office-book-img" />
+                        @endif
+                    </a>
+                </div>
                 <div class="most-product-content">
                     <div class="product-rating">
                         <ul>

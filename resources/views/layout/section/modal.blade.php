@@ -26,6 +26,9 @@
                             <h3>{{ $book->title }}</h3>
                             <p>{!! $book->description !!}</p>
                         </div>
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                            <p class="link-detail">{{ trans('settings.book.show_more') }}</p>
+                        </a>
                     </div>
                 </div>
             </div>

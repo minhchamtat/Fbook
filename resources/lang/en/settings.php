@@ -88,6 +88,7 @@ return [
         'cancel_borrowing' => 'Cancel Borrowing',
         'booklist' => 'Book List',
         'edit' => 'Edit Book',
+        'show_more' => 'Show more',
     ],
 
     'review' => [
@@ -165,7 +166,8 @@ return [
         'add_your_book' => 'Add Your Book',
         'book_of_me' => 'Book Of Me',
         'book_request' => 'Book Request',
-        'dashboard' => 'Dashboard',
+        'my_request' => 'My Request',
+        'dasboard' => 'Dasboard',
         'login_wsm' => 'WSM Login',
         'logout' => 'Logout',
         'my_request' => 'My Request',
@@ -173,9 +175,15 @@ return [
         'notifications' => [
             'show_more' => 'Show more',
         ],
+        'search' => 'Search',
     ],
 
     'notifications' => [
         'name' => 'Notifications',
+    ],
+
+    'lang' => [
+        'en' => 'English',
+        'vi' => 'Tiếng Việt',
     ],
 ];

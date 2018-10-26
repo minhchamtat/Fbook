@@ -6,13 +6,15 @@
                     <div class="language-area">
                         <ul>
                             <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
-                                        href="{{ route('user.change-language', ['en']) }}">English<i
+                                        href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}<i
                                             class="fa fa-angle-down"></i></a>
                                 <div class="header-sub">
                                     <ul>
-                                        <li><a href="{{ route('user.change-language', ['vi']) }}"><img
-                                                        src="{{ asset(config('view.image_paths.flag') . '2.jpg') }}"
-                                                        alt="flag"/>Tiếng Việt</a></li>
+                                        <li>
+                                            <a href="{{ route('user.change-language', ['vi']) }}">
+                                                <img src="{{ asset(config('view.image_paths.flag') . '3.jpg') }}" alt="flag"/>{{ trans('settings.lang.vi') }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -52,6 +54,8 @@
                                             @endif
                                             <a class="dropdown-item"
                                                href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
+                                            <a class="dropdown-item"
+                                               href="href="{{ route('my-request.index') }}">{{ trans('settings.header.my_request') }}</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
                                                 'method' => 'POST',
@@ -79,7 +83,8 @@
                 <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
                     <div class="header-search">
                         {!! Form::open([
-                            'method' => 'POST',
+                            'route' => 'search',
+                            'method' => 'GET',
                             'id' => 'header-search',
                             'class' => 'form-groupt',
                         ]) !!}
@@ -92,7 +97,13 @@
                                 'class' => 'form-control m-input'
                             ]
                         ) !!}
-                        <a href="#"><i class="fa fa-search"></i></a>
+                        {!! Form::button(
+                            '<i class="fa fa-search"></i>',
+                            [
+                                'type' => 'submit',
+                                'class' => 'search-submit',
+                            ]
+                        ) !!}
                         {!! Form::close() !!}
                     </div>
                     <div id="search-suggest" class="s-suggest"></div>

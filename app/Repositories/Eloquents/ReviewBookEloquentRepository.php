@@ -102,4 +102,9 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
             ->orderBy($attribute[0], $attribute[1])
             ->get();
     }
+
+    public function countReview()
+    {
+        return $this->model()->all()->count();
+    }
 }

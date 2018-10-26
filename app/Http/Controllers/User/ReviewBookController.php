@@ -62,7 +62,7 @@ class ReviewBookController extends Controller
             $request->merge(['book_id' => $id]);
 
             $review = $this->review->store($request->all());
-            if (count($review) > 0 && $book) {
+            if ($review && $owners) {
                 foreach ($owners as $owner) {
                     $info = [
                         'send_id' => Auth::id(),
@@ -118,8 +118,14 @@ class ReviewBookController extends Controller
     public function destroy($slug, $id)
     {
         try {
-            $this->review->destroy($id);
-
+            $record = $this->review->destroy($id);
+            if ($record) {
+                $this->notification->destroy([
+                    'send_id' => Auth::id(),
+                    'target_type' => config('model.target_type.review'),
+                    'target_id' => $id,
+                ]);
+            }
             $idBook = (int)last(explode('-', $slug));
             $data = $this->review->find($idBook);
             if (isset($data) && $data != null) {

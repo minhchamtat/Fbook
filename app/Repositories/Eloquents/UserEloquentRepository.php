@@ -55,4 +55,9 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
     {
         return $this->model()->findOrFail($id)->delete();
     }
+
+    public function countUser()
+    {
+        return $this->model()->all()->count();
+    }
 }

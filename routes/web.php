@@ -16,7 +16,8 @@ Auth::routes();
 Route::group(['middleware' => 'locale'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
-    Route::post('/header-search', 'HomeController@search');
+    Route::post('/header-search', 'HomeController@searchAjax');
+    Route::get('/search', 'HomeController@search')->name('search');
 
     Route::get('login/framgia', 'Auth\LoginController@redirectToProvider')->name('framgia.login');
     Route::get('login/framgia/callback', 'Auth\LoginController@handleProviderCallback');
@@ -43,7 +44,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/notifications/{limit}', 'NotificationController@getLimitNotifications');
             Route::get('/notifications', 'NotificationController@getAllNotifications')->name('notifications');
             Route::post('/notification-update', 'Notification@updateNotification');
-         });
+        });
     });
 
 
