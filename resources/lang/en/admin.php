@@ -16,6 +16,9 @@ return [
     'error' => 'Error!',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
+    'reset' => 'Reset',
+    'search' => 'Search...',
+    'addNew' => ' Add new',
     'list' => 'List',
     'description' => 'Description',
     'action' => 'Action',
@@ -73,6 +76,7 @@ return [
         ],
     ],
     'cate' => [
+        'cate' => 'Category',
         'listCate' => 'List Category',
         'newCate' => ' New Category',
         'editCate' => 'Edit Category',
@@ -82,4 +86,10 @@ return [
             'title' => 'Title in here ...',
         ]
     ],
+    'user' => [
+        'user' => 'User',
+        'listUser' => 'List User',
+        'newUser' => 'Add New User',
+        'editUser' => 'Edit User',
+        ]
 ];

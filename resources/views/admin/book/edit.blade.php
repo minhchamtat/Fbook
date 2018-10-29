@@ -42,7 +42,7 @@
                                                     'onclick' => 'clickFile(event)'
                                                 ])
                                             !!}
-                                            {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
+                                            {!! Form::label('customFile', __('admin.book.placeHolder.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
                                             @if (isset($book->medias[0]->id))
                                                 {!! Form::hidden('avatar_old', $book->medias[0]->id) !!}
                                             @else

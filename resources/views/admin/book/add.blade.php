@@ -42,7 +42,7 @@
                                                 'onclick' => 'clickFile(event)'
                                             ])
                                         !!}
-                                        {!! Form::label('customFile', __('admin.book.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
+                                        {!! Form::label('customFile', __('admin.book.placeHolder.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
                                     </div>
                                     <div class="col-md-4 offset-3 mt-3">
                                         <img src="" alt="" class="img-book">
