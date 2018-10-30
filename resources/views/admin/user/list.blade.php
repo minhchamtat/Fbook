@@ -5,7 +5,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title m-subheader__title--separator">{{ trans('settings.admin.layout.list_page', ['name' => 'user']) }}</h3>
+                    <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.user.user') }}</h3>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                {{ trans('settings.admin.layout.list_page', ['name' => 'user']) }}
+                                {{ __('admin.user.listUser') }}
                             </h3>
                         </div>
                     </div>

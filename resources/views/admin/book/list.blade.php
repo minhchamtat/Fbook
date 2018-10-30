@@ -21,20 +21,37 @@
                             </h3>
                         </div>
                     </div>
-                    <div class="m-portlet__head-tools">
-                        <ul class="m-portlet__nav">
-                            <li class="m-portlet__nav-item">
-                                <a href="{{ route('book.create') }}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
-                                    <span>
-                                        <i class="la la-plus"></i>
-                                        <span>{{ __('admin.book.newBook') }}</span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="m-portlet__body">
+                    <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                        <div class="row align-items-center">
+                            <div class="col-xl-8 order-2 order-xl-1">
+                                <div class="form-group m-form__group row align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="m-input-icon m-input-icon--left">
+                                            <input type="text" class="form-control m-input m-input--solid"
+                                                   placeholder="{{ __('admin.search') }}" id="generalSearch">
+                                            <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                <span>
+                                                    <i class="la la-search"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                                <a href="{{ route('book.create') }}"
+                                   class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                    <span>
+                                        <i class="la la-cart-plus"></i>
+                                        <span>{{ __('admin.addNew') }}</span>
+                                    </span>
+                                </a>
+                                <div class="m-separator m-separator--dashed d-xl-none"></div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead class="text-center">
                             <tr>

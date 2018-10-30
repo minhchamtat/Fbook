@@ -40,6 +40,7 @@ img.img-book {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 22em;
+    text-align: center;
 }
 
 .dataTables_wrapper .dataTable th {
@@ -56,4 +57,8 @@ td.sorting_1 {
 
 td:last-child {
     display: -webkit-box;
+}
+
+.dataTables_wrapper .dataTable td:first-child {
+    text-align: left;
 }

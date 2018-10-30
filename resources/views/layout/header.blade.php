@@ -3,23 +3,45 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="language-area">
-                        <ul>
-                            <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
-                                        href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}<i
-                                            class="fa fa-angle-down"></i></a>
-                                <div class="header-sub">
-                                    <ul>
-                                        <li>
-                                            <a href="{{ route('user.change-language', ['vi']) }}">
-                                                <img src="{{ asset(config('view.image_paths.flag') . '3.jpg') }}" alt="flag"/>{{ trans('settings.lang.vi') }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    @if(Session::get('website-language') == 'en')
+                        <div class="language-area">
+                            <ul>
+                                <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
+                                            href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}</a>
+                                    <i class="fa fa-angle-down"></i>
+                                    <div class="header-sub">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route('user.change-language', ['vi']) }}">
+                                                    <img src="{{ asset(config('view.image_paths.flag') . '3.png') }}"
+                                                         alt="flag"/>{{ trans('settings.lang.vi') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="language-area">
+                            <ul>
+                                <li><img src="{{ asset(config('view.image_paths.flag') . '3.png') }}" alt="flag"/><a
+                                            href="{{ route('user.change-language', ['vi']) }}">{{ trans('settings.lang.vi') }}</a>
+                                    <i class="fa fa-angle-down"></i>
+                                    <div class="header-sub">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route('user.change-language', ['en']) }}">
+                                                    <img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}"
+                                                         alt="flag"/>{{ trans('settings.lang.en') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="account-area text-right">
@@ -27,9 +49,11 @@
                             @auth
                                 <li class="noti">
                                     <div class="header-noti">
-                                        <a href="#" >
-                                            <i class="fa fa-bell-o noti-show" id="bell-notification" aria-hidden="true" data="{{ $new }}"></i>
-                                            <sup class="badge active-notification" id="notification_298">{{ $new == 0 ? '' : $new }}</sup>
+                                        <a href="#">
+                                            <i class="fa fa-bell-o noti-show" id="bell-notification" aria-hidden="true"
+                                               data="{{ $new }}"></i>
+                                            <sup class="badge active-notification"
+                                                 id="notification_298">{{ $new == 0 ? '' : $new }}</sup>
                                         </a>
                                     </div>
                                     <div id="noti-detail" class="s-suggest"></div>
@@ -55,7 +79,8 @@
                                             <a class="dropdown-item"
                                                href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
                                             <a class="dropdown-item"
-                                               href="href="{{ route('my-request.index') }}">{{ trans('settings.header.my_request') }}</a>
+                                               href="href="{{ route('my-request.index') }}
+                                            ">{{ trans('settings.header.my_request') }}</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
                                                 'method' => 'POST',
@@ -111,7 +136,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                     <div class="logo-area text-center logo-xs-mrg">
                         <a href="{{ asset('/') }}">
-                            <img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo" class="logo"/>
+                            <img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo"
+                                 class="logo"/>
                         </a>
                     </div>
                 </div>

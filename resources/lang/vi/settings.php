@@ -25,9 +25,9 @@ return [
             'yes' => 'Có',
         ],
         'layout' => [
-            'add_page' => 'Thêm người dùng mới',
-            'edit_page' => 'Chỉnh sửa người dùng',
-            'list_page' => 'Danh sách người dùng',
+            'add_page' => 'Thêm mới',
+            'edit_page' => 'Chỉnh sửa',
+            'list_page' => 'Danh sách',
             'users' => 'Người dùng',
         ],
         'user' => [

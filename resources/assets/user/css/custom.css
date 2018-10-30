@@ -1,27 +1,30 @@
-
 /* rate */
 .cont {
     overflow: hidden;
-  }
+}
 
 hr {
     margin: 20px;
     border: none;
-    border-bottom: thin solid rgba(255,255,255,.1);
+    border-bottom: thin solid rgba(255, 255, 255, .1);
 }
 
-div.title { font-size: 2em; }
+div.title {
+    font-size: 2em;
+}
 
 h1 span {
     font-weight: 300;
     color: #Fd4;
-  }
+}
 
 div.stars {
     display: inline-block;
 }
 
-input.star { display: none; }
+input.star {
+    display: none;
+}
 
 label.star {
     float: right;
@@ -37,9 +40,13 @@ input.star:checked ~ label.star:before {
     transition: all .25s;
 }
 
-input.star-1:checked ~ label.star:before { color: #F62; }
+input.star-1:checked ~ label.star:before {
+    color: #F62;
+}
 
-label.star:hover { transform: rotate(-15deg) scale(1.3); }
+label.star:hover {
+    transform: rotate(-15deg) scale(1.3);
+}
 
 label.star:before {
     content: '\f006';
@@ -59,25 +66,30 @@ img.media-object {
     margin-bottom: 8px;
 }
 
-li.active i.fa.fa-star{
+li.active i.fa.fa-star {
     color: #d7882e;
 }
-p.no-margin{
+
+p.no-margin {
     margin: 0;
 }
+
 p.no-margin.mtop {
     margin-top: -11px;
 }
-.float-right{
+
+.float-right {
     float: right;
 }
 
-.vote{
+.vote {
     float: left;
 }
-.list-inline>li {
+
+.list-inline > li {
     padding-right: 0;
 }
+
 .action {
     float: right;
 }
@@ -88,6 +100,7 @@ p.no-margin.mtop {
     opacity: 0;
     visibility: hidden;
 }
+
 .event-item:hover .action {
     transition: 0.5s;
     transform: translateY(0px);
@@ -95,6 +108,7 @@ p.no-margin.mtop {
     opacity: 1;
     visibility: visible;
 }
+
 .action form {
     display: -webkit-inline-box;
 }
@@ -228,7 +242,7 @@ button.btn.btn-dangera {
     float: right;
 }
 
-.quick-view a i{
+.quick-view a i {
     line-height: 60px;
 }
 
@@ -254,7 +268,7 @@ a#scrollUp i {
     justify-content: center;
 }
 
-.product-img a.action-view{
+.product-img a.action-view {
     display: inline-block;
 }
 
@@ -303,12 +317,12 @@ a#scrollUp i {
     margin-top: 7px;
 }
 
-.header-mid-area .my-cart ul li > a > i{
+.header-mid-area .my-cart ul li > a > i {
     padding-right: 12px;
     font-size: 30px;
 }
 
-img.img-thumbnail.avatar-icon{
+img.img-thumbnail.avatar-icon {
     margin-right: 25px;
 }
 
@@ -316,7 +330,7 @@ img.img-thumbnail.avatar-icon{
     width: 9%;
 }
 
-.table-content table td.product-remove i{
+.table-content table td.product-remove i {
     color: white;
 }
 
@@ -334,36 +348,39 @@ img.img-thumbnail.avatar-icon{
     margin-bottom: 8px;
 }
 
-.table-content table td.product-name a, table, .table-content table td{
+.table-content table td.product-name a, table, .table-content table td {
     font-family: 'Open Sans', sans-serif;
 }
+
 .stt {
     padding: 2px 7px;
     border-radius: 6px;
     color: white;
     font-weight: 600;
 }
+
 .bg-waiting {
-    background-color: #ffc107!important;
+    background-color: #ffc107 !important;
 }
+
 .bg-reading {
-    background-color: #28a745!important;
+    background-color: #28a745 !important;
 }
 
 .bg-returned, .bg-cancel {
-    background-color:#007bff!important;
+    background-color: #007bff !important;
 }
 
-.bg-danger{
-    background-color: #dc3545!important;
+.bg-danger {
+    background-color: #dc3545 !important;
 }
 
-.bg-returning{
-    background-color: #9b59b6!important;
+.bg-returning {
+    background-color: #9b59b6 !important;
 }
 
-.btn-return{
-    background-color: #1abc9c!important;
+.btn-return {
+    background-color: #1abc9c !important;
     color: white;
 }
 
@@ -484,7 +501,7 @@ ul.list-unstyled.social-list i {
 
 .btn-link:focus, .btn-link:hover {
     color: #f07c29;
-     text-decoration: none;
+    text-decoration: none;
     background-color: transparent;
 }
 
@@ -496,6 +513,7 @@ ul.list-unstyled.social-list i {
 .single-banner .banner-text {
     text-align: center;
 }
+
 .single-register label {
     margin-bottom: 15px;
 }
@@ -581,4 +599,12 @@ img.logo {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
+}
+
+.language-area ul li .header-sub {
+    padding: 10px 6px 15px 12px;
+}
+
+.language-area ul li .fa {
+    color: #333333;
 }

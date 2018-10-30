@@ -16,6 +16,9 @@ return [
     'error' => 'Error!',
     'submit' => 'Gửi',
     'cancel' => 'Hủy bỏ',
+    'reset' => 'Làm lại',
+    'search' => 'Tìm kiếm...',
+    'addNew' => ' Thêm mới',
     'list' => 'Danh sách',
     'description' => 'Mô tả',
     'action' => 'Hành động',
@@ -51,7 +54,7 @@ return [
     ],
     'book' => [
         'book' => 'Sách',
-        'newBook' => 'Thêm mới',
+        'newBook' => 'Thêm sách mới',
         'show' => 'Xem',
         'entries' => 'cuốn',
         'title' => 'Tên',
@@ -69,12 +72,13 @@ return [
             'author' => 'Nhập tên tác giả...',
             'totalPage' => 'Nhập tổng số trang...',
             'sku' => 'Nhập mã Sku của sách...',
-            'chooseFile' => 'Choose file',
+            'chooseFile' => 'Chọn tệp',
         ],
     ],
     'cate' => [
-        'listCate' => 'Danh sách danh mục',
-        'newCate' => ' Thêm mới',
+        'cate' => 'Danh mục',
+        'listCate' => 'Danh sách',
+        'newCate' => ' Thêm danh mục mới',
         'editCate' => 'Chỉnh sửa danh mục',
         'index' => 'STT',
         'name' => 'Tên',
@@ -82,4 +86,10 @@ return [
             'title' => 'Nhập tên danh mục...',
         ]
     ],
+    'user' => [
+        'user' => 'Thành viên',
+        'listUser' => 'Danh sách',
+        'newUser' => 'Thêm thành viên mới',
+        'editUser' => 'Chỉnh sửa thành viên',
+    ]
 ];
