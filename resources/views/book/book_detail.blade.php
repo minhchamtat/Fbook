@@ -121,9 +121,9 @@
                                                         <a data-toggle="modal" href="#borrowingModal" data-id="{{ $book->id }}" class="btn-borrow">{{ trans('settings.book.borrow_book') }}</a>
                                                     @endif
                                                     @if ($isOwner)
-                                                        <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" href="#">{{ trans('settings.book.remove_owner') }}</a>
+                                                        <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.remove_owner') }}</a>
                                                     @else
-                                                        <a data-toggle="modal" class="btn-share" data-id="{{ $book->id }}" href="#">{{ trans('settings.book.i_have_this_book') }}</a>
+                                                        <a data-toggle="modal" class="btn-share" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.i_have_this_book') }}</a>
                                                     @endif
                                                 </form>
                                             @endauth
@@ -368,25 +368,27 @@
                         'data-id' => $book->id,
                     ]) !!}
                 <div class="modal-body row">
-                    @if ($book->owners)
-                        @foreach ($book->owners as $owner)
-                            <div class="col-xs-12 col-sm-12">
-                                {!! Form::radio(
-                                    'owner_id',
-                                    $owner->id,
-                                    [
-                                        'required' => 'required',
-                                    ]
-                                ) !!}
-                                {{ $owner->name }}
-                            </div>
-                        @endforeach
-                    @endif
+                    <div class="owner-input"> 
+                        @if ($book->owners)
+                            @foreach ($book->owners as $owner)
+                                <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">
+                                    {!! Form::radio(
+                                        'owner_id',
+                                        $owner->id,
+                                        [
+                                            'required' => 'required',
+                                        ]
+                                    ) !!}
+                                    {{ $owner->name }}
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                     <div class="col-sm-8">
                         {{ trans('settings.modal.choose_time_to_borrow') }}
                     </div>
                     <div class="col-lg-4">
-                        {!! Form::selectRange('days_to_read', 1, 30) !!}
+                        {!! Form::selectRange('days_to_read', 3, 30) !!}
                         {{ trans('settings.modal.days') }}
                     </div>
                 </div>

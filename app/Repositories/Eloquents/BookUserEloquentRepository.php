@@ -4,6 +4,8 @@ namespace App\Repositories\Eloquents;
 
 use App\Eloquent\BookUser;
 use App\Repositories\Contracts\BookUserRepository;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class BookUserEloquentRepository extends AbstractEloquentRepository implements BookUserRepository
 {
@@ -38,9 +40,14 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     public function destroy($data)
     {
         try {
-            $record = $this->model()->where($data);
+            $record = $this->model()->where($data)->first();
+            if ($record) {
+                $record->delete();
 
-            return $record->delete();
+                return $record->id;
+            } else {
+                return 0;
+            }
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -58,8 +65,9 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
         } elseif (isset($data['status']) && $data['status'] == 'dismiss') {
             $type['type'] = 'cancel';
         }
+        $bookRequest->update($type);
 
-        return $bookRequest->update($type);
+        return $bookRequest;
     }
 
     public function getDataRequest($data = [], $with = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
@@ -91,5 +99,18 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     public function getBorrowingData($data = [], $with = [], $dataSelect = ['*'])
     {
         return $this->getData($data)->groupBy('owner_id');
+    }
+
+    public function getPromptList()
+    {
+        $date = date_modify(Carbon::now(), config('view.prompt.time'))->format('Y-m-d H:i:s');
+        $result = DB::table('book_user')
+            ->select(['*'])
+            ->where('type', config('model.book_user.type.reading'))
+            ->whereRaw("DATEDIFF('$date', `updated_at`) >= `days_to_read`")
+            ->get()
+            ->groupBy('owner_id');
+
+        return $result;
     }
 }

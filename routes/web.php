@@ -34,7 +34,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/books/sharing/{id}', 'UserController@sharingBook');
             Route::post('/books/remove-owner/{id}', 'UserController@removeOwner');
             Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
-            Route::post('/books/cancelBorrowing/{id}', 'UserController@cancelBorrowing');
+            Route::post('/books/cancelBorrowing/{bookId}', 'UserController@cancelBorrowing');
             Route::get('/my-profile', 'UserController@myProfile')->name('my-profile');
             Route::resource('my-request', 'MyRequestController');
             Route::post('/my-profile/{request}', 'UserController@getBooks');
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/unfollow/{id}', 'UserController@unfollow');
             Route::post('/notifications/{limit}', 'NotificationController@getLimitNotifications');
             Route::get('/notifications', 'NotificationController@getAllNotifications')->name('notifications');
-            Route::post('/notification-update', 'Notification@updateNotification');
+            Route::post('/notification-update', 'NotificationController@updateNotification');
         });
     });
 
