@@ -154,6 +154,7 @@ button.btn-vote i, .content .col-md-2 span {
 /* modal book */
 .modal-pro-content h3 {
     font-size: 23px;
+    overflow: hidden;
 }
 
 .modal-pro-content p {
@@ -635,4 +636,9 @@ img.logo {
 .product-rating img {
     max-width: 60%;
     margin: auto;
+}
+
+.br-theme-fontawesome-stars-o .br-widget a.br-selected:after,
+.br-theme-fontawesome-stars-o .br-widget a.br-fractional:after{
+    color: #f07c29;
 }

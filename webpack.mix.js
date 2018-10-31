@@ -25,7 +25,8 @@ mix.scripts([
     'node_modules/chosen-jquery/lib/chosen.jquery.min.js',
     'node_modules/jquery.counterup/jquery.counterup.min.js',
     'node_modules/waypoints/src/waypoint.js',
-    'node_modules/sweetalert/dist/sweetalert.min.js'
+    'node_modules/sweetalert/dist/sweetalert.min.js',
+    'node_modules/jquery-bar-rating/jquery.barrating.js',
     ], 'public/assets/user/js/app.js');
 mix.copyDirectory('resources/assets/user', 'public/assets/user').browserSync('http://127.0.0.1:8000/');
 mix.copyDirectory('resources/assets/fonts', 'public/assets/user/fonts');
@@ -38,4 +39,5 @@ mix.styles([
     'node_modules/flexslider/flexslider.css',
     'node_modules/chosen-jquery/lib/chosen.min.css',
     'node_modules/animate.css/animate.min.css',
+    'node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css',
 ], 'public/assets/user/css/app.css');

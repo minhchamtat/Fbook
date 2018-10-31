@@ -1,3 +1,4 @@
+
 @extends('layout.app')
 
 @section('header')
@@ -164,7 +165,12 @@
                                                     !!}
                                                 </div>
                                                 <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a></h4>
-                                                {!! substr($book->description, 0, 200) . '...' !!}
+                                                @php $str = preg_replace('/ style=("|\')(.*?)("|\')/', '', $book->description) @endphp
+                                                @if (strlen($str) > 200)
+                                                    {!! mb_substr($str, 0, 200) . '...' !!}
+                                                @else
+                                                    {!! $book->description !!}
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +198,10 @@
     </div>
 </div>
 <!-- shop-main-area-end -->
-@include('layout.section.modal')
+@foreach ($books as $book)
+    @include('layout.section.modal')
+@endforeach
+
 @endsection
 
 @section('footer')

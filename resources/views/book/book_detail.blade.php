@@ -135,7 +135,7 @@
                                                 <a href="#"><i class="fa fa-envelope-o"></i></a>
                                             </div>
                                             <div class="product-addto-links-text">
-                                                <div class="more">{!! $book->description !!}</div>
+                                                <div class="more">{!! preg_replace('/ style=("|\')(.*?)("|\')/', '', $book->description) !!}</div>
                                             </div>
                                         </div>
                                     </div>
