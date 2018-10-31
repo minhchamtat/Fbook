@@ -61,25 +61,30 @@ class ReviewBookController extends Controller
             $owners = $this->book->find($id, ['owners'])->owners;
             $request->merge(['book_id' => $id]);
 
-            $review = $this->review->store($request->all());
-            if ($review && $owners) {
-                foreach ($owners as $owner) {
-                    $info = [
-                        'send_id' => Auth::id(),
-                        'receive_id' => $owner->id,
-                        'target_type' => config('model.target_type.review'),
-                        'target_id' => $review->id,
-                        'viewed' => config('model.viewed.false'),
-                    ];
-                    $this->notification->store($info);
+            $isReview = $this->review->checkReview($request->all())->toArray();
+            if (empty($isReview)) {
+                $review = $this->review->store($request->all());
+                if ($review && $owners) {
+                    foreach ($owners as $owner) {
+                        $info = [
+                            'send_id' => Auth::id(),
+                            'receive_id' => $owner->id,
+                            'target_type' => config('model.target_type.review'),
+                            'target_id' => $review->id,
+                            'viewed' => config('model.viewed.false'),
+                        ];
+                        $this->notification->store($info);
+                    }
                 }
-            }
-            $data = $this->review->find($id);
-            if (isset($data) && $data != null) {
-                $this->book->updateStar($data, $id);
+                $data = $this->review->find($id);
+                if (isset($data) && $data != null) {
+                    $this->book->updateStar($data, $id);
+                }
+
+                return redirect()->route('books.show', $slug);
             }
 
-            return redirect()->route('books.show', $slug);
+            return back();
         } catch (Exception $e) {
             return view('error');
         }
@@ -126,6 +131,7 @@ class ReviewBookController extends Controller
                     'target_id' => $id,
                 ]);
             }
+
             $idBook = (int)last(explode('-', $slug));
             $data = $this->review->find($idBook);
             if (isset($data) && $data != null) {

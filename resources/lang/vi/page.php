@@ -38,7 +38,7 @@ return [
         'title' => 'Bình luận phải dài từ 5 - 191 ký tự.',
         'content' => 'Nội dung phải chứa ít nhất 5 ký tự.',
         'noReview' => 'Chưa có đánh giá nào!',
-        'hasReview' => 'Cảm ơn đánh giá của bạn!',
+        'hasReview' => 'Bạn đã đánh giá rồi',
         'sign' => 'Đăng nhập để gửi đánh giá của bạn!',
     ],
 ];

@@ -465,7 +465,7 @@ ul.list-unstyled.social-list i {
     text-align: center;
 }
 
-.owl-carousel .owl-item img.primary {
+.owl-carousel .owl-item img.primary, img.primary {
     display: block;
     width: auto;
     height: 215px;
@@ -607,4 +607,32 @@ img.logo {
 
 .language-area ul li .fa {
     color: #333333;
+}
+
+.most-product-content h4 a {
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.most-product-img img {
+    height: 86px;
+    display: block;
+    width: auto;
+    overflow: hidden;
+    max-width: inherit;
+}
+
+.single-most-product:last-child {
+    padding-bottom: 18px;
+}
+
+.product-img a img {
+    width: auto;
+}
+
+.product-rating img {
+    max-width: 60%;
+    margin: auto;
 }

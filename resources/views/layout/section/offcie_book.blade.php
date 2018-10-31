@@ -13,23 +13,23 @@
                 </div>
                 <div class="most-product-content">
                     <div class="product-rating">
-                        <ul>
-                            @for ($k = 1; $k < $book->avg_star; $k++)
-                                <li><i class="fa fa-star"></i></li>
-                            @endfor
-
-                            @if (strpos($book->avg_star, '.'))
-                                <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                                @php $k++ @endphp
-                            @endif
-
-                            @while ($k <= 5)
-                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                @php $k++ @endphp
-                            @endwhile
-                        </ul>
+                        {!! Form::select('rating',
+                           [
+                                '' => '',
+                                '1' => 1,
+                                '2' => 2,
+                                '3' => 3,
+                                '4' => 4,
+                                '5' => 5
+                            ],
+                            null,
+                            [
+                                'class' => 'rating',
+                                'data-rating' => $book->avg_star
+                            ])
+                        !!}
                     </div>
-                    <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">{{ $book->title }}</a></h4>
+                    <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a></h4>
                 </div>
             </div>
         @endforeach

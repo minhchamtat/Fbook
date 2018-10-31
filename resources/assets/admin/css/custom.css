@@ -62,3 +62,20 @@ td:last-child {
 .dataTables_wrapper .dataTable td:first-child {
     text-align: left;
 }
+
+.btn.m-btn--custom.btn-sm {
+    padding: .45rem 1rem;
+}
+
+i.fa.fa-long-arrow-alt-up {
+    margin-left: 6px;
+}
+
+span.sort {
+    color: gainsboro;
+    white-space: nowrap;
+}
+
+span.sort.active {
+    color: black;
+}

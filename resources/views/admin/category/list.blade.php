@@ -28,15 +28,6 @@
                             <div class="col-xl-8 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
                                     <div class="col-md-12">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input m-input--solid"
-                                                   placeholder="{{ __('admin.search') }}" id="generalSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                <span>
-                                                    <i class="la la-search"></i>
-                                                </span>
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -44,46 +35,45 @@
                                 <a href="{{ route('category.create') }}"
                                    class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                     <span>
-                                        <i class="la la-cart-plus"></i>
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
                                         <span>{{ __('admin.addNew') }}</span>
                                     </span>
                                 </a>
-                                <div class="m-separator m-separator--dashed d-xl-none"></div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
-                    <!--end: Search Form -->
-
+                </div>
+                <div class="m-portlet__body">
                     <!--begin: Datatable -->
-                    <table class="m-datatable" id="html_table" width="100%">
-                        <thead>
-                        <tr>
-                            <th title="Index">{{ __('admin.cate.index') }}</th>
-                            <th title="Name">{{ __('admin.cate.name') }}</th>
-                            <th title="Description">{{ __('admin.description') }}</th>
-                            <th>{{ __('admin.action') }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @php $s = 1 @endphp
-                        @foreach ($categories as $category)
-                            <tr>
-                                <td>{{ $s++ }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->description }}</td>
-                                <td>
-                                    <a href="{{ url("admin/category/$category->id/edit") }}"
-                                       class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}
-                                    {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
-                                    {!! Form::close() !!}
-                                    <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}"
-                                       class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    <div class="m-portlet__body">
+                        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                            <thead>
+                                <tr>
+                                    <th title="Index">{{ __('admin.cate.index') }}</th>
+                                    <th title="Name">{{ __('admin.cate.name') }}</th>
+                                    <th title="Description">{{ __('admin.description') }}</th>
+                                    <th title="Action">{{ __('admin.action') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $s = 1 @endphp
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td>{{ $s++ }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $category->description }}</td>
+                                        <td>
+                                            <a href="{{ url("admin/category/$category->id/edit") }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                            {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}
+                                                {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
+                                            {!! Form::close() !!}
+                                            <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <!--end: Datatable -->
                 </div>
             </div>
@@ -92,18 +82,9 @@
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function () {
-            $('table#html_table').DataTable({
-                'columnDefs': [{
-                    'targets': 0
-                }],
-                'order': [[2, 'asc']]
-            });
-        });
-    </script>
-    {{ Html::script('admin_asset/assets/demo/default/custom/crud/metronic-datatable/base/html-table.js') }}
-    {{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
-    {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
+{{ Html::script('assets/admin/js/datatable.js') }}
+{{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
+{{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
+
 
 @endsection

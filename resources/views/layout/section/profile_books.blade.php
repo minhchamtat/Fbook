@@ -11,7 +11,9 @@
                                         <img src="{{ asset(config('view.image_paths.book') . $item->medias[0]->path) }}" alt="item" class="primary" />
                                     </a>
                                 @else
-                                    <img src="{{ asset(config('view.image_paths.item') . 'default.jpg') }}" alt="woman" />
+                                    <a href="{{ route('books.show', $item->slug . '-' . $item->id) }}">
+                                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
+                                    </a>
                                 @endif
                                 <div class="quick-view">
                                     <a class="action-view" href="#" data-target="#productModal{{ $item->id }}" data-toggle="modal" title="Quick View">
@@ -21,20 +23,32 @@
                             </div>
                             <div class="product-details text-center">
                                 <div class="product-rating">
-                                    <ul>
-                                        @if ($item->avg_star > 1)
-                                            @for ($j = 0; $j < $item->avg_star; $j++)
-                                                <li><i class="fa fa-star"></i></li>
-                                            @endfor
-                                        @endif
-                                    </ul>
+                                    {!! Form::select('rating',
+                                       [
+                                            '' => '',
+                                            '1' => 1,
+                                            '2' => 2,
+                                            '3' => 3,
+                                            '4' => 4,
+                                            '5' => 5
+                                        ],
+                                        null,
+                                        [
+                                            'class' => 'rating',
+                                            'data-rating' => $item->avg_star
+                                        ])
+                                    !!}
                                 </div>
-                                <h4><a href="{{ route('books.show', $item->slug . '-' . $item->id) }}">{{ $item->title }}</a></h4>
+                                <h4><a href="{{ route('books.show', $item->slug . '-' . $item->id) }}" title="{{ $item->title }}">{{ $item->title }}</a></h4>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
+
+            @foreach ($books[$i] as $book)
+                @include('layout.section.modal')
+            @endforeach
         @endfor
     </div>
     <div class="pagination-area mt-50">
