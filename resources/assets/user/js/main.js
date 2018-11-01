@@ -841,3 +841,15 @@ $('#review').click(function (e) {
         scrollTop: $('#reviews').offset().top - 180
     }, 1000);
 })
+
+$(function() {
+    var star = $('.rating');
+    star.each(function () {
+        var rating = $(this).data('rating');
+        $(this).barrating({
+            theme: 'fontawesome-stars-o',
+            initialRating: rating,
+            readonly: true,
+        });
+   });
+});
