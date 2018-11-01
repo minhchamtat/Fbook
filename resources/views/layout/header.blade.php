@@ -6,15 +6,15 @@
                     @if(Session::get('website-language') == 'en')
                         <div class="language-area">
                             <ul>
-                                <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
-                                            href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}</a>
+                                <li>
+                                    <img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/>
+                                    <a href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}</a>
                                     <i class="fa fa-angle-down"></i>
                                     <div class="header-sub">
                                         <ul>
                                             <li>
                                                 <a href="{{ route('user.change-language', ['vi']) }}">
-                                                    <img src="{{ asset(config('view.image_paths.flag') . '3.png') }}"
-                                                         alt="flag"/>{{ trans('settings.lang.vi') }}
+                                                    <img src="{{ asset(config('view.image_paths.flag') . '3.png') }}" alt="flag"/>{{ trans('settings.lang.vi') }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -78,9 +78,7 @@
                                             @endif
                                             <a class="dropdown-item"
                                                href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
-                                            <a class="dropdown-item"
-                                               href="href="{{ route('my-request.index') }}
-                                            ">{{ trans('settings.header.my_request') }}</a>
+                                            <a class="dropdown-item" href="{{ route('my-request.index') }}">{{ trans('settings.header.my_request') }}</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
                                                 'method' => 'POST',
@@ -136,8 +134,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                     <div class="logo-area text-center logo-xs-mrg">
                         <a href="{{ asset('/') }}">
-                            <img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo"
-                                 class="logo"/>
+                            <img src="{{ asset(config('view.image_paths.logo') . 'logo.png') }}" alt="logo" class="logo logo1"/>
+                            <img src="{{ asset(config('view.image_paths.logo') . 'logo2.png') }}" alt="logo" class="logo">
                         </a>
                     </div>
                 </div>

@@ -268,7 +268,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'favicon.png') }}" alt=""/>
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fitm.png') }}" alt=""/>
                             </a>
                         </li>
                         <li>
@@ -288,7 +288,7 @@
                         </li>
                         <li class="hidden-sm">
                             <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'logo2.png') }}" alt=""/>
+                                <img src="{{ asset(config('view.image_paths.logo') . 'logo4.png') }}" alt=""/>
                             </a>
                         </li>
                     </ul>

@@ -165,11 +165,12 @@
                                                     !!}
                                                 </div>
                                                 <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a></h4>
-                                                @php $str = preg_replace('/ style=("|\')(.*?)("|\')/', '', $book->description) @endphp
+                                                @php $str = strip_tags($book->description) @endphp
+
                                                 @if (strlen($str) > 200)
                                                     {!! mb_substr($str, 0, 200) . '...' !!}
                                                 @else
-                                                    {!! $book->description !!}
+                                                    {!! strip_tags($book->description) !!}
                                                 @endif
                                             </div>
                                         </div>

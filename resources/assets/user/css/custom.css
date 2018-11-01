@@ -642,3 +642,22 @@ img.logo {
 .br-theme-fontawesome-stars-o .br-widget a.br-fractional:after{
     color: #f07c29;
 }
+
+img.logo.logo1 {
+    position: relative;
+    left: 20px;
+    top: -10px;
+}
+
+img.logo-footer {
+    width: 120px;
+    margin-bottom: 2px;
+    position: relative;
+    left: -28px;
+    top: -19px;
+}
+
+a.btn.btn-info.show-more {
+    float: right;
+    margin-top: 40px;
+}

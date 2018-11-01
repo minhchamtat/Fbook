@@ -24,10 +24,10 @@
                     <div class="col-md-7 col-sm-7 col-xs-12">
                         <div class="modal-pro-content">
                             <h3>{{ $book->title }}</h3>
-                            <p>{!! $book->description !!}</p>
+                            <p>{!! strip_tags($book->description) !!}</p>
                         </div>
-                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
-                            <p class="link-detail">{{ trans('settings.book.show_more') }}</p>
+                        <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" class="btn btn-info show-more">
+                            {{ trans('settings.book.show_more') }}
                         </a>
                     </div>
                 </div>
