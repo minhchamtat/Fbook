@@ -100,6 +100,18 @@ return [
             'owner_prompt' => 'my-request.index',
         ],
     ],
+    'links' => [
+        'feedback' => 'https://docs.google.com/forms/d/e/1FAIpQLSeVwREJ9vbPHB3LGDudz9ieePp3Z9xJG96e48_5i9VQj4r5zQ/viewform',
+        'instruction' => '',
+        'banner' => 'https://viblo.asia/announcements/gioi-thieu-state-of-chain-tieu-diem-hackathon-meet-up-blockchain-nam-2018-YWOZrpmp5Q0',
+        'club' => 'https://www.facebook.com/groups/framgia.reading.book.club/',
+        'wsm' => 'https://wsm.framgia.vn/',
+        'fask' => 'http://ask.framgia.vn/',
+        'fitm' => 'https://fitm.framgia.vn/',
+        'fclub' => 'http://club.framgia.vn/',
+        'fgas' => 'https://gas.framgia.vn/',
+        'fsurvey' => 'http://survey.framgia.vn/',
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -24,7 +24,7 @@
                         <a href="">{{ __('settings.default.instruction') }}</a>
                     </li>
                     <li>
-                        <a href="">{{ __('settings.default.feedback') }}</a>
+                        <a href="{{ asset(config('view.links.feedback')) }}" target="_blank">{{ __('settings.default.feedback') }}</a>
                     </li>
                 </ul>
             </div>

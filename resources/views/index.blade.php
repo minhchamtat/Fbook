@@ -125,11 +125,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="banner-img-2">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '5.jpg') }}" alt="banner" /></a>
-                    <div class="banner-text">
-                        <h3>G. Meyer Books & Spiritual Traveler Press</h3>
-                        <h2>Sale up to 30% off</h2>
-                    </div>
+                    <a href="{{ asset(config('view.links.banner')) }}"><img src="{{ asset(config('view.image_paths.banner') . 'state-of-chance.png') }}" alt="banner" /></a>
                 </div>
             </div>
         </div>
@@ -237,11 +233,11 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="section-title-3">
-                    <h3>Latest Tweets</h3>
+                    <h3><a href="{{ asset(config('view.links.club')) }}" target="_blank">Reading Book Club</a></h3>
                 </div>
                 <div class="twitter-content">
                     <div class="twitter-icon">
-                        <a href="#"><i class="fa fa-book" aria-hidden="true"></i></a>
+                        <a><i class="fa fa-book" aria-hidden="true"></i></a>
                     </div>
                     <div class="twitter-text">
                         <p>
@@ -257,38 +253,38 @@
                 <div class="link-follow">
                     <ul>
                         <li>
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'wsm_logo.png') }}" alt=""/>
+                            <a href="{{ asset(config('view.links.wsm')) }}" target="_blank">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'wsm_logo.png') }}" data-toggle="tolltip" title="WSM" alt="WSM"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fask_logo.png') }}" alt=""/>
+                            <a href="{{ asset(config('view.links.fask')) }}" target="_blank">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fask_logo.png') }}" data-toggle="tolltip" title="FAsk" alt=""/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fitm.png') }}" alt=""/>
+                            <a href="{{ asset(config('view.links.fitm')) }}" target="_blank">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fitm.png') }}" data-toggle="tolltip" title="FITM" alt=""/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fclub_logo.png') }}" alt=""/>
+                            <a href="{{ asset(config('view.links.fclub')) }}" target="_blank">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fclub_logo.png') }}" data-toggle="tolltip" title="FClub" alt=""/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fgas_logo.png') }}" alt=""/>
+                            <a href="{{ asset(config('view.links.fgas')) }}" target="_blank">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fgas_logo.png') }}" data-toggle="tolltip" title="FGas" alt=""/>
+                            </a>
+                        </li>
+                        <li class="hidden-sm">
+                            <a href="{{ asset(config('view.links.fsurvey')) }}" target="_blank">
+                                <img src="{{ asset(config('view.image_paths.logo') . 'fsurvey_logo.png') }}" data-toggle="tolltip" title="FSurvey" alt=""/>
                             </a>
                         </li>
                         <li class="hidden-sm">
                             <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fsurvey_logo.png') }}" alt=""/>
-                            </a>
-                        </li>
-                        <li class="hidden-sm">
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'logo4.png') }}" alt=""/>
+                                <img src="{{ asset(config('view.image_paths.logo') . 'logo4.png') }}" data-toggle="tolltip" title="FBook" alt=""/>
                             </a>
                         </li>
                     </ul>

@@ -645,7 +645,7 @@ img.logo {
 
 img.logo.logo1 {
     position: relative;
-    left: 20px;
+    left: 30px;
     top: -10px;
 }
 
@@ -661,3 +661,17 @@ a.btn.btn-info.show-more {
     float: right;
     margin-top: 40px;
 }
+
+.header-search {
+    margin-top: 35px;
+}
+
+img.logo {
+    margin-top: -25px;
+}
+
+.section-title-3 a {
+    color: #0f0f11;
+    text-decoration: none;
+}
+
