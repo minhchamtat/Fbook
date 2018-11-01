@@ -6,7 +6,11 @@
         <div class="container">
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
-                <img align="left" class="fb-image-profile thumbnail" src="{{ $user->avatar }}"/>
+                @if($user->avatar)
+                    <img align="left" src="{{ asset($user->avatar) }}" alt="avatar" class="fb-image-profile thumbnail">
+                @else
+                    <img align="left" src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-image-profile thumbnail">
+                @endif
                 <div class="fb-profile-text floatleft">
                     @if ($user)
                         <h1>{{ $user->name }}</h1>
