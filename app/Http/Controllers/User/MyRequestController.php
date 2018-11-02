@@ -64,9 +64,9 @@ class MyRequestController extends Controller
     public function update(Request $request, $id)
     {
         $request->merge(['id' => $id]);
-        $record = $this->bookUser->UpdateBookRequest($request->all());
+        $record = $this->bookUser->updateBookRequest($request->all());
         if ($record) {
-            $this->notification->find([
+            $notification = $this->notification->find([
                 'send_id' => Auth::id(),
                 'receive_id' => $record->user_id,
                 'target_type' => config('model.target_type.book_user'),

@@ -178,15 +178,15 @@ class UserController extends Controller
         return $bookUser;
     }
 
-    public function cancelBorrowing($id)
+    public function cancelBorrowing($bookId)
     {
         try {
-            $bookUser = $this->bookUser->destroy([
-                'book_id' => $id,
+            $id = $this->bookUser->destroy([
+                'book_id' => $bookId,
                 'user_id' => Auth::id(),
             ]);
 
-            if ($bookUser) {
+            if ($id != 0) {
                 $this->notification->destroy([
                     'send_id' => Auth::id(),
                     'target_type' => config('model.target_type.book_user'),
@@ -194,7 +194,7 @@ class UserController extends Controller
                 ]);
             }
 
-            return $bookUser;
+            return $id;
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -242,5 +242,10 @@ class UserController extends Controller
             'following_id' => $id,
             'follower_id' => Auth::id(),
         ]);
+    }
+
+    public function getPrompt()
+    {
+        return $this->bookUser->getPromptList();
     }
 }

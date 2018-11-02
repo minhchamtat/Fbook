@@ -91,10 +91,13 @@ return [
         'downvote' => 'Upvote your review for the book: ',
         'waiting' => 'Borrowing your book: ',
         'returning' => 'Return your book: ',
+        'reading' => 'Remember: You have to return book:',
+        'prompt' => 'You will be returned book soon',
         'route' => [
             'book' => 'books.show',
             'user' => 'user',
             'review' => 'review.show',
+            'owner_prompt' => 'my-request.index',
         ],
     ],
 
@@ -110,5 +113,10 @@ return [
     */
 
     'compiled' => realpath(storage_path('framework/views')),
+
+    'prompt' => [
+        'time' => '+2 days',
+        'loop_time' => '0 3 * * *',
+    ],
 
 ];

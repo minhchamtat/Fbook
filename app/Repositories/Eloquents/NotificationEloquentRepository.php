@@ -72,6 +72,12 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     $record = array_add($record, 'link', $link);
                     break;
 
+                case config('model.target_type.user'):
+                    $record = array_add($record, 'message', config('view.notifications.prompt'));
+                    $record = array_add($record, 'route', config('view.notifications.route.owner_prompt'));
+                    $record = array_add($record, 'link', null);
+                    break;
+
                 default:
                     break;
             }
@@ -80,21 +86,17 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
         return $records;
     }
 
-    public function find($id)
+    public function find($data)
     {
-        return $this->model()->findOrFail($id);
+        return $record = $this->getData([], $data)->first();
     }
 
-    public function update($data = [])
+    public function update($data)
     {
         try {
-            if (array_has($data, 'id')) {
-                $record = $this->model()->findOrFail($data['id']);
+            $record = $this->model()->findOrFail($data['id']);
 
-                return $record->update($data);
-            }
-
-            return null;
+            return $record->update($data);
         } catch (Exception $e) {
             return $e->getMessage();
         }
