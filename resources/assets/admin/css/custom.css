@@ -2,7 +2,7 @@
     display: -webkit-inline-box;
 }
 .img img {
-    max-width: 100%;
+    width: 100%;
 }
 
 .text {
@@ -44,11 +44,14 @@ img.img-book {
 }
 
 .dataTables_wrapper .dataTable th {
-    cursor: pointer;
+    cursor: default;
+    text-align: center;
+    position: relative;
 }
 
 .dataTables_wrapper .dataTable td:last-child {
-    display: -webkit-inline-box;
+    display: flex;
+    justify-content: center;
 }
 
 td.sorting_1 {
@@ -57,10 +60,6 @@ td.sorting_1 {
 
 td:last-child {
     display: -webkit-box;
-}
-
-.dataTables_wrapper .dataTable td:first-child {
-    text-align: left;
 }
 
 .btn.m-btn--custom.btn-sm {
@@ -74,8 +73,48 @@ i.fa.fa-long-arrow-alt-up {
 span.sort {
     color: gainsboro;
     white-space: nowrap;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 span.sort.active {
     color: black;
+}
+
+input.form-control.form-control-sm {
+    background-color: #f4f5f8;
+    border-color: #f4f5f8;
+    color: #575962;
+    padding: 9px 18px;
+}
+
+div#m_table_1_filter label {
+    width: 90%;
+}
+
+img.logo {
+    width: 110px;
+}
+
+span.sort i {
+    font-size: 11px;
+}
+
+.m-datatable.m-datatable--default>.m-datatable__table>.m-datatable__head .m-datatable__row>.m-datatable__cell>span>i {
+    font-size: 11px;
+    color: black;
+}
+
+.m-datatable.m-datatable--default>.m-datatable__table>.m-datatable__head .m-datatable__row>.m-datatable__cell {
+    position: relative;
+}
+
+table#html_table .sort {
+    right: -37px;
+    top: 15px;
+}
+
+.custom-file .custom-file-label {
+    overflow: hidden;
 }

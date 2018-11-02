@@ -10,7 +10,7 @@
                                 @if ($item->userSend->avatar)
                                     <img src="{{ $item->userSend->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon" />
                                 @else
-                                    <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
+                                    <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
                                 @endif
                             </div>
                             <div class="media-body">

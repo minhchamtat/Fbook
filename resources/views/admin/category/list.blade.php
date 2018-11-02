@@ -42,39 +42,53 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="m-portlet__body">
-                    <!--begin: Datatable -->
-                    <div class="m-portlet__body">
-                        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                            <thead>
+                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                        <thead>
+                            <tr>
+                                <th title="{{ __('admin.cate.index') }}">
+                                    {{ __('admin.cate.index') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="{{ __('admin.cate.name') }}">
+                                    {{ __('admin.cate.name') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="{{ __('admin.description') }}">
+                                    {{ __('admin.description') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th title="{{ __('admin.action') }}">
+                                    {{ __('admin.action') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $s = 1 @endphp
+                            @foreach ($categories as $category)
                                 <tr>
-                                    <th title="Index">{{ __('admin.cate.index') }}</th>
-                                    <th title="Name">{{ __('admin.cate.name') }}</th>
-                                    <th title="Description">{{ __('admin.description') }}</th>
-                                    <th title="Action">{{ __('admin.action') }}</th>
+                                    <td>{{ $s++ }}</td>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->description }}</td>
+                                    <td>
+                                        <a href="{{ url("admin/category/$category->id/edit") }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}
+                                            {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
+                                        {!! Form::close() !!}
+                                        <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @php $s = 1 @endphp
-                                @foreach ($categories as $category)
-                                    <tr>
-                                        <td>{{ $s++ }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->description }}</td>
-                                        <td>
-                                            <a href="{{ url("admin/category/$category->id/edit") }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                            {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}
-                                                {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
-                                            {!! Form::close() !!}
-                                            <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--end: Datatable -->
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -85,6 +99,5 @@
 {{ Html::script('assets/admin/js/datatable.js') }}
 {{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
-
 
 @endsection

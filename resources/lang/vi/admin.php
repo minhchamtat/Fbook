@@ -38,7 +38,7 @@ return [
         'position' => 'Vị trí',
     ],
     'sidebar' => [
-        'dashboard' => 'Trang quản trị!',
+        'dashboard' => 'Trang quản trị',
         'book' => 'Sách',
         'newBook' => 'Thêm mới',
         'listBook' => 'Danh sách',

@@ -46,7 +46,7 @@
                                     </li>
                                     <li title="Email">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <span>{{ $user->email }}</span>
+                                        <span class="email">{{ $user->email }}</span>
                                     </li>
                                     <li title="Phone">
                                         <i class="fa fa-phone-square" aria-hidden="true"></i>

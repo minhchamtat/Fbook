@@ -22,46 +22,89 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
+                    <!--begin: Search Form -->
                     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                         <div class="row align-items-center">
                             <div class="col-xl-8 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-10">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input m-input--solid" placeholder="{{ trans('settings.admin.default.search') }}" id="generalSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                <span>
-                                                    <i class="la la-search"></i>
-                                                </span>
-                                            </span>
-                                        </div>
+                                    <div class="col-md-12">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="{{ route('users.create') }}" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <a href="{{ route('category.create') }}"
+                                    class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                     <span>
-                                        <i class="la la-plus"></i>
-                                        <span>{{ trans('settings.admin.default.create') }}</span>
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <span>{{ __('admin.addNew') }}</span>
                                     </span>
                                 </a>
-                                <div class="m-separator m-separator--dashed d-xl-none"></div>
                             </div>
                         </div>
                     </div>
-                    <table class="m-datatable" id="html_table">
+                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead>
                             <tr>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.default.name') }}</th>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.user.phone') }}</th>
-                                <th class="width-5-percent text-center">{{ trans('settings.admin.user.position') }}</th>
-                                <th class="width-5-percent text-center">{{ trans('settings.admin.user.roles') }}</th>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.user.reputation') }}</th>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.user.employee_code') }}</th>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.user.workspace') }}</th>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.user.office') }}</th>
-                                <th class="width-10-percent text-center">{{ trans('settings.admin.user.chatwork_id') }}</th>
-                                <th class="width-30-percent text-center" colspan="2">{{ trans('settings.admin.default.action') }}</th>
+                                <th class="width-40-percent text-center" title="{{ trans('settings.admin.default.name') }}" >
+                                    {{ trans('settings.admin.default.name') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.phone') }}">
+                                    {{ trans('settings.admin.user.phone') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-5-percent text-center" title="{{ trans('settings.admin.user.position') }}">
+                                    {{ trans('settings.admin.user.position') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-5-percent text-center" title="{{ trans('settings.admin.user.roles') }}">
+                                    {{ trans('settings.admin.user.roles') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.reputation') }}">
+                                    {{ trans('settings.admin.user.reputation') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.employee_code') }}">
+                                    {{ trans('settings.admin.user.employee_code') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.workspace') }}">
+                                    {{ trans('settings.admin.user.workspace') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.office') }}">
+                                    {{ trans('settings.admin.user.office') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.chatwork_id') }}">
+                                    {{ trans('settings.admin.user.chatwork_id') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
+                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.default.action') }}">
+                                    {{ trans('settings.admin.default.action') }}
+                                    <span class="sort">
+                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
+                                    </span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,7 +128,7 @@
                                         <td>{{ $user->workspace }}</td>
                                         <td>{{ $user->office != null ? $user->office->name : null }}</td>
                                         <td class="text-center">{{ $user->chatwork_id }}</td>
-                                        <td width="200">
+                                        <td>
                                             <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                             {!! Form::open([
                                                 'route' => ['users.destroy', $user->id],
@@ -106,8 +149,9 @@
 @endsection
 
 @section('script')
-{{ Html::script('admin_asset/assets/demo/default/custom/crud/metronic-datatable/base/html-table.js') }}
+{{ Html::script('assets/admin/js/table.js') }}
 {{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
-{{ Html::script('admin_asset/assets/demo/default/custom/crud/datatables/data-sources/ajax-server-side.js') }}
+
+
 @endsection

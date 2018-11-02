@@ -1,11 +1,11 @@
-<header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
+<header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200" data-language="{{ Session::get('website-language') }}">
     <div class="m-container m-container--fluid m-container--full-height">
         <div class="m-stack m-stack--ver m-stack--desktop">
             <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="{{ route('home') }}" class="m-brand__logo-wrapper">
-                            <img alt="" src="{{ asset(config('view.image_paths.logo_admin') . 'logo_default_dark.png') }}" />
+                            <img alt="" src="{{ asset(config('view.image_paths.logo') . 'logo5.png') }}" class="logo"/>
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
