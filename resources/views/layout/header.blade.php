@@ -1,4 +1,4 @@
-<header>
+<header data-language="{{ Session::get('website-language') }}">
     <div class="header-top-area">
         <div class="container">
             <div class="row">

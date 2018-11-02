@@ -47,44 +47,44 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead class="text-center">
                             <tr>
-                                <th title="Title">
+                                <th title="{{ __('admin.book.title') }}">
                                     {{ __('admin.book.title') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th title="Author">
+                                <th title="{{ __('admin.book.author') }}">
                                     {{ __('admin.book.author') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th title="Publist date">
+                                <th title="{{ __('admin.book.publishDate') }}">
                                     {{ __('admin.book.publishDate') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th title="Total Page">
+                                <th title="{{ __('admin.book.totalPage') }}">
                                     {{ __('admin.book.totalPage') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th title="Avg star">
+                                <th title="{{ __('admin.book.avgStar') }}">
                                     {{ __('admin.book.avgStar') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th title="View">
+                                <th title="{{ __('admin.book.view') }}">
                                     {{ __('admin.book.view') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
 
                                 </th>
-                                <th title="Actions">
+                                <th title="{{ __('admin.action') }}">
                                     {{ __('admin.action') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
@@ -100,8 +100,9 @@
 @endsection
 
 @section('script')
-{{ Html::script('admin_asset/assets/demo/default/custom/crud/metronic-datatable/base/html-table.js') }}
+
 {{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
 {{ Html::script('assets/admin/js/ajax-server-side.js') }}
+
 @endsection

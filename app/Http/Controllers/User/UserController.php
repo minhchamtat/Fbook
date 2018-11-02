@@ -121,6 +121,10 @@ class UserController extends Controller
             ]);
             $data = Auth::user()->only('id', 'name', 'avatar');
             $data['avatar'] = $data['avatar'];
+
+            if (is_null($data['avatar'])) {
+                $data['avatar'] = asset(config('view.image_paths.user') . '1.png');
+            }
             if ($result !== true) {
                 $record = $this->reputation->store([
                     'point' => config('model.reputation.share_book'),

@@ -50,4 +50,9 @@ jQuery(document).ready(function() {
     $('#customFile').change(function() {
         readURL(this);
     });
+
+    $('#cancel').click(function() {
+        $('#label').text('');
+        $('.img-book').attr('src', '');
+    })
 });

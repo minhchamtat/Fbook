@@ -15,7 +15,7 @@
                 @endif
                 <div class="bestseller-text text-center">
                     <h3>
-                        <a href="{{ route('books.show', $bestSharing[$i]->slug . '-' . $bestSharing[$i]->id) }}">
+                        <a href="{{ route('books.show', $bestSharing[$i]->slug . '-' . $bestSharing[$i]->id) }}" title="{{ $bestSharing[$i]->title }}">
                             {{ $bestSharing[$i]->title }}
                         </a>
                     </h3>
@@ -35,7 +35,7 @@
                 @endif
                 <div class="bestseller-text text-center">
                     <h3>
-                        <a href="{{ route('books.show', $bestSharing[$i]->slug . '-' . $bestSharing[$i]->id) }}">
+                        <a href="{{ route('books.show', $bestSharing[$i]->slug . '-' . $bestSharing[$i]->id) }}" title="{{ $bestSharing[$i]->title }}">
                             {{ $bestSharing[$i]->title }}
                         </a>
                     </h3>

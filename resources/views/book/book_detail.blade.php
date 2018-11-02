@@ -183,7 +183,7 @@
                                                                 <div class="content-comment">
                                                                     <div class="show tip-left">
                                                                         <strong>{{ $review->user->name }}</strong>
-                                                                        <i>{{ $review->created_at }}</i>
+                                                                        <i>{{ $review->updated_at }}</i>
                                                                         @if ($review->user->id == Auth::id())
                                                                             <div class="action">
                                                                                 <a href="{{ route('review.edit', [$book->slug . '-' . $book->id, $review->id]) }}" class="btn btn-info btn-sm a-btn-slide-text">

@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="col-10">
                                             {!! Form::submit(__('admin.submit'), ['class' => 'btn btn-success']) !!}
-                                            {!! Form::reset(__('admin.cancel'), ['class' => 'btn btn-secondary']) !!}
+                                            {!! Form::reset(__('admin.cancel'), ['class' => 'btn btn-secondary', 'id' => 'cancel']) !!}
                                         </div>
                                     </div>
                                 </div>

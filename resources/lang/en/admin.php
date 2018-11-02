@@ -38,7 +38,7 @@ return [
         'position' => 'Position',
     ],
     'sidebar' => [
-        'dashboard' => 'Dashboard!',
+        'dashboard' => 'Dashboard',
         'book' => 'Book',
         'newBook' => 'New Book',
         'listBook' => 'List Book',

@@ -675,3 +675,13 @@ img.logo {
     text-decoration: none;
 }
 
+.intro-list li span.email {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.owl-item.active .slider-animated-1 a {
+    animation-delay: 3.5s;
+}
