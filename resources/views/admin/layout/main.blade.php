@@ -34,7 +34,6 @@
                 @include('admin.layout.sidebar')
                 @yield('content')
             </div>
-            @include('admin.layout.footer')
         </div>
 
         <!-- begin::Scroll Top -->

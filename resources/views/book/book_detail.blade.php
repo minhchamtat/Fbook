@@ -114,18 +114,28 @@
                                         </div>
                                         <div class="product-add-form">
                                             @auth
-                                                <form>
-                                                    @if ($isBooking)
-                                                        <a data-toggle="modal" data-id="{{ $book->id }}" class="btn-cancel-borrowing">{{ trans('settings.book.cancel_borrowing') }}</a>
-                                                    @else
-                                                        <a data-toggle="modal" href="#borrowingModal" data-id="{{ $book->id }}" class="btn-borrow">{{ trans('settings.book.borrow_book') }}</a>
-                                                    @endif
-                                                    @if ($isOwner)
-                                                        <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.remove_owner') }}</a>
-                                                    @else
-                                                        <a data-toggle="modal" class="btn-share" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.i_have_this_book') }}</a>
-                                                    @endif
-                                                </form>
+                                                @if ($book->owners->count() > 0)
+                                                    <form>
+                                                        @if ($isBooking)
+                                                            <a data-toggle="modal" data-id="{{ $book->id }}" class="btn-cancel-borrowing">{{ trans('settings.book.cancel_borrowing') }}</a>
+                                                        @else
+                                                            <a data-toggle="modal" href="#borrowingModal" data-id="{{ $book->id }}" class="btn-borrow">{{ trans('settings.book.borrow_book') }}</a>
+                                                        @endif
+                                                        @if ($isOwner)
+                                                            <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.remove_owner') }}</a>
+                                                        @else
+                                                            <a data-toggle="modal" class="btn-share" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.i_have_this_book') }}</a>
+                                                        @endif
+                                                    </form>
+                                                @else
+                                                    <form>
+                                                        @if ($isOwner)
+                                                            <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.remove_owner') }}</a>
+                                                        @else
+                                                            <a data-toggle="modal" class="btn-share" data-id="{{ $book->id }}" href="#" owner="{{ Auth::id() }}">{{ trans('settings.book.i_have_this_book') }}</a>
+                                                        @endif
+                                                    </form>
+                                                @endif
                                             @endauth
                                         </div>
                                         <div class="product-social-links">
