@@ -9,6 +9,7 @@ use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\RoleUserRepository;
 use App\Http\Requests\UserRequest;
 use App\Eloquent\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -83,6 +84,7 @@ class UserController extends Controller
                 $this->roleUserRepository->store($request->roles, $id);
             }
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
         }
 
         return redirect()->route('users.index');
@@ -128,13 +130,20 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $this->repository->update($id, $request->all());
+        try {
+            $this->repository->update($id, $request->all());
 
-        if ($request->changed) {
-            $this->updateRole($request->role, $id);
+            if ($request->changed) {
+                $this->updateRole($request->role, $id);
+            }
+            Session::flash('success', trans('settings.success.store'));
+            
+            return back();
+        } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+            
+            return back();
         }
-
-        return back();
     }
 
     public function updateRole($roles, $userId)
@@ -157,9 +166,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->repository->destroy($id);
-        $this->roleUserRepository->destroy($id);
+        try {
+            $this->repository->destroy($id);
+            $this->roleUserRepository->destroy($id);
+            Session::flash('success', trans('settings.success.delete'));
 
-        return redirect()->route('users.index');
+            return redirect()->route('users.index');
+        } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
+            return redirect()->route('users.index');
+        }
     }
 }

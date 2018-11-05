@@ -190,4 +190,20 @@ return [
         'en' => 'English',
         'vi' => 'Tiếng Việt',
     ],
+
+    'success' => [
+        'store' => 'You stored success',
+        'update' => 'You updated success',
+        'delete' => 'You deleted success',
+        'sharing_book' => 'You shared success',
+        'remove_owner' => 'You removed success',
+        'borrowing_book' => 'You borrowed the book',
+        'cancel_borrowing_book' => 'You canceled success',
+        'follow' => 'You followed success',
+        'unfollow' => 'You unfollowed success',
+    ],
+
+    'unsuccess' => [
+        'error' => 'Error :messages',
+    ],
 ];

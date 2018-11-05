@@ -259,11 +259,11 @@
                     @endauth
                     </div>
                     <div class="new-book-area mt-60">
-                        <div class="section-title text-center mb-30">
-                            <h3>{{ __('page.book.upsell') }}</h3>
-                        </div>
-                        <div class="tab-active-2 owl-carousel">
-                            @if ($relatedBooks && $relatedBooks->count() > 0)
+                        @if (isset($relatedBooks) && $relatedBooks->count() >= 3)
+                            <div class="section-title text-center mb-30">
+                                <h3>{{ __('page.book.upsell') }}</h3>
+                            </div>
+                            <div class="tab-active-2 owl-carousel">
                                 @for ($i = 3; $i < $relatedBooks->count(); $i++)
                                     <div class="product-wrapper">
                                         <div class="product-img">
@@ -299,19 +299,19 @@
                                         </div>
                                     </div>
                                 @endfor
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="shop-left">
-                        <div class="left-title mb-20">
-                            <h4>{{ trans('settings.book.related_books') }}</h4>
-                        </div>
-                        <div class="random-area mb-30">
-                            <div class="product-active-2 owl-carousel">
-                                <div class="product-total-2">
-                                    @if ($relatedBooks)
+                        @if (isset($relatedBooks) && $relatedBooks->count() > 0 && $relatedBooks->count() > 2)
+                            <div class="left-title mb-20">
+                                <h4>{{ trans('settings.book.related_books') }}</h4>
+                            </div>
+                            <div class="random-area mb-30">
+                                <div class="product-active-2 owl-carousel">
+                                    <div class="product-total-2">
                                         @for ($i = 0; $i < 3; $i++)
                                             <div class="single-most-product bd mb-18">
                                                 @if ($relatedBooks[$i]->medias->count() > 0)
@@ -349,13 +349,13 @@
                                                 </div>
                                             </div>
                                         @endfor
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="banner-area mb-30">
                             <div class="banner-img-2">
-                                <a href="#"><img src="{{ asset('assets/img/banner/33.jpg') }}" alt="banner" /></a>
+                                <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '33.jpg') }}" alt="banner" /></a>
                             </div>
                         </div>
                     </div>

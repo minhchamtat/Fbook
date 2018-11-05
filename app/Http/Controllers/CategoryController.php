@@ -6,6 +6,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Repositories\Contracts\CategoryRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -38,6 +39,8 @@ class CategoryController extends Controller
 
             return back()->with('success', __('admin.success'));
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('admin.error.error');
         }
     }
@@ -68,6 +71,8 @@ class CategoryController extends Controller
 
             return back()->with('success', __('admin.success'));
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('admin.error.error');
         }
     }
@@ -79,6 +84,8 @@ class CategoryController extends Controller
 
             return back()->with('success', __('admin.success'));
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+            
             return view('admin.error.error');
         }
     }

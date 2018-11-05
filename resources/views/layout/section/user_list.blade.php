@@ -28,11 +28,11 @@
     <div class="mt-50 shop-left">
         <div class="page-number">
             <ul class="pagination">
-                <li class="disabled"><a href="#">«</a></li>
+                <li class="disabled"><a>«</a></li>
                 @for ($i = 0; $i < count($data); $i++)
                     <li class="status-page"><a data-target="{{ $type }}" href="#{{ $type . $i }}">{{ $i + 1 }}</a></li>
                 @endfor
-                <li class="disabled"><a href="#">»</a></li>
+                <li class="disabled"><a>»</a></li>
             </ul>
         </div>
     </div>

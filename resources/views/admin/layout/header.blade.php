@@ -795,5 +795,6 @@
             </div>
         </div>
     </div>
+    @include ('layout.notify')
 </header>
 
