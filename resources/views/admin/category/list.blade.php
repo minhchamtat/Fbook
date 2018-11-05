@@ -7,6 +7,16 @@
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.book.cate') }}</h3>
                 </div>
+                <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                    <a href="{{ route('category.create') }}"
+                       class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                            <span>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span>{{ __('admin.addNew') }}</span>
+                            </span>
+                    </a>
+                    <div class="m-separator m-separator--dashed d-xl-none"></div>
+                </div>
             </div>
         </div>
         <div class="m-content">
@@ -31,17 +41,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="{{ route('category.create') }}"
-                                   class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                    <span>
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                        <span>{{ __('admin.addNew') }}</span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead>
                             <tr>
@@ -76,8 +75,8 @@
                             @foreach ($categories as $category)
                                 <tr>
                                     <td>{{ $s++ }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
+                                    <td title="{{ $category->name }}">{{ $category->name }}</td>
+                                    <td title="{{ $category->description }}">{{ $category->description }}</td>
                                     <td>
                                         <a href="{{ url("admin/category/$category->id/edit") }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}

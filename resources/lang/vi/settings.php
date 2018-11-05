@@ -175,6 +175,7 @@ return [
         'my_request' => 'Yêu cầu mượn sách',
         'search' => 'Tìm kiếm',
         'dashboard' => 'Trang Quản Trị',
+        'results' => 'Kết quả',
     ],
     'lang' => [
         'en' => 'English',

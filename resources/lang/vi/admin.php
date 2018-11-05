@@ -67,6 +67,7 @@ return [
         'edit' => 'Chỉnh sửa sách',
         'sku' => 'SKU',
         'cate' => 'Danh mục',
+        'description' => 'Mô tả',
         'placeHolder' => [
             'title' => 'Nhập tên sách...',
             'author' => 'Nhập tên tác giả...',

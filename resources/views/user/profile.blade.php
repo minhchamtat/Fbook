@@ -125,11 +125,11 @@
                             <div class="pagination-area mt-50">
                                 <div class="page-number">
                                     <ul class="pagination">
-                                        <li class="disabled"><a href="#">«</a></li>
+                                        <li class="disabled"><a>«</a></li>
                                         @for ($i = 0; $i < count($followings); $i++)
                                             <li class="status-page"><a data-target="following" href="#following{{ $i }}">{{ $i + 1 }}</a></li>
                                         @endfor
-                                        <li><a href="#">»</a></li>
+                                        <li><a>»</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -166,11 +166,11 @@
                             <div class="pagination-area mt-50">
                                 <div class="page-number">
                                     <ul class="pagination">
-                                        <li class="disabled"><a href="#">«</a></li>
+                                        <li class="disabled"><a>«</a></li>
                                         @for ($i = 0; $i < count($followers); $i++)
                                             <li class="status-page"><a data-target="follower" href="#follower{{ $i }}">{{ $i + 1 }}</a></li>
                                         @endfor
-                                        <li><a href="#">»</a></li>
+                                        <li><a>»</a></li>
                                     </ul>
                                 </div>
                             </div>

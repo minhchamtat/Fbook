@@ -685,3 +685,18 @@ img.logo {
 .owl-item.active .slider-animated-1 a {
     animation-delay: 3.5s;
 }
+
+.account-area ul li {
+    margin-top: 8px;
+}
+
+.entry-header-title h2 {
+    text-align: center;
+}
+
+.suggestions-list li {
+    padding: 20px 15px;
+}
+.h5, h5 {
+    text-transform: uppercase;
+}
