@@ -12,23 +12,31 @@ use Yajra\Datatables\DataTables;
 use App\Eloquent\Book;
 use Symfony\Component\Routing\Annotation\Route;
 use Exception;
+use Auth;
+use App\Repositories\Contracts\OwnerRepository;
 
 class BookController extends Controller
 {
     protected $book;
+
     protected $media;
+
     protected $bookCategory;
+
+    protected $owner;
 
     public function __construct(
         BookRepository $book,
         MediaRepository $media,
         BookCategoryRepository $bookCategory,
-        CategoryRepository $category
+        CategoryRepository $category,
+        OwnerRepository $owner
     ) {
         $this->book = $book;
         $this->media = $media;
         $this->bookCategory = $bookCategory;
         $this->category = $category;
+        $this->owner = $owner;
     }
 
     public function index()
@@ -76,6 +84,12 @@ class BookController extends Controller
             }
             //create image
             $this->media->store($request->all());
+
+            $data = [
+                'user_id' => Auth::user()->id,
+                'book_id' => $book->id,
+            ];
+            $this->owner->store($data);
 
             return redirect("admin/book/$book->id/edit")->with('success', __('admin.success'));
         } catch (Exception $e) {

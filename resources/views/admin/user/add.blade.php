@@ -29,7 +29,7 @@
                                         'name',
                                         trans('settings.admin.default.name'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                         ]
                                     ) !!}
                                     <div class="col-10">
@@ -50,7 +50,7 @@
                                         'email',
                                         trans('settings.admin.user.email'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                         ]
                                     ) !!}
                                     <div class="col-10">
@@ -96,10 +96,7 @@
                                     ) !!}
                                     <div class="col-10">
                                         {!! Form::file(
-                                            'img',
-                                            [
-                                                'required' => 'required'
-                                            ]
+                                            'img'
                                         )!!}
                                     </div>
                                 </div>
@@ -108,7 +105,7 @@
                                         'password',
                                         trans('settings.admin.user.password'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                         ]
                                     ) !!}
                                     <div class="col-10">
@@ -128,7 +125,7 @@
                                         'password_confirmation',
                                         trans('settings.admin.user.re_password'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                             'id' => 'password-confirm',
                                         ]
                                     ) !!}
@@ -149,7 +146,7 @@
                                         'position',
                                         trans('settings.admin.user.position'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                         ]
                                     ) !!}
                                     <div class="col-10">
@@ -197,7 +194,7 @@
                                         'employee_code',
                                         trans('settings.admin.user.employee_code'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                         ]
                                     ) !!}
                                     <div class="col-10">
@@ -218,7 +215,7 @@
                                         'workspace',
                                         trans('settings.admin.user.workspace'),
                                         [
-                                            'class' => 'col-2 col-form-label',
+                                            'class' => 'col-2 col-form-label required',
                                         ]
                                     ) !!}
                                     <div class="col-10">

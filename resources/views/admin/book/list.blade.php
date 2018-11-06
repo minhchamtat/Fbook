@@ -101,7 +101,7 @@
 
 @section('script')
 
-{{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
+{{ Html::script('assets/admin/js/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
 {{ Html::script('assets/admin/js/ajax-server-side.js') }}
 

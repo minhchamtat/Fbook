@@ -20,10 +20,11 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
         return $this->model()->create($data);
     }
 
-    public function show($data = [])
+    public function show($data = [], $with = ['user'])
     {
         $review = Review::where('book_id', '=', $data)
             ->orderBy('created_at', 'desc')
+            ->with($with)
             ->paginate(config('view.paginate.review'));
 
         return $review;

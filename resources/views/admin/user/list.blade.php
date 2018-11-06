@@ -125,8 +125,9 @@
                                             {!! Form::open([
                                                 'route' => ['users.destroy', $user->id],
                                                 'method' => 'DELETE',
+                                                'id' => $user->id
                                             ]) !!}
-                                            <button class="btn btn-danger" onclick="return confirm('{{ trans('settings.admin.default.are_you_sure')}} ')"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-9"><i class="fa fa-trash"></i></button>
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>
@@ -142,7 +143,7 @@
 
 @section('script')
 {{ Html::script('assets/admin/js/table.js') }}
-{{ Html::script('admin_asset/assets/demo/default/custom/components/base/sweetalert2.js') }}
+{{ Html::script('assets/admin/js/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
 
 
