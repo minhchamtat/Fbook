@@ -109,9 +109,7 @@
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions">
                                         <div class="row">
-                                            <div class="col-2">
-                                            </div>
-                                            <div class="col-10">
+                                            <div class="col-12">
                                                 {!! Form::submit(__('admin.submit'), ['class' => 'btn btn-success']) !!}
                                                 {!! Form::reset(__('admin.reset'), ['class' => 'btn btn-secondary']) !!}
                                             </div>

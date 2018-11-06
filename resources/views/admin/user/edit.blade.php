@@ -78,7 +78,7 @@
                                             'class' => 'col-2 col-form-label',
                                         ]
                                     ) !!}
-                                    <div class="col-8">
+                                    <div class="col-10">
                                         {!! Form::text(
                                             'phone',
                                             $user->phone,
@@ -251,9 +251,7 @@
                             <div class="m-portlet__foot m-portlet__foot--fit">
                                 <div class="m-form__actions">
                                     <div class="row">
-                                        <div class="col-2">
-                                        </div>
-                                        <div class="col-8">
+                                        <div class="col-12">
                                             {!! Form::submit(
                                                 trans('settings.admin.default.submit'),
                                                 [

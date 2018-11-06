@@ -74,7 +74,7 @@ span.sort {
     color: gainsboro;
     white-space: nowrap;
     position: absolute;
-    top: 0px;
+    top: 10px;
     right: 0px;
 }
 
@@ -117,4 +117,16 @@ table#html_table .sort {
 
 .custom-file .custom-file-label {
     overflow: hidden;
+}
+
+.row {
+    margin-top: -15px;
+}
+
+.col-md-6 {
+    margin-bottom: 30px;
+}
+
+.col-12 {
+    text-align: center;
 }

@@ -7,6 +7,16 @@
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.user.user') }}</h3>
                 </div>
+                <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                    <a href="{{ route('users.create') }}"
+                       class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                            <span>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span>{{ __('admin.addNew') }}</span>
+                            </span>
+                    </a>
+                    <div class="m-separator m-separator--dashed d-xl-none"></div>
+                </div>
             </div>
         </div>
 
@@ -15,9 +25,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
-                                {{ __('admin.user.listUser') }}
-                            </h3>
+                            <h3 class="m-portlet__head-text">{{ __('admin.user.listUser') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -30,15 +38,6 @@
                                     <div class="col-md-12">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="{{ route('category.create') }}"
-                                    class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                    <span>
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                        <span>{{ __('admin.addNew') }}</span>
-                                    </span>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,7 @@
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th class="width-5-percent text-center" title="{{ trans('settings.admin.user.roles') }}">
+                                <th class="width-5-percent text-center" title="{{ trans('settings.admin.user.roles') }}" width="120px">
                                     {{ trans('settings.admin.user.roles') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
@@ -77,12 +76,6 @@
                                 </th>
                                 <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.employee_code') }}">
                                     {{ trans('settings.admin.user.employee_code') }}
-                                    <span class="sort">
-                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
-                                    </span>
-                                </th>
-                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.workspace') }}">
-                                    {{ trans('settings.admin.user.workspace') }}
                                     <span class="sort">
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
@@ -125,7 +118,6 @@
                                         </td>
                                         <td><span class="text-center">{{ $user->reputation_point }}</span></td>
                                         <td>{{ $user->employee_code }}</td>
-                                        <td>{{ $user->workspace }}</td>
                                         <td>{{ $user->office != null ? $user->office->name : null }}</td>
                                         <td class="text-center">{{ $user->chatwork_id }}</td>
                                         <td>

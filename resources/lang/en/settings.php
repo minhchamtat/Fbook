@@ -179,6 +179,7 @@ return [
         ],
         'search' => 'Search',
         'dashboard' => 'Dashboard',
+        'results' => 'Results',
     ],
 
     'notifications' => [

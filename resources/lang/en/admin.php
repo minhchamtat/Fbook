@@ -67,6 +67,7 @@ return [
         'edit' => 'Edit Book',
         'sku' => 'SKU',
         'cate' => 'Categories',
+        'description' => 'Description',
         'placeHolder' => [
             'title' => 'Title in here ...',
             'author' => 'Author of book...',

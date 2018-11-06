@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     @include('admin.layout.notification')
                     <div class="m-portlet m-portlet--tab">
-                        {!! Form::open(['method' => 'POST', 'route' => ['category.store']]) !!}
+                        {!! Form::open(['method' => 'POST', 'route' => ['category.store'], 'class' => 'm-form m-form--fit m-form--label-align-right']) !!}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('name', __('admin.cate.name'), ['class' => 'col-2']) !!}
@@ -33,11 +33,9 @@
                             <div class="m-portlet__foot m-portlet__foot--fit">
                                 <div class="m-form__actions">
                                     <div class="row">
-                                        <div class="col-2">
-                                        </div>
-                                        <div class="col-10">
+                                        <div class="col-12">
                                             {!! Form::submit(__('admin.submit'), ['class' => 'btn btn-success']) !!}
-                                            {!! Form::reset(__('admin.cancel'), ['class' => 'btn btn-secondary']) !!}
+                                            {!! Form::reset(__('admin.reset'), ['class' => 'btn btn-secondary']) !!}
                                         </div>
                                     </div>
                                 </div>

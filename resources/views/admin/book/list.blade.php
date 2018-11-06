@@ -7,6 +7,16 @@
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">{{ __('admin.book.book') }}</h3>
                 </div>
+                <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                    <a href="{{ route('book.create') }}"
+                       class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                            <span>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span>{{ __('admin.addNew') }}</span>
+                            </span>
+                    </a>
+                    <div class="m-separator m-separator--dashed d-xl-none"></div>
+                </div>
             </div>
         </div>
 
@@ -31,16 +41,6 @@
 
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="{{ route('book.create') }}"
-                                   class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                    <span>
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                        <span>{{ __('admin.addNew') }}</span>
-                                    </span>
-                                </a>
-                                <div class="m-separator m-separator--dashed d-xl-none"></div>
                             </div>
                         </div>
                     </div>

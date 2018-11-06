@@ -3,18 +3,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    @if(Session::get('website-language') == 'en')
+                    @if(Session::get('website-language') == 'vi')
                         <div class="language-area">
                             <ul>
                                 <li>
-                                    <img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/>
-                                    <a href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}</a>
+                                    <img src="{{ asset(config('view.image_paths.flag') . '3.png') }}" alt="flag"/>
+                                    <a href="{{ route('user.change-language', ['vi']) }}">{{ trans('settings.lang.vi') }}</a>
                                     <i class="fa fa-angle-down"></i>
                                     <div class="header-sub">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('user.change-language', ['vi']) }}">
-                                                    <img src="{{ asset(config('view.image_paths.flag') . '3.png') }}" alt="flag"/>{{ trans('settings.lang.vi') }}
+                                                <a href="{{ route('user.change-language', ['en']) }}">
+                                                    <img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/>{{ trans('settings.lang.en') }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -25,15 +25,15 @@
                     @else
                         <div class="language-area">
                             <ul>
-                                <li><img src="{{ asset(config('view.image_paths.flag') . '3.png') }}" alt="flag"/><a
-                                            href="{{ route('user.change-language', ['vi']) }}">{{ trans('settings.lang.vi') }}</a>
+                                <li><img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}" alt="flag"/><a
+                                            href="{{ route('user.change-language', ['en']) }}">{{ trans('settings.lang.en') }}</a>
                                     <i class="fa fa-angle-down"></i>
                                     <div class="header-sub">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('user.change-language', ['en']) }}">
-                                                    <img src="{{ asset(config('view.image_paths.flag') . '1.jpg') }}"
-                                                         alt="flag"/>{{ trans('settings.lang.en') }}
+                                                <a href="{{ route('user.change-language', ['vi']) }}">
+                                                    <img src="{{ asset(config('view.image_paths.flag') . '3.png') }}"
+                                                         alt="flag"/>{{ trans('settings.lang.vi') }}
                                                 </a>
                                             </li>
                                         </ul>
