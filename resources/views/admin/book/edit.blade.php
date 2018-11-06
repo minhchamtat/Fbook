@@ -19,13 +19,13 @@
                             {!! Form::open(['method' => 'PUT', 'route' => ['book.update', $book->id], 'files' => 'true', 'class' => 'm-form m-form--fit m-form--label-align-right']) !!}
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('title', __('admin.book.title'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('title', __('admin.book.title'), ['class' => 'col-2 required']) !!}
                                         <div class="col-10">
                                             {!! Form::text('title', $book->title, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.title')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('description', __('admin.description'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('description', __('admin.description'), ['class' => 'col-2 required']) !!}
                                         <div class="col-10">
                                             {!! Form::textarea('description', $book->description, ['id' => 'mytextarea']) !!}
                                         </div>
@@ -43,46 +43,40 @@
                                                 ])
                                             !!}
                                             {!! Form::label('customFile', __('admin.book.placeHolder.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
-                                            @if (isset($book->medias[0]->id))
+                                            @if ($book->medias[0]->count() > 0)
                                                 {!! Form::hidden('avatar_old', $book->medias[0]->id) !!}
                                             @else
                                                 {!! Form::hidden('avatar_old') !!}
                                             @endif
                                         </div>
                                         <div class="col-4 offset-3 mt-3">
-                                            @if (isset($book->medias[0]->id))
-                                                <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="" class="img-book">
+                                            @if ($book->medias[0]->count() > 0)
+                                                <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="img-book" class="img-book">
                                             @else
                                                 <img src="" alt="" class="img-book">
                                             @endif
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('author', __('admin.book.author'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('author', __('admin.book.author'), ['class' => 'col-2 required']) !!}
                                         <div class="col-10">
                                             {!! Form::text('author', $book->author, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.author')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('date', __('admin.book.publishDate'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('date', __('admin.book.publishDate'), ['class' => 'col-2 required']) !!}
                                         <div class="col-10">
                                             {!! Form::date('publish_date', $book->publish_date, ['class' => 'form-control m-input', 'id' => 'example-datetime-local-input']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('date', __('admin.book.totalPage'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('date', __('admin.book.totalPage'), ['class' => 'col-2 required']) !!}
                                         <div class="col-10">
                                             {!! Form::number('total_pages', $book->total_pages, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        {!! Form::label('sku', __('admin.book.sku'), ['class' => 'col-2']) !!}
-                                        <div class="col-10">
-                                            {!! Form::text('sku', $book->sku, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.sku')]) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        {!! Form::label('category', __('admin.book.cate'), ['class' => 'col-2']) !!}
+                                        {!! Form::label('category', __('admin.book.cate'), ['class' => 'col-2 required']) !!}
                                         <div class="col-9">
                                             <div class="row">
                                                 @foreach ($categories as $cat)

@@ -68,6 +68,7 @@ class Book extends Model
         return $this->morphMany(Media::class, 'target')
             ->orderBy('priority', 'desc')
             ->select([
+                'id',
                 'target_id',
                 'path',
             ]);

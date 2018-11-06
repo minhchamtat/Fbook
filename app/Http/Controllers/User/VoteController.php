@@ -59,15 +59,15 @@ class VoteController extends Controller
             return config('view.vote.login');
         }
 
+        $data = [];
         if ($request->vote == 1) {
             if ($vote = $this->vote->voteUp($review)) {
                 if ($vote->status == '0') {
                     $data = ['noup'];
-                    $this->review->upVote($id, $data);
                 } else {
                     $data = ['up'];
-                    $this->review->upVote($id, $data);
                 }
+                $this->review->upVote($id, $data);
             } else {
                 $data = ['error'];
             }
@@ -75,11 +75,10 @@ class VoteController extends Controller
             if ($vote = $this->vote->voteDown($review)) {
                 if ($vote->status == '0') {
                     $data = ['nodown'];
-                    $this->review->downVote($id, $data);
                 } else {
                     $data = ['down'];
-                    $this->review->downVote($id, $data);
                 }
+                $this->review->downVote($id, $data);
             } else {
                 $data = ['error'];
             }

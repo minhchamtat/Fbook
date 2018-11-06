@@ -22,13 +22,13 @@
                             ]) !!}
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('name', __('admin.cate.name'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('name', __('admin.cate.name'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
                                         {!! Form::text('name', $category->name, ['class' => 'form-control m-input', 'placeHolder' => __('admin.cate.placeHolder.title'), 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('description', __('admin.description'), ['class' => 'col-2']) !!}
+                                    {!! Form::label('description', __('admin.description'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
                                         {!! Form::textarea('description', $category->description, ['id' => 'mytextarea', 'required']) !!}
                                     </div>

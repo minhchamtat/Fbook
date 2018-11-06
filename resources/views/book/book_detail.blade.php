@@ -145,7 +145,7 @@
                                                 <a href="#"><i class="fa fa-envelope-o"></i></a>
                                             </div>
                                             <div class="product-addto-links-text">
-                                                <div class="more">{!! preg_replace('/ style=("|\')(.*?)("|\')/', '', $book->description) !!}</div>
+                                                <div class="more">{!! ($book->description) !!}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +235,7 @@
                                         @endif
                                         @if ($flag == true)
                                             <div class="button">
-                                                <a href="{{ route('review.create', $book->slug . '-' . $book->id) }}" class="btn btn-primary"> Add Review</a>
+                                                <a href="{{ route('review.create', $book->slug . '-' . $book->id) }}" class="btn btn-primary">{{ __('settings.review.add') }}</a>
                                             </div>
                                         @endif
                                         @if (!Auth::check())
@@ -378,7 +378,7 @@
                         'data-id' => $book->id,
                     ]) !!}
                 <div class="modal-body row">
-                    <div class="owner-input"> 
+                    <div class="owner-input">
                         @if ($book->owners)
                             @foreach ($book->owners as $owner)
                                 <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">

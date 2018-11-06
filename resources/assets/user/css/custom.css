@@ -544,6 +544,7 @@ label.custom-file-label.col-10.ml-3 {
     padding: 8px 23px;
     margin-left: 14px;
     width: 100%;
+    overflow: hidden;
 }
 
 .col-10.custom-file {

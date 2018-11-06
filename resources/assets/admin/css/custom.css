@@ -130,3 +130,9 @@ table#html_table .sort {
 .col-12 {
     text-align: center;
 }
+
+label.required::after {
+    content: '*';
+    color: red;
+    margin-left: 5px;
+}

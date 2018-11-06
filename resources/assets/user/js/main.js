@@ -1,7 +1,28 @@
-
 (function($) {
     "use strict";
-
+    var language = $('header').data('language');
+    var textShare = 'Are you sure you want to share this book?';
+    var textLogin = 'You need login to action';
+    var textRemove = 'Are you sure you want to remove?';
+    var textCancel = 'Cancel Borrowing';
+    var textCancelAlert = 'Are you sure you want to cancel?';
+    var textBorrow = 'Borrow Book';
+    var textConfirm = 'Are you sure?';
+    var textDeleted = 'Once deleted, you will not be able to recover!';
+    var textRemoveOwner = 'Remove Owner';
+    var textBook = 'I have this book';
+    if (language == 'vi') {
+        textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
+        textLogin = 'Bạn cần đăng nhập để tiếp tục';
+        textRemove = 'Bạn có chắc chắn muốn xóa?';
+        textCancel = 'Hủy mượn';
+        textCancelAlert = 'Bạn có chắc chắn muốn hủy mượn?';
+        textBorrow = 'Mượn sách';
+        textConfirm = 'Bạn có chắc chắn?';
+        textDeleted = 'Một khi đã xóa bạn không thể khôi phục lại!';
+        var textRemoveOwner = 'Dừng chia sẻ';
+        var textBook = 'Tôi có cuốn sách này';
+    }
     var header = $('#header-sticky');
     var win = $(window);
 
@@ -241,7 +262,7 @@
     $(document).on('click', '.btn-share', function() {
         var obj = $(this);
         swal({
-            title: 'Are you sure you want to share this book?',
+            title: textShare,
             icon: 'warning',
             buttons: true,
             dangerMode: true,
@@ -262,7 +283,7 @@
                     form += '<input name="owner_id" type="radio" value="' + res.id + '">' + res.name;
                     form += '</div>';
                     $('.owner-input').append(form);
-                    obj.html('Remove Owner');
+                    obj.html(textRemoveOwner);
                     obj.removeClass('btn-share').addClass('btn-remove-owner');
                 })
                 .fail(function() {
@@ -275,7 +296,7 @@
     $(document).on('click', '.btn-remove-owner', function() {
         var obj = $(this);
         swal({
-            title: 'Are you sure you want to remove?',
+            title: textRemove,
             icon: 'warning',
             buttons: true,
             dangerMode: true,
@@ -291,7 +312,7 @@
                 .done(function(res) {
                     $('#user-' + res).remove();
                     $('#owner' + auth).remove();
-                    obj.html('I have this book');
+                    obj.html(textBook);
                     obj.removeClass().addClass('btn-share');
                 })
                 .fail(function() {
@@ -316,7 +337,7 @@
             data: f.serialize(),
         })
         .done(function(data) {
-            obj.html('Cancel Borrowing');
+            obj.html(textCancel);
             obj.attr('href', '#');
             obj.removeClass().addClass('btn-cancel-borrowing');
             $('#borrowingModal').modal('hide');
@@ -348,7 +369,7 @@
     $(document).on('click', '.btn-cancel-borrowing', function() {
         var obj = $(this);
         swal({
-            title: 'Are you sure you want to cancel?',
+            title: textCancelAlert,
             icon: 'warning',
             buttons: true,
             dangerMode: true,
@@ -361,7 +382,7 @@
                     data: { id: id },
                 })
                 .done(function(res) {
-                    obj.html('Borrow Book');
+                    obj.html(textBorrow);
                     obj.attr('href', '#modalBorrowing');
                     obj.removeClass().addClass('btn-borrow');
                     var book_id = $('.detail-tabs').attr('data-id');
@@ -596,7 +617,7 @@ $(document).on('click', '.login', function(e) {
     el.class = 'btn btn-info';
     el.innerText = 'Login WSM';
     swal({
-        title: 'You need login to review!',
+        title: textLogin,
         content: el,
         className: 'review',
     });
@@ -606,8 +627,8 @@ $(document).on('click', '.notify', function(e) {
     e.preventDefault();
     var form = $(this).parents('form').attr('id');
     swal({
-        title: 'Are you sure?',
-        text: 'Once deleted, you will not be able to recover!',
+        title: textConfirm,
+        text: textDeleted,
         icon: 'warning',
         buttons: true,
         dangerMode: true,
@@ -638,4 +659,12 @@ $(function() {
             readonly: true,
         });
    });
+
+   var url = window.location.href;
+   var arr = parseInt(url.split('=')[1]);
+   if (arr > 0) {
+       $('html, body').animate({
+           scrollTop: $('#reviews').offset().top - 180
+       }, 1000);
+   }
 });

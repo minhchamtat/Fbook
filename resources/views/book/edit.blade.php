@@ -106,6 +106,11 @@
                                 !!}
                                 {!! Form::label('customFile', __('page.book.browse'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
                             </div>
+                            @if ($book->medias[0]->count() > 0)
+                                {!! Form::hidden('avatar_old', $book->medias[0]->id) !!}
+                            @else
+                                {!! Form::hidden('avatar_old') !!}
+                            @endif
                         </div>
                     </div>
                     <div class="col-sm-4 col-sm-push-4 single-register mt-3">
