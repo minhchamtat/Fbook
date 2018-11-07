@@ -96,7 +96,10 @@
                                     ) !!}
                                     <div class="col-10">
                                         {!! Form::file(
-                                            'img'
+                                            'img',
+                                            [
+                                                'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
+                                            ]
                                         )!!}
                                     </div>
                                 </div>

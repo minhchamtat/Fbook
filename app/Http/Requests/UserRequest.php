@@ -31,10 +31,11 @@ class UserRequest extends FormRequest
             'phone' => 'nullable|max:50|regex:/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/i',
             'employee_code' => 'unique:users|max:50',
             'reputation_point' => 'nullable',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif,bmp',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif,bmp|size:500',
             'workspace' => 'required|max:50',
             'office_id' => 'nullable',
             'chatwork_id' => 'nullable|max:50',
+            'file' => 'size:500',
         ];
     }
 
@@ -52,10 +53,12 @@ class UserRequest extends FormRequest
             'employee_code.max' => Lang::get('validation.max.string'),
             'avatar.image' => Lang::get('validation.image'),
             'avatar.mimes' => Lang::get('validation.mimes'),
+            'avatar.size' => Lang::get('validation.size.file'),
             'workspace.max' => Lang::get('validation.max.string'),
             'workspace.required' => Lang::get('validation.required'),
             'chatwork_id.unique' => Lang::get('validation.unique'),
             'chatwork_id.max' => Lang::get('validation.max.string'),
+            'file.size' => Lang::get('validation.size.file'),
         ];
     }
 }

@@ -72,7 +72,7 @@
                                                 [
                                                     'class' => 'form-control m-input',
                                                     'id' => 'example-datetime-local-input',
-                                                    'max' => date('Y/m/d'),
+                                                    'max' => date('Y-m-d'),
                                                 ]
                                             ) !!}
                                         </div>

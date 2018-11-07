@@ -64,13 +64,13 @@
                                                 'class' => 'form-control m-input',
                                                 'id' => 'example-datetime-local-input',
                                                 'required',
-                                                'max' => date('Y/m/d'),
+                                                'max' => date('Y-m-d'),
                                             ]
                                         ) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
-                                    {!! Form::label('date', __('admin.book.totalPage'), ['class' => 'col-2 required']) !!}
+                                    {!! Form::label('total_pages', __('admin.book.totalPage'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
                                         {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'required']) !!}
                                     </div>

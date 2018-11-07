@@ -83,11 +83,14 @@ class UserController extends Controller
             if ($id) {
                 $this->roleUserRepository->store($request->roles, $id);
             }
+            Session::flash('success', trans('settings.success.store'));
+
+            return redirect()->route('users.index');
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
-        }
 
-        return redirect()->route('users.index');
+            return view('admin.error.error');
+        }
     }
 
     /**
