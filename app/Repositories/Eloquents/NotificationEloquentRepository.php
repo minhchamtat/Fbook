@@ -18,7 +18,8 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
             ->select($dataSelect)
             ->with($with)
             ->where($data)
-            ->orderBy('viewed', 'asc');
+            ->orderBy('viewed', 'asc')
+            ->orderBy('created_at', 'desc');
     }
 
     public function store($data)

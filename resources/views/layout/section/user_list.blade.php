@@ -30,7 +30,7 @@
             <ul class="pagination">
                 <li class="disabled"><a>«</a></li>
                 @for ($i = 0; $i < count($data); $i++)
-                    <li class="status-page"><a data-target="{{ $type }}" href="#{{ $type . $i }}">{{ $i + 1 }}</a></li>
+                    <li class="status-page  {{ $i == 0 ? 'active' : ''}}"><a data-target="{{ $type }}" href="#{{ $type . $i }}">{{ $i + 1 }}</a></li>
                 @endfor
                 <li class="disabled"><a>»</a></li>
             </ul>

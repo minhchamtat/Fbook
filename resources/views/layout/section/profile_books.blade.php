@@ -51,12 +51,12 @@
             @endforeach
         @endfor
     </div>
-    <div class="pagination-area mt-50">
+    <div class="mt-50 shop-left">
         <div class="page-number">
             <ul class="pagination">
                 <li class="disabled"><a>«</a></li>
                 @for ($i = 0; $i < count($books); $i++)
-                    <li class="status-page"><a data-target="{{ $status }}" href="{{ '#' . $status . $i }}">{{ $i + 1 }}</a></li>
+                    <li class="status-page {{ $i == 0 ? 'active' : ''}}"><a data-target="{{ $status }}" href="{{ '#' . $status . $i }}">{{ $i + 1 }}</a></li>
                 @endfor
                 <li><a>»</a></li>
             </ul>

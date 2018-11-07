@@ -170,6 +170,7 @@
                                         'id' => 'example-datetime-local-input',
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
+                                        'max' => date('Y-m-d'),
                                     ]
                                 ) !!}
                                 {!! $errors->first('publish_date', '<p style="color:red">:message</p>') !!}
