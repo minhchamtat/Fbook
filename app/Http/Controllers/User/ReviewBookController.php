@@ -11,6 +11,7 @@ use App\Repositories\Contracts\NotificationRepository;
 use App\Eloquent\Vote;
 use Auth;
 use Exception;
+use Session;
 
 class ReviewBookController extends Controller
 {
@@ -80,12 +81,15 @@ class ReviewBookController extends Controller
                 if (isset($data) && $data != null) {
                     $this->book->updateStar($data, $id);
                 }
+                Session::flash('success', trans('settings.success.store'));
 
                 return redirect()->route('books.show', $slug);
             }
 
             return back();
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('error');
         }
     }
@@ -113,9 +117,12 @@ class ReviewBookController extends Controller
             if (isset($data) && $data != null) {
                 $this->book->updateStar($data, $idBook);
             }
+            Session::flash('success', trans('settings.success.update'));
 
             return redirect()->route('books.show', $slug);
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('error');
         }
     }
@@ -137,9 +144,12 @@ class ReviewBookController extends Controller
             if (isset($data) && $data != null) {
                 $this->book->updateStar($data, $idBook);
             }
+            Session::flash('success', trans('settings.success.delete'));
 
             return back();
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+            
             return view('error');
         }
     }

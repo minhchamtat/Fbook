@@ -189,4 +189,5 @@
     </div>
     <div class="modal-dialog" role="dialog" id="noti-dialog">
     </div>
+    @include ('layout.notify')
 </header>

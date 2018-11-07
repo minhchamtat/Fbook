@@ -15,6 +15,7 @@ use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\BookUserRepository;
 use Auth;
 use App\Repositories\Contracts\BookmetaRepository;
+use Session;
 
 class BookController extends Controller
 {
@@ -123,9 +124,12 @@ class BookController extends Controller
                 'book_id' => $book->id,
             ];
             $this->owner->store($data);
+            Session::flash('success', trans('settings.success.store'));
 
             return redirect()->route('books.show', $book->slug . '-' . $book->id);
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('error');
         }
     }
@@ -138,65 +142,77 @@ class BookController extends Controller
      */
     public function show($slug)
     {
-        $id = last(explode('-', $slug));
-        $book = $this->book->find($id, $this->with);
-        $slugId = $book->slug . '-' . $book->id;
-        if ($slug == $slugId) {
-            $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
-            $relatedBooks = $this->book->getRelatedBooks($relatedBookIds, ['medias']);
-            $data['book_id'] = $book->id;
-            $reviews = $this->review->show($data);
+        try {
+            $id = last(explode('-', $slug));
+            $book = $this->book->find($id, $this->with);
+            if (!empty($book)) {
+                $slugId = $book->slug . '-' . $book->id;
+                if ($slug == $slugId) {
+                    if ($book->categories) {
+                        $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
+                        $relatedBooks = $this->book->getRelatedBooks($relatedBookIds, ['medias']);
+                    } else {
+                        $relatedBooks = null;
+                    }
+                    $data['book_id'] = $book->id;
+                    $reviews = $this->review->show($data);
 
-            $flag = true;
-            if (Auth::check()) {
-                $isReview = $this->review->checkReview($data);
-                if ($isReview->count() > 0) {
-                    $flag = false;
-                }
-            } else {
-                $flag = false;
-            }
+                    $flag = true;
+                    if (Auth::check()) {
+                        $isReview = $this->review->checkReview($data);
+                        if ($isReview->count() > 0) {
+                            $flag = false;
+                        }
+                    } else {
+                        $flag = false;
+                    }
 
-            if (Auth::check()) {
-                $userId = Auth::user()->id;
-                $isOwner = in_array($userId, $book->owners->pluck('id')->toArray());
-                $isBooking = in_array($userId, $book->users->pluck('id')->toArray());
-            } else {
-                $isOwner = false;
-                $isBooking = false;
-            }
+                    if (Auth::check()) {
+                        $userId = Auth::user()->id;
+                        $isOwner = in_array($userId, $book->owners->pluck('id')->toArray());
+                        $isBooking = in_array($userId, $book->users->pluck('id')->toArray());
+                    } else {
+                        $isOwner = false;
+                        $isBooking = false;
+                    }
 
 
-            $tmp = false;
-            if (Auth::check()) {
-                $roles = Auth::user()->roles;
-                if ($roles->count() > 0) {
-                    if ($roles->count() > 1) {
-                        foreach ($roles as $role) {
-                            if ($role->name == 'Admin' || $role->name == 'Editor') {
+                    $tmp = false;
+                    if (Auth::check()) {
+                        $roles = Auth::user()->roles;
+                        if ($roles->count() > 0) {
+                            if ($roles->count() > 1) {
+                                foreach ($roles as $role) {
+                                    if ($role->name == 'Admin' || $role->name == 'Editor') {
+                                        $tmp = true;
+                                    }
+                                }
+                            } elseif ($roles[0]->name == 'Admin' || $roles[0]->name == 'Editor') {
                                 $tmp = true;
                             }
                         }
-                    } elseif ($roles[0]->name == 'Admin' || $roles[0]->name == 'Editor') {
-                        $tmp = true;
                     }
+
+                    $data = [
+                        'book',
+                        'relatedBooks',
+                        'flag',
+                        'reviews',
+                        'isOwner',
+                        'isBooking',
+                        'tmp',
+                    ];
+
+                    return view('book.book_detail', compact($data));
                 }
             }
+        
+            return view('error');
+        } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
 
-            $data = [
-                'book',
-                'relatedBooks',
-                'flag',
-                'reviews',
-                'isOwner',
-                'isBooking',
-                'tmp',
-            ];
-
-            return view('book.book_detail', compact($data));
+            return view('error');
         }
-
-        return view('error');
     }
 
     /**
@@ -221,6 +237,8 @@ class BookController extends Controller
 
             return view('error');
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('error');
         }
     }
@@ -255,9 +273,12 @@ class BookController extends Controller
             if ($request->has('category')) {
                 $this->bookCategory->store($request->all());
             }
+            Session::flash('success', trans('settings.success.update'));
 
             return back();
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('error');
         }
     }

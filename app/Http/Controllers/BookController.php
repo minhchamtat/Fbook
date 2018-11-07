@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Exception;
 use Auth;
 use App\Repositories\Contracts\OwnerRepository;
+use Session;
 
 class BookController extends Controller
 {
@@ -93,6 +94,8 @@ class BookController extends Controller
 
             return redirect("admin/book/$book->id/edit")->with('success', __('admin.success'));
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('admin.error.error');
         }
     }
@@ -134,6 +137,8 @@ class BookController extends Controller
 
             return back()->with('success', __('admin.success'));
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+            
             return view('admin.error.error');
         }
     }
@@ -156,6 +161,8 @@ class BookController extends Controller
                 return back()->with('success', __('admin.success'));
             }
         } catch (Exception $e) {
+            Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
+
             return view('admin.error.error');
         }
     }

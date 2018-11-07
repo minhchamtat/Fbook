@@ -27,11 +27,8 @@ mix.scripts([
     'node_modules/waypoints/src/waypoint.js',
     'node_modules/sweetalert/dist/sweetalert.min.js',
     'node_modules/jquery-bar-rating/jquery.barrating.js',
+    'node_modules/bootstrap-notify/bootstrap-notify.min.js',
     ], 'public/assets/user/js/app.js');
-mix.copyDirectory('resources/assets/user', 'public/assets/user').browserSync('http://127.0.0.1:8000/');
-mix.copyDirectory('resources/assets/fonts', 'public/assets/user/fonts');
-mix.copyDirectory('resources/assets/admin', 'public/assets/admin');
-mix.copyDirectory('resources/assets/img', 'public/assets/img');
 mix.styles([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
     'node_modules/owl.carousel/dist/assets/owl.carousel.css',
@@ -41,3 +38,9 @@ mix.styles([
     'node_modules/animate.css/animate.min.css',
     'node_modules/jquery-bar-rating/dist/themes/fontawesome-stars-o.css',
 ], 'public/assets/user/css/app.css');
+mix.copyDirectory('resources/assets/user', 'public/assets/user').browserSync('http://127.0.0.1:8000/');
+mix.copyDirectory('resources/assets/fonts', 'public/assets/user/fonts');
+mix.copy('node_modules/bootstrap-notify/bootstrap-notify.min.js', 'public/assets/admin/js/bootstrap-notify.min.js');
+mix.copy('resources/assets/js/notify.js', 'public/assets/js/notify.js');
+mix.copyDirectory('resources/assets/admin', 'public/assets/admin');
+mix.copyDirectory('resources/assets/img', 'public/assets/img');

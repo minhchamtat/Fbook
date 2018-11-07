@@ -181,4 +181,21 @@ return [
         'en' => 'English',
         'vi' => 'Tiếng Việt',
     ],
+
+    'success' => [
+        'store' => 'Bạn đã lưu thành công',
+        'update' => 'Bạn đã cập nhật thành công',
+        'delete' => 'Bạn đã xóa thành công',
+        'delete' => 'You deleted success',
+        'sharing_book' => 'Bạn đã chia sẻ thành công',
+        'remove_owner' => 'Bạn đã  hủy thành công',
+        'borrowing_book' => 'Bạn đã yêu cầu mượn sách',
+        'cancel_borrowing_book' => 'Bạn đã  hủy thành công',
+        'follow' => 'Bạn đã theo dõi một người',
+        'unfollow' => 'Bạn đã hủy theo dõi một người',
+    ],
+
+    'unsuccess' => [
+        'error' => 'Lỗi :messages',
+    ],
 ];

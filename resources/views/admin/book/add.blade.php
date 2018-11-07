@@ -57,7 +57,16 @@
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('date', __('admin.book.publishDate'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
-                                        {!! Form::date('publish_date', null, ['class' => 'form-control m-input', 'id' => 'example-datetime-local-input', 'required']) !!}
+                                        {!! Form::date(
+                                            'publish_date', 
+                                            null,
+                                            [
+                                                'class' => 'form-control m-input',
+                                                'id' => 'example-datetime-local-input',
+                                                'required',
+                                                'max' => date('Y/m/d'),
+                                            ]
+                                        ) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
