@@ -11,6 +11,8 @@
     var textDeleted = 'Once deleted, you will not be able to recover!';
     var textRemoveOwner = 'Remove Owner';
     var textBook = 'I have this book';
+    var textFollowing = 'Following';
+    var textFollow = 'Follow';
     if (language == 'vi') {
         textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
         textLogin = 'Bạn cần đăng nhập để tiếp tục';
@@ -20,8 +22,10 @@
         textBorrow = 'Mượn sách';
         textConfirm = 'Bạn có chắc chắn?';
         textDeleted = 'Một khi đã xóa bạn không thể khôi phục lại!';
-        var textRemoveOwner = 'Dừng chia sẻ';
-        var textBook = 'Tôi có cuốn sách này';
+        textRemoveOwner = 'Dừng chia sẻ';
+        textBook = 'Tôi có cuốn sách này';
+        textFollowing = 'Đang theo dõi';
+        textFollow = 'Theo dõi';
     }
     var header = $('#header-sticky');
     var win = $(window);
@@ -486,7 +490,7 @@
             type: 'POST',
         })
         .done(function() {
-            obj.html('Following');
+            obj.html(textFollowing);
             obj.removeClass('follow').addClass('following');
         })
         .fail(function() {
@@ -503,7 +507,7 @@
             type: 'POST',
         })
         .done(function() {
-            obj.html('Follow');
+            obj.html(textFollow);
             obj.removeClass('following').addClass('follow');
         })
         .fail(function() {
@@ -575,7 +579,7 @@
             //
         });
     });
-})(jQuery);
+
 
 $(document).on('change', '.btn-file :file', function() {
     var input = $(this),
@@ -610,61 +614,63 @@ $(document).on('change', '.btn-file :file', function() {
         readURL(this);
     });
 
-$(document).on('click', '.login', function(e) {
-    e.preventDefault();
-    var el = document.createElement("a");
-    el.href = '/login/framgia';
-    el.class = 'btn btn-info';
-    el.innerText = 'Login WSM';
-    swal({
-        title: textLogin,
-        content: el,
-        className: 'review',
-    });
-})
-
-$(document).on('click', '.notify', function(e) {
-    e.preventDefault();
-    var form = $(this).parents('form').attr('id');
-    swal({
-        title: textConfirm,
-        text: textDeleted,
-        icon: 'warning',
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            swal('Success!', {
-                icon: 'success',
-            });
-            document.getElementById(form).submit();
-        }
-    });
-})
-
-$('#review').click(function (e) {
-    e.preventDefault();
-    $('html, body').animate({
-        scrollTop: $('#reviews').offset().top - 180
-    }, 1000);
-})
-
-$(function() {
-    var star = $('.rating');
-    star.each(function () {
-        var rating = $(this).data('rating');
-        $(this).barrating({
-            theme: 'fontawesome-stars-o',
-            initialRating: rating,
-            readonly: true,
+    $(document).on('click', '.login', function(e) {
+        e.preventDefault();
+        var el = document.createElement("a");
+        el.href = '/login/framgia';
+        el.class = 'btn btn-info';
+        el.innerText = 'Login WSM';
+        swal({
+            title: textLogin,
+            content: el,
+            className: 'review',
         });
-   });
+    })
 
-   var url = window.location.href;
-   var arr = parseInt(url.split('=')[1]);
-   if (arr > 0) {
-       $('html, body').animate({
-           scrollTop: $('#reviews').offset().top - 180
-       }, 1000);
-   }
-});
+    $(document).on('click', '.notify', function(e) {
+        e.preventDefault();
+        var form = $(this).parents('form').attr('id');
+        swal({
+            title: textConfirm,
+            text: textDeleted,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                swal('Success!', {
+                    icon: 'success',
+                });
+                document.getElementById(form).submit();
+            }
+        });
+    })
+
+    $('#review').click(function (e) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $('#reviews').offset().top - 180
+        }, 1000);
+    })
+
+    $(function() {
+        var star = $('.rating');
+        star.each(function () {
+            var rating = $(this).data('rating');
+            $(this).barrating({
+                theme: 'fontawesome-stars-o',
+                initialRating: rating,
+                readonly: true,
+            });
+       });
+
+       var url = window.location.href;
+       var arr = parseInt(url.split('=')[1]);
+       if (arr > 0) {
+           $('html, body').animate({
+               scrollTop: $('#reviews').offset().top - 180
+           }, 1000);
+       }
+    });
+
+})(jQuery);

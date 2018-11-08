@@ -219,7 +219,10 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}" class="view_more {{ Auth::check() ? '' : 'login' }}"><i class="fa fa-eye" aria-hidden="true"></i> View More</a>
+                                                                    <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}" class="view_more {{ Auth::check() ? '' : 'login' }}">
+                                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                        {{ __('settings.review.viewMore') }}
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -50,7 +50,7 @@
                                     <div class="col-lg-12">
                                         <div class="single-form-3">
                                             {!! Form::label('title', __('page.summary') . '*') !!}
-                                            {!! Form::text('title', $review->title, ['placeHolder' => 'Title', 'required' => 'required']) !!}
+                                            {!! Form::text('title', $review->title, ['placeHolder' => __('page.summary'), 'required' => 'required', 'title' => __('page.summary')]) !!}
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

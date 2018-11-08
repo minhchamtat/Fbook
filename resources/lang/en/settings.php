@@ -95,6 +95,7 @@ return [
         'rating' => 'Rating',
         'summary' => 'Summary',
         'add' => 'Add Review',
+        'viewMore' => 'View More',
     ],
 
     'home' => [
@@ -176,14 +177,11 @@ return [
         'profile' => 'Profile',
         'notifications' => [
             'show_more' => 'Show more',
+            'name' => 'Notifications',
         ],
         'search' => 'Search',
         'dashboard' => 'Dashboard',
         'results' => 'Results',
-    ],
-
-    'notifications' => [
-        'name' => 'Notifications',
     ],
 
     'lang' => [

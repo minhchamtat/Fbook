@@ -1,6 +1,6 @@
 <div class="suggestion">
     <ul class="suggestions-list">
-        <h5 class="bg-light">Notifications</h5>
+        <h5 class="bg-light">{{ __('settings.header.notifications.name') }}</h5>
         @if (isset($notifications) && count($notifications) > 0)
             @foreach ($notifications as $item)
                 <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }}" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">

@@ -113,6 +113,7 @@ return [
         'fsurvey' => 'http://survey.framgia.vn/',
     ],
 
+    'text' => '<p><br><i><b><span><h1><h2><h3><h4><h5><h6><strong><em>',
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

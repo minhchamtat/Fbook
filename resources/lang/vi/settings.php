@@ -95,6 +95,7 @@ return [
         'rating' => 'Bình chọn',
         'summary' => 'Tóm tắt',
         'add' => 'Gửi đánh giá',
+        'viewMore' => 'Xem thêm',
     ],
 
     'home' => [
@@ -176,6 +177,10 @@ return [
         'search' => 'Tìm kiếm',
         'dashboard' => 'Trang Quản Trị',
         'results' => 'Kết quả',
+        'notifications' => [
+            'show_more' => 'Xem thêm',
+            'name' => 'Thông báo',
+        ],
     ],
     'lang' => [
         'en' => 'English',
