@@ -215,10 +215,9 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             );
         }
 
-        if (count($data) > config('view.random_numb.book')) {
-            $data = $data->random(config('view.random_numb.book'));
+        if (count($data) > config('view.random_numb.office')) {
+            $data = $data->random(config('view.random_numb.office'));
         }
-
         return $data;
     }
 

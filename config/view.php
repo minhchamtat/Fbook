@@ -48,6 +48,7 @@ return [
 
     'random_numb' => [
         'book' => 3,
+        'office' => 5,
     ],
 
     'vote' => [

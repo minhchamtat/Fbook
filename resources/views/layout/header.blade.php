@@ -74,7 +74,7 @@
                                             <b>{{ Auth::user()->name }}</b>
                                             @if ($roles && in_array(config('model.roles.admin'), $roles))
                                                 <a class="dropdown-item"
-                                                   href="{{ url('admin') }}">{{ trans('settings.header.dashboard') }}</a>
+                                                   href="{{ url('admin') }}" target="_blank">{{ trans('settings.header.dashboard') }}</a>
                                             @endif
                                             <a class="dropdown-item"
                                                href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
