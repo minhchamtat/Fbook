@@ -479,7 +479,7 @@ ul.list-unstyled.social-list i {
 .owl-carousel .owl-item img.primary, img.primary {
     display: block;
     width: auto;
-    height: 215px;
+    height: 100%;
     overflow: hidden;
     max-width: inherit;
 }
@@ -712,6 +712,7 @@ img.logo {
 
 ul.suggestions-list {
     background: #fff;
+    border-radius: 12px;
 }
 
 .bg-light {

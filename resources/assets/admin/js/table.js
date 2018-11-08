@@ -21,6 +21,11 @@ var DatatablesBasicPaginations = {
                 [0, 'desc']
             ],
             language: text,
+            fnDrawCallback: function(oSettings) {
+                if ($('#m_table_1 tr').length < 11) {
+                    $('.dataTables_paginate').hide();
+                }
+            }
         })
     }
 };

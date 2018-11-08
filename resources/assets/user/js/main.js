@@ -667,6 +667,24 @@ $(document).on('change', '.btn-file :file', function() {
         });
     })
 
+    $(document).on('click', '.notify-2', function(e) {
+        e.preventDefault();
+        var form = $(this).parents('form').attr('id');
+        swal({
+            title: textConfirm,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                swal('Success!', {
+                    icon: 'success',
+                });
+                document.getElementById(form).submit();
+            }
+        });
+    })
+
     $('#review').click(function (e) {
         e.preventDefault();
         $('html, body').animate({

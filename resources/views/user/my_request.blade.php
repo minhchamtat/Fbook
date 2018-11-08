@@ -76,18 +76,18 @@
                                         <td>
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', $book->type) !!}
-                                                {!! Form::button(__('settings.request.returned'), ['class' => 'btn btn-return btn-sm notify', 'type' => 'submit']) !!}
+                                                {!! Form::button(__('settings.request.returned'), ['class' => 'btn btn-return btn-sm notify-2', 'type' => 'submit']) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     @else
                                         <td class="product-remove">
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', $book->type) !!}
-                                                {!! Form::button(__('settings.request.approve'), ['class' => 'btn btn-info btn-sm approve notify', 'type' => 'submit']) !!}
+                                                {!! Form::button(__('settings.request.approve'), ['class' => 'btn btn-info btn-sm approve notify-2', 'type' => 'submit']) !!}
                                             {!! Form::close() !!}
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', 'dismiss') !!}
-                                                {!! Form::button(__('settings.request.dismiss'), ['class' => 'btn btn-dismiss btn-sm notify', 'type' => 'submit']) !!}
+                                                {!! Form::button(__('settings.request.dismiss'), ['class' => 'btn btn-dismiss btn-sm notify-2', 'type' => 'submit']) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     @endif

@@ -15,7 +15,11 @@
                 <h4 class="m-menu__section-text">Components</h4>
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <li class="m-menu__item  m-menu__item--submenu
+            @if (Route::is('book.index') || Route::is('book.create') || Route::is('book.edit'))
+                {{ 'm-menu__item--open' }}
+            @endif"
+            aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-layers"></i>
                     <span class="m-menu__link-text">{{ __('admin.sidebar.book') }}</span>
@@ -24,12 +28,7 @@
                 <div class="m-menu__submenu ">
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
-                            <span class="m-menu__link">
-                                <span class="m-menu__link-text">Base</span>
-                            </span>
-                        </li>
-                        <li class="m-menu__item " aria-haspopup="true">
+                        <li class="m-menu__item {{ Route::is('book.index') ? 'active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('book.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
@@ -37,7 +36,7 @@
                                 <span class="m-menu__link-text">{{ __('admin.sidebar.listBook') }}</span>
                             </a>
                         </li>
-                        <li class="m-menu__item " aria-haspopup="true">
+                        <li class="m-menu__item {{ Route::is('book.create') ? 'active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('book.create') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
@@ -48,7 +47,11 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <li class="m-menu__item  m-menu__item--submenu
+            @if (Route::is('category.index') || Route::is('category.create') || Route::is('category.edit'))
+                {{ 'm-menu__item--open' }}
+            @endif"
+                aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-share"></i>
                     <span class="m-menu__link-text">{{ __('admin.sidebar.category') }}</span>
@@ -57,7 +60,7 @@
                 <div class="m-menu__submenu ">
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true">
+                        <li class="m-menu__item {{ Route::is('category.index') ? 'active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('category.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
@@ -65,7 +68,7 @@
                                 <span class="m-menu__link-text">{{ __('admin.sidebar.listCate') }}</span>
                             </a>
                         </li>
-                        <li class="m-menu__item " aria-haspopup="true">
+                        <li class="m-menu__item {{ Route::is('category.create') ? 'active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('category.create') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
@@ -104,7 +107,11 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <li class="m-menu__item  m-menu__item--submenu
+            @if (Route::is('users.index') || Route::is('users.create') || Route::is('users.edit'))
+                {{ 'm-menu__item--open' }}
+            @endif"
+                aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-1"></i>
                     <span class="m-menu__link-text">{{ __('admin.sidebar.user') }}</span>
@@ -113,7 +120,7 @@
                 <div class="m-menu__submenu ">
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true">
+                        <li class="m-menu__item {{ Route::is('users.index') ? 'active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('users.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
@@ -121,7 +128,7 @@
                                 <span class="m-menu__link-text">{{ __('admin.sidebar.listUser') }}</span>
                             </a>
                         </li>
-                        <li class="m-menu__item " aria-haspopup="true">
+                        <li class="m-menu__item {{ Route::is('users.create') ? 'active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('users.create') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>

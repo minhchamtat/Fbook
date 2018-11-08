@@ -288,4 +288,14 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
     {
         return $this->model()->all()->count();
     }
+
+    public function updateBook($id, $data)
+    {
+        $book = $this->model()->find($id);
+        $description = strip_tags($data['description'], config('view.text'));
+        $data['description'] = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $description);
+        $book->update($data);
+
+        return $book;
+    }
 }

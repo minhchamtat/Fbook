@@ -116,10 +116,10 @@ class BookController extends Controller
     {
         try {
             //update book
-            $book = $this->book->find($id);
             $slug = str_slug($request->title);
             $request->merge(['slug' => $slug]);
-            $book->update($request->all());
+            $book = $this->book->updateBook($id, $request->all());
+
             $request->merge(['book_id' => $book->id]);
             $data['book_id'] = $book->id;
             //save category
@@ -138,7 +138,7 @@ class BookController extends Controller
             return back()->with('success', __('admin.success'));
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
-            
+
             return view('admin.error.error');
         }
     }
