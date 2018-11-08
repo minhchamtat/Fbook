@@ -136,3 +136,7 @@ label.required::after {
     color: red;
     margin-left: 5px;
 }
+
+.alert .close:before {
+    content: '';
+}

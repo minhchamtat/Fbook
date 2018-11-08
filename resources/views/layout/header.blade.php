@@ -117,7 +117,8 @@
                             [
                                 'placeHolder' => __('page.search'),
                                 'required' => 'required',
-                                'class' => 'form-control m-input'
+                                'class' => 'form-control m-input',
+                                'title' => __('page.search')
                             ]
                         ) !!}
                         {!! Form::button(

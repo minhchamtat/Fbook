@@ -20,7 +20,7 @@
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('title', __('admin.book.title'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
-                                        {!! Form::text('title', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.title'), 'required']) !!}
+                                        {!! Form::text('title', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.title'), 'required', 'title' => __('admin.book.title')]) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -39,7 +39,8 @@
                                                 'required' => 'required',
                                                 'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
                                                 'onchange' => 'changeFile(event)',
-                                                'onclick' => 'clickFile(event)'
+                                                'onclick' => 'clickFile(event)',
+                                                'title' => __('admin.book.avatar')
                                             ])
                                         !!}
                                         {!! Form::label('customFile', __('admin.book.placeHolder.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
@@ -51,20 +52,21 @@
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('author', __('admin.book.author'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
-                                        {!! Form::text('author', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.author'), 'required']) !!}
+                                        {!! Form::text('author', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.author'), 'required', 'title' => __('admin.book.author')]) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('date', __('admin.book.publishDate'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
                                         {!! Form::date(
-                                            'publish_date', 
+                                            'publish_date',
                                             null,
                                             [
                                                 'class' => 'form-control m-input',
                                                 'id' => 'example-datetime-local-input',
                                                 'required',
-                                                'max' => date('Y-m-d'),
+                                                'max' => date('Y/m/d'),
+                                                'title' => __('admin.book.publishDate')
                                             ]
                                         ) !!}
                                     </div>
@@ -72,7 +74,7 @@
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('total_pages', __('admin.book.totalPage'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
-                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'required']) !!}
+                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'required', 'title' => __('admin.book.totalPage')]) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">

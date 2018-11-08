@@ -143,6 +143,13 @@ button.btn-vote i, .content .col-md-2 span {
     line-height: 33px;
 }
 
+.body, .body span {
+    font-size: 18px !important;
+    line-height: 33px !important;
+    font-family: 'Open Sans', sans-serif !important;
+    color: #666 !important;
+}
+
 .content .col-md-2 {
     padding: 35px 15px;
 }
@@ -681,6 +688,7 @@ img.logo {
     white-space: nowrap;
     max-width: 100%;
     overflow: hidden;
+    display: block;
 }
 
 .owl-item.active .slider-animated-1 a {
@@ -696,4 +704,17 @@ img.logo {
 }
 .h5, h5 {
     text-transform: uppercase;
+}
+
+ul.suggestions-list {
+    background: #fff;
+}
+
+.bg-light {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+i.fa.fa-eye {
+    margin-right: 5px;
 }

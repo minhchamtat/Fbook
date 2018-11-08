@@ -48,7 +48,8 @@
                             [
                                 'required' => 'required',
                                 'class' => 'form-control m-input',
-                                'placeHolder' => __('page.book.placeHolder.title')
+                                'placeHolder' => __('page.book.placeHolder.title'),
+                                'title' => __('page.book.title'),
                             ]
                         ) !!}
                     </div>
@@ -65,7 +66,8 @@
                                     [
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
-                                        'placeHolder' => __('page.book.placeHolder.author')
+                                        'placeHolder' => __('page.book.placeHolder.author'),
+                                        'title' => __('page.book.author')
                                     ]
                                 ) !!}
                             </div>
@@ -83,7 +85,8 @@
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
                                         'min' => 0,
-                                        'placeHolder' => __('page.book.placeHolder.totalPage')
+                                        'placeHolder' => __('page.book.placeHolder.totalPage'),
+                                        'title' => __('page.book.totalPage')
                                     ]
                                 ) !!}
                             </div>
@@ -100,7 +103,8 @@
                                         'required' => 'required',
                                         'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
                                         'onchange' => 'changeFile(event)',
-                                        'onclick' => 'clickFile(event)'
+                                        'onclick' => 'clickFile(event)',
+                                        'title' => __('page.book.avatar')
                                     ])
                                 !!}
                                 {!! Form::label('customFile', __('page.book.browse'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
@@ -140,7 +144,8 @@
                                         'id' => 'example-datetime-local-input',
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
-                                        'max' => date('Y-m-d'),
+                                        'max' => date('Y/m/d'),
+                                        'title' =>  __('page.book.publish')
                                     ]
                                 ) !!}
                             </div>
@@ -162,7 +167,7 @@
                     </div>
                     <div class="single-register">
                         {!! Form::submit(__('page.submit'), ['class' => 'btn btn-info']) !!}
-                        {!! Form::reset(__('page.reset'), ['class' => 'btn btn-secondary']) !!}
+                        {!! Form::reset(__('page.reset'), ['class' => 'btn btn-secondary', 'id' => 'cancel']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>
