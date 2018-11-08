@@ -202,26 +202,26 @@
 <div class="most-product-area pt-90 pb-100">
     <div class="container">
         <div class="row">
-            @if($officeBooks)
-                @foreach($officeBooks as $item)
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-mb">
-                        <div class="section-title-2 mb-30">
-                            <h3>{{ $item['office'] }}</h3>
-                        </div>
-                        <div class="product-active-2 owl-carousel">
-                            @include('layout.section.offcie_book')
-                        </div>
-                    </div>
-                @endforeach
-            @endif
+            <div class="col-md-9">
+                <div class="product-active-2 owl-carousel">
+                    @if($officeBooks)
+                        @foreach($officeBooks as $item)
+                            <div class="section-title-2 mb-30">
+                                <h3 class="mb-30">{{ $item['office'] }}</h3>
+                                @include('layout.section.offcie_book')
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="block-newsletter">
-                    <h2>Sign up for send newsletter</h2>
-                    <p>You can be always up to date with our company new!</p>
+                    <h2>{{ __('page.email.signUp') }}</h2>
+                    <p>{{ __('page.email.content') }}</p>
                     <form action="#">
-                        <input type="text" placeholder="Enter your email address" />
+                        <input type="text" placeholder="{{ __('page.email.placeHolder') }}" />
                     </form>
-                    <a href="#">Send Email</a>
+                    <a href="#">{{ __('page.email.submit') }}</a>
                 </div>
             </div>
         </div>
@@ -233,22 +233,20 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="section-title-3">
-                    <h3><a href="{{ asset(config('view.links.club')) }}" target="_blank">Reading Book Club</a></h3>
+                    <h3><a href="{{ asset(config('view.links.club')) }}" target="_blank">{{ __('page.club') }}</a></h3>
                 </div>
                 <div class="twitter-content">
                     <div class="twitter-icon">
                         <a><i class="fa fa-book" aria-hidden="true"></i></a>
                     </div>
                     <div class="twitter-text">
-                        <p>
-                            Sách không đơn thuần chỉ là những trang giấy mà trong đó còn chứa đựng một thế giới mà con người luôn khao khát được khám phá.
-                        </p>
+                        <p>{{ __('page.twitter') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="section-title-3">
-                    <h3>Framgia Apps</h3>
+                    <h3>{{ __('page.app') }}</h3>
                 </div>
                 <div class="link-follow">
                     <ul>

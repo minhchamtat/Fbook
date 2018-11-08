@@ -7,6 +7,7 @@ return [
     'cancel' => 'Hủy bỏ',
     'reset' => 'Làm lại',
     'search' => 'Nhập vào từ khóa...',
+    'dashboard' => 'Quản trị Fbook',
     'book' => [
         'add' => 'Thêm sách',
         'edit' => 'Chỉnh sửa sách',
@@ -30,6 +31,9 @@ return [
             'sku' => 'Mã SKU ...',
         ],
     ],
+    'club' => 'Câu lạc bộ đọc sách',
+    'app' => 'Ứng dụng của Framgia',
+    'twitter' => 'Sách không đơn thuần chỉ là những trang giấy mà trong đó còn chứa đựng một thế giới mà con người luôn khao khát được khám phá.',
     'rate' => 'Bình chọn',
     'home' => 'Trang chủ',
     'review' => 'Đánh giá',
@@ -40,5 +44,11 @@ return [
         'noReview' => 'Chưa có đánh giá nào!',
         'hasReview' => 'Bạn đã đánh giá rồi',
         'sign' => 'Đăng nhập để gửi đánh giá của bạn!',
+    ],
+    'email' => [
+        'signUp' => 'Đăng ký để mượn sách mới',
+        'conteUnt' => 'Cập nhật liên tục thông tin về những cuốn sách mới nhất!',
+        'placeHolder' => 'Nhập địa chỉ email của bạn',
+        'submit' => 'Đăng kí',
     ],
 ];

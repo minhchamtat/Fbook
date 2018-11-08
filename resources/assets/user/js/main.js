@@ -172,7 +172,28 @@
 
     $('.product-active-2').owlCarousel({
         smartSpeed: 1000,
-        margin: 0,
+        margin: 30,
+        nav: true,
+        autoplay: false,
+        dots: false,
+        loop: true,
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 3
+            },
+            1000: {
+                items: 3
+            }
+        }
+    });
+
+    $('.product-active').owlCarousel({
+        smartSpeed: 1000,
+        margin: 30,
         nav: true,
         autoplay: false,
         dots: false,

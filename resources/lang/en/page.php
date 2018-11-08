@@ -6,6 +6,7 @@ return [
     'submit' => 'Submit',
     'cancel' => 'Cancel',
     'reset' => 'Reset',
+    'dashboard' => 'Fbook Dashboard',
     'search' => 'Enter your keyword here...',
     'book' => [
         'add' => 'Add Your Book',
@@ -30,6 +31,9 @@ return [
             'sku' => 'Sku of book...',
         ],
     ],
+    'club' => 'Reading Book Club',
+    'app' => 'Framgia Apps',
+    'twitter' => 'Perhaps they were right in putting love into books… Perhaps it could not live anywhere else.',
     'rate' => 'Rate',
     'home' => 'Home',
     'review' => 'Review',
@@ -40,5 +44,11 @@ return [
         'noReview' => 'No reviews yet!',
         'hasReview' => 'You have reviewed!',
         'sign' => 'Sign in to review now!',
+    ],
+    'email' => [
+        'signUp' => 'Sign up for borrowing new books',
+        'content' => 'You can be always received notification about new books!',
+        'placeHolder' => 'Enter your email address',
+        'submit' => 'Sign Up',
     ],
 ];
