@@ -254,11 +254,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}"
-                                                                           class="view_more {{ Auth::check() ? '' : 'login' }}"><i
-                                                                                    class="fa fa-eye"
-                                                                                    aria-hidden="true"></i> View
-                                                                            More</a>
                                                                     </div>
                                                                     <a href="{{ route('review.show', [$book->slug . '-' . $book->id, $review->id]) }}" class="view_more {{ Auth::check() ? '' : 'login' }}">
                                                                         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -432,16 +427,18 @@
                     <div class="owner-input">
                         @if ($book->owners)
                             @foreach ($book->owners as $owner)
-                                <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">
-                                    {!! Form::radio(
-                                        'owner_id',
-                                        $owner->id,
-                                        [
-                                            'required' => 'required',
-                                        ]
-                                    ) !!}
-                                    {{ $owner->name }}
-                                </div>
+                                @if ($owner->id != Auth::id())
+                                    <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">
+                                        {!! Form::radio(
+                                            'owner_id',
+                                            $owner->id,
+                                            [
+                                                'required' => 'required',
+                                            ]
+                                        ) !!}
+                                        {{ $owner->name }}
+                                    </div>
+                                @endif
                             @endforeach
                         @endif
                     </div>
