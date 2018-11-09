@@ -304,10 +304,6 @@
                     html += '<a href="/users/' + res.id + '" title="' + res.name + '">';
                     html += '<img src="' + res.avatar + '" class="mg-thumbnail avatar-icon"></a></div>';
                     $('.owner-list').append(html);
-                    var form = '<div class="col-xs-12 col-sm-12" id="owner' + res.id + '">';
-                    form += '<input name="owner_id" type="radio" value="' + res.id + '">' + res.name;
-                    form += '</div>';
-                    $('.owner-input').append(form);
                     obj.html(textRemoveOwner);
                     obj.removeClass('btn-share').addClass('btn-remove-owner');
                 })
@@ -336,7 +332,6 @@
                 })
                 .done(function(res) {
                     $('#user-' + res).remove();
-                    $('#owner' + auth).remove();
                     obj.html(textBook);
                     obj.removeClass().addClass('btn-share');
                 })

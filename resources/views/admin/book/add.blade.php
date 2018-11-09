@@ -74,7 +74,7 @@
                                 <div class="form-group m-form__group row">
                                     {!! Form::label('total_pages', __('admin.book.totalPage'), ['class' => 'col-2 required']) !!}
                                     <div class="col-10">
-                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'required', 'title' => __('admin.book.totalPage')]) !!}
+                                        {!! Form::number('total_pages', null, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'min' => 0, 'required', 'title' => __('admin.book.totalPage')]) !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">

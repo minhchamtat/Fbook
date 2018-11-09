@@ -28,9 +28,9 @@ class BookRequest extends FormRequest
             'title' => 'required|min:5|max:191',
             'description' => 'required|min:5',
             'author' => 'required|min:5|max:191',
-            'sku' => 'min:5',
             'avatar' => 'image|mimes:jpg,jpeg,png,gif,bmp|max:2000',
             'category' => 'required',
+            'total_pages' => 'min:1|max:4',
         ];
     }
     public function messages()
@@ -44,9 +44,10 @@ class BookRequest extends FormRequest
             'author.required' => Lang::get('validation.required'),
             'author.min' => Lang::get('validation.min.string'),
             'author.max' => Lang::get('validation.max.string'),
-            'sku.min' => Lang::get('validation.min.string'),
             'avatar.mimes' => Lang::get('validation.mimes'),
             'avatar.max' => Lang::get('validation.max.file'),
+            'total_pages.min' => Lang::get('validation.min.string'),
+            'total_pages.max' => Lang::get('validation.max.string'),
         ];
     }
 }

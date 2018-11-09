@@ -8,6 +8,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\VoteRepository;
 use App\Repositories\Contracts\NotificationRepository;
+use App\Repositories\Contracts\BookmetaRepository;
 use App\Eloquent\Vote;
 use Auth;
 use Exception;
@@ -19,17 +20,21 @@ class ReviewBookController extends Controller
 
     protected $book;
 
+    protected $bookmeta;
+
     public function __construct(
         ReviewBookRepository $review,
         BookRepository $book,
         VoteRepository $vote,
-        NotificationRepository $notification
+        NotificationRepository $notification,
+        BookmetaRepository $bookmeta
     ) {
         $this->middleware('auth');
         $this->review = $review;
         $this->book = $book;
         $this->vote = $vote;
         $this->notification = $notification;
+        $this->bookmeta = $bookmeta;
     }
 
     public function create($slug)
@@ -81,6 +86,8 @@ class ReviewBookController extends Controller
                 if (isset($data) && $data != null) {
                     $this->book->updateStar($data, $id);
                 }
+
+                $this->bookmeta->updateCountReview($id);
                 Session::flash('success', trans('settings.success.store'));
 
                 return redirect()->route('books.show', $slug);
@@ -144,12 +151,14 @@ class ReviewBookController extends Controller
             if (isset($data) && $data != null) {
                 $this->book->updateStar($data, $idBook);
             }
+
+            $this->bookmeta->destroyCountReview($idBook);
             Session::flash('success', trans('settings.success.delete'));
 
             return back();
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
-            
+
             return view('error');
         }
     }

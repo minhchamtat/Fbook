@@ -31,8 +31,14 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
     {
         $data['sku'] = strtotime(Carbon::now());
         $data['description'] = strip_tags($data['description'], config('view.text'));
+        $book = $this->model()->create($data);
 
-        return $this->model()->create($data);
+        $countReview['key'] = 'count_review';
+        $countReview['value'] = 0;
+        $countReview['book_id'] = $book->id;
+        app(Bookmeta::class)->create($countReview);
+
+        return $book;
     }
 
     public function find($id, $with = ['medias', 'categories'], $dataSelect = ['*'])
