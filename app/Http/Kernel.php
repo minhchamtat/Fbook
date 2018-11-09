@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'locale' => \App\Http\Middleware\Locale::class,
+        'viewed.book' => \App\Http\Middleware\ViewBook::class,
     ];
 }

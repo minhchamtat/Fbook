@@ -16,6 +16,8 @@ use App\Repositories\Contracts\BookUserRepository;
 use Auth;
 use App\Repositories\Contracts\BookmetaRepository;
 use Session;
+use App\Events\ViewBook;
+use Event;
 
 class BookController extends Controller
 {
@@ -63,6 +65,7 @@ class BookController extends Controller
         $this->bookmeta = $bookmeta;
         $this->bookUser = $bookUser;
         $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update']]);
+        $this->middleware('viewed.book', ['only' => ['create']]);
     }
 
     public function index()
@@ -145,6 +148,8 @@ class BookController extends Controller
         try {
             $id = last(explode('-', $slug));
             $book = $this->book->find($id, $this->with);
+            Event::fire('count.view', $book);
+
             if (!empty($book)) {
                 $slugId = $book->slug . '-' . $book->id;
                 if ($slug == $slugId) {
@@ -202,11 +207,10 @@ class BookController extends Controller
                         'isBooking',
                         'tmp',
                     ];
-
                     return view('book.book_detail', compact($data));
                 }
             }
-        
+
             return view('error');
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
