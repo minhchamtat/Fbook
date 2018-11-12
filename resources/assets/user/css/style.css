@@ -921,7 +921,7 @@ body {
 .single-banner .banner-text {}
 .single-banner .banner-text h4 {
     color: #222;
-    font-family: "Rufina", serif;
+    font-family: "Reso Regular", serif;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 2px;
@@ -1796,7 +1796,7 @@ body {
     font-weight: 700;
     line-height: 1.3;
     text-transform: capitalize;
-    font-family: 'Rufina', serif;
+    font-family: 'Verdana', serif;
     font-weight: 400;
     text-decoration: none;
     transition: .3s;
@@ -3632,7 +3632,7 @@ nav.menu .cr-dropdown ul {
     font-size: 14px;
     color: #333;
     text-decoration: none;
-    font-family: 'Rufina', serif;
+    font-family: 'Verdana', serif;
     font-weight: 400;
 }
 .breadcrumbs-menu ul li a.active {
@@ -3690,14 +3690,14 @@ nav.menu .cr-dropdown ul {
 .left-menu ul li a {
     color: #333;
     display: block;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 26px;
     padding: 10px 0;
     position: relative;
     text-transform: capitalize;
     text-decoration: none;
-    font-family: 'Rufina', serif;
+    font-family: 'Verdana', serif;
     font-weight: 400;
 }
 .left-menu ul li a:hover {
@@ -3840,6 +3840,7 @@ nav.menu .cr-dropdown ul {
 }
 .list-page-2 p {
     line-height: 26px;
+    font-family: 'Verdana', serif;
     margin: 0;
     font-weight: 400;
     color: #333;
@@ -4854,7 +4855,7 @@ nav.menu .cr-dropdown ul {
     margin-bottom: 15px;
     padding-bottom: 10px;
     text-transform: capitalize;
-    font-family: 'Rufina', serif;
+    font-family: 'Verdana', serif;
     font-weight: 400;
 }
 
@@ -4951,7 +4952,7 @@ nav.menu .cr-dropdown ul {
     font-size: 16px;
     font-weight: 400;
     margin-top: 7px;
-    font-family: 'Rufina', serif;
+    font-family: 'Verdana', serif;
     font-weight: 400;
 }
 .single-register form input {
@@ -5122,8 +5123,8 @@ nav.menu .cr-dropdown ul {
     padding: 0 15px;
     text-transform: uppercase;
     transition: all 0.3s ease 0s;
-    width: 140px;
-    font-family: 'Rufina', serif;
+    width: 85px;
+    font-family: 'Verdana', serif;
     font-weight: 400;
 }
 .contact-form form .single-form-3 button:hover {
@@ -5370,7 +5371,7 @@ nav.menu .cr-dropdown ul {
 .entry-header-title h2 {
     font-weight: 400;
     color: #333;
-    font-family: 'Rufina', serif;
+    font-family: 'Verdana', serif;
     font-weight: 400;
 }
 .entry-header-area {

@@ -170,10 +170,8 @@ return [
         'book_of_me' => 'Book Of Me',
         'book_request' => 'Book Request',
         'my_request' => 'My Request',
-        'dasboard' => 'Dasboard',
         'login_wsm' => 'WSM Login',
         'logout' => 'Logout',
-        'my_request' => 'My Request',
         'profile' => 'Profile',
         'notifications' => [
             'show_more' => 'Show more',

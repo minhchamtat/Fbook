@@ -113,6 +113,11 @@ return [
         'fgas' => 'https://gas.framgia.vn/',
         'fsurvey' => 'http://survey.framgia.vn/',
     ],
+    'social' => [
+        'facebook' => 'https://www.facebook.com/FramgiaVietnam',
+        'linkedIn' => 'https://www.linkedin.com/company/framgia-vietnam/',
+        'gitHub' =>'https://github.com/framgia',
+    ],
 
     'text' => '<p><br><i><b><span><h1><h2><h3><h4><h5><h6><strong><em>',
     'time' => 3600,

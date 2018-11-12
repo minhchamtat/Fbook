@@ -47,7 +47,7 @@ return [
     ],
     'email' => [
         'signUp' => 'Đăng ký để mượn sách mới',
-        'conteUnt' => 'Cập nhật liên tục thông tin về những cuốn sách mới nhất!',
+        'content' => 'Cập nhật liên tục thông tin về những cuốn sách mới nhất!',
         'placeHolder' => 'Nhập địa chỉ email của bạn',
         'submit' => 'Đăng kí',
     ],
