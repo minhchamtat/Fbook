@@ -118,7 +118,8 @@
                                 'placeHolder' => __('page.search'),
                                 'required' => 'required',
                                 'class' => 'form-control m-input',
-                                'title' => __('page.search')
+                                'title' => __('page.search'),
+                                'maxlength' => 100
                             ]
                         ) !!}
                         {!! Form::button(

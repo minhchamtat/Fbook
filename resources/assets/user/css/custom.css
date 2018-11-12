@@ -727,3 +727,7 @@ i.fa.fa-eye {
 .bestseller-area .banner-img-2 {
     padding-top: 35px;
 }
+
+.single-bestseller .bestseller-img a img {
+    height: 100%;
+}
