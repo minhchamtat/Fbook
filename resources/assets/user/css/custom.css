@@ -482,6 +482,8 @@ ul.list-unstyled.social-list i {
     height: 100%;
     overflow: hidden;
     max-width: inherit;
+    position: absolute;
+    transform: translateX(-50%);
 }
 
 .dropdown-menu.text-center b {

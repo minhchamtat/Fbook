@@ -52,7 +52,8 @@ class User extends Authenticatable
 
     public function ownerBooks()
     {
-        return $this->belongsToMany(Book::class, 'owners');
+        return $this->belongsToMany(Book::class, 'owners')
+            ->wherePivot('deleted_at', null);
     }
 
     public function books()
