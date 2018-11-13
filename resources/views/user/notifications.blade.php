@@ -9,7 +9,7 @@
                     <div class="breadcrumbs-menu">
                         <ul>
                             <li><a href="#">{{ trans('settings.default.home') }}</a></li>
-                            <li><a href="#" class="active">{{ trans('settings.notifications.name') }}</a></li>
+                            <li><a href="#" class="active">{{ trans('settings.header.notifications.name') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="entry-header-title">
-                        <h2>{{ trans('settings.notifications.name') }}</h2>
+                        <h2>{{ trans('settings.header.notifications.name') }}</h2>
                     </div>
                 </div>
             </div>

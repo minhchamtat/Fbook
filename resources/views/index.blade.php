@@ -186,14 +186,9 @@
 <div class="banner-static-area bg ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="banner-shadow-hover xs-mb">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '8.jpg') }}" alt="banner" /></a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="banner-shadow-hover">
-                    <a href="#"><img src="{{ asset(config('view.image_paths.banner') . '9.jpg') }}" alt="banner" /></a>
+                    <img src="{{ asset(config('view.image_paths.banner') . 'banner-sach.png') }}" alt="banner" width="100%" />
                 </div>
             </div>
         </div>

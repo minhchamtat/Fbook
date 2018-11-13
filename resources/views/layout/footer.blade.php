@@ -7,13 +7,13 @@
                 <h4 class="text-white">{{ __('settings.default.social') }}</h4>
                 <ul class="list-inline list-unstyled social-list footer">
                     <li>
-                        <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="{{ asset(config('view.social.facebook')) }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="{{ asset(config('view.social.linkedIn')) }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
+                        <a href="{{ asset(config('view.social.gitHub')) }}"><i class="fa fa-github" aria-hidden="true"></i></a>
                     </li>
                 </ul>
             </div>
