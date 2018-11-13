@@ -25,8 +25,12 @@ class BookmetaEloquentRepository extends AbstractEloquentRepository implements B
     public function store($data)
     {
         $office = Auth::user()->office;
-        $data['key'] = 'in' . '-' . str_slug($office->name);
         $data['value'] = 1;
+        if ($office) {
+            $data['key'] = 'in' . '-' . str_slug($office->name);
+        } else {
+            $data['key'] = 'in' . '-' . str_slug('Ha noi');
+        }
 
         return $this->model()->create($data);
     }

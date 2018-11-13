@@ -25,12 +25,12 @@ class OwnerEloquentRepository extends AbstractEloquentRepository implements Owne
     {
         return $this->model()->create($data);
     }
-    
+
     public function destroy($data)
     {
         try {
             $record = $this->model()->where($data);
-            
+
             return $record->delete();
         } catch (Exception $e) {
             return $e->getMessage();
