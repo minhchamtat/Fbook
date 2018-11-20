@@ -664,7 +664,7 @@ $(document).on('change', '.btn-file :file', function() {
 
     $(document).on('click', '.notify-2', function(e) {
         e.preventDefault();
-        var form = $(this).parents('form').attr('id');
+        var form = $(this).parents('form');
         swal({
             title: textConfirm,
             icon: 'warning',
@@ -675,7 +675,7 @@ $(document).on('change', '.btn-file :file', function() {
                 swal('Success!', {
                     icon: 'success',
                 });
-                document.getElementById(form).submit();
+                form.submit();
             }
         });
     })

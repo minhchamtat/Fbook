@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class ReviewRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             'title' => 'min:5|max:191',
-            'content' => 'min:5',
+            'content' => 'required',
             'star' => 'required',
         ];
     }
@@ -33,8 +34,9 @@ class ReviewRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.min' => __('page.reviews.title'),
-            'content' => __('page.reviews.content'),
+            'title.min' => Lang::get('validation.min.string'),
+            'title.max' => Lang::get('validation.max.string'),
+            'content.required' => Lang::get('validation.required'),
         ];
     }
 }

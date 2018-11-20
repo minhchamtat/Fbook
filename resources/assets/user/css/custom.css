@@ -733,3 +733,8 @@ i.fa.fa-eye {
 .single-bestseller .bestseller-img a img {
     height: 100%;
 }
+
+p.nodata {
+    font-size: 18px;
+    text-align: center;
+}

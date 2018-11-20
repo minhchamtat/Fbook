@@ -155,6 +155,7 @@ return [
         'dismiss' => 'Dismiss',
         'returned' => 'Returned',
         'delete' => 'Delete',
+        'nodata' => 'No data',
     ],
 
     'showing' => 'Showing',

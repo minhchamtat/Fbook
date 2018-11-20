@@ -164,3 +164,7 @@ label.required::after {
 .m-btn--icon>span>span {
     font-family: "Roboto";
 }
+
+.table-bordered td, .table-bordered th {
+    border-bottom: transparent;
+}

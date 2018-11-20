@@ -55,19 +55,30 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
 
     public function updateBookRequest($data)
     {
-        $bookRequest = $this->model()->findOrFail($data['id']);
-        if (isset($data['status']) && $data['status'] == config('view.request.waiting')) {
-            $type['type'] = 'reading';
-        } elseif (isset($data['status'])
-            && $data['status'] == config('view.request.reading')
-            || $data['status'] == config('view.request.returning')) {
-            $type['type'] = 'returned';
-        } elseif (isset($data['status']) && $data['status'] == 'dismiss') {
-            $type['type'] = 'cancel';
-        }
-        $bookRequest->update($type);
+        try {
+            $bookRequest = $this->model()->findOrFail($data['id']);
+            if (isset($data['status'])) {
+                switch ($data['status']) {
+                    case config('view.request.waiting'):
+                        $type['type'] = 'reading';
+                        break;
+                    case config('view.request.reading'):
+                        $type['type'] = 'returned';
+                        break;
+                    case config('view.request.dismiss'):
+                        $type['type'] = 'cancel';
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+                $bookRequest->update($type);
 
-        return $bookRequest;
+                return $bookRequest;
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function getDataRequest($data = [], $with = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])

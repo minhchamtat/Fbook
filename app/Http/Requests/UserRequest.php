@@ -25,17 +25,18 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:100',
-            'email' => 'email|unique:users|max:100',
-            'password' => 'min:6',
+            'name' => 'required|max:100',
+            'email' => 'required|email|unique:users|max:100',
+            'password' => 'required|min:6|confirmed',
             'phone' => 'nullable|max:50|regex:/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/i',
-            'employee_code' => 'unique:users|max:50',
+            'employee_code' => 'required|unique:users|max:50',
             'reputation_point' => 'nullable',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif,bmp|size:500',
             'workspace' => 'required|max:50',
             'office_id' => 'nullable',
             'chatwork_id' => 'nullable|max:50',
             'file' => 'size:500',
+            'password_confirmation' => 'required|min:6',
         ];
     }
 

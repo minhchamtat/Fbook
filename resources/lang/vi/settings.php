@@ -155,6 +155,7 @@ return [
         'dismiss' => 'Từ chối',
         'returned' => 'Trả sách',
         'delete' => 'Xóa',
+        'nodata' => 'Không có yêu cầu nào',
     ],
 
     'showing' => 'Hiển thị',
