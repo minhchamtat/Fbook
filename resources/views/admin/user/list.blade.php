@@ -86,17 +86,8 @@
                                         <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
                                     </span>
                                 </th>
-                                <th class="width-10-percent text-center" title="{{ trans('settings.admin.user.chatwork_id') }}">
-                                    {{ trans('settings.admin.user.chatwork_id') }}
-                                    <span class="sort">
-                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
-                                    </span>
-                                </th>
                                 <th class="width-10-percent text-center" title="{{ trans('settings.admin.default.action') }}">
                                     {{ trans('settings.admin.default.action') }}
-                                    <span class="sort">
-                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
-                                    </span>
                                 </th>
                             </tr>
                         </thead>
@@ -119,15 +110,14 @@
                                         <td><span class="text-center">{{ $user->reputation_point }}</span></td>
                                         <td>{{ $user->employee_code }}</td>
                                         <td>{{ $user->office != null ? $user->office->name : null }}</td>
-                                        <td class="text-center">{{ $user->chatwork_id }}</td>
                                         <td>
-                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                             {!! Form::open([
                                                 'route' => ['users.destroy', $user->id],
                                                 'method' => 'DELETE',
                                                 'id' => $user->id
                                             ]) !!}
-                                            <button class="btn btn-danger btn-9"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-9 btn-sm"><i class="fa fa-trash"></i></button>
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>
@@ -145,6 +135,5 @@
 {{ Html::script('assets/admin/js/table.js') }}
 {{ Html::script('assets/admin/js/sweetalert2.js') }}
 {{ Html::script('admin_asset/assets/vendors/custom/datatables/datatables.bundle.js') }}
-
 
 @endsection

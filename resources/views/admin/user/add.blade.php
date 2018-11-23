@@ -134,14 +134,14 @@
                                     ) !!}
                                     <div class="col-10">
                                         {!! Form::password(
-                                            're_password',
+                                            'password_confirmation',
                                             [
                                                 'placeHolder' => trans('settings.admin.user.re_password'),
                                                 'class' => 'form-control m-input',
                                                 'required' => 'required'
                                             ]
                                         )!!}
-                                        {!! $errors->first('re_password', '<p style="color:red">:message</p>') !!}
+                                        {!! $errors->first('password_confirmation', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">

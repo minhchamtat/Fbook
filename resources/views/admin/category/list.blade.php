@@ -64,9 +64,6 @@
                                 </th>
                                 <th title="{{ __('admin.action') }}">
                                     {{ __('admin.action') }}
-                                    <span class="sort">
-                                        <i class="fa fa-long-arrow-alt-up"></i><i class="fa fa-long-arrow-alt-down"></i>
-                                    </span>
                                 </th>
                             </tr>
                         </thead>

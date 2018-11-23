@@ -39,21 +39,25 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
             switch ($record->target_type) {
                 case config('model.target_type.book_user'):
                     $book = $record->target->book;
-                    $message = config('view.notifications.' . $record->target->type) . $book->title;
-                    $record = array_add($record, 'message', $message);
-                    $record = array_add($record, 'route', config('view.notifications.route.book'));
-                    $record = array_add($record, 'link', $book->slug . '-' . $book->id);
+                    if ($book) {
+                        $message = config('view.notifications.' . $record->target->type) . $book->title;
+                        $record = array_add($record, 'message', $message);
+                        $record = array_add($record, 'route', config('view.notifications.route.book'));
+                        $record = array_add($record, 'link', $book->slug . '-' . $book->id);
+                    }
                     break;
-                
+
                 case config('model.target_type.review'):
                     $book = $record->target->book;
-                    $record = array_add($record, 'message', config('view.notifications.review') . $book->title);
-                    $record = array_add($record, 'route', config('view.notifications.route.review'));
-                    $link = [
-                        $book->slug . '-' . $book->id,
-                        $record->target->id,
-                    ];
-                    $record = array_add($record, 'link', $link);
+                    if ($book) {
+                        $record = array_add($record, 'message', config('view.notifications.review') . $book->title);
+                        $record = array_add($record, 'route', config('view.notifications.route.review'));
+                        $link = [
+                            $book->slug . '-' . $book->id,
+                            $record->target->id,
+                        ];
+                        $record = array_add($record, 'link', $link);
+                    }
                     break;
 
                 case config('model.target_type.follow'):
@@ -107,7 +111,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
     {
         try {
             $record = $this->model()->where($data);
-            
+
             return $record->delete();
         } catch (Exception $e) {
             return $e->getMessage();

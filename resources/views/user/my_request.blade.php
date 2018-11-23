@@ -41,6 +41,7 @@
             <div class="col-lg-12">
                 @include('layout.notification')
                 <div class="table-content table-responsive">
+                    @if ($books->total())
                     <table>
                         <thead>
                             <tr>
@@ -55,12 +56,13 @@
                         </thead>
                         <tbody>
                             @foreach ($books as $book)
+                                @if ($book->book)
                                 <tr>
                                     <td class="product-thumbnail">
                                         @if ($book->book->medias->count() > 0)
                                             <img src="{{ asset(config('view.image_paths.book') . $book->book->medias[0]->path) }}" alt="man" />
                                         @else
-                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
+                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
                                         @endif
                                     </td>
                                     <td class="product-name">
@@ -69,7 +71,9 @@
                                     <td>{{ $book->days_to_read }}</td>
                                     <td>{{ $book->user->name }}</td>
                                     <td>{{ $book->created_at }}</td>
-                                    <td class="type"><label class="stt bg-{{ $book->type }}">{{ $book->type }}</label></td>
+                                    <td class="type">
+                                        <label class="stt bg-{{ $book->type }}">{{ $book->type }}</label>
+                                    </td>
                                     @if ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))
                                         <td></td>
                                     @elseif ($book->type == config('view.request.reading'))
@@ -92,12 +96,16 @@
                                         </td>
                                     @endif
                                 </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
                      <div class="page-numbers">
                         {{ $books->links() }}
                     </div>
+                    @else
+                        <p class="nodata">{{ __('settings.request.nodata') }}</p>
+                    @endif
                 </div>
             </div>
         </div>
