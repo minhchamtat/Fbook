@@ -33,11 +33,11 @@ var DatatablesDataSourceAjaxServer = {
                     orderable: true,
                     searchable: false,
                     render: function (data, type, row) {
-                        return '<a href="/admin/book/' + data.id + '/edit"' + ' class= "btn btn-info m-btn m-btn--custom btn-sm"> <i class="fa fa-edit"></i></a>' +
-                        '<form action= "/admin/book/' + data.id + '" ' + 'id ="' + data.id + '"' + 'method="post"' + 'class="form-delete"' +'>' +
+                        return '<a href="/admin/book/' + data.id + '/edit"' + ' class= "btn btn-info m-btn m-btn--custom btn-sm" title="Edit"> <i class="fa fa-edit"></i></a>' +
+                        '<form action= "/admin/book/' + data.id + '" ' + 'id ="' + data.id + '"' + 'method="post"' + 'class="form-delete"' + '>' +
                         '<input type="hidden" name="_method" value="delete" />' +
                         '<input name="_token" value="' + csrfVar + '"' + 'type="hidden"/>' +
-                        '<button type = "submit" class="btn btn-danger m-btn m-btn--custom btn-9 btn-sm"><i class="fa fa-trash"></i></button>' +
+                        '<button type = "submit" class="btn btn-danger m-btn m-btn--custom btn-9 btn-sm" title="Delete"><i class="fa fa-trash"></i></button>' +
                         '</form>';
                     },
                 }

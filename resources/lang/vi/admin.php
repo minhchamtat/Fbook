@@ -92,5 +92,8 @@ return [
         'listUser' => 'Danh sách',
         'newUser' => 'Thêm thành viên mới',
         'editUser' => 'Chỉnh sửa thành viên',
-    ]
+    ],
+    'edit' => 'Sửa',
+    'delete' => 'Xóa',
+    'view' => 'Xem',
 ];

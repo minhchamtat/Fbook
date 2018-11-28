@@ -164,7 +164,10 @@
                                                 <a href="#"><i class="fa fa-envelope-o"></i></a>
                                             </div>
                                             <div class="product-addto-links-text">
-                                                <div class="more">{!! ($book->description) !!}</div>
+                                                <div class="more hideContent">{!! ($book->description) !!}</div>
+                                            </div>
+                                            <div class="more-link">
+                                                <a href="#">{{ __('page.book.show') }}</a>
                                             </div>
                                         </div>
                                     </div>

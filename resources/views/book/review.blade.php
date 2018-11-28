@@ -31,7 +31,8 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single-form-3">
-                                            <label>{{ __('page.rate') }}<span class="text-danger">*</span></label>
+                                            {!! Form::label('rate', __('page.rate'), ['class' => 'add-book']) !!}
+
                                             <div class="cont">
                                                 <div class="stars">
                                                     {!! Form::radio('star', 5, false, ['class' => 'star star-5', 'id' => 'star-5']) !!}
@@ -50,12 +51,12 @@
                                         <br>
                                         <div class="col-lg-12">
                                             <div class="single-form-3">
-                                                {!! Form::label('title', __('page.summary') . '*') !!}
+                                                {!! Form::label('title', __('page.summary'), ['class' => 'add-book']) !!}
                                                 {!! Form::text('title', null, ['placeHolder' => __('page.summary'), 'required' => 'required', 'title' => __('page.summary')]) !!}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="single-form-3">
+                                            <div class="single-form-3 mytextarea">
                                                 {!! Form::textarea('content', null, ['id' => 'mytextarea']) !!}
                                                 {!! Form::button(__('page.submit'), ['type' => 'submit', 'class' => 'submit']) !!}
                                             </div>

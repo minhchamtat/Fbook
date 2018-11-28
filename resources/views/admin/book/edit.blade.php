@@ -80,7 +80,7 @@
                                     <div class="form-group m-form__group row">
                                         {!! Form::label('date', __('admin.book.totalPage'), ['class' => 'col-2 required']) !!}
                                         <div class="col-10">
-                                            {!! Form::number('total_pages', $book->total_pages, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage')]) !!}
+                                            {!! Form::number('total_pages', $book->total_pages, ['class' => 'form-control m-input', 'placeHolder' => __('admin.book.placeHolder.totalPage'), 'min' => 0]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">

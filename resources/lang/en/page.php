@@ -30,6 +30,8 @@ return [
             'totalPage' => 'Total pages...',
             'sku' => 'Sku of book...',
         ],
+        'show' => 'Show more',
+        'less' => 'Show less',
     ],
     'club' => 'Reading Book Club',
     'app' => 'Framgia Apps',
@@ -37,7 +39,7 @@ return [
     'rate' => 'Rate',
     'home' => 'Home',
     'review' => 'Review',
-    'summary' => 'Summary',
+    'summary' => 'Title',
     'reviews' => [
         'title' => 'The title must be between 5 and 191.',
         'content' => 'The content must be 5 characters.',

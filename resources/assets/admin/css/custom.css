@@ -162,9 +162,21 @@ label.required::after {
 }
 
 .m-btn--icon>span>span {
-    font-family: "Roboto";
+    font-family: 'Roboto';
 }
 
 .table-bordered td, .table-bordered th {
     border-bottom: transparent;
+}
+
+.m-scroll-top {
+    background: #000000a6;
+}
+
+.m-scroll-top {
+    padding-top: 11px;
+}
+
+.m-scroll-top:hover>i {
+    color: white;
 }
