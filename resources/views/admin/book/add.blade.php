@@ -65,7 +65,7 @@
                                                 'class' => 'form-control m-input',
                                                 'id' => 'example-datetime-local-input',
                                                 'required',
-                                                'max' => date('Y/m/d'),
+                                                'max' => date('Y-m-d'),
                                                 'title' => __('admin.book.publishDate')
                                             ]
                                         ) !!}

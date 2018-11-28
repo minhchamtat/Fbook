@@ -111,13 +111,15 @@
                                         <td>{{ $user->employee_code }}</td>
                                         <td>{{ $user->office != null ? $user->office->name : null }}</td>
                                         <td>
-                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-info btn-sm" title="{{ __('admin.edit') }}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
                                             {!! Form::open([
                                                 'route' => ['users.destroy', $user->id],
                                                 'method' => 'DELETE',
                                                 'id' => $user->id
                                             ]) !!}
-                                            <button class="btn btn-danger btn-9 btn-sm"><i class="fa fa-trash"></i></button>
+                                            {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger btn-9 btn-sm', 'type' => 'submit', 'title' => __('admin.delete')]) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>

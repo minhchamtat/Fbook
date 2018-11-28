@@ -39,7 +39,7 @@
                             'title',
                             __('page.book.title'),
                             [
-                                'class' => 'col-2 col-form-label',
+                                'class' => 'col-2 col-form-label add-book',
                             ]
                         ) !!}
                         {!! Form::text(
@@ -58,7 +58,10 @@
                             <div class="single-register">
                                 {!! Form::label(
                                     'author',
-                                    __('page.book.author')
+                                    __('page.book.author'),
+                                    [
+                                        'class' => 'add-book',
+                                    ]
                                 ) !!}
                                 {!! Form::text(
                                     'author',
@@ -76,7 +79,10 @@
                             <div class="single-register">
                                 {!! Form::label(
                                     'total_pages',
-                                    __('page.book.totalPage')
+                                    __('page.book.totalPage'),
+                                    [
+                                        'class' => 'add-book',
+                                    ]
                                 ) !!}
                                 {!! Form::number(
                                     'total_pages',
@@ -94,7 +100,13 @@
                     </div>
                     <div class="single-register mb-4">
                         <div class="row">
-                            {!! Form::label('avatar', __('page.book.avatar')) !!}
+                            {!! Form::label(
+                                'avatar',
+                                __('page.book.avatar'),
+                                [
+                                    'class' => 'add-book',
+                                ])
+                            !!}
                             <div class="col-md-12 custom-file" id="custom">
                                 {!!
                                     Form::file('avatar',
@@ -115,7 +127,13 @@
                         </div>
                     </div>
                     <div class="single-register">
-                        {!! Form::label('category', __('page.book.category')) !!}
+                        {!! Form::label(
+                            'category',
+                            __('page.book.category'),
+                            [
+                                'class' => 'add-book',
+                            ]
+                        ) !!}
                         <div class="row">
                             @foreach ($categories as $category)
                                 <div class="col-md-4">
@@ -135,16 +153,19 @@
                             <div class="single-register">
                                 {!! Form::label(
                                     'publish_date',
-                                    __('page.book.publish')
+                                    __('page.book.publish'),
+                                    [
+                                        'class' => 'add-book'
+                                    ]
                                 ) !!}
                                 {!! Form::date(
                                     'publish_date',
                                     null,
                                     [
-                                        'id' => 'example-datetime-local-input',
+                                        'id' => 'example-datetime-local-input publish-date',
                                         'required' => 'required',
                                         'class' => 'form-control m-input',
-                                        'max' => date('Y/m/d'),
+                                        'max' => date('Y-m-d'),
                                         'title' =>  __('page.book.publish')
                                     ]
                                 ) !!}
@@ -154,7 +175,10 @@
                     <div class="single-register">
                         {!! Form::label(
                             'description',
-                             __('page.book.description')
+                            __('page.book.description'),
+                            [
+                                'class' => 'add-book',
+                            ]
                         ) !!}
                         {!! Form::textarea(
                             'description',

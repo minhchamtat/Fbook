@@ -13,6 +13,8 @@
     var textBook = 'I have this book';
     var textFollowing = 'Following';
     var textFollow = 'Follow';
+    var textMore = 'Show more';
+    var textLess = 'Show less';
     if (language == 'vi') {
         textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
         textLogin = 'Bạn cần đăng nhập để tiếp tục';
@@ -26,6 +28,8 @@
         textBook = 'Tôi có cuốn sách này';
         textFollowing = 'Đang theo dõi';
         textFollow = 'Theo dõi';
+        textMore = 'Xem thêm';
+        textLess = 'Ẩn bớt';
     }
     var header = $('#header-sticky');
     var win = $(window);
@@ -245,38 +249,32 @@
         animation: 'fade'
     });
 
-    $('.more').each(function() {
-        var moretext = 'Show more >';
-        var lesstext = ' Show less';
-        var showChar = 500;
-        var ellipsestext = '...';
-        var content = $(this).html();
 
-        if(content.length > showChar) {
+    var content = $('.more');
+    var linkText = $('.more-link a').text();
+    var text = content.html();
 
-            var c = content.substr(0, showChar);
-            var h = content.substr(showChar, content.length - showChar);
+    if (text && text.length > 1000) {
+        content.addClass('hideContent');
+        $('.more').addClass('height');
+        $('.more-link a').click(function(e) {
+            e.preventDefault();
+            $('.more').toggleClass('height');
+            if (linkText === textMore) {
+                linkText = textLess;
+                content.addClass('showContent');
+                content.removeClass('hideContent');
 
-            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span class="contentellipses">' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-            $(this).html(html);
-        }
-
-    });
-
-    $('.morelink').click(function(){
-        if($(this).hasClass('less')) {
-            $(this).removeClass('less');
-            $('.contentellipses').hide();
-            $('.moreellipses').show();
-            $(this).html('Show more >');
-        } else {
-            $(this).addClass('less');
-            $('.moreellipses').hide();
-            $('.contentellipses').show();
-            $(this).html('< Show less');
-        }
-        return false;
-    });
+            } else {
+                linkText = textMore;
+                content.addClass('hideContent');
+                content.removeClass('showContent');
+            };
+            $('.more-link a').text(linkText);
+        });
+    } else {
+        $('.more-link a').text('');
+    }
 
     $.ajaxSetup({
       headers: {

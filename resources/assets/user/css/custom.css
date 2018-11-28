@@ -167,6 +167,9 @@ button.btn-vote i, .content .col-md-2 span {
 .modal-pro-content p {
     max-height: 300px;
     overflow-y: auto;
+    text-align: justify;
+    padding-right: 10px;
+    line-height: 2em;
 }
 
 .product-details h4 a, .single-bestseller .bestseller-text h3 a {
@@ -697,7 +700,7 @@ img.logo {
 }
 
 .owl-item.active .slider-animated-1 a {
-    animation-delay: 3.5s;
+    animation-delay: 1s;
 }
 
 .entry-header-title h2 {
@@ -737,4 +740,68 @@ i.fa.fa-eye {
 p.nodata {
     font-size: 18px;
     text-align: center;
+}
+
+.add-book:after {
+    content: '*';
+    color: red;
+    margin-left: 2px;
+}
+
+.contact-form form .single-form-3.mytextarea button.submit:hover {
+    background: #f07c29 none repeat scroll 0 0;
+}
+
+.contact-form form .single-form-3.mytextarea button:hover {
+    background-color: transparent;
+}
+
+.product-addto-links-text .more p:first-child {
+    padding-top: 30px;
+}
+
+.product-addto-links-text .more p {
+    padding: 0;
+    text-align: justify;
+    font-size: 15px;
+}
+
+.more-link {
+    margin-top: 20px;
+}
+
+.more {
+    transition: all 0.5s ease;
+    font-size: 15px;
+    line-height: 2em;
+}
+
+.hideContent {
+    overflow: hidden;
+    line-height: 2em;
+}
+
+.showContent {
+    line-height: 2em;
+    height: auto;
+}
+
+.height {
+    height: 26em;
+}
+
+.modal-pro-content p::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-pro-content p::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.modal-pro-content p::-webkit-scrollbar-thumb {
+    background: #5bc0de;
+}
+
+.modal-pro-content p::-webkit-scrollbar-thumb:hover {
+    background: #5bc0de;
 }

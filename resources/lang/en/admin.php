@@ -92,5 +92,8 @@ return [
         'listUser' => 'List User',
         'newUser' => 'Add New User',
         'editUser' => 'Edit User',
-        ]
+    ],
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'view' => 'View',
 ];

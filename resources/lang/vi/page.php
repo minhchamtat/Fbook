@@ -30,6 +30,8 @@ return [
             'totalPage' => 'Số trang ...',
             'sku' => 'Mã SKU ...',
         ],
+        'show' => 'Xem thêm',
+        'less' => 'Ẩn bớt',
     ],
     'club' => 'Câu lạc bộ đọc sách',
     'app' => 'Ứng dụng của Framgia',
@@ -37,7 +39,7 @@ return [
     'rate' => 'Bình chọn',
     'home' => 'Trang chủ',
     'review' => 'Đánh giá',
-    'summary' => 'Tóm tắt',
+    'summary' => 'Tiêu đề',
     'reviews' => [
         'title' => 'Bình luận phải dài từ 5 - 191 ký tự.',
         'content' => 'Nội dung phải chứa ít nhất 5 ký tự.',

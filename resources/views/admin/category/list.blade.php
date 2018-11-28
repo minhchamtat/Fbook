@@ -75,11 +75,15 @@
                                     <td title="{{ $category->name }}">{{ $category->name }}</td>
                                     <td title="{{ $category->description }}">{{ $category->description }}</td>
                                     <td>
-                                        <a href="{{ url("admin/category/$category->id/edit") }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ url("admin/category/$category->id/edit") }}" class="btn btn-info btn-sm" title="{{ __('admin.edit') }}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', 'id' => $category->id], 'id' => "$category->id"]) !!}
-                                            {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit']) !!}
+                                            {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm', 'type' => 'submit', 'title' => __('admin.delete')]) !!}
                                         {!! Form::close() !!}
-                                        <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="btn btn-primary btn-sm" title="{{ __('admin.view') }}">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
