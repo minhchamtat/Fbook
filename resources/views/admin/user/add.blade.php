@@ -75,12 +75,13 @@
                                         ]
                                     ) !!}
                                     <div class="col-10">
-                                        {!! Form::text(
+                                        {!! Form::number(
                                             'phone',
                                             null,
                                             [
                                                 'placeholder' => trans('settings.admin.user.phone'),
                                                 'class' => 'form-control m-input',
+                                                'min' => 0,
                                             ]
                                         )!!}
                                         {!! $errors->first('phone', '<p style="color:red">:message</p>') !!}
@@ -96,11 +97,12 @@
                                     ) !!}
                                     <div class="col-10">
                                         {!! Form::file(
-                                            'img',
+                                            'avatar',
                                             [
                                                 'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
                                             ]
                                         )!!}
+                                        {!! $errors->first('avatar', '<p style="color:red">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
