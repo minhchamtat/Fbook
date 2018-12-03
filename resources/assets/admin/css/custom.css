@@ -180,3 +180,8 @@ label.required::after {
 .m-scroll-top:hover>i {
     color: white;
 }
+
+.dataTables_wrapper .dataTable td:last-child a {
+    margin-left: 2px;
+    margin-right: 2px;
+}

@@ -412,12 +412,12 @@
         </div>
     </div>
 
-    <div class="modal" id="borrowingModal">
+    <div class="modal animated zoomIn faster" id="borrowingModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">{{ trans('settings.modal.close') }}</button>
+                            aria-hidden="true"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                     <h4 class="modal-title">{{ trans('settings.modal.borrow_book') }}</h4>
                 </div>
                 {!! Form::open([
@@ -431,37 +431,53 @@
                         @if ($book->owners)
                             @foreach ($book->owners as $owner)
                                 @if ($owner->id != Auth::id())
-                                    <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">
-                                        {!! Form::radio(
-                                            'owner_id',
-                                            $owner->id,
-                                            [
-                                                'required' => 'required',
-                                            ]
-                                        ) !!}
-                                        {{ $owner->name }}
+                                   <div class="row">
+                                        <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">
+                                            <label class="radio">
+                                                {{ $owner->name }}
+                                                {!! Form::radio(
+                                                    'owner_id',
+                                                    $owner->id,
+                                                    [
+                                                        'required' => 'required',
+                                                    ]
+                                                ) !!}
+                                                <span class="checkround"></span>
+                                        </label>
+                                        </div>
+                                   </div>
+                                @else
+                                    @php $status = 0; @endphp
+                                    <div class="alert alert-info text-center mb-4" role="alert">
+                                        <p class="no-owner">{{ __('page.noOwner') }}</p>
                                     </div>
                                 @endif
                             @endforeach
                         @endif
                     </div>
-                    <div class="col-sm-8">
-                        {{ trans('settings.modal.choose_time_to_borrow') }}
-                    </div>
-                    <div class="col-lg-4">
-                        {!! Form::selectRange('days_to_read', 3, 30) !!}
-                        {{ trans('settings.modal.days') }}
-                    </div>
+                    @if (!isset($status))
+                       <div class="row mt-4">
+                            <div class="col-sm-8">
+                                <p class="choose">{{ trans('settings.modal.choose_time_to_borrow') }}</p>
+                            </div>
+                            <div class="col-lg-4">
+                                {!! Form::selectRange('days_to_read', 3, 30, null, ['class' => 'form-control day']) !!}
+                                <span>{{ trans('settings.modal.days') }}</span>
+                            </div>
+                       </div>
+                    @endif
                 </div>
-                <div class="modal-footer">
-                    <a data-dismiss="modal" class="btn">{{ trans('settings.modal.btn_close') }}</a>
-                    {!! Form::submit(
-                        trans('settings.modal.btn_submit'),
-                        [
-                            'class' => 'btn btn-primary',
-                        ]
-                    )!!}
-                </div>
+                @if (!isset($status))
+                    <div class="modal-footer">
+                        <a data-dismiss="modal" class="btn btn-danger">{{ trans('settings.modal.btn_close') }}</a>
+                        {!! Form::submit(
+                            trans('settings.modal.btn_submit'),
+                            [
+                                'class' => 'btn btn-success',
+                            ]
+                        )!!}
+                    </div>
+                @endif
                 {!! Form::close() !!}
             </div>
         </div>

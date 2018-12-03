@@ -25,7 +25,7 @@ return [
         'banner' => 'assets/img/banner/',
         'product' => 'assets/img/product/',
         'post' => 'assets/img/post/',
-        'user' => 'assets/img/user/avatar/',
+        'user' => 'storage/img/user/avatar/',
         'book' => 'storage/img/book/',
         'logo_admin' => 'admin_asset/assets/demo/default/media/img/logo/',
     ],

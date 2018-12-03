@@ -60,8 +60,11 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="product-addto-links-text more">
-                                    {!! $book->description !!}
+                                <div class="product-addto-links-text">
+                                    <div class="more hideContent">{!! ($book->description) !!}</div>
+                                </div>
+                                <div class="more-link">
+                                    <a href="#">{{ __('page.book.show') }}</a>
                                 </div>
                             </li>
                         </ul>

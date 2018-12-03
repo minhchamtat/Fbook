@@ -3,6 +3,9 @@ var DatatablesDataSourceAjaxServer = {
         var csrfVar = $('meta[name="csrf-token"]').attr('content');
         var language = $('#m_header').data('language');
         var text = {'searchPlaceholder': 'Search records'};
+        var textView = 'View';
+        var textDel = 'Delete';
+        var textEdit = 'Edit';
         if (language == 'vi') {
             text = {
                 'sLengthMenu': 'Hiển thị _MENU_ bản ghi',
@@ -12,7 +15,10 @@ var DatatablesDataSourceAjaxServer = {
                 'infoEmpty': 'Không có bản ghi nào',
                 'infoFiltered': '(Lọc từ _MAX_ tổng số bản ghi)',
                 'searchPlaceholder': 'Tìm kiếm'
-            }
+            };
+            textView = 'Xem';
+            textDel = 'Xóa';
+            textEdit = 'Sửa';
         }
 
         $('table#m_table_1').DataTable({
@@ -33,12 +39,13 @@ var DatatablesDataSourceAjaxServer = {
                     orderable: true,
                     searchable: false,
                     render: function (data, type, row) {
-                        return '<a href="/admin/book/' + data.id + '/edit"' + ' class= "btn btn-info m-btn m-btn--custom btn-sm" title="Edit"> <i class="fa fa-edit"></i></a>' +
+                        return '<a href="/admin/book/' + data.id + '/edit"' + ' class= "btn btn-info m-btn m-btn--custom btn-sm" title="' + textEdit + '"> <i class="fa fa-edit"></i></a>' +
                         '<form action= "/admin/book/' + data.id + '" ' + 'id ="' + data.id + '"' + 'method="post"' + 'class="form-delete"' + '>' +
                         '<input type="hidden" name="_method" value="delete" />' +
                         '<input name="_token" value="' + csrfVar + '"' + 'type="hidden"/>' +
-                        '<button type = "submit" class="btn btn-danger m-btn m-btn--custom btn-9 btn-sm" title="Delete"><i class="fa fa-trash"></i></button>' +
-                        '</form>';
+                        '<button type = "submit" class="btn btn-danger m-btn m-btn--custom btn-9 btn-sm" title="' + textDel + '"><i class="fa fa-trash"></i></button>' +
+                        '</form>' +
+                        '<a href="/books/' + data.slug + '-' + data.id + '"' + 'class="btn btn-primary btn-sm" title="' + textView + '" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>';
                     },
                 }
             ],
@@ -46,7 +53,8 @@ var DatatablesDataSourceAjaxServer = {
             language: text,
             fnDrawCallback: function(oSettings) {
                 if ($('#m_table_1 tr').length < 11) {
-                    $('.dataTables_paginate').hide();
+                    $('#m_table_1_next').hide();
+                    $('#m_table_1_last').hide();
                 }
             }
         });

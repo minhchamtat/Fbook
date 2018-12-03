@@ -99,6 +99,7 @@
                                         {!! Form::file(
                                             'avatar',
                                             [
+                                                'id' => 'customFile',
                                                 'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif',
                                             ]
                                         )!!}
@@ -304,4 +305,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {!! Html::script('assets/admin/js/uploadFile.js') !!}
 @endsection
