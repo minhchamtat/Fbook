@@ -121,6 +121,9 @@
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger btn-9 btn-sm', 'type' => 'submit', 'title' => __('admin.delete')]) !!}
                                             {!! Form::close() !!}
+                                            <a href="{{ route('user', $user->id) }}" class="btn btn-primary btn-sm" title="{{ __('admin.view') }}">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

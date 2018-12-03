@@ -35,6 +35,11 @@ function clickFile(event) {
 }
 
 jQuery(document).ready(function() {
+    var language = $('header').data('language');
+    var textNotify = 'Image require less than 2MB';
+    if (language == 'vi') {
+        textNotify = 'Ảnh yêu cầu nhỏ hơn 2MB';
+    }
     function readURL(input) {
 
         if (input.files && input.files[0]) {
@@ -48,7 +53,18 @@ jQuery(document).ready(function() {
     }
 
     $('#customFile').change(function() {
-        readURL(this);
+        if (this.files[0].size > 2097152) {
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: textNotify,
+            });
+            $('#label').text('Browese...');
+            $('.img-book').attr('src', '');
+            $(this).val('');
+        } else {
+            readURL(this);
+        }
     });
 
     $('#cancel').click(function() {

@@ -51,7 +51,7 @@ class BookController extends Controller
             $books = $this->book->getData(
                 [],
                 [],
-                ['id', 'title', 'author', 'publish_date', 'total_pages', 'avg_star', 'count_viewed']
+                ['id', 'title', 'author', 'publish_date', 'total_pages', 'avg_star', 'count_viewed', 'slug']
             );
             return Datatables::of($books)
                 ->make(true);

@@ -32,7 +32,6 @@
                                     <div class="col-lg-12">
                                         <div class="single-form-3">
                                             {!! Form::label('rate', __('page.rate'), ['class' => 'add-book']) !!}
-
                                             <div class="cont">
                                                 <div class="stars">
                                                     {!! Form::radio('star', 5, false, ['class' => 'star star-5', 'id' => 'star-5']) !!}
