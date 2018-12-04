@@ -1,6 +1,9 @@
 <div class="suggestion">
     <ul class="suggestions-list noti-list">
         <h5 class="bg-light">{{ __('settings.header.notifications.name') }}</h5>
+        <div class="view-all">
+            <a href="{{ route('markread') }}">{{ __('settings.header.notifications.viewed') }}</a>
+        </div>
         @if (isset($notifications) && count($notifications) > 0)
             @foreach ($notifications as $item)
                 @if (!is_null($item->route))

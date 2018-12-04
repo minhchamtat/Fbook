@@ -180,6 +180,7 @@ return [
         'notifications' => [
             'show_more' => 'Xem thêm',
             'name' => 'Thông báo',
+            'viewed' => 'Đánh dấu là đã đọc',
         ],
     ],
     'lang' => [

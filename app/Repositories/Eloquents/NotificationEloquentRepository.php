@@ -117,4 +117,14 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
             return $e->getMessage();
         }
     }
+
+    public function markRead($data)
+    {
+        $view['viewed'] = 1;
+        foreach ($data as $notification) {
+            $notification->update($view);
+        }
+
+        return $data;
+    }
 }

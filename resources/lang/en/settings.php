@@ -177,6 +177,7 @@ return [
         'notifications' => [
             'show_more' => 'Show more',
             'name' => 'Notifications',
+            'viewed' => 'Mark as read',
         ],
         'search' => 'Search',
         'dashboard' => 'Dashboard',
