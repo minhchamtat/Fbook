@@ -715,9 +715,11 @@ img.logo {
     text-transform: uppercase;
 }
 
-ul.suggestions-list {
+ul.suggestions-list.noti-list {
     background: #fff;
-    border-radius: 12px;
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .bg-light {
@@ -886,4 +888,40 @@ i.fa.fa-times-circle {
 
 .modal-content {
     border-radius: 0;
+}
+
+.badge-danger {
+    background-color: #f9423a;
+}
+
+#noti-detail .old {
+    background-color: #fff !important;
+}
+
+.container .old {
+    background-color: #fff !important;
+}
+
+.container .new {
+    background-color: #ededed !important;
+}
+
+ul.suggestions-list.noti-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+ul.suggestions-list.noti-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+ul.suggestions-list.noti-list::-webkit-scrollbar-thumb {
+    background: #f07c29;
+}
+
+ul.suggestions-list.noti-list::-webkit-scrollbar-thumb:hover {
+    background: #f07c29;
+}
+
+#noti-detail .suggestion {
+    overflow: hidden;
 }

@@ -6550,18 +6550,6 @@ p.lost-password a:hover {
     height: 60px;
 }
 
-#noti-detail .old {
-    background-color: #ededed !important;
-}
-
-.container .old {
-    background-color: #ededed !important;
-}
-
-.container .new {
-    background-color: #fff !important;
-}
-
 .header-ul li {
     padding-left: 30px;
 }

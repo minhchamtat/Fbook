@@ -1,25 +1,27 @@
 <div class="suggestion">
-    <ul class="suggestions-list">
+    <ul class="suggestions-list noti-list">
         <h5 class="bg-light">{{ __('settings.header.notifications.name') }}</h5>
         @if (isset($notifications) && count($notifications) > 0)
             @foreach ($notifications as $item)
-                <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }}" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
-                    <a href="{{ route($item->route, $item->link) }}" class="result-link" title="{{ $item->message }}" data-id={{ $item->id }}>
-                        <div class="media single-noti">
-                            <div>
-                                @if ($item->userSend->avatar)
-                                    <img src="{{ $item->userSend->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon" />
-                                @else
-                                    <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
-                                @endif
+                @if (!is_null($item->route))
+                    <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }}" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
+                        <a href="{{ route($item->route, $item->link) }}" class="result-link" title="{{ $item->message }}" data-id={{ $item->id }}>
+                            <div class="media single-noti">
+                                <div>
+                                    @if ($item->userSend->avatar)
+                                        <img src="{{ $item->userSend->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon" />
+                                    @else
+                                        <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
+                                    @endif
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{ $item->userSend->name }}</h4>
+                                    {{ $item->message }}
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{ $item->userSend->name }}</h4>
-                                {{ $item->message }}
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                @endif
             @endforeach
             <li class="result-entry text-center" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
                 <div class="media-body">

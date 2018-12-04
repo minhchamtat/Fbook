@@ -38,8 +38,8 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
         foreach ($records as $record) {
             switch ($record->target_type) {
                 case config('model.target_type.book_user'):
-                    $book = $record->target->book;
-                    if ($book) {
+                    if ($record->target) {
+                        $book = $record->target->book;
                         $message = config('view.notifications.' . $record->target->type) . $book->title;
                         $record = array_add($record, 'message', $message);
                         $record = array_add($record, 'route', config('view.notifications.route.book'));
