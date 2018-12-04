@@ -51,7 +51,7 @@
                                     <div class="header-noti">
                                         <a href="#">
                                             <i class="fa fa-bell-o noti-show" id="bell-notification" aria-hidden="true" data="{{ $new }}"></i>
-                                            <sup class="badge badge-danger active-notification" id="notification_298">
+                                            <sup class="badge badge-danger active-notification {{ $new == 0 ? 'hidden' : '' }}" id="notification_298">
                                                 <span>{{ $new == 0 ? '' : $new }}</span>
                                             </sup>
                                         </a>

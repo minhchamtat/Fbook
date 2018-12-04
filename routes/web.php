@@ -45,6 +45,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/notifications/{limit}', 'NotificationController@getLimitNotifications');
             Route::get('/notifications', 'NotificationController@getAllNotifications')->name('notifications');
             Route::post('/notification-update', 'NotificationController@updateNotification');
+            Route::get('/notifications/viewed', 'NotificationController@markRead')->name('markread');
         });
     });
 

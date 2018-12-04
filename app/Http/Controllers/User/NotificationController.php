@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\NotificationRepository;
 use Auth;
+use App\Eloquent\Notification;
 
 class NotificationController extends Controller
 {
@@ -45,12 +46,23 @@ class NotificationController extends Controller
         } else {
             $notifications = $this->getNotifications($limit);
         }
-        
+
         return view('layout.section.notifications', compact('notifications'));
     }
 
     public function updateNotification(Request $request)
     {
         return $this->notification->update($request->all());
+    }
+
+    public function markRead()
+    {
+        $user = Auth::id();
+        $notifications = Notification::where('receive_id', $user)
+                        ->where('viewed', 0)
+                        ->get();
+        $this->notification->markRead($notifications);
+
+        return redirect()->route('home');
     }
 }

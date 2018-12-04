@@ -708,7 +708,7 @@ img.logo {
 }
 
 .suggestions-list li {
-    padding: 20px 15px;
+    padding: 10px 15px;
 }
 
 .h5, h5 {
@@ -924,4 +924,14 @@ ul.suggestions-list.noti-list::-webkit-scrollbar-thumb:hover {
 
 #noti-detail .suggestion {
     overflow: hidden;
+}
+
+ul.suggestions-list.noti-list .view-all a{
+    color: blue;
+    text-transform: none;
+}
+
+ul.suggestions-list.noti-list .view-all {
+    text-align: right;
+    padding: 6px 22px 6px 0;
 }
