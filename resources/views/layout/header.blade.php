@@ -50,34 +50,33 @@
                                 <li class="noti">
                                     <div class="header-noti">
                                         <a href="#">
-                                            <i class="fa fa-bell-o noti-show" id="bell-notification" aria-hidden="true"
-                                               data="{{ $new }}"></i>
-                                            <sup class="badge active-notification"
-                                                 id="notification_298">{{ $new == 0 ? '' : $new }}</sup>
+                                            <i class="fa fa-bell-o noti-show" id="bell-notification" aria-hidden="true" data="{{ $new }}"></i>
+                                            <sup class="badge badge-danger active-notification" id="notification_298">
+                                                <span>{{ $new == 0 ? '' : $new }}</span>
+                                            </sup>
                                         </a>
                                     </div>
                                     <div id="noti-detail" class="s-suggest"></div>
                                 </li>
                                 <li>
                                     <div class="dropdown">
-                                        <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                              aria-expanded="false">
+                                        <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             @if(Auth::user()->avatar)
-                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar"
-                                                     class="avatar">
+                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" class="avatar">
                                             @else
-                                                <img src="{{ asset(config('view.image_paths.user') . '1.png') }}"
-                                                     alt="avatar" class="avatar">
+                                                <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="avatar">
                                             @endif
                                         </span>
                                         <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
                                             <b>{{ Auth::user()->name }}</b>
                                             @if ($roles && in_array(config('model.roles.admin'), $roles))
-                                                <a class="dropdown-item"
-                                                   href="{{ url('admin') }}" target="_blank">{{ trans('settings.header.dashboard') }}</a>
+                                                <a class="dropdown-item" href="{{ url('admin') }}" target="_blank">
+                                                    {{ trans('settings.header.dashboard') }}
+                                                </a>
                                             @endif
-                                            <a class="dropdown-item"
-                                               href="{{ route('my-profile') }}">{{ trans('settings.header.profile') }}</a>
+                                            <a class="dropdown-item" href="{{ route('my-profile') }}">
+                                                {{ trans('settings.header.profile') }}
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('my-request.index') }}">{{ trans('settings.header.my_request') }}</a>
                                             {!! Form::open([
                                                 'route' => 'logout',
