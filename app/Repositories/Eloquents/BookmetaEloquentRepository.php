@@ -54,8 +54,13 @@ class BookmetaEloquentRepository extends AbstractEloquentRepository implements B
 
     public function destroyCountReview($id)
     {
-        $countReview = $this->model()->where('book_id', $id)->where('key', 'count_review')->first();
-
-        return $countReview->delete();
+        try {
+            $countReview = $this->model()->where('book_id', $id)->where('key', 'count_review')->first();
+            if ($countReview) {
+                return $countReview->delete();
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
