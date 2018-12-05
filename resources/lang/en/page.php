@@ -8,7 +8,7 @@ return [
     'reset' => 'Reset',
     'dashboard' => 'Fbook Dashboard',
     'search' => 'Enter your keyword here...',
-    'noOwner' => 'Currently no one owns this book',
+    'noOwner' => 'You can not borrow your books',
     'book' => [
         'add' => 'Add Your Book',
         'edit' => 'Edit Your Book',

@@ -196,18 +196,8 @@
                                                         <div class="well padding5 owner-clear relative-position">
                                                             <div class="media padding5">
                                                                 <div class="medialeft">
-                                                                    @if ($review->user->avatar != '')
-                                                                        <a href="{{ route('user', $review->user->id) }}"
-                                                                           class="avatar">
-                                                                            <img src="{{ $review->user->avatar }}"
-                                                                                 class="img-thumbnail avatar-icon"
-                                                                                 alt="avatar"></a>
-                                                                    @else
-                                                                        <a href="{{ route('user', $review->user->id) }}"
-                                                                           class="avatar"><img
-                                                                                    src="{{ asset(config('view.image_paths.user') . '1.png') }}"
-                                                                                    class="img-thumbnail avatar-icon"></a>
-                                                                    @endif
+                                                                    <img src="{{ ($review->user && $review->user->avatar != '') ? $review->user->avatar : asset(config('view.image_paths.user') . '1.png') }}"
+                                                                        class="img-thumbnail avatar-icon" alt="avatar">
                                                                 </div>
                                                                 <div class="media-body relative-position">
                                                                     <div class="content-comment">
@@ -416,8 +406,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </button>
                     <h4 class="modal-title">{{ trans('settings.modal.borrow_book') }}</h4>
                 </div>
                 {!! Form::open([
@@ -431,7 +422,7 @@
                         @if ($book->owners)
                             @foreach ($book->owners as $owner)
                                 @if ($owner->id != Auth::id())
-                                   <div class="row">
+                                    <div class="row">
                                         <div class="col-xs-12 col-sm-12" id="owner{{ $owner->id }}">
                                             <label class="radio">
                                                 {{ $owner->name }}
@@ -445,14 +436,19 @@
                                                 <span class="checkround"></span>
                                         </label>
                                         </div>
-                                   </div>
-                                @else
+                                    </div>
+                                @elseif ($owner->id == Auth::id() && $book->owners->count() == 1)
                                     @php $status = 0; @endphp
                                     <div class="alert alert-info text-center mb-4" role="alert">
                                         <p class="no-owner">{{ __('page.noOwner') }}</p>
                                     </div>
                                 @endif
                             @endforeach
+                        @else
+                            @php $status = 0; @endphp
+                            <div class="alert alert-info text-center mb-4" role="alert">
+                                <p class="no-owner">{{ __('page.noOwner') }}</p>
+                            </div>
                         @endif
                     </div>
                     @if (!isset($status))

@@ -8,7 +8,7 @@ return [
     'reset' => 'Làm lại',
     'search' => 'Nhập vào từ khóa...',
     'dashboard' => 'Quản trị Fbook',
-    'noOwner' => 'Hiện tại chưa có ai sở hữu cuốn sách này',
+    'noOwner' => 'Bạn không thể mượn sách của mình',
     'book' => [
         'add' => 'Thêm sách',
         'edit' => 'Chỉnh sửa sách',
