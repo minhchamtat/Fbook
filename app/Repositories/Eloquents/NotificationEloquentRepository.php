@@ -40,10 +40,12 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                 case config('model.target_type.book_user'):
                     if ($record->target) {
                         $book = $record->target->book;
-                        $message = config('view.notifications.' . $record->target->type) . $book->title;
-                        $record = array_add($record, 'message', $message);
-                        $record = array_add($record, 'route', config('view.notifications.route.book'));
-                        $record = array_add($record, 'link', $book->slug . '-' . $book->id);
+                        if ($book) {
+                            $message = config('view.notifications.' . $record->target->type) . $book->title;
+                            $record = array_add($record, 'message', $message);
+                            $record = array_add($record, 'route', config('view.notifications.route.book'));
+                            $record = array_add($record, 'link', $book->slug . '-' . $book->id);
+                        }
                     }
                     break;
 

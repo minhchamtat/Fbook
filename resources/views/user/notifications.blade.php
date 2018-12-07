@@ -37,9 +37,8 @@
                 <ul class="suggestions-list">
                     @if (isset($notifications) && count($notifications) > 0)
                         @foreach ($notifications as $item)
-                            @if ($item->route)
                                 <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }}" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
-                                    <a href="{{ route($item->route, $item->link) }}" class="result-link" title="{{ $item->message }}">
+                                    <a href="{{ ($item->route) ? route($item->route, $item->link) : route('error') }}" class="result-link" title="{{ $item->message }}">
                                         <div class="media single-noti">
                                             <div>
                                                 @if ($item->userSend->avatar)
@@ -54,8 +53,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                </li>
-                            @endif
+                                </li>  
                         @endforeach
                         <li class="result-entry text-center" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
                             <div class="media-body">
