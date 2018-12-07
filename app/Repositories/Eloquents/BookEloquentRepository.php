@@ -20,6 +20,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         'description',
         'avg_star',
         'slug',
+        'author',
     ];
 
     public function model()
@@ -268,6 +269,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->select($this->onlyAttributes)
             ->with($with)
             ->search($attribute, $data)
+            ->take(config('view.paginate.book_request'))
             ->get();
     }
 

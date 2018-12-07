@@ -54,4 +54,7 @@ return [
         'placeHolder' => 'Nhập địa chỉ email của bạn',
         'submit' => 'Đăng kí',
     ],
+    'clickMore' => 'bấm enter để xem thêm',
+    'keySearch' => 'Từ khóa:',
+    'searchBy' => 'Tìm kiếm theo:',
 ];

@@ -49,6 +49,7 @@ Config API_CLIENT_SECRET and API_CLIENT_id in .env
 ```
 $ ./vendor/bin/phpunit
 ```
+
  - Install yarn:<br/>
 ```npm install -g yarn```<br/>
 ```yarn install```
