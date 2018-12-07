@@ -36,7 +36,7 @@ return [
         'book_profile' => 12,
         'follow_user' => 9,
         'book_request' => 5,
-        'notifications' => 10,
+        'notifications' => 15,
         'review' => 3,
     ],
 
