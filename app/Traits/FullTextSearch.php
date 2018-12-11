@@ -23,8 +23,8 @@ trait FullTextSearch
              * applying + operator (required word) only big words
              * because smaller ones are not indexed by mysql
              */
-            if (strlen($word) >= 2) {
-                $words[$key] = '%' . $word  . '%';
+            if (strlen($word) >= 1) {
+                $words[$key] = '+' . $word  . '*';
             }
         }
         
@@ -40,9 +40,9 @@ trait FullTextSearch
      * @param string $term
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearch($query, $column, $term)
+    public function scopeFullTextSearch($query, $columns, $term)
     {
-        $query->where($column, 'LIKE', $this->fullTextWildcards($term));
+        $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
 
         return $query;
     }

@@ -21,13 +21,15 @@
                                 </div>
                             </a>
                         </li>
-                    @endforeach
-                    <div class="line"></div>
-                    <div class="suggestion-entern">{{ trans('page.clickMore') }}</div>
+                    @endforeach                    
                 @else
-                    {{ trans('settings.home.not_found') }}
+                    <div class="search_found"><h5>{{ trans('settings.home.not_found') }}</div>
                 @endif
             </ul>
         </div>
+        @if (count($value) > 0)
+            <div class="line"></div>
+            <div class="suggestion-entern"><h4>{{ trans('page.clickMore') }}</h4></div>
+        @endif
     @endforeach
 @endif
