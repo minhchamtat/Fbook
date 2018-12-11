@@ -80,7 +80,7 @@ class MyRequestController extends Controller
             } else {
                 $data = [
                     'send_id' => $record->owner_id,
-                    'receive_id' => Auth::id(),
+                    'receive_id' => $record->user_id,
                     'target_type' => config('model.target_type.book_user'),
                     'target_id' => $record->id,
                     'viewed' => config('model.viewed.false'),

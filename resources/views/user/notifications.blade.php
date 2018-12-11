@@ -37,29 +37,24 @@
                 <ul class="suggestions-list">
                     @if (isset($notifications) && count($notifications) > 0)
                         @foreach ($notifications as $item)
-                                <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }}" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
-                                    <a href="{{ ($item->route) ? route($item->route, $item->link) : route('error') }}" class="result-link" title="{{ $item->message }}">
-                                        <div class="media single-noti">
-                                            <div>
-                                                @if ($item->userSend->avatar)
-                                                    <img src="{{ $item->userSend->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon" />
-                                                @else
-                                                    <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
-                                                @endif
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">{{ $item->userSend->name }}</h4>
-                                                {{ $item->message }}
-                                            </div>
+                            <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }}" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
+                                <a href="{{ route($item->route, $item->link) }}" class="result-link" title="{{ $item->message }}" data-id={{ $item->id }}>
+                                    <div class="media single-noti">
+                                        <div>
+                                            @if ($item->userSend->avatar)
+                                                <img src="{{ $item->userSend->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon" />
+                                            @else
+                                                <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
+                                            @endif
                                         </div>
-                                    </a>
-                                </li>  
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{ ($item->userSend->id == Auth::id()) ? 'Me' : $item->userSend->name }}</h4>
+                                            {{ $item->message }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>  
                         @endforeach
-                        <li class="result-entry text-center" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
-                            <div class="media-body">
-                                {{ $notifications->links() }}
-                            </div>
-                        </li>
                     @else
                         <li class="result-entry text-center" data-suggestion="Target 1" data-position="1" data-type="type" data-analytics-type="merchant">
                             <div class="media-body">
@@ -70,6 +65,9 @@
                         </li>
                     @endif
                 </ul>
+                <div class="text-center">
+                    {{ $notifications->links() }}
+                </div>
             </div>
         </div>
     </div>

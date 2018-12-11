@@ -3,6 +3,9 @@
 namespace App\Repositories\Eloquents;
 
 use App\Eloquent\Notification;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Contracts\NotificationRepository;
 
 class NotificationEloquentRepository extends AbstractEloquentRepository implements NotificationRepository
@@ -27,14 +30,21 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
         return $this->model()->create($data);
     }
 
-    public function getNotifications($limit, $with = [], $data = [], $dataSelect = ['*'])
+    public function paginate($items, $perPage = null, $page = null)
     {
-        if ($limit >= 0) {
-            $records = $this->getData($with, $data)->get();
-            $records = $records->take($limit);
-        } else {
-            $records = $this->getData($with, $data)->paginate(config('view.paginate.notifications'));
-        }
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => 'page',
+            ]);
+    }
+
+    public function getNotifications($with = [], $data = [], $dataSelect = ['*'])
+    {
+        $allRecords = [];
+        $records = $this->getData($with, $data)->get();
         foreach ($records as $record) {
             switch ($record->target_type) {
                 case config('model.target_type.book_user'):
@@ -45,6 +55,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                             $record = array_add($record, 'message', $message);
                             $record = array_add($record, 'route', config('view.notifications.route.book'));
                             $record = array_add($record, 'link', $book->slug . '-' . $book->id);
+                            array_push($allRecords, $record);
                         }
                     }
                     break;
@@ -59,6 +70,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                             $record->target->id,
                         ];
                         $record = array_add($record, 'link', $link);
+                        array_push($allRecords, $record);
                     }
                     break;
 
@@ -66,6 +78,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     $record = array_add($record, 'message', config('view.notifications.follow'));
                     $record = array_add($record, 'route', config('view.notifications.route.user'));
                     $record = array_add($record, 'link', $record->send_id);
+                    array_push($allRecords, $record);
                     break;
 
                 case config('model.target_type.vote'):
@@ -77,12 +90,14 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                         $record->target->id,
                     ];
                     $record = array_add($record, 'link', $link);
+                    array_push($allRecords, $record);
                     break;
 
                 case config('model.target_type.user'):
                     $record = array_add($record, 'message', config('view.notifications.prompt'));
                     $record = array_add($record, 'route', config('view.notifications.route.owner_prompt'));
                     $record = array_add($record, 'link', null);
+                    array_push($allRecords, $record);
                     break;
 
                 default:
@@ -90,7 +105,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
             }
         }
 
-        return $records;
+        return collect($allRecords);
     }
 
     public function find($data)

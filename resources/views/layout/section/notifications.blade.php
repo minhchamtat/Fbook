@@ -18,7 +18,7 @@
                                     @endif
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ $item->userSend->name }}</h4>
+                                    <h4 class="media-heading">{{ ($item->userSend->id == Auth::id()) ? 'Me' : $item->userSend->name }}</h4>
                                     {{ $item->message }}
                                 </div>
                             </div>
