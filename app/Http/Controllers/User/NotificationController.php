@@ -19,7 +19,7 @@ class NotificationController extends Controller
         $this->notification = $notification;
     }
 
-    public function getNotifications($limit = -1)
+    public function getNotifications()
     {
         $with = [
             'target',
@@ -28,23 +28,25 @@ class NotificationController extends Controller
         $where = [
             'receive_id' => Auth::id(),
         ];
-
-        return $data = $this->notification->getNotifications($limit, $with, $where);
+        return $data = $this->notification->getNotifications($with, $where);
     }
 
     public function getAllNotifications()
     {
-        $notifications = $this->getNotifications();
+        $notifications = $this->notification->paginate(
+            $this->getNotifications(),
+            config('view.paginate.notifications')
+        );
 
         return view('user.notifications', compact('notifications'));
     }
 
-    public function getLimitNotifications($limit = 0)
+    public function getLimitNotifications()
     {
-        if ($limit < config('view.limit.notifications')) {
-            $notifications = $this->getNotifications(config('view.limit.notifications'));
+        if (count($this->getNotifications()) < config('view.limit.notifications')) {
+            $notifications = $this->getNotifications();
         } else {
-            $notifications = $this->getNotifications($limit);
+            $notifications = $this->getNotifications()->take(config('view.limit.notifications'));
         }
 
         return view('layout.section.notifications', compact('notifications'));
@@ -63,6 +65,6 @@ class NotificationController extends Controller
                         ->get();
         $this->notification->markRead($notifications);
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 }

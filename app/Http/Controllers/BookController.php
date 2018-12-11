@@ -92,7 +92,7 @@ class BookController extends Controller
             ];
             $this->owner->store($data);
 
-            return redirect("admin/book/$book->id/edit")->with('success', __('admin.success'));
+            return redirect()->route('book.index')->with('success', __('admin.success'));
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
 
@@ -135,7 +135,7 @@ class BookController extends Controller
             // create new image
             $this->media->store($request->all());
 
-            return back()->with('success', __('admin.success'));
+            return redirect()->route('book.index')->with('success', __('admin.success'));
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
 
