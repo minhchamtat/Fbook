@@ -47,7 +47,7 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
         return $this->model()
             ->select($dataSelect)
             ->with($with)
-            ->search($attribute, $data)
+            ->fullTextSearch($attribute, $data)
             ->get();
     }
 

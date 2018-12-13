@@ -472,19 +472,19 @@
 
     $('#header-search').on('keyup', function() {
         var req = $(this).serialize();
-        $.ajax({
-            url: '/header-search',
-            type: 'POST',
-            data: req,
-        })
-        .done(function(res) {
-            $('#search-suggest').html('');
-            $('#search-suggest').append(res)
-        })
-        .fail(function() {
-            //
-        });
-
+        if ($(this).find('.m-input').val() == '') {
+            $('#search-suggest div').hide();
+        } else {
+            $.ajax({
+                url: '/header-search',
+                type: 'POST',
+                data: req,
+            })
+            .done(function(res) {
+                $('#search-suggest').html('');
+                $('#search-suggest').append(res)
+            })
+        };
     });
 
     $('body').click(function () {

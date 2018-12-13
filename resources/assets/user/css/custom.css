@@ -945,9 +945,19 @@ ul.suggestions-list.noti-list .view-all {
 }
 
 .suggestion-entern {
+    background: #f07c29;
     text-align: center;
-    color: #4f7593;
-    margin: 10px 0px 10px 0px;
+    color: #000000;
+    margin-top: 5px;
+    padding: 10px 0px 10px 0px;    
+}
+.suggestion-entern h4 {
+    font-size: 15px;
+    font-family: 'Verdana', sans-serif;
+}
+
+.suggestion-entern:hover {
+    background: #FF6633;
 }
 
 img.media-search {
@@ -997,5 +1007,46 @@ img.media-search {
 }
 
 #search-suggest {
-    width: 150%;
+    width: 120%;
+}
+
+.suggestion-search {
+    display: block;
+    position: relative;
+    background: #ffffff;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    margin-top: 10px;
+}
+
+.suggestion-search:before, .suggestion-search:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    width: 0;
+    height: 0;
+}
+
+.suggestion-search:before {
+    left: 19px;
+    border: 11px solid transparent;
+    border-bottom-color: #ddd;
+}
+
+.suggestion-search:after {
+    left: 20px;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+}
+
+.search_found {
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    font-family: 'Open Sans', sans-serif;
+    size: 15px;
+}
+
+.breadcrumbs-menu ul li a {
+    font-weight: bold;
 }

@@ -17,10 +17,10 @@
                     <div class="breadcrumbs-menu">
                         <ul>
                             <li>{{ trans('page.searchBy') }}</li>
-                            <li><a class="active"><a href="#title" data-toggle="tab"><h5>{{ trans('page.summary') }}</h5></a></li>
-                            <li><a class="active"><a href="#author" data-toggle="tab"><h5>{{ trans('page.book.author') }}</h5></a></li>
-                            <li><a class="active"><a href="#description" data-toggle="tab"><h5>{{ trans('page.book.description') }}</h5></a></li>
-                            <li><a class="active"><a href="#users" data-toggle="tab"><h5>{{ trans('settings.admin.layout.users') }}</h5></a></li>
+                            <li><a class="active"><a href="#title" data-toggle="tab">{{ trans('page.summary') }}</a></li>
+                            <li><a class="active"><a href="#author" data-toggle="tab">{{ trans('page.book.author') }}</a></li>
+                            <li><a class="active"><a href="#description" data-toggle="tab">{{ trans('page.book.description') }}</a></li>
+                            <li><a class="active"><a href="#users" data-toggle="tab">{{ trans('settings.admin.layout.users') }}</a></li>
                         </ul>
                     </div>
                 </div>
