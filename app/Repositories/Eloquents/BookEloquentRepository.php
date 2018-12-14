@@ -269,7 +269,6 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->select($this->onlyAttributes)
             ->with($with)
             ->fullTextSearch($attribute, $data)
-            ->take(config('view.paginate.book_request'))
             ->get();
     }
 

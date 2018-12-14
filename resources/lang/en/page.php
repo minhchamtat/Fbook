@@ -54,7 +54,7 @@ return [
         'placeHolder' => 'Enter your email address',
         'submit' => 'Sign Up',
     ],
-    'clickMore' => 'Click enter to see more',
+    'clickMore' => 'Show more',
     'keySearch' => 'Search for keyword:',
     'searchBy' => 'Search by:',
 ];

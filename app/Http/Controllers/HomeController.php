@@ -84,7 +84,7 @@ class HomeController extends Controller
     {
         if ($request->req != '') {
             $result = collect([
-                'titles' => $this->book->search('title', $request->req),
+                'titles' => $this->book->search('title', $request->req)->take(config('view.paginate.book_request')),
             ]);
         }
 

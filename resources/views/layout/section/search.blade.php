@@ -21,15 +21,16 @@
                                 </div>
                             </a>
                         </li>
-                    @endforeach                    
+                    @endforeach                
                 @else
                     <div class="search_found"><h5>{{ trans('settings.home.not_found') }}</div>
                 @endif
             </ul>
+            @if (count($value) == 5)
+                <div class="line"></div>
+                <div class="suggestion-entern"><a onclick="submitForms()">{{ trans('page.clickMore') }}</a></div>
+            @endif
         </div>
-        @if (count($value) > 0)
-            <div class="line"></div>
-            <div class="suggestion-entern"><h4>{{ trans('page.clickMore') }}</h4></div>
-        @endif
+        
     @endforeach
 @endif
