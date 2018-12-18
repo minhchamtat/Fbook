@@ -23,7 +23,6 @@ class MyRequestController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
         $data = [
             'owner_id' => Auth::id(),
         ];
@@ -64,29 +63,21 @@ class MyRequestController extends Controller
     public function update(Request $request, $id)
     {
         $request->merge(['id' => $id]);
+        $notification = $this->notification->destroy([
+            'receive_id' => Auth::id(),
+            'target_type' => config('model.target_type.book_user'),
+            'target_id' => $id,
+        ]);
         $record = $this->bookUser->updateBookRequest($request->all());
         if ($record) {
-            $notification = $this->notification->find([
-                'send_id' => Auth::id(),
+            $data = [
+                'send_id' => $record->owner_id,
                 'receive_id' => $record->user_id,
                 'target_type' => config('model.target_type.book_user'),
                 'target_id' => $record->id,
-            ]);
-            if ($notification) {
-                $this->notification->update([
-                    'id' => $notification->id,
-                    'view' => config('model.view.false'),
-                ]);
-            } else {
-                $data = [
-                    'send_id' => $record->owner_id,
-                    'receive_id' => $record->user_id,
-                    'target_type' => config('model.target_type.book_user'),
-                    'target_id' => $record->id,
-                    'viewed' => config('model.viewed.false'),
-                ];
-                $this->notification->store($data);
-            }
+                'viewed' => config('model.viewed.false'),
+            ];
+            $this->notification->store($data);
         }
 
         return back()->with('success', __('page.success'));

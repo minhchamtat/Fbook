@@ -43,17 +43,17 @@
                                                 ])
                                             !!}
                                             {!! Form::label('customFile', __('admin.book.placeHolder.chooseFile'), ['class' => 'custom-file-label col-10 ml-3', 'id' => 'label']) !!}
-                                            @if ($book->medias[0]->count() > 0)
-                                                {!! Form::hidden('avatar_old', $book->medias[0]->id) !!}
+                                            @if (file_exists($book->medias))
+                                                {!! Form::hidden('avatar_old', $book->medias->id) !!}
                                             @else
                                                 {!! Form::hidden('avatar_old') !!}
                                             @endif
                                         </div>
                                         <div class="col-4 offset-3 mt-3">
-                                            @if ($book->medias[0]->count() > 0)
+                                            @if (file_exists($book->medias))
                                                 <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="img-book" class="img-book">
                                             @else
-                                                <img src="" alt="" class="img-book">
+                                                <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="" class="img-book">
                                             @endif
                                         </div>
                                     </div>

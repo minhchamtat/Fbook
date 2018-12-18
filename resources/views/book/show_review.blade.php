@@ -30,9 +30,11 @@
                     <div class="row content">
                         <div class="col-md-2">
                             {!! Form::hidden('upvote', 1, ['id' => 'upvote', 'data-id' => $review->id]) !!}
-                            <button class="btn-vote up-vote" data-upvote="{{ $flag }}" value="1"><i class="fa fa-caret-up" aria-hidden="true"></i></button>
+                            <button class="btn-vote up-vote" data-upvote="{{ $flag }}" 
+                            title=" {{ config('view.vote.upVote') }} " value="1"><i class="fa fa-caret-up" aria-hidden="true"></i></button>
                             <span class="count-vote">{{ $review->upvote - $review->downvote }}</span>
-                            <button class="btn-vote down-vote" value="-1"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                            <button class="btn-vote down-vote" value="-1" 
+                            title=" {{ config('view.vote.downVote') }} "><i class="fa fa-caret-down" aria-hidden="true"></i></button>
                             {!! Form::hidden('upvote', -1, ['id' => 'downvote']) !!}
                         </div>
                         <div class="col-md-10">

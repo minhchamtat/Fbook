@@ -25,7 +25,7 @@
             </div>
         </div>
     @endfor
-    <div class="mt-50 shop-left">
+    <div class="text-right">
         <div class="page-number">
             <ul class="pagination">
                 <li class="disabled"><a>«</a></li>

@@ -58,6 +58,8 @@ return [
         'no' => 'no',
         'nodown' => 'updown',
         'noup' => 'noup',
+        'upVote' => 'upVote',
+        'downVote' => 'downVote',
     ],
 
     'status' => [
@@ -92,7 +94,7 @@ return [
         'downvote' => 'Upvote your review for the book: ',
         'waiting' => 'Borrowing your book: ',
         'returning' => 'Return your book: ',
-        'reading' => 'Remember: You have to return book:',
+        'reading' => ' has approve request to borrow:',
         'prompt' => 'You will be returned book soon',
         'route' => [
             'book' => 'books.show',
@@ -100,6 +102,7 @@ return [
             'review' => 'review.show',
             'owner_prompt' => 'my-request.index',
         ],
+        'from' => ' from you',
     ],
     'links' => [
         'feedback' => 'https://docs.google.com/forms/d/e/1FAIpQLSeVwREJ9vbPHB3LGDudz9ieePp3Z9xJG96e48_5i9VQj4r5zQ/viewform',

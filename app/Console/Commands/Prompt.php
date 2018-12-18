@@ -58,10 +58,10 @@ class Prompt extends Command
             ]);
             foreach ($items as $item) {
                 $this->notification->store([
-                    'send_id' => $key,
+                    'send_id' => $item->owner_id,
                     'receive_id' => $item->user_id,
                     'target_type' => config('model.target_type.book_user'),
-                    'target_id' => $item->id,
+                    'target_id' => $key,
                     'viewed' => config('model.viewed.false'),
                 ]);
             }
