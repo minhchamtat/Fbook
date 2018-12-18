@@ -438,16 +438,16 @@
 
     $('.status-tabs a').on('shown.bs.tab', function(event){
         var e = $(event.target).attr('href');
-        var id = $(e).attr('id');
+        var status = $(e).attr('id');
+        var query = $('#userId').val;
         if ($(e).attr('value') == 'true') {
             $.ajax({
-                url: '/my-profile/' + id,
-                type: 'POST',
+                url: '/my-profile/' + status + '/' + $('#userId').val(),
+                method:'POST',
             })
             .done(function(res) {
                 $(e).attr('value', false);
                 $(e).html(res);
-                console.log(123);
                 var star = $('.rating');
                 star.each(function () {
                     var rating = $(this).data('rating');
@@ -456,8 +456,8 @@
                         initialRating: rating,
                         readonly: true,
                     });
-               });
-                $('.book-status#' + id + '0').show();
+                });
+                $('.book-status#' + status + '0').show();
             })
             .fail(function() {
                 //
@@ -672,3 +672,9 @@
     });
 
 })(jQuery);
+
+    submitForms = function() {
+        document.forms['header-search'].submit();
+
+        return true;
+    }

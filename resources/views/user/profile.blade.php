@@ -91,6 +91,7 @@
                     <div class="tab-pane active" id="sharing" value="false">
                         @include ('layout.section.profile_books')
                     </div>
+                    <input type="" class="hidden" value="{{ $user->id }}" name="" id="userId">
                     <div class="tab-pane" id="waiting" value="true"></div>
                     <div class="tab-pane" id="reading" value="true"></div>
                     <div class="tab-pane" id="returned" value="true"></div>
@@ -103,7 +104,11 @@
                                             <div class="col-sm-6 col-md-4">
                                                 <div class="d-flex exhibition-item user">
                                                     <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                                        <img src="{{ $u->avatar }}" class="avatar-icon">
+                                                        @if ($u->avatar == null)
+                                                            <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                                                        @else
+                                                            <img src="{{ $u->avatar }}" class="avatar-icon">
+                                                        @endif
                                                     </a>
                                                     <div class="user-info overflow-hidden">
                                                         <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
@@ -144,7 +149,11 @@
                                             <div class="col-sm-6 col-md-4">
                                                 <div class="d-flex exhibition-item user">
                                                     <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                                        <img src="{{ $u->avatar }}" class="avatar-icon">
+                                                        @if ($u->avatar == null)
+                                                            <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                                                        @else
+                                                            <img src="{{ $u->avatar }}" class="avatar-icon">
+                                                        @endif
                                                     </a>
                                                     <div class="user-info overflow-hidden">
                                                         <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>

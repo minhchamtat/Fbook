@@ -58,10 +58,10 @@ class UserController extends Controller
         return $this->getUserInfo($user);
     }
 
-    public function getBooks($status)
+    public function getBooks($status, $id)
     {
         $data = [
-            'user_id' => Auth::id(),
+            'user_id' => $id,
             'type' => $status,
         ];
         $with = [

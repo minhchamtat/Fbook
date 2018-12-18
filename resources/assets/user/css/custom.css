@@ -940,26 +940,6 @@ ul.suggestions-list.noti-list .view-all {
     background: #ededed;
 }
 
-.line {
-    border-top: 1px solid #cccccc;
-}
-
-.suggestion-entern {
-    background: #f07c29;
-    text-align: center;
-    color: #000000;
-    margin-top: 5px;
-    padding: 10px 0px 10px 0px;    
-}
-.suggestion-entern h4 {
-    font-size: 15px;
-    font-family: 'Verdana', sans-serif;
-}
-
-.suggestion-entern:hover {
-    background: #FF6633;
-}
-
 img.media-search {
     float: left;
     border-radius: 3%;
@@ -1044,9 +1024,25 @@ img.media-search {
     text-align: center;
     margin: 10px 0px 10px 0px;
     font-family: 'Open Sans', sans-serif;
-    size: 15px;
+    size: 13px;
 }
 
 .breadcrumbs-menu ul li a {
     font-weight: bold;
+}
+
+.line {
+    border-top: 1px solid #cccccc;
+}
+
+.suggestion-entern {
+    font-family: 'Open Sans', sans-serif;
+    size: 21px;
+    text-align: center;
+    color: #4f7593;
+    margin: 10px 0px 5px 0px;
+}
+
+div.suggestion-entern:hover {
+    cursor: pointer;
 }
