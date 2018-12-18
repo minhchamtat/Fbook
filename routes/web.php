@@ -48,8 +48,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('/notifications/viewed', 'NotificationController@markRead')->name('markread');
         });
     });
-    Route::view('/error', 'error')->name('error');
-
+    
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/listbook', 'BookController@ajaxShow')->name('book.show');
         Route::resource('/book', 'BookController')->except(['show']);
