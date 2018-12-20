@@ -15,6 +15,10 @@
     var textFollow = 'Follow';
     var textMore = 'Show more';
     var textLess = 'Show less';
+    var textSuccess = 'Success!';
+    var textPhone = 'You enter a non-phone number!';
+    var textRetype = 'Select ok to re-enter!';
+    var textThank = 'Thank you!';
     if (language == 'vi') {
         textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
         textLogin = 'Bạn cần đăng nhập để tiếp tục';
@@ -30,6 +34,10 @@
         textFollow = 'Theo dõi';
         textMore = 'Xem thêm';
         textLess = 'Ẩn bớt';
+        textSuccess = 'Thành công!';
+        textPhone = 'Bạn nhập không phải số điện thoại!';
+        textRetype = 'Chọn ok để nhập lại!';
+        textThank = 'Cảm ơn!';
     }
     var header = $('#header-sticky');
     var win = $(window);
@@ -669,6 +677,30 @@
                scrollTop: $('#reviews').offset().top - 180
            }, 1000);
        }
+    });
+
+    $(window).on('load', function(event) {
+        $('#myModal').modal('show');
+    });
+
+    $('#modal_phone').on('click', function() {
+        $.ajax({
+            url: '/my-phone/' + $('#phone_value').val(),
+            method: 'POST',
+            success: function(res) {
+                if (res.data == 1) {
+                    swal(textSuccess, textThank, 'success');
+                    $('#myModal').modal('toggle');
+                } else {
+                    swal({
+                      title: textPhone,
+                      text: textRetype,
+                      icon: 'warning',
+                      dangerMode: true,
+                  });
+                }
+            }
+        })
     });
 
 })(jQuery);

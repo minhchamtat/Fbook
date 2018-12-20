@@ -57,4 +57,6 @@ return [
     'clickMore' => 'Show more',
     'keySearch' => 'Search for keyword:',
     'searchBy' => 'Search by:',
+    'addNumber' => 'Phone Number',
+    'addPhone' => 'Add',
 ];
