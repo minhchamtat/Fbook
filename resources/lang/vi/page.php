@@ -57,4 +57,6 @@ return [
     'clickMore' => 'Xem thêm',
     'keySearch' => 'Từ khóa:',
     'searchBy' => 'Tìm kiếm theo:',
+    'addNumber' => 'Số điện thoại',
+    'addPhone' => 'Thêm',
 ];

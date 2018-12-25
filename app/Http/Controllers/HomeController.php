@@ -65,6 +65,11 @@ class HomeController extends Controller
             'totalReview'
         );
 
+        $phone = Auth::user();
+        if ((Auth::check()) && ($phone->phone == null)) {
+            session()->flash('status');
+        }
+
         return view('index', $data);
     }
 
@@ -100,5 +105,25 @@ class HomeController extends Controller
         $data['key'] = $request->req;
 
         return view('search', $data);
+    }
+
+    public function getPhone($phone)
+    {
+        $pattern = '/^(\+84|0)\d{9,10}$/';
+        if (preg_match($pattern, $phone)) {
+            $id = Auth::id();
+            $data = [
+                'phone' => $phone,
+            ];
+            $this->user->update($id, $data);
+
+            return response()->json([
+                'data' => '1',
+            ]);
+        } else {
+            return response()->json([
+                'data' => '0',
+            ]);
+        }
     }
 }
