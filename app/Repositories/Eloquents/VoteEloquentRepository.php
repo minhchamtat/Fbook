@@ -21,20 +21,21 @@ class VoteEloquentRepository extends AbstractEloquentRepository implements VoteR
         $data['status'] = 1;
 
         $userVote = $review->votes->where('user_id', '=', $userLogin)->first();
+        if ($userLogin != $review->user_id) {
+            if ($userVote == null) {
+                $vote = $this->model()->create($data);
 
-        if ($userVote == null) {
-            $vote = $this->model()->create($data);
+                return $vote;
+            } else {
+                if ($userVote->status == '-1') {
+                    $userVote->update(['status' => '0']);
 
-            return $vote;
-        } elseif ($userVote->count() != null) {
-            if ($userVote->status == '-1') {
-                $userVote->update(['status' => '0']);
+                    return $userVote;
+                } elseif ($userVote->status == '0') {
+                    $userVote->update(['status' => '1']);
 
-                return $userVote;
-            } elseif ($userVote->status == '0') {
-                $userVote->update(['status' => '1']);
-
-                return $userVote;
+                    return $userVote;
+                }
             }
         }
     }
@@ -42,17 +43,26 @@ class VoteEloquentRepository extends AbstractEloquentRepository implements VoteR
     public function voteDown($review)
     {
         $userLogin = Auth::user()->id;
+        $data['user_id'] = $userLogin;
+        $data['review_id'] = $review->id;
+        $data['status'] = -1;
 
         $userVote = $review->votes->where('user_id', '=', $userLogin)->first();
-        if ($userVote->count() != null) {
-            if ($userVote->status == '1') {
-                $userVote->update(['status' => '0']);
+        if ($userLogin != $review->user_id) {
+            if ($userVote == null) {
+                $vote = $this->model()->create($data);
 
-                return $userVote;
-            } elseif ($userVote->status == '0') {
-                $userVote->update(['status' => '-1']);
+                return $vote;
+            } else {
+                if ($userVote->status == '1') {
+                    $userVote->update(['status' => '0']);
 
-                return $userVote;
+                    return $userVote;
+                } elseif ($userVote->status == '0') {
+                    $userVote->update(['status' => '-1']);
+
+                    return $userVote;
+                }
             }
         }
     }

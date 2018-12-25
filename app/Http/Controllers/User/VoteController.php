@@ -64,8 +64,21 @@ class VoteController extends Controller
             if ($vote = $this->vote->voteUp($review)) {
                 if ($vote->status == '0') {
                     $data = ['noup'];
+                    $this->notifiaction->destroy([
+                        'send_id' => Auth::id(),
+                        'receive_id' => $review->user_id,
+                        'target_type' => config('model.target_type.vote'),
+                        'target_id' => $vote->id,
+                    ]);
                 } else {
                     $data = ['up'];
+                    $this->notifiaction->store([
+                        'send_id' => Auth::id(),
+                        'receive_id' => $review->user_id,
+                        'target_type' => config('model.target_type.vote'),
+                        'target_id' => $vote->id,
+                        'viewed' => config('model.viewed.false'),
+                    ]);
                 }
                 $this->review->upVote($id, $data);
             } else {
@@ -75,8 +88,21 @@ class VoteController extends Controller
             if ($vote = $this->vote->voteDown($review)) {
                 if ($vote->status == '0') {
                     $data = ['nodown'];
+                    $this->notifiaction->destroy([
+                        'send_id' => Auth::id(),
+                        'receive_id' => $review->user_id,
+                        'target_type' => config('model.target_type.vote'),
+                        'target_id' => $vote->id,
+                    ]);
                 } else {
                     $data = ['down'];
+                    $this->notifiaction->store([
+                        'send_id' => Auth::id(),
+                        'receive_id' => $review->user_id,
+                        'target_type' => config('model.target_type.vote'),
+                        'target_id' => $vote->id,
+                        'viewed' => config('model.viewed.false'),
+                    ]);
                 }
                 $this->review->downVote($id, $data);
             } else {

@@ -204,4 +204,6 @@ return [
     'unsuccess' => [
         'error' => 'Error :messages',
     ],
+
+    'vote' => 'You can’t vote your review',
 ];

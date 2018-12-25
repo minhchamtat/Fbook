@@ -51,9 +51,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     if ($record->target) {
                         $book = $record->target->book;
                         if ($book) {
-                            $message = $record->userSend->name . config(
-                                'view.notifications.' . $record->target->type
-                            ) . $book->title . config('view.notifications.from');
+                            $message = config('view.notifications.' . $record->target->type) . $book->title;
                             $record = array_add($record, 'message', $message);
                             if ($record->target->type == config('view.request.waiting')) {
                                 $record = array_add($record, 'route', config('view.notifications.route.owner_prompt'));
@@ -90,11 +88,23 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
 
                 case config('model.target_type.vote'):
                     $book = $record->target->review->book;
-                    $record = array_add($record, 'message', config('view.notifications.vote') . $book->title);
+                    if ($record->target->status == 1) {
+                        $record = array_add(
+                            $record,
+                            'message',
+                            config('view.notifications.upvote') . $book->title
+                        );
+                    } elseif ($record->target->status == -1) {
+                        $record = array_add(
+                            $record,
+                            'message',
+                            config('view.notifications.downvote') . $book->title
+                        );
+                    }
                     $record = array_add($record, 'route', config('view.notifications.route.review'));
                     $link = [
                         $book->slug . '-' . $book->id,
-                        $record->target->id,
+                        $record->target->review->id,
                     ];
                     $record = array_add($record, 'link', $link);
                     array_push($allRecords, $record);

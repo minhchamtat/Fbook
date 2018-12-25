@@ -203,4 +203,6 @@ return [
     'unsuccess' => [
         'error' => 'Lỗi :messages',
     ],
+
+    'vote' => 'Bạn không thể vote cho bài của mình',
 ];
