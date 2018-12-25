@@ -89,13 +89,14 @@ return [
     'notifications' => [
         'review' => 'Review your book: ',
         'follow' => 'Follow you',
-        'vote' => 'Vote your review for the book: ',
         'upvote' => 'Upvote your review for the book: ',
-        'downvote' => 'Upvote your review for the book: ',
+        'downvote' => 'Downvote your review for the book: ',
         'waiting' => 'Borrowing your book: ',
         'returning' => 'Return your book: ',
-        'reading' => ' has approve request to borrow:',
+        'returned' => ' Has returned the book: ',
+        'reading' => ' Has approve request to borrow: ',
         'prompt' => 'You will be returned book soon',
+        'cancel' => ' Has refuse request borrow: ',
         'route' => [
             'book' => 'books.show',
             'user' => 'user',
