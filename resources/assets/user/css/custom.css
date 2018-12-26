@@ -1047,12 +1047,12 @@ div.suggestion-entern:hover {
     cursor: pointer;
 }
 
-.modal-header {
-    background: #f07c29; 
+#top .modal-header {
+    background: #cccccc; 
 }
 
 .modal-header h4 {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    color: #ffffff;
+    color: #222222;
 }

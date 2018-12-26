@@ -54,28 +54,39 @@ class UserController extends Controller
                 'followers',
                 'followings',
             ]);
+            $id = Auth::id();
 
-        return $this->getUserInfo($user);
+        return $this->getUserInfo($user, $id);
+    }
+
+    public function postMyProfile($id)
+    {
+        $selects = [
+            'id',
+        ];
+        $with = [
+            'ownerBooks',
+        ];
+        $user = $this->user->find($id, $with, $selects);
+        $books = $user->ownerBooks()->where('user_id', $id)->paginate(config('view.limit.related_book'));
+
+        return view('layout.section.sharing_books', compact('books'));
     }
 
     public function getBooks($status, $id)
     {
-        $data = [
-            'user_id' => $id,
-            'type' => $status,
-        ];
-        $with = [
-            'book',
-        ];
-        $books = $this->bookUser->getData($data, $with)->pluck('book');
-        $books = $books->chunk(config('view.paginate.book_profile'));
+        $user = $this->user->find($id)
+            ->load([
+                'books',
+            ]);
+            $books = $user->books()->where('type', $status)->get();
 
         return view('layout.section.profile_books', compact('books', 'status'));
     }
 
-    public function getUserInfo($user)
+    public function getUserInfo($user, $id)
     {
-        $books = $user->ownerBooks->chunk(config('view.paginate.book_profile'));
+        $books = $user->ownerBooks()->where('user_id', $id)->paginate(config('view.limit.related_book'));
         $status = config('view.status.sharing');
         $followingIds = Auth::user()->followings->pluck('id')->toArray();
         $followers = $user->followers->chunk(config('view.paginate.follow_user'));
@@ -103,7 +114,7 @@ class UserController extends Controller
                 ];
                 $user = $this->user->find($id, $with, $selects);
 
-                return $this->getUserInfo($user);
+                return $this->getUserInfo($user, $id);
             } else {
                 return redirect()->route('my-profile');
             }
