@@ -83,4 +83,9 @@ class Book extends Model
     {
         return $this->morphMany(Notification::class, 'target');
     }
+
+    public function bookUser()
+    {
+        return $this->hasMany(BookUser::class);
+    }
 }

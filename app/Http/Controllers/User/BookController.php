@@ -172,15 +172,16 @@ class BookController extends Controller
                         $flag = false;
                     }
 
+                    $bookStatus = null;
                     if (Auth::check()) {
-                        $userId = Auth::user()->id;
+                        $userId = Auth::id();
                         $isOwner = in_array($userId, $book->owners->pluck('id')->toArray());
                         $isBooking = in_array($userId, $book->users->pluck('id')->toArray());
+                        $bookStatus = $this->bookUser->getBookStatusForUser($id);
                     } else {
                         $isOwner = false;
                         $isBooking = false;
                     }
-
 
                     $tmp = false;
                     if (Auth::check()) {
@@ -198,6 +199,8 @@ class BookController extends Controller
                         }
                     }
 
+                    $bookTypeStatus = $this->bookUser->getTypeBook($book->id);
+
                     $data = [
                         'book',
                         'relatedBooks',
@@ -206,7 +209,10 @@ class BookController extends Controller
                         'isOwner',
                         'isBooking',
                         'tmp',
+                        'bookStatus',
+                        'bookTypeStatus',
                     ];
+
                     return view('book.book_detail', compact($data));
                 }
             }

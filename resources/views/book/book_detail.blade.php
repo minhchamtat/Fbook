@@ -11,8 +11,11 @@
                             <li><a href="{{ asset('/') }}">{{ trans('settings.default.home') }}</a></li>
                             <li><a class="active">{{ trans('settings.book.detail_book') }}</a></li>
                             @if ($tmp)
-                                <li><a href="{{ route('book.edit', $book->id) }}"
-                                       class="btn btn-info mb-4">{{ __('settings.book.edit') }}</a></li>
+                                <li>
+                                    <a href="{{ route('book.edit', $book->id) }}" class="btn btn-info mb-4">
+                                        {{ __('settings.book.edit') }}
+                                    </a>
+                                </li>
                             @endif
                         </ul>
                     </div>
@@ -31,23 +34,17 @@
                         @if ($book)
                             <div class="row">
                                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                                    <div class="flexslider">
+                                    <div class="detail-img">
                                         @if ($book->medias->count() > 0)
                                             <ul class="slides">
                                                 <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}"
-                                                         alt="woman"/>
-                                                </li>
-                                                <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}"
-                                                         alt="woman"/>
+                                                    <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman"/>
                                                 </li>
                                             </ul>
                                         @else
                                             <ul class="slides">
                                                 <li data-thumb="{{ asset(config('view.image_paths.book') . 'default.jpg') }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}"
-                                                         alt="woman"/>
+                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman"/>
                                                 </li>
                                             </ul>
                                         @endif
@@ -101,7 +98,7 @@
                                         </div>
                                         <div class="product-reviews-summary owner-list">
                                             <div class="rating-summary">
-                                                {{ trans('settings.book.owners') }}
+                                                <p class="share-by">{{ trans('settings.book.owners') }}</p>
                                             </div>
                                             @if ($book->owners)
                                                 @foreach ($book->owners as $owner)
@@ -120,42 +117,75 @@
                                                 @endforeach
                                             @endif
                                         </div>
+                                        <div class="product-reviews-summary">
+                                            <div class="rating-summary">
+                                                <p class="mb-0">{{ __('settings.book.userBorrow') }}</p>
+                                                <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? __('settings.book.dateReturn') : '' }}</p>
+                                            </div>
+                                            <div class="reviews-actions book-type text-center">
+                                               <b class="mb-0 text-danger">{{ $bookTypeStatus['userBorrow'] ? $bookTypeStatus['userBorrow'] : __('settings.book.availble') }}</b>
+                                               <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? $bookTypeStatus['dateReturn'] : '' }}</p>
+                                            </div>
+                                        </div>
                                         <div class="product-add-form">
-                                            @auth
-                                                @if ($book->owners->count() > 0)
-                                                    <form>
-                                                        @if ($isBooking)
-                                                            <a data-toggle="modal" data-id="{{ $book->id }}"
-                                                               class="btn-cancel-borrowing">{{ trans('settings.book.cancel_borrowing') }}</a>
-                                                        @else
-                                                            <a data-toggle="modal" href="#borrowingModal"
-                                                               data-id="{{ $book->id }}"
-                                                               class="btn-borrow">{{ trans('settings.book.borrow_book') }}</a>
-                                                        @endif
-                                                        @if ($isOwner)
-                                                            <a data-toggle="modal" class="btn-remove-owner"
-                                                               data-id="{{ $book->id }}" href="#"
-                                                               owner="{{ Auth::id() }}">{{ trans('settings.book.remove_owner') }}</a>
-                                                        @else
-                                                            <a data-toggle="modal" class="btn-share"
-                                                               data-id="{{ $book->id }}" href="#"
-                                                               owner="{{ Auth::id() }}">{{ trans('settings.book.i_have_this_book') }}</a>
-                                                        @endif
-                                                    </form>
-                                                @else
-                                                    <form>
-                                                        @if ($isOwner)
-                                                            <a data-toggle="modal" class="btn-remove-owner"
-                                                               data-id="{{ $book->id }}" href="#"
-                                                               owner="{{ Auth::id() }}">{{ trans('settings.book.remove_owner') }}</a>
-                                                        @else
-                                                            <a data-toggle="modal" class="btn-share"
-                                                               data-id="{{ $book->id }}" href="#"
-                                                               owner="{{ Auth::id() }}">{{ trans('settings.book.i_have_this_book') }}</a>
-                                                        @endif
-                                                    </form>
-                                                @endif
-                                            @endauth
+                                            @if ($book->owners->count() > 0)
+                                                <form>
+                                                    @if ($bookStatus)
+                                                        @switch ($bookStatus->type)
+                                                            @case (config('view.request.waiting'))
+                                                                <a data-toggle="modal" data-id="{{ $book->id }}" class="btn-cancel-borrowing">
+                                                                    {{ trans('settings.book.cancel_borrowing') }}
+                                                                </a>
+                                                                @break
+                                                            @case (config('view.request.reading'))
+                                                                <a data-toggle="modal" href="#returningModal" data-id="{{ $book->id }}" class="btn-returning">
+                                                                    {{ trans('settings.book.return_book') }}
+                                                                </a>
+                                                                @break
+                                                            @case (config('view.request.returning'))
+                                                                <a data-toggle="modal" href="/" class="btn disabled">
+                                                                    {{ trans('settings.book.returning') }}
+                                                                </a>
+                                                                @break
+                                                            @default
+                                                                <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
+                                                                    data-id="{{ $book->id }}"
+                                                                    class="{{ Auth::check() ? 'btn-borrow' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
+                                                                    >
+                                                                    {{ trans('settings.book.borrow_book') }}
+                                                                </a>
+                                                        @endswitch
+                                                    @else
+                                                        <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
+                                                            data-id="{{ $book->id }}"
+                                                            class="{{ Auth::check() ? 'btn-borrow' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
+                                                            >
+                                                            {{ trans('settings.book.borrow_book') }}
+                                                        </a>
+                                                    @endif
+                                                    @if (Auth::check() && $isOwner)
+                                                        <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                            {{ trans('settings.book.remove_owner') }}
+                                                        </a>
+                                                    @else
+                                                        <a data-toggle="modal" href="#" class="{{ Auth::check() ? 'btn-share' : 'login' }} {{ $bookStatus && $bookStatus->type != 'returned' ? 'disabled' : '' }}" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                            {{ trans('settings.book.i_have_this_book') }}
+                                                        </a>
+                                                    @endif
+                                                </form>
+                                            @else
+                                                <form>
+                                                    @if ($isOwner)
+                                                        <a data-toggle="modal" class="btn-remove-owner" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                            {{ trans('settings.book.remove_owner') }}
+                                                        </a>
+                                                    @else
+                                                        <a data-toggle="modal" class="btn-share" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                            {{ trans('settings.book.i_have_this_book') }}
+                                                        </a>
+                                                    @endif
+                                                </form>
+                                            @endif
                                         </div>
                                         <div class="product-social-links">
                                             <div class="product-addto-links">
@@ -178,13 +208,31 @@
                     <div class="product-info-area mt-80">
                         @auth
                             <ul class="nav nav-tabs detail-tabs" role="tablist" data-id="{{ $book->id }}">
-                                <li class="active"><a href="#reviews"
-                                                      data-toggle="tab">{{ trans('settings.book.review') }}</a></li>
-                                <li><a href="#waiting" data-toggle="tab">{{ trans('settings.book.waiting') }}</a></li>
-                                <li><a href="#reading" data-toggle="tab">{{ trans('settings.book.reading') }}</a></li>
-                                <li><a href="#returning" data-toggle="tab">{{ trans('settings.book.returning') }}</a>
+                                <li class="active">
+                                    <a href="#reviews" data-toggle="tab">
+                                        {{ trans('settings.book.review') }}
+                                    </a>
                                 </li>
-                                <li><a href="#returned" data-toggle="tab">{{ trans('settings.book.returned') }}</a></li>
+                                <li>
+                                    <a href="#waiting" data-toggle="tab">
+                                        {{ trans('settings.book.waiting') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#reading" data-toggle="tab">
+                                        {{ trans('settings.book.reading') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#returning" data-toggle="tab">
+                                        {{ trans('settings.book.returning') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#returned" data-toggle="tab">
+                                        {{ trans('settings.book.returned') }}
+                                    </a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="reviews" status="done">
@@ -474,6 +522,39 @@
                         )!!}
                     </div>
                 @endif
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+    <div class="modal animated zoomIn faster" id="returningModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </button>
+                    <h4 class="modal-title">{{ trans('settings.modal.borrow_book') }}</h4>
+                </div>
+                {!! Form::open([
+                        'method' => 'POST',
+                        'route' => ['return-book', $book->id],
+                        'id' => 'returning-book',
+                        'data-id' => $book->id,
+                    ]) !!}
+                <div class="modal-body row">
+                    <div class="owner-input">
+                        <p>{{ __('settings.book.sure') }}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn btn-danger">{{ trans('settings.modal.btn_close') }}</a>
+                    {!! Form::submit(
+                        trans('settings.modal.btn_submit'),
+                        [
+                            'class' => 'btn btn-success',
+                        ]
+                    )!!}
+                </div>
                 {!! Form::close() !!}
             </div>
         </div>

@@ -6,7 +6,7 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="d-flex exhibition-item user">
                             <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                <img src="{{ $u->avatar }}" class="avatar-icon">
+                                <img src="{{ ($u->avatar) ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
                             </a>
                             <div class="user-info overflow-hidden">
                                 <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>

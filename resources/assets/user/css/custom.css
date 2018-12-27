@@ -1048,11 +1048,47 @@ div.suggestion-entern:hover {
 }
 
 #top .modal-header {
-    background: #cccccc; 
+    background: #cccccc;
 }
 
 .modal-header h4 {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     color: #222222;
+.product-add-form form a {
+    cursor: pointer;
+}
+
+.product-add-form form a.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.rating-summary p.share-by {
+    margin-top: 14px;
+}
+
+.book-type {
+    width: 40%;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+    line-height: 25px;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.text-info {
+    color: #17a2b8;
 }

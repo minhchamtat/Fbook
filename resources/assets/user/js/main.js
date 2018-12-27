@@ -19,6 +19,7 @@
     var textPhone = 'You enter a non-phone number!';
     var textRetype = 'Select ok to re-enter!';
     var textThank = 'Thank you!';
+    var textReturn = 'Returning';
     if (language == 'vi') {
         textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
         textLogin = 'Bạn cần đăng nhập để tiếp tục';
@@ -38,6 +39,7 @@
         textPhone = 'Bạn nhập không phải số điện thoại!';
         textRetype = 'Chọn ok để nhập lại!';
         textThank = 'Cảm ơn!';
+        textReturn = 'Đang trả';
     }
     var header = $('#header-sticky');
     var win = $(window);
@@ -312,6 +314,7 @@
                     $('.owner-list').append(html);
                     obj.html(textRemoveOwner);
                     obj.removeClass('btn-share').addClass('btn-remove-owner');
+                    $('.btn-borrow').addClass('disabled');
                 })
                 .fail(function() {
                     //
@@ -340,6 +343,7 @@
                     $('#user-' + res).remove();
                     obj.html(textBook);
                     obj.removeClass().addClass('btn-share');
+                    $('.btn-borrow').removeClass('disabled');
                 })
                 .fail(function() {
                     //
@@ -368,6 +372,7 @@
             obj.removeClass().addClass('btn-cancel-borrowing');
             $('#borrowingModal').modal('hide');
             var book_id = $('.detail-tabs').attr('data-id');
+            $('.btn-share').addClass('disabled');
             $.ajax({
                 url: '/book-detail',
                 type: 'POST',
@@ -412,6 +417,7 @@
                     obj.attr('href', '#modalBorrowing');
                     obj.removeClass().addClass('btn-borrow');
                     var book_id = $('.detail-tabs').attr('data-id');
+                    $('.btn-share').removeClass('disabled');
                     $.ajax({
                         url: '/book-detail',
                         type: 'POST',
@@ -728,6 +734,45 @@
             });
         });
     }
+    $(document).on('submit', '#returning-book', function(e) {
+        e.preventDefault();
+        var obj = $('.btn-returning');
+        var f = $(this);
+        var id = f.attr('data-id');
+        $.ajax({
+            url: '/books/returning/' + id,
+            type: f.attr('method'),
+            data: f.serialize(),
+        })
+        .done(function(data) {
+            obj.html(textReturn);
+            obj.attr('href', '#');
+            obj.removeClass().addClass('btn disabled');
+            $('#returningModal').modal('hide');
+            var book_id = $('.detail-tabs').attr('data-id');
+            $.ajax({
+                url: '/book-detail',
+                type: 'POST',
+                data: {
+                    type: 'returning',
+                    book_id: book_id
+                },
+            })
+            .done(function(res) {
+                $('#returning').attr('status', 'done');
+                $('#returning').html(res);
+                $('.book-status').hide();
+                $('.book-status#' + 'returning' + '0').show();
+            })
+            .fail(function() {
+                //
+            });
+            $('a[href="#returning"]').click();
+        })
+        .fail(function() {
+            //
+        });
+    });
 
 })(jQuery);
 

@@ -61,7 +61,7 @@ class LoginController extends Controller
         $user = User::where('email', $userSocial->user['email'])->first();
         if ($user) {
             if (Auth::loginUsingId($user->id)) {
-                return redirect()->route('home');
+                return redirect()->back();
             }
         }
 
@@ -81,7 +81,7 @@ class LoginController extends Controller
 
         if ($userSignUp) {
             if (Auth::loginUsingId($userSignUp->id)) {
-                return redirect()->route('home');
+                return redirect()->back();
             }
         }
     }
