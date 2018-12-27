@@ -89,7 +89,7 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active" id="sharing" value="false">
-                        @include ('layout.section.profile_books')
+                        @include ('layout.section.sharing_books')
                     </div>
                     <input type="" class="hidden" value="{{ $user->id }}" name="" id="userId">
                     <div class="tab-pane" id="waiting" value="true"></div>

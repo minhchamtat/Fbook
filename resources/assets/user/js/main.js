@@ -703,6 +703,32 @@
         })
     });
 
+    $(document).on('click', '.sharing-page .pagination a', function(e){
+        e.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        getPosts(page);
+    });
+
+    function getPosts(page)
+    {
+        $.ajax({
+            type: 'post',
+            url: 'my-profile/' + $('#userId').val() + '/?page=' + page,
+        })
+        .success(function(data) {
+            $('#sharing').html(data);
+            var star = $('.rating');
+            star.each(function () {
+                var rating = $(this).data('rating');
+                $(this).barrating({
+                    theme: 'fontawesome-stars-o',
+                    initialRating: rating,
+                    readonly: true,
+                });
+            });
+        });
+    }
+
 })(jQuery);
 
     submitForms = function() {
