@@ -89,6 +89,11 @@ return [
         'booklist' => 'Book List',
         'edit' => 'Edit Book',
         'show_more' => 'Show more',
+        'return_book' => 'Return Book',
+        'userBorrow' => 'Borrowing:',
+        'dateReturn' => 'Date return:',
+        'availble' => 'Book availble to borrow',
+        'sure' => 'Are you sure?',
     ],
 
     'review' => [
@@ -148,7 +153,7 @@ return [
         'title' => 'Title',
         'dayRead' => 'Day of read',
         'user' => 'User',
-        'date' => 'Date',
+        'date' => 'Borrowed date',
         'status' => 'Status',
         'action' => 'Action',
         'approve' => 'Approve',
@@ -156,6 +161,8 @@ return [
         'returned' => 'Returned',
         'delete' => 'Delete',
         'nodata' => 'No data',
+        'timeRemain' => 'Day return',
+        'day' => 'days',
     ],
 
     'showing' => 'Showing',

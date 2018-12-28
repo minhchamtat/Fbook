@@ -89,6 +89,11 @@ return [
         'booklist' => 'Danh sách',
         'edit' => 'Chỉnh Sửa',
         'show_more' => 'Chi tiết',
+        'return_book' => 'Trả sách',
+        'userBorrow' => 'Đang mượn:',
+        'dateReturn' => 'Ngày trả:',
+        'availble' => 'Sách có sẵn để mượn',
+        'sure' => 'Bạn có chắc chắn?',
     ],
 
     'review' => [
@@ -146,9 +151,9 @@ return [
         'myReq' => 'Yêu cầu của tôi',
         'image' => 'Ảnh bìa',
         'title' => 'Tên sách',
-        'dayRead' => 'Ngày mượn',
+        'dayRead' => 'Số ngày mượn',
         'user' => 'Người dùng',
-        'date' => 'Ngày',
+        'date' => 'Ngày mượn',
         'status' => 'Trạng thái',
         'action' => 'Hành động',
         'approve' => 'Đồng ý',
@@ -156,6 +161,8 @@ return [
         'returned' => 'Trả sách',
         'delete' => 'Xóa',
         'nodata' => 'Không có yêu cầu nào',
+        'timeRemain' => 'Ngày trả',
+        'day' => 'ngày',
     ],
 
     'showing' => 'Hiển thị',

@@ -50,6 +50,7 @@
                                 <th class="product-remove"><b>{{ __('settings.request.dayRead') }}</b></th>
                                 <th class="product-remove"><b>{{ __('settings.request.user') }}</b></th>
                                 <th class="product-name"><b>{{ __('settings.request.date') }}</b></th>
+                                <th class="product-name"><b>{{ __('settings.request.timeRemain') }}</b></th>
                                 <th class="product-price"><b>{{ __('settings.request.status') }}</b></th>
                                 <th class="product-remove"><b>{{ __('settings.request.action') }}</b></th>
                             </tr>
@@ -68,15 +69,27 @@
                                     <td class="product-name">
                                         <a href="{{ route('books.show', $book->book->slug . '-' . $book->book_id) }}">{{ $book->book->title }}</a>
                                     </td>
-                                    <td>{{ $book->days_to_read }}</td>
+                                    <td>
+                                        {{ $book->days_to_read }} {{ __('settings.request.day') }}
+                                    </td>
                                     <td>{{ $book->user->name }}</td>
-                                    <td>{{ $book->created_at }}</td>
+                                    @if (Session::get('website-language') == 'vi')
+                                        @php \Carbon\Carbon::setLocale('vi'); @endphp
+                                    @endif
+                                    <td>
+                                        <p>{{ $book->created_at->format('d/m/y h:i:s') }}</p>
+                                        {{ $book->created_at->diffForHumans(\Carbon\Carbon::now()) }}
+                                    </td>
+                                    <td>
+                                        @php $date = date('d/m/y', strtotime($book->created_at) + $book->days_to_read * 86400 );  @endphp
+                                        {{ $date }}
+                                    </td>
                                     <td class="type">
                                         <label class="stt bg-{{ $book->type }}">{{ $book->type }}</label>
                                     </td>
                                     @if ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))
                                         <td></td>
-                                    @elseif ($book->type == config('view.request.reading'))
+                                    @elseif ($book->type == config('view.request.reading') || $book->type == config('view.request.returning'))
                                         <td>
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', $book->type) !!}

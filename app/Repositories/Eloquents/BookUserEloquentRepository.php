@@ -6,6 +6,7 @@ use App\Eloquent\BookUser;
 use App\Repositories\Contracts\BookUserRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class BookUserEloquentRepository extends AbstractEloquentRepository implements BookUserRepository
 {
@@ -40,11 +41,13 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     public function destroy($data)
     {
         try {
-            $record = $this->model()->where($data)->first();
-            if ($record) {
-                $record->delete();
+            $records = $this->model()->where($data)->get();
+            if ($records) {
+                foreach ($records as $record) {
+                    $record->delete();
+                }
 
-                return $record->id;
+                return 1;
             } else {
                 return 0;
             }
@@ -63,6 +66,9 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                         $type['type'] = 'reading';
                         break;
                     case config('view.request.reading'):
+                        $type['type'] = 'returning';
+                        break;
+                    case config('view.request.returning'):
                         $type['type'] = 'returned';
                         break;
                     case config('view.request.dismiss'):
@@ -123,5 +129,64 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             ->groupBy('owner_id');
 
         return $result;
+    }
+
+    /**
+     * returnBook
+     * function update type book is returning
+     * @param  mixed $id
+     * id is id of book
+     * @return void
+     */
+
+    public function returnBook($id)
+    {
+        $bookUser = $this->model()->where('book_id', $id)
+                    ->where('user_id', Auth::id())
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+        $data['type'] = config('view.request.returning');
+
+        return $bookUser->update($data);
+    }
+
+    /**
+     * getTypeBook
+     * get type of book is reading for show user reading book
+     * @param  mixed $idBook
+     * id book
+     * @return void
+     */
+    public function getTypeBook($idBook)
+    {
+        $bookType = $this->model()
+                    ->select('days_to_read', 'user_id', 'created_at')
+                    ->where('book_id', $idBook)
+                    ->where('type', config('view.request.reading'))
+                    ->first();
+
+        if ($bookType) {
+            $data['dateReturn'] = date('d/m/y', strtotime($bookType->created_at) + $bookType->days_to_read * 86400);
+            $data['userBorrow'] = $bookType->user->name;
+
+            return $data;
+        }
+
+        return 0;
+    }
+
+    /**
+     * getBookStatusForUser
+     * get status book for user login
+     * @param  mixed $idBook
+     * id book
+     * @return void
+     */
+    public function getBookStatusForUser($idBook)
+    {
+        return $this->model()->where('book_id', $idBook)
+                    ->where('user_id', Auth::id())
+                    ->orderByDesc('created_at')
+                    ->first();
     }
 }

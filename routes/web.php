@@ -48,6 +48,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('/notifications', 'NotificationController@getAllNotifications')->name('notifications');
             Route::post('/notification-update', 'NotificationController@updateNotification');
             Route::get('/notifications/viewed', 'NotificationController@markRead')->name('markread');
+            Route::post('books/returning/{id}', 'UserController@returnBook')->name('return-book');
         });
     });
     

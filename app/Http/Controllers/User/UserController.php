@@ -160,12 +160,21 @@ class UserController extends Controller
 
     public function removeOwner($id)
     {
-        $this->owner->destroy([
-            'user_id' => Auth::id(),
-            'book_id' => $id,
-        ]);
+        try {
+            $this->bookUser->destroy([
+                'book_id' => $id,
+                'owner_id' => Auth::id(),
+            ]);
 
-        return Auth::id();
+            $this->owner->destroy([
+                'user_id' => Auth::id(),
+                'book_id' => $id,
+            ]);
+
+            return Auth::id();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function borrowingBook(Request $request, $id)
@@ -262,5 +271,24 @@ class UserController extends Controller
     public function getPrompt()
     {
         return $this->bookUser->getPromptList();
+    }
+
+    /**
+     * returnBook
+     *user submit is returning book
+     *type of bookuser -> returning
+     * @param  mixed $id
+     *id of book
+     * @return void
+     */
+    public function returnBook($id)
+    {
+        try {
+            $this->bookUser->returnBook($id);
+
+            return $id;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
