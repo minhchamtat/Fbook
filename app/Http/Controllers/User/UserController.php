@@ -79,7 +79,7 @@ class UserController extends Controller
             ->load([
                 'books',
             ]);
-            $books = $user->books()->where('type', $status)->get();
+        $books = $user->books()->where('type', $status)->get();
 
         return view('layout.section.profile_books', compact('books', 'status'));
     }

@@ -35,11 +35,14 @@
                         <h4>{{ __('page.book.category') }}</h4>
                     </div>
                     <div class="left-menu mb-30">
+                        @foreach($data as $key => $value)
+                        @endforeach
                         <ul>
-                            @foreach ($categories as $category)
+                            @foreach ($categories as $key => $category)
                                 <li>
-                                    <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="{{ isset($cate) && $cate->name == $category->name ? 'active' : '' }}">
-                                        {{ $category->name }}
+                                    <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="{{ isset($cate) && $cate->name == $category->name ? 'active' : '' }}" title="{{ $category->name }}">
+                                        {{ substr(strip_tags($category->name), 0, 25) }}{{ strlen(strip_tags($category->name)) > 25 ? '...' : '' }}
+                                        <p>({{ $data[$key] }})</p>
                                     </a>
                                 </li>
                             @endforeach

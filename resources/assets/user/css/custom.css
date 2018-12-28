@@ -1055,6 +1055,8 @@ div.suggestion-entern:hover {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     color: #222222;
+}
+
 .product-add-form form a {
     cursor: pointer;
 }
@@ -1091,4 +1093,8 @@ div.suggestion-entern:hover {
 
 .text-info {
     color: #17a2b8;
+}
+
+.left-menu p {
+    float: right;
 }
