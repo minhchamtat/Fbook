@@ -71,21 +71,27 @@ class BookController extends Controller
     public function index()
     {
         $categories = $this->category->getData();
+        foreach ($categories as $key => $category) {
+            $data[] = $this->book->getBookCategory($category->id)->count();
+        }
         $offices = $this->office->getData();
         $books = $this->book->getRandomBook();
 
-        return view('book.books', compact('categories', 'offices', 'books'));
+        return view('book.books', compact('categories', 'offices', 'books', 'data'));
     }
 
     public function getBookCategory($slug)
     {
         $id = last(explode('-', $slug));
         $categories = $this->category->getData();
+        foreach ($categories as $key => $category) {
+            $data[] = $this->book->getBookCategory($category->id)->count();
+        }
         $offices = $this->office->getData();
-        $books = $this->book->getBookCategory($id);
+        $books = $this->book->getBookCategory($id)->paginate(config('view.paginate.book'));
         $cate = $this->category->find($id);
 
-        return view('book.books', compact('categories', 'offices', 'books', 'cate'));
+        return view('book.books', compact('categories', 'offices', 'books', 'cate', 'data'));
     }
 
     public function getBookOffice($slug)

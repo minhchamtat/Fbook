@@ -233,7 +233,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
     {
         $books = $this->model()::whereHas('categories', function ($q) use ($id) {
             return $q->where('category_id', $id);
-        })->paginate(config('view.paginate.book'));
+        });
 
         return $books;
     }
