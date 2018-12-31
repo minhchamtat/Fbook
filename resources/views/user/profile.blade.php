@@ -40,36 +40,49 @@
                         @auth
                             @if ($user)
                                 <ul  class="intro-list">
-                                    <li title="Reputations">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <span>{{ $user->reputation_point }}</span>
-                                    </li>
-                                    <li title="Email">
+                                    <li title="Email: {{ $user->email }}">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <span class="email">{{ $user->email }}</span>
+                                        <span class="email">
+                                            {{ substr(strip_tags($user->email), 0, 20) }}
+                                            {{ strlen(strip_tags($user->email)) > 20 ? '...': '' }}
+                                        </span>
                                     </li>
                                     <li title="Phone">
                                         <i class="fa fa-phone-square" aria-hidden="true"></i>
                                         <span>{{ $user->phone }}</span></li>
-                                    <li title="Employee Code">
-                                        <i class="fa fa-barcode" aria-hidden="true"></i>
-                                        <span>{{ $user->employee_code }}</span></li>
-                                    <li title="Position">
-                                        <i class="fa fa-building" aria-hidden="true"></i>
-                                        <span>{{ $user->position }}</span>
-                                    </li>
-                                    <li title="Worksapce">
-                                        <i class="fa fa-home" aria-hidden="true"></i>
-                                        <span>{{ $user->workspace}}</span>
-                                    </li>
-                                    <li title="Following Users">
-                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                        <span>{{ count($followings->collapse()) }}</span>
-                                    </li>
-                                    <li title="Followers">
-                                        <i class="fa fa-share-square" aria-hidden="true"></i>
-                                        <span>{{ count($followers->collapse()) }}</span>
-                                    </li>
+                                    @if (!empty($user->employee_code))
+                                        <li title="Employee Code">
+                                            <i class="fa fa-barcode" aria-hidden="true"></i>
+                                            <span>{{ $user->employee_code }}</span></li>
+                                    @endif
+                                    @if (!empty($user->position))
+                                        <li title="Position">
+                                            <i class="fa fa-building" aria-hidden="true"></i>
+                                            <span>{{ $user->position }}</span>
+                                        </li>
+                                    @endif
+                                    @if (!empty($user->workspace))
+                                        <li title="Worksapce">
+                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                            <span>{{ $user->workspace}}</span>
+                                        </li>
+                                    @endif
+                                    @if (count($followings->collapse()) > 0)
+                                        <li title="Following Users">
+                                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                            <span>{{ count($followings->collapse()) }}
+                                                {{ __('settings.profile.following') }}
+                                            </span>
+                                        </li>
+                                    @endif
+                                    @if (count($followers->collapse()) > 0)
+                                        <li title="Followers">
+                                            <i class="fa fa-share-square" aria-hidden="true"></i>
+                                            <span>{{ count($followers->collapse()) }}
+                                                {{ __('settings.profile.followers') }}
+                                            </span>
+                                        </li>
+                                    @endif
                                 </ul>
                             @endif
                         @endauth

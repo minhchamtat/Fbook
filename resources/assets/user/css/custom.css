@@ -696,7 +696,6 @@ img.logo {
     white-space: nowrap;
     max-width: 100%;
     overflow: hidden;
-    display: block;
 }
 
 .owl-item.active .slider-animated-1 a {
@@ -713,6 +712,7 @@ img.logo {
 
 .h5, h5 {
     text-transform: uppercase;
+    border-bottom: 1px #cabfbf solid;
 }
 
 ul.suggestions-list.noti-list {
@@ -926,14 +926,13 @@ ul.suggestions-list.noti-list::-webkit-scrollbar-thumb:hover {
     overflow: hidden;
 }
 
-ul.suggestions-list.noti-list .view-all a{
+h5.bg-light a.view-all{
     color: blue;
     text-transform: none;
 }
 
-ul.suggestions-list.noti-list .view-all {
-    text-align: right;
-    padding: 6px 22px 6px 0;
+a.view-all {
+    float: right;
 }
 
 .suggestion ul li:hover {
