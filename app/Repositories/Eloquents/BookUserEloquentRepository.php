@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Eloquent\BookUser;
 use App\Repositories\Contracts\BookUserRepository;
+use App\Repositories\Contracts\NotificationRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -13,6 +14,12 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     public function model()
     {
         return new BookUser;
+    }
+
+    public function __construct(
+        NotificationRepository $notification
+    ) {
+        $this->notification = $notification;
     }
 
     public function getData($data = [], $with = [], $dataSelect = ['*'])
@@ -146,6 +153,19 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                     ->orderBy('created_at', 'desc')
                     ->first();
         $data['type'] = config('view.request.returning');
+        $this->notification->destroy([
+            'send_id' => $bookUser->owner_id,
+            'receive_id' => $bookUser->user_id,
+            'target_type' => config('model.target_type.book_user'),
+            'target_id' => $bookUser->id,
+        ]);
+        $this->notification->store([
+            'send_id' => Auth::id(),
+            'receive_id' => $bookUser->owner_id,
+            'target_type' => config('model.target_type.book_user'),
+            'target_id' => $bookUser->id,
+            'viewed' => config('model.viewed.false'),
+        ]);
 
         return $bookUser->update($data);
     }

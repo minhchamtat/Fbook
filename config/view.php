@@ -97,7 +97,6 @@ return [
         'reading' => ' Has approve request to borrow: ',
         'prompt' => 'You will be returned book soon',
         'cancel' => ' Has refuse request borrow: ',
-        'returned' => 'Returned',
         'route' => [
             'book' => 'books.show',
             'user' => 'user',
