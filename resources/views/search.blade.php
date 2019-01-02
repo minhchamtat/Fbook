@@ -63,6 +63,27 @@
                                                     <div class="media-body">
                                                         <h4 class="media-heading">{{ $book->title }}</h4>
                                                         <p>{{ $book->author }}</p>
+                                                        <div class="user-item">
+                                                            @if ($book->owners)
+                                                            @foreach ($book->owners as $owner)
+                                                            <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
+                                                                <a class="search-img" href="{{ route('user', $owner->id) }}"
+                                                                    title="{{ $owner->name }} ( {{ $owner->office->name }} )">
+                                                                    @if ($owner->avatar != '')
+                                                                        <img class="user-search" src="{{ $owner->avatar }}">
+                                                                    @else
+                                                                        <img class="user-search" src="{{ asset(config('view.image_paths.user') . '1.png') }}">
+                                                                    @endif
+                                                                    @if ($owner->office)
+                                                                        <span class="address"> 
+                                                                            {{ $owner->office->address }}
+                                                                        </span>
+                                                                    @endif
+                                                                </a>
+                                                            </div>
+                                                            @endforeach
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -90,6 +111,27 @@
                                                     <div class="media-body">
                                                         <h4 class="media-heading">{{ $author->title }}</h4>
                                                         <p>{{ $author->author }}</p>
+                                                        <div class="user-item">
+                                                            @if ($author->owners)
+                                                            @foreach ($author->owners as $owner)
+                                                            <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
+                                                                <a href="{{ route('user', $owner->id) }}"
+                                                                    title="{{ $owner->name }} ( {{ $owner->office->name }} )">
+                                                                    @if ($owner->avatar != '')
+                                                                        <img class="user-search" src="{{ $owner->avatar }}">
+                                                                    @else
+                                                                        <img class="user-search" src="{{ asset(config('view.image_paths.user') . '1.png') }}">
+                                                                    @endif
+                                                                    @if ($owner->office)
+                                                                        <span class="address"> 
+                                                                            {{ $owner->office->address }}
+                                                                        </span>
+                                                                    @endif
+                                                                </a>                                                            
+                                                            </div>
+                                                            @endforeach
+                                                            @endif
+                                                       </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -117,6 +159,27 @@
                                                     <div class="media-body">
                                                         <h4 class="media-heading">{{ $description->title }}</h4>
                                                         <p>{{ $description->author }}</p>
+                                                        <div class="user-item">
+                                                            @if ($description->owners)
+                                                            @foreach ($description->owners as $owner)
+                                                            <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
+                                                                <a href="{{ route('user', $owner->id) }}"
+                                                                    title="{{ $owner->name }} ( {{ $owner->office->name }} )">
+                                                                    @if ($owner->avatar != '')
+                                                                        <img class="user-search" src="{{ $owner->avatar }}">
+                                                                    @else
+                                                                        <img class="user-search" src="{{ asset(config('view.image_paths.user') . '1.png') }}">
+                                                                    @endif
+                                                                    @if ($owner->office)
+                                                                        <span class="address"> 
+                                                                            {{ $owner->office->address }}
+                                                                        </span>
+                                                                    @endif
+                                                                </a>
+                                                            </div>
+                                                            @endforeach
+                                                            @endif
+                                                       </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -137,12 +200,12 @@
                                                     <div class="media">
                                                         <div>
                                                             @if ($user->avatar)
-                                                                <img src="{{ $user->avatar }}" alt="item" class="media-object mg-thumbnail avatar-icon"/>
+                                                                <img src="{{ $user->avatar }}" alt="item" class="media-oject mg-thumbnail avatar-icon"/>
                                                             @else
-                                                                <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-object mg-thumbnail avatar-icon"/>
+                                                                <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-oject mg-thumbnail avatar-icon"/>
                                                             @endif
                                                         </div>
-                                                        <div class="media-body">
+                                                        <div class="search-name">
                                                             <h4 class="media-heading">{{ $user->name }}</h4>
                                                         </div>
                                                     </div>

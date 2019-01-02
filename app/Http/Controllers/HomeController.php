@@ -99,10 +99,13 @@ class HomeController extends Controller
 
     public function search(SearchRequest $request)
     {
+        $with = [
+            'owners.office',
+        ];
         $data['users'] = $this->user->search('name', $request->req);
-        $data['titles'] = $this->book->search('title', $request->req);
-        $data['authors'] = $this->book->search('author', $request->req);
-        $data['descriptions'] = $this->book->search('description', $request->req);
+        $data['titles'] = $this->book->search('title', $request->req, $with);
+        $data['authors'] = $this->book->search('author', $request->req, $with);
+        $data['descriptions'] = $this->book->search('description', $request->req, $with);
         $data['key'] = $request->req;
 
         return view('search', $data);

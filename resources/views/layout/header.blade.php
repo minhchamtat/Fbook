@@ -118,6 +118,7 @@
                                 'required' => 'required',
                                 'class' => 'form-control m-input',
                                 'title' => __('page.search'),
+                                'autocomplete' => 'off',
                                 'maxlength' => 100
                             ]
                         ) !!}
