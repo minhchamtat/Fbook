@@ -12,7 +12,8 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalMember') }}</h4>
-                            <p>{{ $totalUser }} {{__('settings.default.members') }}</p>
+                            <span class="total-user" data-user="{{ $totalUser }}"></span>
+                            <span>{{ __('settings.default.members') }}</span>
                         </div>
                     </div>
                 </div>
@@ -23,7 +24,8 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalBook') }}</h4>
-                            <p>{{ $totalBook }} {{__('settings.default.books') }}</p>
+                            <span class="total-book" data-book="{{ $totalBook }}"></span>
+                            <span>{{__('settings.default.books') }}</span>
                         </div>
                     </div>
                 </div>
@@ -34,7 +36,8 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalReview') }}</h4>
-                            <p>{{ $totalReview }} {{__('settings.default.reviews') }}</p>
+                            <span class="total-review" data-review="{{ $totalReview }}"></span>
+                            <span>{{__('settings.default.reviews') }}</span>
                         </div>
                     </div>
                 </div>
@@ -56,11 +59,11 @@
 @endsection
 
 @section('content')
-<div class="product-area pt-95 xs-mb">
+<div class="product-area pt-60 xs-mb">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title text-center mb-50">
+                <div class="section-title text-center mb-25">
                     <h2>{{ trans('settings.home.top_interesting') }}</h2>
                 </div>
             </div>
@@ -120,7 +123,7 @@
         </div>
     </div>
 </div>
-<div class="banner-area-5 mtb-95">
+<div class="banner-area-5 mtb-65">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -131,7 +134,7 @@
         </div>
     </div>
 </div>
-<div class="bestseller-area pb-100">
+<div class="bestseller-area pb-60">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -157,7 +160,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-35">
                 <div class="bestseller-active owl-carousel">
                     @include('layout.section.bestsharing')
                 </div>
@@ -165,11 +168,11 @@
         </div>
     </div>
 </div>
-<div class="new-book-area pb-100">
+<div class="new-book-area pb-60">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title bt text-center pt-100 mb-30 section-title-res">
+                <div class="section-title bt text-center pt-60 mb-30 section-title-res">
                     <h2>{{ trans('settings.home.latest_books') }}</h2>
                 </div>
             </div>
@@ -183,7 +186,7 @@
         @endforeach
     </div>
 </div>
-<div class="banner-static-area bg ptb-100">
+<div class="banner-static-area bg ptb-60">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -194,7 +197,7 @@
         </div>
     </div>
 </div>
-<div class="most-product-area pt-90 pb-100">
+<div class="most-product-area pt-90 pb-60">
     <div class="container">
         <div class="row">
             <div class="col-md-9">
