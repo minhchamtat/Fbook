@@ -180,7 +180,7 @@
                                                             {{ trans('settings.book.remove_owner') }}
                                                         </a>
                                                     @else
-                                                        <a data-toggle="modal" class="btn-share" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                        <a data-toggle="modal" class="btn-share {{ Auth::check() ? '' : 'login' }}" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
                                                             {{ trans('settings.book.i_have_this_book') }}
                                                         </a>
                                                     @endif
@@ -420,25 +420,55 @@
                                         </div>
                                         <div class="product-details text-center">
                                             <div class="product-rating">
-                                                {!! Form::select('rating',
-                                                   [
-                                                        '' => '',
-                                                        '1' => 1,
-                                                        '2' => 2,
-                                                        '3' => 3,
-                                                        '4' => 4,
-                                                        '5' => 5
-                                                    ],
-                                                    null,
-                                                    [
-                                                        'class' => 'rating',
-                                                        'data-rating' => $relatedBooks[$i]->avg_star
-                                                    ])
-                                                !!}
+                                                <div class="book-info">
+                                                    <h4 class="title-book">
+                                                        <a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div class="avg_star">
+                                                    {!! Form::select('rating',
+                                                        [
+                                                            '' => '',
+                                                            '1' => 1,
+                                                            '2' => 2,
+                                                            '3' => 3,
+                                                            '4' => 4,
+                                                            '5' => 5
+                                                        ],
+                                                        null,
+                                                        [
+                                                            'class' => 'rating',
+                                                            'data-rating' => $book->avg_star
+                                                        ])
+                                                    !!}
+                                                </div>
+                                                <div class="owner-avatar">
+                                                    @php $countOwnerLatest = $relatedBooks[$i]->owners->count() @endphp
+                                                    @if ($countOwnerLatest > 3)
+                                                        @for ($j = 0; $j < 2; $j++)
+                                                            <div class="owner" id="{{ 'user-' . $relatedBooks[$i]->owners[$j]->id }}">
+                                                                <a href="{{ route('user', $relatedBooks[$i]->owners[$j]->id) }}" title="{{ $relatedBooks[$i]->owners[$j]->name }}">
+                                                                    <img src="{{ $relatedBooks[$i]->owners[$j]->avatar ? $relatedBooks[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                </a>
+                                                            </div>
+                                                        @endfor
+                                                        <div class="owner">
+                                                            <a href="/" title="{{ 'And more' }}" class="owner-more">
+                                                                <span>+</span>
+                                                                <span>{{ $countOwnerLatest - 2 }}</span>
+                                                            </a>
+                                                        </div>
+                                                    @else
+                                                        @for ($j = 0; $j < $relatedBooks[$i]->owners->count(); $j++)
+                                                            <div class="owner" id="{{ 'user-' . $relatedBooks[$i]->owners[$j]->id }}">
+                                                                <a href="{{ route('user', $relatedBooks[$i]->owners[$j]->id) }}" title="{{ $relatedBooks[$i]->owners[$j]->name }}">
+                                                                    <img src="{{ $relatedBooks[$i]->owners[$j]->avatar ? $relatedBooks[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                </a>
+                                                            </div>
+                                                        @endfor
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <h4>
-                                                <a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a>
-                                            </h4>
                                         </div>
                                     </div>
                                 @endfor

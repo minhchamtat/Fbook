@@ -110,6 +110,7 @@
     $('.tab-active-2').owlCarousel({
         smartSpeed: 1000,
         nav: false,
+        margin: 30,
         autoplay: true,
         loop: true,
         navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
@@ -773,6 +774,26 @@
             //
         });
     });
+
+    function count(target, start, end, step, timeInterval) {
+        var timer = setInterval(function() {
+          if (start == end) {
+            clearInterval(timer);
+
+            return false;
+          }
+          start += step;
+          target.html(start);
+        }, timeInterval);
+    }
+
+    var totalUser = $('.total-user').data('user');
+    var totalBook = $('.total-book').data('book');
+    var totalReview = $('.total-review').data('review');
+
+    count($('.total-user'), 1, totalUser, 1, 1);
+    count($('.total-book'), 1, totalBook, 1, 1);
+    count($('.total-review'), 1, totalReview, 1, 50);
 
 })(jQuery);
 

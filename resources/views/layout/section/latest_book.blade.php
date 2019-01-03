@@ -3,15 +3,7 @@
         <div class="tab-total">
             <div class="product-wrapper mb-40">
                 <div class="product-img">
-                    @if($latestBook[$i]->medias->count() > 0)
-                        <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . $latestBook[$i]->medias[0]->path) }}" alt="book" class="primary" />
-                        </a>
-                    @else
-                       <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
-                        </a>
-                    @endif
+                    <img src="{{ $latestBook[$i]->medias->count() > 0 ? asset(config('view.image_paths.book') . $latestBook[$i]->medias[0]->path) : asset(config('view.image_paths.book') . 'default.jpg') }}" alt="book" class="primary no-trans" />
                     <div class="quick-view">
                         <a class="action-view" href="#" data-target="#productModal{{ $latestBook[$i]->id }}" data-toggle="modal" title="Quick View">
                             <i class="fa fa-search-plus"></i>
@@ -20,36 +12,62 @@
                 </div>
                 <div class="product-details text-center">
                     <div class="product-rating">
-                        {!! Form::select('rating',
-                           [
-                                '' => '',
-                                '1' => 1,
-                                '2' => 2,
-                                '3' => 3,
-                                '4' => 4,
-                                '5' => 5
-                            ],
-                            null,
-                            [
-                                'class' => 'rating',
-                                'data-rating' => $latestBook[$i]->avg_star
-                            ])
-                        !!}
+                        <div class="book-info">
+                            <h4 class="title-book">
+                                <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}" title="{{ $latestBook[$i]->title }}">{{ $latestBook[$i]->title }}</a>
+                            </h4>
+                            <div class="avg_star">
+                                {!! Form::select('rating',
+                                    [
+                                        '' => '',
+                                        '1' => 1,
+                                        '2' => 2,
+                                        '3' => 3,
+                                        '4' => 4,
+                                        '5' => 5
+                                    ],
+                                    null,
+                                    [
+                                        'class' => 'rating',
+                                        'data-rating' => $book->avg_star
+                                    ])
+                                !!}
+                            </div>
+                            <div class="owner-avatar">
+                                @php $countOwnerLatest = $latestBook[$i]->owners->count() @endphp
+                                @if ($countOwnerLatest > 3)
+                                    @for ($j = 0; $j < 2; $j++)
+                                        <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
+                                            <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                            </a>
+                                        </div>
+                                    @endfor
+                                    <div class="owner">
+                                        <a href="/" title="{{ 'And more' }}" class="owner-more">
+                                            <span>+</span>
+                                            <span>{{ $countOwnerLatest - 2 }}</span>
+                                        </a>
+                                    </div>
+                                @else
+                                    @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
+                                        <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
+                                            <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                            </a>
+                                        </div>
+                                    @endfor
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <h4><a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}" title="{{ $latestBook[$i]->title }}">{{ $latestBook[$i]->title }}</a></h4>
                 </div>
             </div>
             <div class="product-wrapper">
                 <div class="product-img">
-                    @if ($latestBook[++$i]->medias->count() > 0)
-                        <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . $latestBook[$i]->medias[0]->path) }}" alt="book" class="primary" />
-                        </a>
-                    @else
-                        <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="primary" />
-                        </a>
-                    @endif
+                    <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
+                        <img src="{{ $latestBook[++$i]->medias->count() > 0 ? asset(config('view.image_paths.book') . $latestBook[$i]->medias[0]->path) : asset(config('view.image_paths.book') . 'default.jpg') }}" alt="book" class="primary" />
+                    </a>
                     <div class="quick-view">
                         <a class="action-view" href="#" data-target="#productModal{{ $latestBook[$i]->id }}" data-toggle="modal" title="Quick View">
                             <i class="fa fa-search-plus"></i>
@@ -58,23 +76,55 @@
                 </div>
                 <div class="product-details text-center">
                     <div class="product-rating">
-                        {!! Form::select('rating',
-                           [
-                                '' => '',
-                                '1' => 1,
-                                '2' => 2,
-                                '3' => 3,
-                                '4' => 4,
-                                '5' => 5
-                            ],
-                            null,
-                            [
-                                'class' => 'rating',
-                                'data-rating' => $latestBook[$i]->avg_star
-                            ])
-                        !!}
+                        <div class="book-info">
+                            <h4 class="title-book">
+                                <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}" title="{{ $latestBook[$i]->title }}">{{ $latestBook[$i]->title }}</a>
+                            </h4>
+                            <div class="avg_star">
+                                {!! Form::select('rating',
+                                    [
+                                        '' => '',
+                                        '1' => 1,
+                                        '2' => 2,
+                                        '3' => 3,
+                                        '4' => 4,
+                                        '5' => 5
+                                    ],
+                                    null,
+                                    [
+                                        'class' => 'rating',
+                                        'data-rating' => $book->avg_star
+                                    ])
+                                !!}
+                            </div>
+                            <div class="owner-avatar">
+                                @php $countOwnerLatest = $latestBook[$i]->owners->count() @endphp
+                                @if ($countOwnerLatest > 3)
+                                    @for ($j = 0; $j < 2; $j++)
+                                        <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
+                                            <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                            </a>
+                                        </div>
+                                    @endfor
+                                    <div class="owner">
+                                        <a href="/" title="{{ 'And more' }}" class="owner-more">
+                                            <span>+</span>
+                                            <span>{{ $countOwnerLatest - 2 }}</span>
+                                        </a>
+                                    </div>
+                                @else
+                                    @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
+                                        <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
+                                            <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                            </a>
+                                        </div>
+                                    @endfor
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <h4><a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}" title="{{ $latestBook[$i]->title }}">{{ $latestBook[$i]->title }}</a></h4>
                 </div>
             </div>
         </div>

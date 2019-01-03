@@ -37,6 +37,7 @@ class HomeController extends Controller
     {
         $with = [
             'medias',
+            'owners',
         ];
         $offices = $this->office->getData()->pluck('name', 'id');
         $topViewed = $this->book->getTopViewedBook($with);

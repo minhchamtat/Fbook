@@ -161,7 +161,7 @@ class BookController extends Controller
                 if ($slug == $slugId) {
                     if ($book->categories) {
                         $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
-                        $relatedBooks = $this->book->getRelatedBooks($relatedBookIds, ['medias']);
+                        $relatedBooks = $this->book->getRelatedBooks($relatedBookIds, ['medias', 'owners']);
                     } else {
                         $relatedBooks = null;
                     }
