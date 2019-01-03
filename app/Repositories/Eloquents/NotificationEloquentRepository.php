@@ -53,7 +53,8 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                         if ($book) {
                             $message = config('view.notifications.' . $record->target->type) . $book->title;
                             $record = array_add($record, 'message', $message);
-                            if ($record->target->type == config('view.request.waiting')) {
+                            if ($record->target->type == config('view.request.waiting') ||
+                                $record->target->type == config('view.request.returning')) {
                                 $record = array_add($record, 'route', config('view.notifications.route.owner_prompt'));
                                 $record = array_add($record, 'link', null);
                             } else {

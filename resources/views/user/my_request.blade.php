@@ -93,7 +93,15 @@
                                         <td>
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', $book->type) !!}
-                                                {!! Form::button(__('settings.request.returned'), ['class' => 'btn btn-return btn-sm notify-2', 'type' => 'submit']) !!}
+                                                @if ($book->type == config('view.request.reading'))
+                                                    {!! Form::button(__('settings.request.returned'), 
+                                                        ['class' => 'btn btn-return btn-sm notify-2', 
+                                                        'type' => 'submit', 'disabled' => 'disabled']) !!}
+                                                @else 
+                                                    {!! Form::button(__('settings.request.returned'), 
+                                                        ['class' => 'btn btn-return btn-sm notify-2', 
+                                                        'type' => 'submit']) !!}
+                                                @endif
                                             {!! Form::close() !!}
                                         </td>
                                     @else
