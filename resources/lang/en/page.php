@@ -59,4 +59,7 @@ return [
     'searchBy' => 'Search by:',
     'addNumber' => 'Phone Number',
     'addPhone' => 'Add',
+    'display' => 'Display:',
+    'public' => 'Public',
+    'private' => 'Private',
 ];

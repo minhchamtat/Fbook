@@ -692,7 +692,7 @@
 
     $('#modal_phone').on('click', function() {
         $.ajax({
-            url: '/my-phone/' + $('#phone_value').val(),
+            url: '/my-phone/' + $('#phone_value').val() + '/' + $('.message_pri:checked').val(),
             method: 'POST',
             success: function(res) {
                 if (res.data == 1) {

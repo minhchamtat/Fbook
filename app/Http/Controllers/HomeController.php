@@ -7,6 +7,7 @@ use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
+use App\Repositories\Contracts\UsermetaRepository;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\SearchRequest;
@@ -21,16 +22,20 @@ class HomeController extends Controller
 
     protected $review;
 
+    protected $usermeta;
+
     public function __construct(
         BookRepository $book,
         OfficeRepository $office,
         UserRepository $user,
-        ReviewBookRepository $review
+        ReviewBookRepository $review,
+        UsermetaRepository $usermeta
     ) {
         $this->book = $book;
         $this->office = $office;
         $this->user = $user;
         $this->review = $review;
+        $this->usermeta = $usermeta;
     }
 
     public function index()
@@ -111,7 +116,7 @@ class HomeController extends Controller
         return view('search', $data);
     }
 
-    public function getPhone($phone)
+    public function getPhone($phone, $radio)
     {
         $pattern = '/^(\+84|0)\d{9,10}$/';
         if (preg_match($pattern, $phone)) {
@@ -120,6 +125,7 @@ class HomeController extends Controller
                 'phone' => $phone,
             ];
             $this->user->update($id, $data);
+            $this->usermeta->updateDisplayPhone($id, $radio);
 
             return response()->json([
                 'data' => '1',

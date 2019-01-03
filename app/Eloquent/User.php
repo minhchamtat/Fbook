@@ -113,4 +113,9 @@ class User extends Authenticatable
     {
         return static::findOrFail($id)->roles->pluck('name', 'id')->toArray();
     }
+
+    public function usermeta()
+    {
+        return $this->hasMany(Usermeta::class);
+    }
 }

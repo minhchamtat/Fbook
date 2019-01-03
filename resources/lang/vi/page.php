@@ -59,4 +59,7 @@ return [
     'searchBy' => 'Tìm kiếm theo:',
     'addNumber' => 'Số điện thoại',
     'addPhone' => 'Thêm',
+    'display' => 'Hiển thị:',
+    'public' => 'Mọi người',
+    'private' => 'Mình tôi',
 ];

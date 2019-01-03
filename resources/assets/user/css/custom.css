@@ -981,7 +981,6 @@ img.media-search {
 .result-link .media-object {
     max-width: inherit;
     width: 70px;
-    height: 90px;
 }
 
 #search-suggest {
@@ -1244,12 +1243,6 @@ a.owner-more span:last-child {
     float: right;
 }
 
-.media-body, .media-left, .media-right {
-    display: initial;
-    position: relative;
-    top: -20px;
-}
-
 .user-search {
     width: 30px;
     height: 30px;
@@ -1257,11 +1250,28 @@ a.owner-more span:last-child {
     border: 1px solid #80808070;
 }
 
+.search-media {
+    display: initial;
+    position: relative;
+    top: -20px;
+    vertical-align: top;
+    width: 10000px;
+    overflow: hidden;
+    zoom: 1;
+}
+
 .address {
     font-family: 'Open Sans', sans-serif;
     font-size: 10px;
-    float: right;
-    margin-top: 20px;
+    position: absolute;
+    left: 3px;
+    bottom: -19px;
+    border: 1px solid #ccc;
+    padding: 2px 3px;
+    border-radius: 3px;
+    background: #c68c53;
+    color: #fff;
+    font-weight: bold;
 }
 
 .media-oject {
@@ -1273,4 +1283,22 @@ a.owner-more span:last-child {
 
 .search-name h4 {
     margin-top: 20px;
+}
+
+.search-avatar {
+    max-width: inherit;
+    width: 70px;
+    height: 100px;
+    float: left;
+    width: 7%;
+    margin-right: 22px;
+    display: block;
+}
+
+.left-media {
+    display: initial;
+    position: relative;
+    top: -20px;
+    vertical-align: top;
+    padding-right: 10px;
 }
