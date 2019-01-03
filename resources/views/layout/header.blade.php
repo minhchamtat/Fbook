@@ -201,14 +201,26 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">{{ trans('page.addNumber') }}</h4>
                         </div>
+                        {!! Form::open(['method' => 'post']) !!}
                         <div class="modal-body">
-                            <input id="phone_value" type="text" name="phone" required="">
+                            {!! Form::text('phone', null, ['id' => 'phone_value', 'required']) !!}
                         </div>
+                        <div id="broder-modal" style="margin-top: 10px" class="col-xs-12">
+                            <div class="col-xs-4">
+                                <p>{{ trans('page.display') }}</p>
+                            </div>
+                            <div class="col-xs-4">
+                                {!! Form::radio('result', '1', true, ['class' => 'message_pri']) !!}{{ trans('page.public') }}
+                            </div>
+                            <div class="col-xs-4">
+                                {!! Form::radio('result', '0', false, ['class' => 'message_pri']) !!}{{ trans('page.private') }}
+                            </div>
+                        </div>
+                        <hr  width="30%" align="center" />
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info"  id="modal_phone">
-                                {{ trans('page.addPhone') }}
-                            </button>
+                            {!! Form::button(trans('page.addPhone'), ['id' => 'modal_phone', 'class' => 'btn btn-info']) !!}
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

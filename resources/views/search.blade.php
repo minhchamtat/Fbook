@@ -53,20 +53,21 @@
                                         <li class="result-entry" data-suggestion="Target 1" data-position="1"data-type="type" data-analytics-type="merchant">
                                             <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" class="result-link">
                                                 <div class="media">
-                                                    <div class="media-left">
+                                                    <div class="left-media">
                                                         @if ($book->medias->count() > 0)
-                                                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="item" class="media-object"/>
+                                                            <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="item" class="search-avatar"/>
                                                         @else
-                                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="media-object"/>
+                                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="search-avatar"/>
                                                         @endif
                                                     </div>
-                                                    <div class="media-body">
+                                                    <div class="search-media">
                                                         <h4 class="media-heading">{{ $book->title }}</h4>
                                                         <p>{{ $book->author }}</p>
                                                         <div class="user-item">
                                                             @if ($book->owners)
                                                             @foreach ($book->owners as $owner)
                                                             <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
+                                                                @if (!empty($owner->office->name))
                                                                 <a class="search-img" href="{{ route('user', $owner->id) }}"
                                                                     title="{{ $owner->name }} ( {{ $owner->office->name }} )">
                                                                     @if ($owner->avatar != '')
@@ -80,6 +81,7 @@
                                                                         </span>
                                                                     @endif
                                                                 </a>
+                                                                @endif
                                                             </div>
                                                             @endforeach
                                                             @endif
@@ -98,24 +100,25 @@
                             <ul class="suggestions-list">
                                 @if (count($authors) > 0)
                                     @foreach ($authors as $author)
-                                        <li class="result-entry" data-suggestion="Target 1" data-position="1" data-type="type" data-analytics-type="merchant">
+                                        <li class="result-entry" data-suggestion="Target 1" data-position="1"data-type="type" data-analytics-type="merchant">
                                             <a href="{{ route('books.show', $author->slug . '-' . $author->id) }}" class="result-link">
                                                 <div class="media">
-                                                    <div class="media-left">
+                                                    <div class="left-media">
                                                         @if ($author->medias->count() > 0)
-                                                            <img src="{{ asset(config('view.image_paths.book') . $author->medias[0]->path) }}" alt="item" class="media-object"/>
+                                                            <img src="{{ asset(config('view.image_paths.book') . $author->medias[0]->path) }}" alt="item" class="search-avatar"/>
                                                         @else
-                                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="media-object"/>
+                                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="search-avatar"/>
                                                         @endif
                                                     </div>
-                                                    <div class="media-body">
+                                                    <div class="search-media">
                                                         <h4 class="media-heading">{{ $author->title }}</h4>
                                                         <p>{{ $author->author }}</p>
                                                         <div class="user-item">
                                                             @if ($author->owners)
                                                             @foreach ($author->owners as $owner)
                                                             <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
-                                                                <a href="{{ route('user', $owner->id) }}"
+                                                                @if (!empty($owner->office->name))
+                                                                <a class="search-img" href="{{ route('user', $owner->id) }}"
                                                                     title="{{ $owner->name }} ( {{ $owner->office->name }} )">
                                                                     @if ($owner->avatar != '')
                                                                         <img class="user-search" src="{{ $owner->avatar }}">
@@ -127,11 +130,12 @@
                                                                             {{ $owner->office->address }}
                                                                         </span>
                                                                     @endif
-                                                                </a>                                                            
+                                                                </a>
+                                                                @endif
                                                             </div>
                                                             @endforeach
                                                             @endif
-                                                       </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -146,24 +150,25 @@
                             <ul class="suggestions-list">
                                 @if (count($descriptions) > 0)
                                     @foreach ($descriptions as $description)
-                                        <li class="result-entry" data-suggestion="Target 1" data-position="1" data-type="type" data-analytics-type="merchant">
+                                        <li class="result-entry" data-suggestion="Target 1" data-position="1"data-type="type" data-analytics-type="merchant">
                                             <a href="{{ route('books.show', $description->slug . '-' . $description->id) }}" class="result-link">
                                                 <div class="media">
-                                                    <div class="media-left">
+                                                    <div class="left-media">
                                                         @if ($description->medias->count() > 0)
-                                                            <img src="{{ asset(config('view.image_paths.book') . $description->medias[0]->path) }}" alt="item" class="media-object"/>
+                                                            <img src="{{ asset(config('view.image_paths.book') . $description->medias[0]->path) }}" alt="item" class="search-avatar"/>
                                                         @else
-                                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt=" woman" class="media-object"/>
+                                                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" class="search-avatar"/>
                                                         @endif
                                                     </div>
-                                                    <div class="media-body">
+                                                    <div class="search-media">
                                                         <h4 class="media-heading">{{ $description->title }}</h4>
                                                         <p>{{ $description->author }}</p>
                                                         <div class="user-item">
                                                             @if ($description->owners)
                                                             @foreach ($description->owners as $owner)
                                                             <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
-                                                                <a href="{{ route('user', $owner->id) }}"
+                                                                @if (!empty($owner->office->name))
+                                                                <a class="search-img" href="{{ route('user', $owner->id) }}"
                                                                     title="{{ $owner->name }} ( {{ $owner->office->name }} )">
                                                                     @if ($owner->avatar != '')
                                                                         <img class="user-search" src="{{ $owner->avatar }}">
@@ -176,10 +181,11 @@
                                                                         </span>
                                                                     @endif
                                                                 </a>
+                                                                @endif
                                                             </div>
                                                             @endforeach
                                                             @endif
-                                                       </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>
