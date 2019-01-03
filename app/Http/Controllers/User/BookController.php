@@ -97,11 +97,14 @@ class BookController extends Controller
     public function getBookOffice($slug)
     {
         $categories = $this->category->getData();
+        foreach ($categories as $key => $category) {
+            $data[] = $this->book->getBookCategory($category->id)->count();
+        }
         $offices = $this->office->getData();
         $books = $this->book->getBookOffice($slug);
         $off = $this->office->find($slug);
 
-        return view('book.books', compact('categories', 'offices', 'books', 'off'));
+        return view('book.books', compact('categories', 'offices', 'books', 'off', 'data'));
     }
 
     public function create()

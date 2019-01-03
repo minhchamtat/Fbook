@@ -41,7 +41,7 @@
                             @foreach ($categories as $key => $category)
                                 <li>
                                     <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="{{ isset($cate) && $cate->name == $category->name ? 'active' : '' }}" title="{{ $category->name }}">
-                                        {{ substr(strip_tags($category->name), 0, 25) }}{{ strlen(strip_tags($category->name)) > 25 ? '...' : '' }}
+                                        {{ substr(($category->name), 0, 29) }}{{ strlen(($category->name)) >= 26 ? '...' : '' }}
                                         <p>({{ $data[$key] }})</p>
                                     </a>
                                 </li>
