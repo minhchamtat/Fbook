@@ -38,71 +38,23 @@
                                         @if ($book->medias->count() > 0)
                                             <ul class="slides">
                                                 <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman"/>
+                                                    <img class="picture" src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman"/>
                                                 </li>
                                             </ul>
                                         @else
                                             <ul class="slides">
                                                 <li data-thumb="{{ asset(config('view.image_paths.book') . 'default.jpg') }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman"/>
+                                                    <img class="picture" src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman"/>
                                                 </li>
                                             </ul>
                                         @endif
                                     </div>
-                                </div>
-                                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                                    <div class="product-info-main">
-                                        <div class="page-title">
-                                            <h1>{{ $book->title }}</h1>
-                                        </div>
-                                        <div class="product-info-stock-sku">
-                                            <span>{{ trans('settings.book.author') }}</span>
-                                            <div class="product-attribute">
-                                                <span>{{ $book->author }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-reviews-summary">
-                                            <div class="product-rating">
-                                                {!! Form::select('rating',
-                                                   [
-                                                        '' => '',
-                                                        '1' => 1,
-                                                        '2' => 2,
-                                                        '3' => 3,
-                                                        '4' => 4,
-                                                        '5' => 5
-                                                    ],
-                                                    null,
-                                                    [
-                                                        'class' => 'rating',
-                                                        'data-rating' => $book->avg_star
-                                                    ])
-                                                !!}
-                                            </div>
-                                            <div class="reviews-actions">
-                                                <a href="#review"
-                                                   id="review">{{ trans('settings.book.reviews', ['avg' => count($book->reviews)]) }}</a>
-                                            </div>
-                                        </div>
-                                        <div class="product-reviews-summary">
-                                            <div class="rating-summary">
-                                                {{ trans('settings.book.categories') }}
-                                            </div>
-                                            <div class="reviews-actions">
-                                                @if ($book->categories)
-                                                    @foreach ($book->categories as $category)
-                                                        <span>{{ $category->name }}</span><br>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="product-reviews-summary owner-list">
-                                            <div class="rating-summary">
-                                                <p class="share-by">{{ trans('settings.book.owners') }}</p>
-                                            </div>
+                                    <div class="product-reviews-summary owner-list">
+                                        <div class="rating-summary">
+                                            <p class="share-by">{{ trans('settings.book.owners') }}</p>
                                             @if ($book->owners)
                                                 @foreach ($book->owners as $owner)
-                                                    <div class="reviews-actions" id="{{ 'user-' . $owner->id }}">
+                                                    <div class="user-reviews-actions" id="{{ 'user-' . $owner->id }}">
                                                         <a href="{{ route('user', $owner->id) }}"
                                                            title="{{ $owner->name }}">
                                                             @if ($owner->avatar != '')
@@ -117,12 +69,76 @@
                                                 @endforeach
                                             @endif
                                         </div>
+                                    </div>
+                                    <div class="product-reviews-summary">
+                                        <div class="product-rating-book">
+                                            <span class="rate">{{ __('settings.review.rating') . ':' }}</span>
+                                            {!! Form::select('rating',
+                                               [
+                                                    '' => '',
+                                                    '1' => 1,
+                                                    '2' => 2,
+                                                    '3' => 3,
+                                                    '4' => 4,
+                                                    '5' => 5
+                                                ],
+                                                null,
+                                                [
+                                                    'class' => 'rating',
+                                                    'data-rating' => $book->avg_star
+                                                ])
+                                            !!}
+                                        </div>
+                                        <div class="reviews-actions-book">
+                                            {{ __('settings.default.totalReview') . ': ' }}
+                                            <a href="#review" id="review">
+                                                {{ count($book->reviews) . ' ' .
+                                                    (count($book->reviews) <= 1 ? __('settings.book.review') : __('settings.default.reviews')) }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                                    <div class="product-info-main">
+                                        <div class="page-title">
+                                            <h1>{{ $book->title }}</h1>
+                                        </div>
+                                        <div class="product-info-stock-sku">
+                                            <span>{{ trans('settings.book.author') }}</span>
+                                            <div class="product-attribute">
+                                                <span>{{ $book->author }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-reviews-summary">
+                                            <div class="rating-summary">
+                                                {{ trans('settings.book.categories') }}
+                                            </div>
+                                            <div class="reviews-actions">
+                                                @if ($book->categories)
+                                                    @for ($i = 0; $i < count($book->categories); $i++)
+                                                        @if ($i == (count($book->categories) - 1))
+                                                            <span class="category-book">
+                                                                <a href="{{ route('book.category', $book->categories[$i]['slug'].'-'.$book->categories[$i]['id']) }}">
+                                                                    {{ $book->categories[$i]['name'] }}
+                                                                </a>
+                                                            </span>
+                                                        @else 
+                                                            <span class="category-book">
+                                                                <a href="{{ route('book.category', $book->categories[$i]['slug'].'-'.$book->categories[$i]['id']) }}">
+                                                                    {{ $book->categories[$i]['name'] . ' - ' }}
+                                                                </a>
+                                                            </span>
+                                                        @endif
+                                                    @endfor
+                                                @endif
+                                            </div>
+                                        </div>
                                         <div class="product-reviews-summary">
                                             <div class="rating-summary">
                                                 <p class="mb-0">{{ __('settings.book.userBorrow') }}</p>
                                                 <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? __('settings.book.dateReturn') : '' }}</p>
                                             </div>
-                                            <div class="reviews-actions book-type text-center">
+                                            <div class="reviews-actions book-type">
                                                <b class="mb-0 text-danger">{{ $bookTypeStatus['userBorrow'] ? $bookTypeStatus['userBorrow'] : __('settings.book.availble') }}</b>
                                                <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? $bookTypeStatus['dateReturn'] : '' }}</p>
                                             </div>
@@ -150,7 +166,7 @@
                                                             @default
                                                                 <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
                                                                     data-id="{{ $book->id }}"
-                                                                    class="{{ Auth::check() ? 'btn-borrow' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
+                                                                    class="{{ Auth::check() ? 'book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
                                                                     >
                                                                     {{ trans('settings.book.borrow_book') }}
                                                                 </a>
@@ -158,7 +174,7 @@
                                                     @else
                                                         <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
                                                             data-id="{{ $book->id }}"
-                                                            class="{{ Auth::check() ? 'btn-borrow' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
+                                                            class="{{ Auth::check() ? 'book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
                                                             >
                                                             {{ trans('settings.book.borrow_book') }}
                                                         </a>
@@ -168,7 +184,7 @@
                                                             {{ trans('settings.book.remove_owner') }}
                                                         </a>
                                                     @else
-                                                        <a data-toggle="modal" href="#" class="{{ Auth::check() ? 'btn-share' : 'login' }} {{ $bookStatus && $bookStatus->type != 'returned' ? 'disabled' : '' }}" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                        <a data-toggle="modal" href="#" class="{{ Auth::check() ? 'book-info-link' : 'login' }} {{ $bookStatus && $bookStatus->type != 'returned' ? 'disabled' : '' }}" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
                                                             {{ trans('settings.book.i_have_this_book') }}
                                                         </a>
                                                     @endif
@@ -180,7 +196,7 @@
                                                             {{ trans('settings.book.remove_owner') }}
                                                         </a>
                                                     @else
-                                                        <a data-toggle="modal" class="btn-share {{ Auth::check() ? '' : 'login' }}" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                        <a data-toggle="modal" class="book-info-link {{ Auth::check() ? '' : 'login' }}" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
                                                             {{ trans('settings.book.i_have_this_book') }}
                                                         </a>
                                                     @endif
@@ -188,11 +204,6 @@
                                             @endif
                                         </div>
                                         <div class="product-social-links">
-                                            <div class="product-addto-links">
-                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                <a href="#"><i class="fa fa-pie-chart"></i></a>
-                                                <a href="#"><i class="fa fa-envelope-o"></i></a>
-                                            </div>
                                             <div class="product-addto-links-text">
                                                 <div class="more hideContent">{!! ($book->description) !!}</div>
                                             </div>
@@ -342,25 +353,25 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="shop-left">
-                        @if (isset($relatedBooks) && $relatedBooks->count() > 0 && $relatedBooks->count() > 2)
+                        @if (isset($topInteresting))
                             <div class="left-title mb-20">
-                                <h4>{{ trans('settings.book.related_books') }}</h4>
+                                <h4>{{ trans('settings.home.top_interesting') }}</h4>
                             </div>
                             <div class="random-area mb-30">
                                 <div class="product-active owl-carousel">
                                     <div class="product-total-2">
-                                        @for ($i = 0; $i < 3; $i++)
+                                        @for ($i = 0; $i < count($topInteresting); $i++)
                                             <div class="single-most-product bd mb-18">
-                                                @if ($relatedBooks[$i]->medias->count() > 0)
+                                                @if ($topInteresting[$i]->medias->count() > 0)
                                                     <div class="most-product-img">
-                                                        <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
-                                                            <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}"
+                                                        <a href="{{ route('books.show', $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id) }}">
+                                                            <img src="{{ asset(config('view.image_paths.book') . $topInteresting[$i]->medias[0]->path) }}"
                                                                  alt="book"/>
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="most-product-img">
-                                                        <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
+                                                        <a href="{{ route('books.show', $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id) }}">
                                                             <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}"
                                                                  alt="woman"/>
                                                         </a>
@@ -380,12 +391,12 @@
                                                             null,
                                                             [
                                                                 'class' => 'rating',
-                                                                'data-rating' => $relatedBooks[$i]->avg_star
+                                                                'data-rating' => $topInteresting[$i]->avg_star
                                                             ])
                                                         !!}
                                                     </div>
                                                     <h4>
-                                                        <a href="{{ route('books.show', ['id' => $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id]) }}">{{ $relatedBooks[$i]->title }}</a>
+                                                        <a href="{{ route('books.show', ['id' => $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id]) }}">{{ $topInteresting[$i]->title }}</a>
                                                     </h4>
                                                 </div>
                                             </div>

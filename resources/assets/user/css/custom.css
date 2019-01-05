@@ -120,12 +120,7 @@ p.no-margin.mtop {
     font-size: 16px;
 }
 
-.product-addto-links {
-    margin-bottom: 35px;
-}
-
 /* vote */
-
 button.btn-vote {
     background-color: transparent;
     border: none;
@@ -338,7 +333,7 @@ a#scrollUp i {
 }
 
 img.img-thumbnail.avatar-icon {
-    margin-right: 25px;
+    margin-right: 20px;
 }
 
 .table-content table td.product-thumbnail {
@@ -760,10 +755,6 @@ p.nodata {
     background-color: transparent;
 }
 
-.product-addto-links-text .more p:first-child {
-    padding-top: 30px;
-}
-
 .product-addto-links-text .more p {
     padding: 0;
     text-align: justify;
@@ -1071,16 +1062,13 @@ a.view-all {
 }
 
 .rating-summary p.share-by {
-    margin-top: 14px;
+    margin: 14px 10px 0 0;
+    float: left;
 }
 
 .product-add-form form a.disabled {
     pointer-events: none;
     cursor: not-allowed;
-}
-
-.rating-summary p.share-by {
-    margin-top: 14px;
 }
 
 .book-type {
@@ -1183,9 +1171,10 @@ a.owner-more {
 }
 
 .product-add-form form a {
+    background: #1ba085 none repeat scroll 0 0;
     cursor: pointer;
-    color: gray;
-    border-radius: 50%;
+    color: #fff;
+    border-radius: 4px;
     font-size: 13px;
 }
 
@@ -1301,4 +1290,40 @@ a.owner-more span:last-child {
     top: -20px;
     vertical-align: top;
     padding-right: 10px;
+}
+
+img.picture {
+    box-shadow: 2px 7px 8px 2px rgba(0, 0.2, 0, 0.2);
+    border-radius: 4px;
+}
+
+div.most-product-img {
+    box-shadow: -5px -5px 18px 5px rgba(0,0,0,0.36);
+    border-radius: 4px;
+}
+
+div.br-wrapper.br-theme-fontawesome-stars-o {
+    display: inline-block;
+}
+
+div.product-rating-book span.rate {
+    margin-right: 10px;
+}
+
+a.book-info-link {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+span.category-book a:hover {
+    color: #1ba085;
+}
+
+.product-reviews-summary.owner-list {
+    margin-top: 12px; 
+    text-align: center;
+}
+
+.user-reviews-actions {
+    float: left;
 }
