@@ -155,8 +155,13 @@ class BookController extends Controller
     public function show($slug)
     {
         try {
+            $with = [
+                'medias',
+                'owners',
+            ];
             $id = last(explode('-', $slug));
             $book = $this->book->find($id, $this->with);
+            $topInteresting = $this->book->getTopInterestingBook($with);
             Event::fire('count.view', $book);
 
             if (!empty($book)) {
@@ -209,10 +214,10 @@ class BookController extends Controller
                     }
 
                     $bookTypeStatus = $this->bookUser->getTypeBook($book->id);
-
                     $data = [
                         'book',
                         'relatedBooks',
+                        'topInteresting',
                         'flag',
                         'reviews',
                         'isOwner',
