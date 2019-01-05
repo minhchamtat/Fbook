@@ -106,6 +106,7 @@ class HomeController extends Controller
     {
         $with = [
             'owners.office',
+            'medias',
         ];
         $data['users'] = $this->user->search('name', $request->req);
         $data['titles'] = $this->book->search('title', $request->req, $with);

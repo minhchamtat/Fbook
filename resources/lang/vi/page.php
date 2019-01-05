@@ -57,9 +57,11 @@ return [
     'clickMore' => 'Xem thêm',
     'keySearch' => 'Từ khóa:',
     'searchBy' => 'Tìm kiếm theo:',
-    'addNumber' => 'Số điện thoại',
+    'addNumber' => 'Thêm số điện thoại',
     'addPhone' => 'Thêm',
     'display' => 'Hiển thị:',
     'public' => 'Mọi người',
     'private' => 'Mình tôi',
+    'phone' => '0xxxxxxxx',
+    'public' => 'Công khai',
 ];

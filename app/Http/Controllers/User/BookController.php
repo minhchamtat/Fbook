@@ -71,9 +71,6 @@ class BookController extends Controller
     public function index()
     {
         $categories = $this->category->getData();
-        foreach ($categories as $key => $category) {
-            $data[] = $this->book->getBookCategory($category->id)->count();
-        }
         $offices = $this->office->getData();
         $books = $this->book->getRandomBook();
 
@@ -84,11 +81,9 @@ class BookController extends Controller
     {
         $id = last(explode('-', $slug));
         $categories = $this->category->getData();
-        foreach ($categories as $key => $category) {
-            $data[] = $this->book->getBookCategory($category->id)->count();
-        }
         $offices = $this->office->getData();
-        $books = $this->book->getBookCategory($id)->paginate(config('view.paginate.book'));
+        $books = $this->book->getBookCategory($id)
+            ->paginate(config('view.paginate.book'));
         $cate = $this->category->find($id);
 
         return view('book.books', compact('categories', 'offices', 'books', 'cate', 'data'));
@@ -97,9 +92,6 @@ class BookController extends Controller
     public function getBookOffice($slug)
     {
         $categories = $this->category->getData();
-        foreach ($categories as $key => $category) {
-            $data[] = $this->book->getBookCategory($category->id)->count();
-        }
         $offices = $this->office->getData();
         $books = $this->book->getBookOffice($slug);
         $off = $this->office->find($slug);

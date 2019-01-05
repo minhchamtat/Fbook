@@ -231,9 +231,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
     public function getBookCategory($id)
     {
-        $books = $this->model()::whereHas('categories', function ($q) use ($id) {
-            return $q->where('category_id', $id);
-        });
+        $books = app(Category::class)->findOrFail($id)->books();
 
         return $books;
     }

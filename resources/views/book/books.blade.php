@@ -35,14 +35,14 @@
                         <h4>{{ __('page.book.category') }}</h4>
                     </div>
                     <div class="left-menu mb-30">
-                        @foreach($data as $key => $value)
-                        @endforeach
+                        {{-- @foreach($data as $key => $value)
+                        @endforeach --}}
                         <ul>
                             @foreach ($categories as $key => $category)
                                 <li>
                                     <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="{{ isset($cate) && $cate->name == $category->name ? 'active' : '' }}" title="{{ $category->name }}">
                                         {{ substr(($category->name), 0, 29) }}{{ strlen(($category->name)) >= 26 ? '...' : '' }}
-                                        <p>({{ $data[$key] }})</p>
+                                        <p>({{ $category->books_count }})</p>
                                     </a>
                                 </li>
                             @endforeach

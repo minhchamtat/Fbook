@@ -16,7 +16,7 @@ class CategoryEloquentRepository extends AbstractEloquentRepository implements C
     {
         return $this->model()
             ->select($dataSelect)
-            ->with($with)
+            ->withCount('books')
             ->get();
     }
 

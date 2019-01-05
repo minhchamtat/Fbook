@@ -10,6 +10,7 @@ use App\Repositories\Contracts\ReputationRepository;
 use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\FollowRepository;
 use App\Repositories\Contracts\NotificationRepository;
+use App\Repositories\Contracts\UsermetaRepository;
 use App\Eloquent\Owner;
 use App\Eloquent\BookUser;
 use Auth;
@@ -28,13 +29,16 @@ class UserController extends Controller
 
     protected $notification;
 
+    protected $usermeta;
+
     public function __construct(
         OwnerRepository $owner,
         BookUserRepository $bookUser,
         ReputationRepository $reputation,
         UserRepository $user,
         FollowRepository $follow,
-        NotificationRepository $notification
+        NotificationRepository $notification,
+        UsermetaRepository $usermeta
     ) {
         $this->middleware('auth');
         $this->owner = $owner;
@@ -43,6 +47,7 @@ class UserController extends Controller
         $this->user = $user;
         $this->follow = $follow;
         $this->notification = $notification;
+        $this->usermeta = $usermeta;
     }
 
     public function myProfile()
@@ -86,13 +91,26 @@ class UserController extends Controller
 
     public function getUserInfo($user, $id)
     {
+        $data = [
+            'user_id' => $id,
+            'key' => 'display_phone',
+        ];
+        $phones = $this->usermeta->getData($data);
         $books = $user->ownerBooks()->where('user_id', $id)->paginate(config('view.limit.related_book'));
         $status = config('view.status.sharing');
         $followingIds = Auth::user()->followings->pluck('id')->toArray();
         $followers = $user->followers->chunk(config('view.paginate.follow_user'));
         $followings = $user->followings->chunk(config('view.paginate.follow_user'));
 
-        return view('user.profile', compact('user', 'books', 'status', 'followings', 'followers', 'followingIds'));
+        return view('user.profile', compact(
+            'user',
+            'books',
+            'status',
+            'followings',
+            'followers',
+            'followingIds',
+            'phones'
+        ));
     }
 
     public function getUser($id)
