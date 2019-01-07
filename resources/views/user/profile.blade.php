@@ -7,13 +7,13 @@
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
                 @if($user->avatar)
-                    <img align="left" src="{{ asset($user->avatar) }}" alt="avatar" class="fb-image-profile thumbnail">
+                    <img align="left" src="{{ asset($user->avatar) }}" alt="avatar" class="fb-avatar-profile thumbnail-avatar">
                 @else
-                    <img align="left" src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-image-profile thumbnail">
+                    <img align="left" src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-avatar-profile thumbnail-avatar">
                 @endif
                 <div class="fb-profile-text floatleft">
                     @if ($user)
-                        <h1>{{ $user->name }}</h1>
+                        <h1 class="name-avatar">{{ $user->name }}</h1>
                     @endif
                     @if (in_array($user->id, $followingIds))
                         <button data-id="{{ $user->id }}" class="btn btn-follow following floatleft">{{ trans('settings.profile.following') }}</button>
@@ -47,13 +47,23 @@
                                             {{ strlen(strip_tags($user->email)) > 20 ? '...': '' }}
                                         </span>
                                     </li>
+                                    @if ($phones[0]->value != 0)
                                     <li title="Phone">
                                         <i class="fa fa-phone-square" aria-hidden="true"></i>
-                                        <span>{{ $user->phone }}</span></li>
+                                        @if (!empty($user->phone))
+                                        <span>{{ $user->phone }}</span>
+                                    </li>
+                                        @endif
+                                    @else
+                                    <li>
+                                        <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                        <span>{{ trans('page.phone') }}</span>
+                                    @endif
                                     @if (!empty($user->employee_code))
                                         <li title="Employee Code">
                                             <i class="fa fa-barcode" aria-hidden="true"></i>
-                                            <span>{{ $user->employee_code }}</span></li>
+                                            <span>{{ $user->employee_code }}</span>
+                                        </li>
                                     @endif
                                     @if (!empty($user->position))
                                         <li title="Position">

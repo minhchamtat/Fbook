@@ -57,9 +57,11 @@ return [
     'clickMore' => 'Show more',
     'keySearch' => 'Search for keyword:',
     'searchBy' => 'Search by:',
-    'addNumber' => 'Phone Number',
+    'addNumber' => 'Add phone number',
     'addPhone' => 'Add',
     'display' => 'Display:',
     'public' => 'Public',
     'private' => 'Private',
+    'phone' => '0xxxxxxxx',
+    'public' => 'Public',
 ];
