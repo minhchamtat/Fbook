@@ -43,15 +43,16 @@ class HomeController extends Controller
         $with = [
             'medias',
             'owners',
+            'countReview',
+            'categories',
+            'office',
         ];
         $offices = $this->office->getData()->pluck('name', 'id');
         $topViewed = $this->book->getTopViewedBook($with);
         $topReview = $this->book->getTopReviewBook($with);
         $topInteresting = $this->book->getTopInterestingBook($with);
         $latestBook = $this->book->getLatestBook($with);
-        $bestSharing = $this->book->getBestSharing($with);
-        $hotUser = $bestSharing['user'];
-        $bestSharing = $bestSharing['books'];
+        $bestSharings = $this->book->getBestSharing();
         $officeBooks = $this->book->getOfficeBooks($offices, $with);
         $totalUser = $this->user->countUser();
         $totalBook = $this->book->countBook();
@@ -62,7 +63,7 @@ class HomeController extends Controller
             'topReview',
             'topViewed',
             'latestBook',
-            'bestSharing',
+            'bestSharings',
             'hotUser',
             'officeBooks',
             'flag',

@@ -84,7 +84,7 @@ class UserController extends Controller
             ->load([
                 'books',
             ]);
-        $books = $user->books()->where('type', $status)->get();
+        $books = $user->books()->where('type', $status)->with(['owners', 'medias'])->get();
 
         return view('layout.section.profile_books', compact('books', 'status'));
     }
@@ -96,7 +96,10 @@ class UserController extends Controller
             'key' => 'display_phone',
         ];
         $phones = $this->usermeta->getData($data);
-        $books = $user->ownerBooks()->where('user_id', $id)->paginate(config('view.limit.related_book'));
+        $books = $user->ownerBooks()->where('user_id', $id)
+                ->with(['owners', 'medias'])
+                ->paginate(config('view.limit.related_book'));
+
         $status = config('view.status.sharing');
         $followingIds = Auth::user()->followings->pluck('id')->toArray();
         $followers = $user->followers->chunk(config('view.paginate.follow_user'));

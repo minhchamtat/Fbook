@@ -112,6 +112,8 @@ return [
         'top_view' => 'Xem nhiều nhất',
         'not_found' => 'Không tìm thấy',
         'user' => 'USER',
+        'top_author' => 'Thành viên tích cực',
+        'book' => 'sách',
     ],
 
     'error' => [
@@ -132,6 +134,20 @@ return [
         'close' => 'x',
         'choose_time_to_borrow' => 'Bạn muốn mượn cuốn sách này trong bao lâu:',
         'days' => 'ngày',
+        'count_review' => 'Số đáng giá:',
+        'description' => 'Mô tả',
+        'view' => 'Lượt xem:',
+        'office' => 'Offices:',
+        'share_by' => 'Chia sẻ bởi:',
+        'rating' => 'Đánh giá:',
+        'category' => 'Danh mục:',
+        'sku' => 'SKU:',
+        'author' => 'Tác giả:',
+        'no_owners' => 'Hiện tại chưa có ai sở hữu cuốn sách này',
+        'no_office' => 'Không có văn phòng nào',
+        'no_category' => 'Không có danh mục',
+        'no_author' => 'Không có tác giả',
+        'no_sku' => 'Không Sku',
     ],
 
     'profile' => [
