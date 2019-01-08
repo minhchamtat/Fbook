@@ -1475,3 +1475,16 @@ span.category-book a:hover {
 .account-area ul > li:last-child {
     top: -3px;
 }
+
+.intro-list li i {
+    font-size: 16px;
+    color: #0984e3;
+}
+
+.btn-follow {
+    padding: 6px 20px;
+}
+
+.menu-area ul li > a {
+    cursor: pointer;
+}

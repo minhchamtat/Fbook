@@ -159,6 +159,15 @@ return [
         'waiting' => 'Đang chờ',
         'reading' => 'Đang đọc',
         'returned' => 'Đã đọc',
+        'no_code' => 'Chưa có mã nhân viên',
+        'no_phone' => 'Chưa có số điện thoại',
+        'no_position' => 'Chưa có vị trí',
+        'no_workspace' => 'Chưa có nơi làm việc',
+        'phone' => 'Số điện thoại',
+        'code' => 'Mã nhân viên',
+        'position' => 'Vị trí',
+        'workspace' => 'Nơi làm việc',
+        'email' => 'Email:'
     ],
 
     'req' => 'Yêu cầu',

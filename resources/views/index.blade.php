@@ -12,8 +12,7 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalMember') }}</h4>
-                            <span class="total-user" data-user="{{ $totalUser }}"></span>
-                            <span>{{ __('settings.default.members') }}</span>
+                            <p>{{ $totalUser }} {{__('settings.default.members') }}</p>
                         </div>
                     </div>
                 </div>
@@ -24,8 +23,7 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalBook') }}</h4>
-                            <span class="total-book" data-book="{{ $totalBook }}"></span>
-                            <span>{{__('settings.default.books') }}</span>
+                            <p>{{ $totalBook }} {{__('settings.default.books') }}</p>
                         </div>
                     </div>
                 </div>
@@ -36,8 +34,7 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.totalReview') }}</h4>
-                            <span class="total-review" data-review="{{ $totalReview }}"></span>
-                            <span>{{__('settings.default.reviews') }}</span>
+                            <p>{{ $totalReview }} {{__('settings.default.reviews') }}</p>
                         </div>
                     </div>
                 </div>
