@@ -6,11 +6,7 @@
         <div class="container">
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
-                @if($user->avatar)
-                    <img align="left" src="{{ asset($user->avatar) }}" alt="avatar" class="fb-avatar-profile thumbnail-avatar">
-                @else
-                    <img align="left" src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-avatar-profile thumbnail-avatar">
-                @endif
+                <img align="left" src="{{ $user->avatar ? asset($user->avatar) : asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-image-profile thumbnail">
                 <div class="fb-profile-text floatleft">
                     @if ($user)
                         <h1 class="name-avatar">{{ $user->name }}</h1>
@@ -44,7 +40,7 @@
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
                                         <span class="email">
                                             {{ substr(strip_tags($user->email), 0, 20) }}
-                                            {{ strlen(strip_tags($user->email)) > 20 ? '...': '' }}
+                                            {{ strlen(strip_tags($user->email)) > 20 ? '...' : '' }}
                                         </span>
                                     </li>
                                     @if ($phones[0]->value != 0)
@@ -74,7 +70,7 @@
                                     @if (!empty($user->workspace))
                                         <li title="Worksapce">
                                             <i class="fa fa-home" aria-hidden="true"></i>
-                                            <span>{{ $user->workspace}}</span>
+                                            <span>{{ $user->workspace }}</span>
                                         </li>
                                     @endif
                                     @if (count($followings->collapse()) > 0)

@@ -25,7 +25,7 @@ class Office extends Model
         foreach ($address as $add) {
             $office .= $add[0];
         }
-        
+
         return $office;
     }
 }

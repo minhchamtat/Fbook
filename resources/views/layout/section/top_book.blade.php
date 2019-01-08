@@ -42,7 +42,7 @@
                         </div>
                     @endfor
                     <div class="owner">
-                        <a href="/" title="{{ 'And more' }}" class="owner-more">
+                        <a href="/" title="{{ 'And more' }}" class="owner-more" data-toggle="tooltip">
                             <span>+</span>
                             <span>{{ $countOwnerTop - 2 }}</span>
                         </a>

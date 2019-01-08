@@ -70,9 +70,13 @@ class BookController extends Controller
 
     public function index()
     {
+        $with = [
+            'medias',
+            'owners',
+        ];
         $categories = $this->category->getData();
         $offices = $this->office->getData();
-        $books = $this->book->getRandomBook();
+        $books = $this->book->getBookPaginate($with);
 
         return view('book.books', compact('categories', 'offices', 'books', 'data'));
     }

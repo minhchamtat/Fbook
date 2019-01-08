@@ -44,6 +44,8 @@ return [
         'best_sharing_book' => 5,
         'top_book' => 6,
         'latest_book' => 12,
+        'author' => 10,
+        'book_top' => 6,
     ],
 
     'random_numb' => [

@@ -112,6 +112,8 @@ return [
         'top_view' => 'Top View',
         'not_found' => 'Not Found',
         'user' => 'USER',
+        'top_author' => 'Top Author',
+        'book' => 'books',
     ],
 
     'error' => [
@@ -132,6 +134,20 @@ return [
         'close' => 'x',
         'choose_time_to_borrow' => 'Choose the time you want to borrow this book:',
         'days' => 'days',
+        'count_review' => 'Total reviews:',
+        'description' => 'Description',
+        'view' => 'Views:',
+        'office' => 'Offices:',
+        'share_by' => 'Share By:',
+        'rating' => 'Rating:',
+        'category' => 'Categories:',
+        'sku' => 'SKU:',
+        'author' => 'Authors:',
+        'no_owners' => 'Currently no one owns this book',
+        'no_office' => 'There is no office',
+        'no_category' => 'There is no category',
+        'no_author' => 'No author',
+        'no_sku' => 'No Sku',
     ],
 
     'profile' => [

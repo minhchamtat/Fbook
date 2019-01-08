@@ -77,6 +77,36 @@
         }
     });
 
+    $('.tab-author').owlCarousel({
+        smartSpeed: 1000,
+        nav: true,
+        autoplay: false,
+        dots: false,
+        loop: true,
+        margin: 30,
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            992: {
+                items: 4
+            },
+            1170: {
+                items: 4
+            },
+            1300: {
+                items: 5
+            }
+        }
+    });
+
     $('.tab-active').owlCarousel({
         smartSpeed: 1000,
         nav: true,
@@ -793,7 +823,7 @@
 
     count($('.total-user'), 1, totalUser, 1, 1);
     count($('.total-book'), 1, totalBook, 1, 1);
-    count($('.total-review'), 1, totalReview, 1, 50);
+    count($('.total-review'), 1, totalReview, 1, 1);
 
 })(jQuery);
 

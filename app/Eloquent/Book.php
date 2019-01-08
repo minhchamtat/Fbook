@@ -88,4 +88,14 @@ class Book extends Model
     {
         return $this->hasMany(BookUser::class);
     }
+
+    public function countReview()
+    {
+        return $this->bookmetas()->where('key', 'count_review');
+    }
+
+    public function office()
+    {
+        return $this->bookmetas()->where('key', '<>', 'count_review');
+    }
 }

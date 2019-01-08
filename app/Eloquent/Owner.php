@@ -20,4 +20,9 @@ class Owner extends Model
     {
         return $this->morphOne(Reputation::class, 'target_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

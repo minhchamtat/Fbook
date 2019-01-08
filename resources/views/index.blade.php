@@ -137,33 +137,17 @@
 <div class="bestseller-area pb-60">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <div class="bestseller-content">
-                    <h1>{{ trans('settings.home.best_sharing') }}</h1>
-                    <h2>{{ $hotUser->name }}</h2>
-                    <div class="social-author">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="banner-img-2">
-                    @if($bestSharing)
-                        <a href="{{ route('books.show', $bestSharing[0]->slug . '-' . $bestSharing[0]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . $bestSharing[0]->medias[0]->path) }}" alt="banner" />
-                        </a>
-                    @else
-                        <a href="{{ route('books.show', $bestSharing[0]->slug . '-' . $bestSharing[0]->id) }}">
-                            <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="banner" />
-                        </a>
-                    @endif
+            <div class="col-lg-12">
+                <div class="section-title text-center mb-25">
+                    <h2>{{ trans('settings.home.top_author') }}</h2>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-35">
-                <div class="bestseller-active owl-carousel">
-                    @include('layout.section.bestsharing')
-                </div>
+            <div class="tab-active tab-author owl-carousel">
+                @if (isset($bestSharings) && !empty($bestSharings))
+                    @foreach($bestSharings as $bestSharing)
+                        @include('layout.section.bestsharing')
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

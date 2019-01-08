@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Eloquent\Bookmeta;
 use App\Eloquent\Owner;
 use App\Eloquent\User;
+use App\Eloquent\Office;
 use Illuminate\Support\Facades\DB;
 
 class BookEloquentRepository extends AbstractEloquentRepository implements BookRepository
@@ -21,6 +22,8 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         'avg_star',
         'slug',
         'author',
+        'sku',
+        'count_viewed',
     ];
 
     public function model()
@@ -99,7 +102,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->get();
     }
 
-    public function getRandomBook($with = [], $data = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
+    public function getBookPaginate($with = [], $data = [], $dataSelect = ['*'], $attribute = ['id', 'desc'])
     {
         return $this->model()
             ->select($dataSelect)
@@ -173,30 +176,14 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
     public function getBestSharing($with = [], $data = [])
     {
-        $user = app(Owner::class)->select('user_id', DB::raw('count(book_id) as total'))
+        $users = app(Owner::class)->select('user_id', DB::raw('count(book_id) as total'))
             ->groupBy('user_id')
             ->orderBy('total', 'desc')
-            ->first();
-        if (!empty($user)) {
-            $user = app(User::class)->findOrFail($user->user_id);
-            $ids = app(Owner::class)
-                ->where('user_id', $user->id)
-                ->pluck('book_id')
-                ->take(config('view.taking_numb.best_sharing_book'));
+            ->take(config('view.taking_numb.author'))
+            ->with(['user.office'])
+            ->get();
 
-            if (!empty($ids)) {
-                $books = $this->model()
-                    ->select($this->onlyAttributes)
-                    ->with($with)
-                    ->whereIn('id', $ids)
-                    ->get();
-                $data = compact('books', 'user');
-
-                return $data;
-            }
-        }
-
-        return null;
+        return $users;
     }
 
     public function getOfficeBooks($offices, $with = [])
@@ -204,7 +191,7 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         $data = collect();
         foreach ($offices as $key => $value) {
             $ids = app(Bookmeta::class)
-                ->where('key', 'in-' . str_slug($value))
+                ->where('key', $value)
                 ->where('value', '>', 0)
                 ->pluck('book_id');
             if (count($ids) > config('view.random_numb.book')) {
@@ -238,8 +225,11 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
     public function getBookOffice($data, $with = [])
     {
+        $data = strstr($data, '-', true);
+        $office = app(Office::class)::where('name', 'like', '%' . $data . '%')->first();
+
         $ids = app(Bookmeta::class)
-            ->where('key', 'in-' . $data)
+            ->where('key', $office->name)
             ->where('value', '>', 0)
             ->pluck('book_id');
         $books = $this->model()

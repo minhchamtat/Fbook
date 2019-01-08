@@ -190,11 +190,9 @@ button.btn-vote i, .content .col-md-2 span {
 }
 
 .avatar {
-    width: 40px;
+    width: 35px;
     cursor: pointer;
     border-radius: 50%;
-    padding-bottom: 10px;
-    padding: 8px 0 12px;
 }
 
 .dropdown-menu {
@@ -226,10 +224,6 @@ button.btn.btn-dangera {
 .header-top-area {
     background: #0808083d;
     color: white;
-}
-
-.language-area ul {
-    margin-top: 10px;
 }
 
 .single-bestseller .bestseller-text h3 a {
@@ -310,7 +304,6 @@ a#scrollUp i {
     color: #fff;
     font-size: 13px;
     height: 35px;
-    margin-top: 16px;
     text-transform: uppercase;
     transition: all 0.3s ease 0s;
     width: fit-content;
@@ -318,13 +311,9 @@ a#scrollUp i {
     padding: 8px 12px;
     border-radius: 4px;
     display: block;
-    margin-top: 0px;
+    margin-top: 5px;
     text-align: center;
     line-height: 20px;
-}
-
-.account-area.text-right {
-    margin-top: 7px;
 }
 
 .header-mid-area .my-cart ul li > a > i {
@@ -504,7 +493,27 @@ ul.list-unstyled.social-list i {
 }
 
 .modal-tab img {
-    max-width: 240px;
+    max-height: 280px;
+}
+
+.modal-info {
+    margin-top: 25px;
+    line-height: 32px;
+    padding-left: 15px;
+}
+.single-info {
+    margin-bottom: 10px;
+}
+
+.single-info .owner-avatar {
+    display: block;
+    float: unset;
+    overflow: visible;
+    text-align: center;
+}
+
+.single-info .owner-avatar .owner {
+    display: contents;
 }
 
 .language-area ul li:hover .header-sub {
@@ -1039,7 +1048,7 @@ div.suggestion-entern:hover {
     background: #5bc0de;
 }
 
-#top .modal-header h4 {
+.modal-header h4 {
     font-family: 'Open Sans', sans-serif;
     color: #ffffff;
 }
@@ -1105,16 +1114,16 @@ a.view-all {
 }
 
 .avg_star {
-    float: left;
+    float: right;
     font-size: 17px;
     line-height: 30px;
 }
 
 .owner-avatar {
-    float: right;
+    float: left;
 }
 
-.owl-carousel .owl-item img.owner-avatar-icon {
+.owl-carousel .owl-item img.owner-avatar-icon, img.owner-avatar-icon {
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -1139,11 +1148,11 @@ a.view-all {
 .product-wrapper, .single-bestseller {
     border: 1px solid #8080804f;
     padding-bottom: 5px;
-    transform: .5s;
+    transition: .5s;
 }
 
 h4.title-book {
-    padding: 0 8px;
+    padding: 3px 8px;
 }
 
 h4.title-book a {
@@ -1234,7 +1243,7 @@ a.owner-more span:last-child {
 .user-search {
     width: 30px;
     height: 30px;
-    border-radius: 50px;    
+    border-radius: 50px;
     border: 1px solid #80808070;
 }
 
@@ -1260,17 +1269,6 @@ a.owner-more span:last-child {
     background: #c68c53;
     color: #fff;
     font-weight: bold;
-}
-
-.media-oject {
-    max-width: inherit;
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-}
-
-.search-name h4 {
-    margin-top: 20px;
 }
 
 .search-avatar {
@@ -1319,7 +1317,7 @@ span.category-book a:hover {
 }
 
 .product-reviews-summary.owner-list {
-    margin-top: 12px; 
+    margin-top: 12px;
     text-align: center;
 }
 
@@ -1448,4 +1446,32 @@ span.category-book a:hover {
     color: #ffffff;
     font-family: 'Times New Roman', Times, serif;
     margin: -70px 10px 0px 12px;
+}
+
+.media-oject {
+    max-width: inherit;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.search-name h4 {
+    margin-top: 20px;
+}
+
+.plr-1 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.mh-406 {
+    max-height: 406px;
+}
+
+.product-wrapper.no-slide:hover .product-img::after {
+    height: 0;
+}
+
+.account-area ul > li:last-child {
+    top: -3px;
 }
