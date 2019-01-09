@@ -680,7 +680,7 @@ img.logo-footer {
 
 a.btn.btn-info.show-more {
     float: right;
-    margin-top: 40px;
+    margin-top: 8px;
 }
 
 .header-search {
@@ -1111,6 +1111,7 @@ a.view-all {
 .book-info {
     overflow: auto;
     padding: 7px 12px;
+    position: relative;
 }
 
 .avg_star {
@@ -1481,10 +1482,38 @@ span.category-book a:hover {
     color: #0984e3;
 }
 
-.btn-follow {
+.btn-lg {
     padding: 6px 20px;
+    font-size: 15px;
+}
+
+.btn-md {
+    font-size: 12px;
+    padding: 2px 5px;
 }
 
 .menu-area ul li > a {
     cursor: pointer;
+}
+
+.modal-description {
+    margin-top: 23px;
+}
+
+.owner-hover {
+    position: absolute;
+    width: 90%;
+    z-index: 9;
+    opacity: 0;
+    display: none;
+    bottom: 7px;
+    left: 12px;
+    background: white;
+    transition: .5s;
+}
+
+.owner-show:hover .owner-hover {
+    opacity: 1;
+    display: block;
+    transition: .5s;
 }

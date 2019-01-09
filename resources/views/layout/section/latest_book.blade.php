@@ -107,11 +107,20 @@
                                             </a>
                                         </div>
                                     @endfor
-                                    <div class="owner">
+                                    <div class="owner owner-show">
                                         <a href="/" title="{{ 'And more' }}" class="owner-more">
                                             <span>+</span>
                                             <span>{{ $countOwnerLatest - 2 }}</span>
                                         </a>
+                                        <div class="owner-hover">
+                                            @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
+                                                <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
+                                                    <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
+                                                        <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                    </a>
+                                                </div>
+                                            @endfor
+                                        </div>
                                     </div>
                                 @else
                                     @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
