@@ -167,6 +167,7 @@ return [
         'code' => 'Employee code',
         'position' => 'Position',
         'workspace' => 'Workspace',
+        'email' => 'Email:'
     ],
 
     'req' => 'Request',

@@ -439,15 +439,24 @@
                                                         @for ($j = 0; $j < 2; $j++)
                                                             <div class="owner" id="{{ 'user-' . $relatedBooks[$i]->owners[$j]->id }}">
                                                                 <a href="{{ route('user', $relatedBooks[$i]->owners[$j]->id) }}" title="{{ $relatedBooks[$i]->owners[$j]->name }}">
-                                                                    <img src="{{ $relatedBooks[$i]->owners[$j]->avatar ? $relatedBooks[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                    <img src="{{ $relatedBooks[$i]->owners[$j]->avatar ? $relatedBooks[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
                                                                 </a>
                                                             </div>
                                                         @endfor
-                                                        <div class="owner">
+                                                        <div class="owner owner-show">
                                                             <a href="/" title="{{ 'And more' }}" class="owner-more">
                                                                 <span>+</span>
                                                                 <span>{{ $countOwnerLatest - 2 }}</span>
                                                             </a>
+                                                            <div class="owner-hover">
+                                                                @for ($j = 0; $j < $relatedBooks[$i]->owners->count(); $j++)
+                                                                    <div class="owner" id="{{ 'user-' . $relatedBooks[$i]->owners[$j]->id }}">
+                                                                        <a href="{{ route('user', $relatedBooks[$i]->owners[$j]->id) }}" title="{{ $relatedBooks[$i]->owners[$j]->name }}">
+                                                                            <img src="{{ $relatedBooks[$i]->owners[$j]->avatar ? $relatedBooks[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                        </a>
+                                                                    </div>
+                                                                @endfor
+                                                            </div>
                                                         </div>
                                                     @elseif ($countOwnerLatest > 0)
                                                         @for ($j = 0; $j < $relatedBooks[$i]->owners->count(); $j++)

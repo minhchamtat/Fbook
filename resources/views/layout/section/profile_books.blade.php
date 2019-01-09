@@ -45,11 +45,20 @@
                                     </a>
                                 </div>
                             @endfor
-                            <div class="owner">
+                            <div class="owner owner-show">
                                 <a href="/" title="{{ 'And more' }}" class="owner-more" data-toggle="tooltip">
                                     <span>+</span>
                                     <span>{{ $countOwnerTop - 2 }}</span>
                                 </a>
+                                <div class="owner-hover">
+                                    @for ($i = 0; $i < $item->owners->count(); $i++)
+                                        <div class="owner" id="{{ 'user-' . $item->owners[$i]->id }}">
+                                            <a href="{{ route('user', $item->owners[$i]->id) }}" title="{{ $item->owners[$i]->name }}">
+                                                <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                            </a>
+                                        </div>
+                                    @endfor
+                                </div>
                             </div>
                         @else
                             @for ($i = 0; $i < $item->owners->count(); $i++)
