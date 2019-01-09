@@ -35,19 +35,11 @@
                             <div class="row">
                                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <div class="detail-img">
-                                        @if ($book->medias->count() > 0)
-                                            <ul class="slides">
-                                                <li data-thumb="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}">
-                                                    <img class="picture" src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="woman"/>
-                                                </li>
-                                            </ul>
-                                        @else
-                                            <ul class="slides">
-                                                <li data-thumb="{{ asset(config('view.image_paths.book') . 'default.jpg') }}">
-                                                    <img class="picture" src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman"/>
-                                                </li>
-                                            </ul>
-                                        @endif
+                                        <ul class="slides">
+                                            <li>
+                                                <img class="picture" src="{{ asset(config('view.image_paths.book') . (count($book->medias) > 0 ? $book->medias[0]->path : 'default.jpg')) }}" alt="woman"/>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="product-reviews-summary owner-list">
                                         <div class="rating-summary">
@@ -55,15 +47,8 @@
                                             @if ($book->owners)
                                                 @foreach ($book->owners as $owner)
                                                     <div class="user-reviews-actions" id="{{ 'user-' . $owner->id }}">
-                                                        <a href="{{ route('user', $owner->id) }}"
-                                                           title="{{ $owner->name }}">
-                                                            @if ($owner->avatar != '')
-                                                                <img src="{{ $owner->avatar }}"
-                                                                     class="mg-thumbnail avatar-icon">
-                                                            @else
-                                                                <img src="{{ asset(config('view.image_paths.user') . '1.png') }}"
-                                                                     class="mg-thumbnail avatar-icon">
-                                                            @endif
+                                                        <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }}">
+                                                            <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="mg-thumbnail avatar-icon">
                                                         </a>
                                                     </div>
                                                 @endforeach
@@ -92,8 +77,7 @@
                                         <div class="reviews-actions-book">
                                             {{ __('settings.default.totalReview') . ': ' }}
                                             <a href="#review" id="review">
-                                                {{ count($book->reviews) . ' ' .
-                                                    (count($book->reviews) <= 1 ? __('settings.book.review') : __('settings.default.reviews')) }}
+                                                {{ count($book->reviews) . ' ' . (count($book->reviews) <= 1 ? __('settings.book.review') : __('settings.default.reviews')) }}
                                             </a>
                                         </div>
                                     </div>
@@ -122,7 +106,7 @@
                                                                     {{ $book->categories[$i]['name'] }}
                                                                 </a>
                                                             </span>
-                                                        @else 
+                                                        @else
                                                             <span class="category-book">
                                                                 <a href="{{ route('book.category', $book->categories[$i]['slug'].'-'.$book->categories[$i]['id']) }}">
                                                                     {{ $book->categories[$i]['name'] . ' - ' }}
@@ -166,7 +150,7 @@
                                                             @default
                                                                 <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
                                                                     data-id="{{ $book->id }}"
-                                                                    class="{{ Auth::check() ? 'book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
+                                                                    class="{{ Auth::check() ? 'btn-borrow book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
                                                                     >
                                                                     {{ trans('settings.book.borrow_book') }}
                                                                 </a>
@@ -174,7 +158,7 @@
                                                     @else
                                                         <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
                                                             data-id="{{ $book->id }}"
-                                                            class="{{ Auth::check() ? 'book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
+                                                            class="{{ Auth::check() ? 'btn-borrow book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
                                                             >
                                                             {{ trans('settings.book.borrow_book') }}
                                                         </a>
@@ -184,7 +168,7 @@
                                                             {{ trans('settings.book.remove_owner') }}
                                                         </a>
                                                     @else
-                                                        <a data-toggle="modal" href="#" class="{{ Auth::check() ? 'book-info-link' : 'login' }} {{ $bookStatus && $bookStatus->type != 'returned' ? 'disabled' : '' }}" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                        <a data-toggle="modal" href="#" class="{{ Auth::check() ? 'btn-share book-info-link' : 'login' }} {{ $bookStatus && $bookStatus->type != 'returned' ? 'disabled' : '' }}" data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
                                                             {{ trans('settings.book.i_have_this_book') }}
                                                         </a>
                                                     @endif
@@ -196,7 +180,7 @@
                                                             {{ trans('settings.book.remove_owner') }}
                                                         </a>
                                                     @else
-                                                        <a data-toggle="modal" class="book-info-link {{ Auth::check() ? '' : 'login' }}" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
+                                                        <a data-toggle="modal" class="btn-share book-info-link {{ Auth::check() ? '' : 'login' }}" disabled data-id="{{ $book->id }}" owner="{{ Auth::id() }}">
                                                             {{ trans('settings.book.i_have_this_book') }}
                                                         </a>
                                                     @endif
@@ -265,10 +249,8 @@
                                                                             <i>{{ $review->updated_at }}</i>
                                                                             @if ($review->user->id == Auth::id())
                                                                                 <div class="action">
-                                                                                    <a href="{{ route('review.edit', [$book->slug . '-' . $book->id, $review->id]) }}"
-                                                                                       class="btn btn-info btn-sm a-btn-slide-text">
-                                                                                        <i class="fa fa-edit"
-                                                                                           aria-hidden="true"></i>
+                                                                                    <a href="{{ route('review.edit', [$book->slug . '-' . $book->id, $review->id]) }}" class="btn btn-info btn-sm a-btn-slide-text">
+                                                                                        <i class="fa fa-edit" aria-hidden="true"></i>
                                                                                     </a>
                                                                                     {!! Form::open(['method' => 'DELETE', 'route' => ['review.destroy', $book->slug . '-' . $book->id, $review->id], 'id' => "$review->id"]) !!}
                                                                                     {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger m-btn m-btn--custom btn-9 btn-sm notify', 'type' => 'submit']) !!}
@@ -278,13 +260,13 @@
                                                                         </div>
                                                                         <h4 class="media-heading list-inline list-unstyled rating-star m-0">
                                                                             @for ($i = 1; $i <= ($review->star); $i++)
-                                                                                <li class="active"><i class="fa fa-star"
-                                                                                                      aria-hidden="true"></i>
+                                                                                <li class="active">
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
                                                                                 </li>
                                                                             @endfor
                                                                             @for ($j = 1; $j <= 5 - ($review->star); $j++)
-                                                                                <li class=""><i class="fa fa-star"
-                                                                                                aria-hidden="true"></i>
+                                                                                <li class="">
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
                                                                                 </li>
                                                                             @endfor
                                                                         </h4>
@@ -419,13 +401,11 @@
                                         <div class="product-img">
                                             @if ($relatedBooks[$i]->medias->count() > 0)
                                                 <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}"
-                                                         alt="book" class="primary"/>
+                                                    <img src="{{ asset(config('view.image_paths.book') . $relatedBooks[$i]->medias[0]->path) }}" alt="book" class="primary"/>
                                                 </a>
                                             @else
                                                 <a href="{{ route('books.show', $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id) }}">
-                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}"
-                                                         alt="woman"/>
+                                                    <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman"/>
                                                 </a>
                                             @endif
                                         </div>
@@ -469,7 +449,7 @@
                                                                 <span>{{ $countOwnerLatest - 2 }}</span>
                                                             </a>
                                                         </div>
-                                                    @else
+                                                    @elseif ($countOwnerLatest > 0)
                                                         @for ($j = 0; $j < $relatedBooks[$i]->owners->count(); $j++)
                                                             <div class="owner" id="{{ 'user-' . $relatedBooks[$i]->owners[$j]->id }}">
                                                                 <a href="{{ route('user', $relatedBooks[$i]->owners[$j]->id) }}" title="{{ $relatedBooks[$i]->owners[$j]->name }}">
