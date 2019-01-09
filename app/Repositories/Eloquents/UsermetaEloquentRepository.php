@@ -22,19 +22,6 @@ class UsermetaEloquentRepository extends AbstractEloquentRepository implements U
             ->get();
     }
 
-    public function store($data)
-    {
-        $office = Auth::user()->office;
-        $data['value'] = 1;
-        if ($office) {
-            $data['key'] = 'in' . '-' . str_slug($office->name);
-        } else {
-            $data['key'] = 'in' . '-' . str_slug('Ha noi');
-        }
-
-        return $this->model()->create($data);
-    }
-
     public function updateDisplayPhone($id, $display)
     {
         $countDisplay = $this->model()->where('user_id', $id)->where('key', 'display_phone')->first();
@@ -50,5 +37,29 @@ class UsermetaEloquentRepository extends AbstractEloquentRepository implements U
 
             return $this->model()->create($data);
         }
+    }
+
+    public function settingLanguage($id, $language)
+    {
+        $setting = $this->model()->where([
+            'user_id' => $id,
+            'key' => 'website-language',
+        ])->first();
+        $data['key'] = 'website-language';
+        if ($setting) {
+            $data['value'] = $language;
+
+            return $setting->update($data);
+        } else {
+            $data['value'] = $language;
+            $data['user_id'] = $id;
+
+            return $this->model()->create($data);
+        }
+    }
+
+    public function find($data)
+    {
+        return $this->getData($data)->first();
     }
 }
