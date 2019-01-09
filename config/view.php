@@ -86,6 +86,7 @@ return [
     'limit' => [
         'related_book' => 8,
         'notifications' => 3,
+        'minutes' => 43200,
     ],
 
     'notifications' => [

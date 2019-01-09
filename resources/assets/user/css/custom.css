@@ -1070,7 +1070,7 @@ a.view-all {
 }
 
 .rating-summary p.share-by {
-    margin: 14px 10px 0 0;
+    margin: 8px 10px 0 0;
     float: left;
 }
 
@@ -1516,4 +1516,8 @@ span.category-book a:hover {
     opacity: 1;
     display: block;
     transition: .5s;
+}
+
+img.picture {
+    box-shadow: 2px 7px 8px 2px rgba(0, 2.5, 0, 0.5);
 }

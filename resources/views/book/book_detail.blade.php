@@ -270,7 +270,7 @@
                                                                                 </li>
                                                                             @endfor
                                                                         </h4>
-                                                                        <p class="m-0">{{ $review->title }}</p>
+                                                                        <p class="m-0 review-title">{{ $review->title }}</p>
                                                                         <div class="custom-vote">
                                                                             <div class="float-right">
                                                                                 <div class="vote">

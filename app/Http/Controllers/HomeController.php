@@ -87,7 +87,16 @@ class HomeController extends Controller
 
     public function changeLanguage(Request $request, $language)
     {
-        $request->session()->put('website-language', $language);
+        if (Auth::check()) {
+            $data = [
+                'user_id' => Auth::id(),
+                'key' => 'website-language',
+            ];
+            $this->usermeta->settingLanguage(Auth::id(), $language);
+            Session::put('website-language', $this->usermeta->find($data)->value);
+        } else {
+            Session::put('website-language', $language);
+        }
 
         return redirect()->back();
     }
