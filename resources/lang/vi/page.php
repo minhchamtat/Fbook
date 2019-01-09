@@ -64,4 +64,13 @@ return [
     'private' => 'Mình tôi',
     'phone' => '0xxxxxxxx',
     'public' => 'Công khai',
+    'setting' => 'Cài đặt',
+    'save' => 'Lưu',
+    'telephone' => 'Điện thoại',
+    'profile' => 'Hồ sơ',
+    'overt' => 'Công khai',
+    'personalSetting' => 'Thiết lập cá nhân',
+    'warning' => 'hiển thị số điện thoại để mọi người dễ dàng liên lạc với bạn!',
+    'close' => 'Tắt',
+    'editPhone' => 'Sửa',
 ];

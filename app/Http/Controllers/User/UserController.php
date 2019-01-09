@@ -70,8 +70,9 @@ class UserController extends Controller
                 'followings',
             ]);
             $id = Auth::id();
+            $phone = 0;
 
-        return $this->getUserInfo($user, $id);
+        return $this->getUserInfo($user, $id, $phone);
     }
 
     public function postMyProfile($id)
@@ -99,17 +100,19 @@ class UserController extends Controller
         return view('layout.section.profile_books', compact('books', 'status'));
     }
 
-    public function getUserInfo($user, $id)
+    public function getUserInfo($user, $id, $phone)
     {
-        $data = [
-            'user_id' => $id,
-            'key' => 'display_phone',
-        ];
-        $phones = $this->usermeta->getData($data);
+        if ($phone == 1) {
+            $data = [
+                'user_id' => $id,
+                'key' => 'display_phone',
+            ];
+            $phones = $this->usermeta->getData($data);
+            $phoneUser = $phones[0]->value;
+        }
         $books = $user->ownerBooks()->where('user_id', $id)
                 ->with(['owners', 'medias'])
                 ->paginate(config('view.limit.related_book'));
-
         $status = config('view.status.sharing');
         $followingIds = Auth::user()->followings->pluck('id')->toArray();
         $followers = $user->followers->chunk(config('view.paginate.follow_user'));
@@ -122,7 +125,7 @@ class UserController extends Controller
             'followings',
             'followers',
             'followingIds',
-            'phones'
+            'phoneUser'
         ));
     }
 
@@ -130,22 +133,17 @@ class UserController extends Controller
     {
         try {
             if ($id != Auth::id()) {
-                $selects = [
-                    'id',
-                    'name',
-                    'email',
-                    'avatar',
-                    'reputation_point',
-                ];
+                $selects = ['*'];
                 $with = [
                     'office',
                     'ownerBooks',
                     'followers',
                     'followings',
                 ];
+                $phone = 1;
                 $user = $this->user->find($id, $with, $selects);
 
-                return $this->getUserInfo($user, $id);
+                return $this->getUserInfo($user, $id, $phone);
             } else {
                 return redirect()->route('my-profile');
             }

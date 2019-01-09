@@ -805,6 +805,18 @@
         });
     });
 
+    $('#settings-a').on('click', function() {
+        $.ajax({
+            url: '/setting/display',
+            method: 'POST',
+            success: function(res) {
+                $('#display-setting').fadeIn();
+                $('#display-setting').html(res);
+                $('#myModalSetting').modal('toggle');
+            }
+        })
+    });
+
 })(jQuery);
 
     submitForms = function() {
