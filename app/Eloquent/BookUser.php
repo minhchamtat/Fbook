@@ -31,4 +31,8 @@ class BookUser extends Model
     {
         return $this->morphMany(Notification::class, 'target');
     }
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
 }

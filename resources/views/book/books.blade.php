@@ -35,8 +35,6 @@
                         <h4>{{ __('page.book.category') }}</h4>
                     </div>
                     <div class="left-menu mb-30">
-                        {{-- @foreach($data as $key => $value)
-                        @endforeach --}}
                         <ul>
                             @foreach ($categories as $key => $category)
                                 <li>
@@ -168,39 +166,64 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="product-wrapper-2">
                                             <div class="product-img">
-                                                @if ($book->medias->count() > 0)
-                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
-                                                        <img src="{{ asset(config('view.image_paths.book') . $book->medias[0]->path) }}" alt="book" class="primary" />
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
-                                                        <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}" alt="woman" />
-                                                    </a>
-                                                @endif
+                                                <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}">
+                                                    <img src="{{ asset(config('view.image_paths.book') . ($book->medias->count() > 0 ? $book->medias[0]->path : 'default.jpg')) }}" alt="book" class="primary" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                         <div class="product-wrapper-content">
                                             <div class="product-details">
-                                                <div class="product-rating">
-                                                    {!! Form::select('rating',
-                                                       [
-                                                            '' => '',
-                                                            '1' => 1,
-                                                            '2' => 2,
-                                                            '3' => 3,
-                                                            '4' => 4,
-                                                            '5' => 5
-                                                        ],
-                                                        null,
-                                                        [
-                                                            'class' => 'rating',
-                                                            'data-rating' => $book->avg_star
-                                                        ])
-                                                    !!}
+                                                <h4>
+                                                    <a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a>
+                                                </h4>
+
+                                                <div class="product-info mt-0">
+                                                    <div class="product-reviews-summary owner-list">
+                                                        <div class="rating-summary ofl-x">
+                                                            <p class="share-by"><b>{{ trans('settings.book.owners') }}</b></p>
+                                                            <div class="owner-avatar">
+                                                                @if (count($book->owners) > 0)
+                                                                    @foreach ($book->owners as $owner)
+                                                                        <div class="owner mr-6" id="{{ 'user-' . $owner->id }}">
+                                                                            <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }} ({{ $owner->office->name }})">
+                                                                                <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                            </a>
+                                                                            <span class="owner-office">{{ $owner->office->address }}</span>
+                                                                        </div>
+                                                                    @endforeach
+                                                                @else
+                                                                    <span class="text-danger">{{ __('settings.modal.no_owners') }}</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-reviews-summary lh-35">
+                                                        <div class="product-rating-book">
+                                                            <span class="rate"><b>{{ __('settings.review.rating') . ':' }}</b></span>
+                                                            {!! Form::select('rating',
+                                                                [
+                                                                    '' => '',
+                                                                    '1' => 1,
+                                                                    '2' => 2,
+                                                                    '3' => 3,
+                                                                    '4' => 4,
+                                                                    '5' => 5
+                                                                ],
+                                                                null,
+                                                                [
+                                                                    'class' => 'rating',
+                                                                    'data-rating' => $book->avg_star
+                                                                ])
+                                                            !!}
+                                                        </div>
+                                                        <div class="reviews-actions-book">
+                                                            <b>{{ __('settings.book.view') }}</b>
+                                                            <span>{{ $book->count_viewed ? $book->count_viewed : '0' }}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <h4><a href="{{ route('books.show', $book->slug . '-' . $book->id) }}" title="{{ $book->title }}">{{ $book->title }}</a></h4>
                                                 @php $str = strip_tags($book->description) @endphp
 
                                                 @if (strlen($str) > 200)

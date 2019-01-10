@@ -98,6 +98,8 @@ return [
         'view' => 'Lượt xem:',
         'sku' => 'Sku:',
         'office' => 'Văn phòng:',
+        'not_date' => 'Đoán xem',
+        'list_borrow' => 'Danh sách mượn',
     ],
 
     'review' => [
