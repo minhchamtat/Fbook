@@ -35,50 +35,65 @@
                             <div class="row">
                                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <div class="detail-img">
-                                        <ul class="slides">
+                                        <ul class="slides text-center">
                                             <li>
                                                 <img class="picture" src="{{ asset(config('view.image_paths.book') . (count($book->medias) > 0 ? $book->medias[0]->path : 'default.jpg')) }}" alt="woman"/>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="product-reviews-summary owner-list">
-                                        <div class="rating-summary">
-                                            <p class="share-by">{{ trans('settings.book.owners') }}</p>
-                                            @if ($book->owners)
-                                                @foreach ($book->owners as $owner)
-                                                    <div class="user-reviews-actions" id="{{ 'user-' . $owner->id }}">
-                                                        <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }}">
-                                                            <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="mg-thumbnail avatar-icon">
-                                                        </a>
-                                                    </div>
-                                                @endforeach
-                                            @endif
+                                    <div class="product-info">
+                                        <div class="product-reviews-summary owner-list">
+                                            <div class="rating-summary ofl-x">
+                                                <p class="share-by"><b>{{ trans('settings.book.owners') }}</b></p>
+                                                <div class="owner-avatar">
+                                                    @if (count($book->owners) > 0)
+                                                        @foreach ($book->owners as $owner)
+                                                            <div class="owner mr-6" id="{{ 'user-' . $owner->id }}">
+                                                                <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }} ({{ $owner->office->name }})">
+                                                                    <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                </a>
+                                                                <span class="owner-office">{{ $owner->office->address }}</span>
+                                                            </div>
+                                                        @endforeach
+                                                    @else
+                                                        <span class="text-danger">{{ __('settings.modal.no_owners') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="product-reviews-summary">
-                                        <div class="product-rating-book">
-                                            <span class="rate">{{ __('settings.review.rating') . ':' }}</span>
-                                            {!! Form::select('rating',
-                                               [
-                                                    '' => '',
-                                                    '1' => 1,
-                                                    '2' => 2,
-                                                    '3' => 3,
-                                                    '4' => 4,
-                                                    '5' => 5
-                                                ],
-                                                null,
-                                                [
-                                                    'class' => 'rating',
-                                                    'data-rating' => $book->avg_star
-                                                ])
-                                            !!}
-                                        </div>
-                                        <div class="reviews-actions-book">
-                                            {{ __('settings.default.totalReview') . ': ' }}
-                                            <a href="#review" id="review">
-                                                {{ count($book->reviews) . ' ' . (count($book->reviews) <= 1 ? __('settings.book.review') : __('settings.default.reviews')) }}
-                                            </a>
+                                        <div class="product-reviews-summary lh-35">
+                                            <div class="product-rating-book">
+                                                <span class="rate"><b>{{ __('settings.review.rating') . ':' }}</b></span>
+                                                {!! Form::select('rating',
+                                                   [
+                                                        '' => '',
+                                                        '1' => 1,
+                                                        '2' => 2,
+                                                        '3' => 3,
+                                                        '4' => 4,
+                                                        '5' => 5
+                                                    ],
+                                                    null,
+                                                    [
+                                                        'class' => 'rating',
+                                                        'data-rating' => $book->avg_star
+                                                    ])
+                                                !!}
+                                            </div>
+                                            <div class="reviews-actions-book">
+                                                <b>{{ __('settings.default.totalReview') . ': ' }}</b>
+                                                <a href="#review" id="review">
+                                                    {{ count($book->reviews) . ' ' . (count($book->reviews) <= 1 ? __('settings.book.review') : __('settings.default.reviews')) }}
+                                                </a>
+                                            </div>
+                                            <div class="reviews-actions-book">
+                                                <b>{{ __('settings.book.view') }}</b>
+                                                <span>{{ $book->count_viewed ? $book->count_viewed : '0' }}</span>
+                                            </div>
+                                            <div class="reviews-actions-book">
+                                                <b>{{ __('settings.book.sku') }}</b>
+                                                <span>{{ $book->sku ? $book->sku : '0' }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,18 +102,16 @@
                                         <div class="page-title">
                                             <h1>{{ $book->title }}</h1>
                                         </div>
-                                        <div class="product-info-stock-sku">
-                                            <span>{{ trans('settings.book.author') }}</span>
-                                            <div class="product-attribute">
-                                                <span>{{ $book->author }}</span>
-                                            </div>
+                                        <div class="product-reviews-summary">
+                                            <b>{{ trans('settings.book.author') }}</b>
+                                            <span>{{ $book->author }}</span>
                                         </div>
                                         <div class="product-reviews-summary">
                                             <div class="rating-summary">
-                                                {{ trans('settings.book.categories') }}
+                                                <b>{{ trans('settings.book.categories') }}</b>
                                             </div>
                                             <div class="reviews-actions">
-                                                @if ($book->categories)
+                                                @if (count($book->categories) > 0)
                                                     @for ($i = 0; $i < count($book->categories); $i++)
                                                         @if ($i == (count($book->categories) - 1))
                                                             <span class="category-book">
@@ -114,12 +127,14 @@
                                                             </span>
                                                         @endif
                                                     @endfor
+                                                @else
+                                                    <span>{{ __('settings.book.no_category') }}</span>
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="product-reviews-summary">
+                                        <div class="product-reviews-summary pt-0">
                                             <div class="rating-summary">
-                                                <p class="mb-0">{{ __('settings.book.userBorrow') }}</p>
+                                                <p class="mb-0"><b>{{ __('settings.book.userBorrow') }}</b></p>
                                                 <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? __('settings.book.dateReturn') : '' }}</p>
                                             </div>
                                             <div class="reviews-actions book-type">

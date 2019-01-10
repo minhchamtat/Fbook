@@ -42,7 +42,7 @@ class HomeController extends Controller
     {
         $with = [
             'medias',
-            'owners',
+            'owners.office',
             'countReview',
             'categories',
             'office',

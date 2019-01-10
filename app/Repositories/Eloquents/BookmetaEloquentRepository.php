@@ -27,12 +27,46 @@ class BookmetaEloquentRepository extends AbstractEloquentRepository implements B
         $office = Auth::user()->office;
         $data['value'] = 1;
         if ($office) {
-            $data['key'] = 'in' . '-' . str_slug($office->name);
+            $data['key'] = $office->name;
         } else {
-            $data['key'] = 'in' . '-' . str_slug('Ha noi');
+            $data['key'] = 'Hanoi Office';
         }
 
         return $this->model()->create($data);
+    }
+
+    public function find($id)
+    {
+        return $this->model()->firstOrFail($id);
+    }
+
+    public function updateBookOffice($id)
+    {
+        try {
+            $bookOffice = $this->model()->find($id);
+            $data['value'] = $bookOffice->value + 1;
+
+            return $this->model()->update($data);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function destroyBookOffice($id)
+    {
+        try {
+            $bookOffice = $this->model()->find($id);
+
+            if ($bookOffice->value == 1) {
+                return $bookOffice->delete();
+            } elseif ($bookOffice->value > 1) {
+                $data['value'] = $bookOffice->value - 1;
+
+                return $this->model()->update($data);
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function updateCountReview($id)

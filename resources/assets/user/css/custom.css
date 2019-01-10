@@ -508,12 +508,14 @@ ul.list-unstyled.social-list i {
 .single-info .owner-avatar {
     display: block;
     float: unset;
-    overflow: visible;
+    overflow: -webkit-paged-x;
     text-align: center;
 }
 
-.single-info .owner-avatar .owner {
-    display: contents;
+.owner-avatar .owner {
+    display: block;
+    position: relative;
+    margin-right: 3px;
 }
 
 .language-area ul li:hover .header-sub {
@@ -621,6 +623,7 @@ img.logo {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
+    font-size: 30px;
 }
 
 .language-area ul li .header-sub {
@@ -795,19 +798,19 @@ p.nodata {
     height: 26em;
 }
 
-.modal-pro-content p::-webkit-scrollbar {
+.modal-pro-content p::-webkit-scrollbar, .modal-description p::-webkit-scrollbar {
     width: 10px;
 }
 
-.modal-pro-content p::-webkit-scrollbar-track {
+.modal-pro-content p::-webkit-scrollbar-track, .modal-description p::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-.modal-pro-content p::-webkit-scrollbar-thumb {
+.modal-pro-content p::-webkit-scrollbar-thumb, .modal-description p::-webkit-scrollbar-thumb {
     background: #5bc0de;
 }
 
-.modal-pro-content p::-webkit-scrollbar-thumb:hover {
+.modal-pro-content p::-webkit-scrollbar-thumb:hover, .modal-description p::-webkit-scrollbar-thumb:hover {
     background: #5bc0de;
 }
 
@@ -1070,7 +1073,7 @@ a.view-all {
 }
 
 .rating-summary p.share-by {
-    margin: 8px 10px 0 0;
+    margin: 14px 12px 0 0;
     float: left;
 }
 
@@ -1085,7 +1088,7 @@ a.view-all {
 
 .mb-0 {
     margin-bottom: 0;
-    line-height: 25px;
+    line-height: 35px;
 }
 
 .text-danger {
@@ -1128,7 +1131,7 @@ a.view-all {
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    border: 2px solid white;
+    border: 1px solid #80808070;
     margin: 0;
     padding: 0;
     max-width: 100%;
@@ -1293,6 +1296,8 @@ a.owner-more span:last-child {
 img.picture {
     box-shadow: 2px 7px 8px 2px rgba(0, 0.2, 0, 0.2);
     border-radius: 4px;
+    height: 350px;
+    width: auto;
 }
 
 div.most-product-img {
@@ -1320,6 +1325,7 @@ span.category-book a:hover {
 .product-reviews-summary.owner-list {
     margin-top: 12px;
     text-align: center;
+    margin-bottom: -12px;
 }
 
 .user-reviews-actions {
@@ -1520,4 +1526,52 @@ span.category-book a:hover {
 
 img.picture {
     box-shadow: 2px 7px 8px 2px rgba(0, 2.5, 0, 0.5);
+}
+
+span.owner-office {
+    position: absolute;
+    bottom: -13px;
+    background-color: #c68c53;
+    font-size: 10px;
+    color: white;
+    padding: 3px 3px;
+    left: 0px;
+    font-weight: 700;
+    border-radius: 6px;
+    line-height: initial;
+    border: 1px solid #ccc;
+    width: 32px;
+}
+
+.modal-description p {
+    height: 200px;
+    overflow-y: auto;
+}
+
+.product-reviews-summary {
+    padding: 8px 0;
+}
+
+.lh-35 {
+    line-height: 35px;
+}
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+.product-info {
+    margin-top: 45px;
+}
+
+.ofl-x {
+    overflow: -webkit-paged-x;
+}
+
+.pt-0 {
+    padding-top: 0;
+}
+
+.mr-6 {
+    margin-right: 6px;
 }

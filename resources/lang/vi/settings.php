@@ -94,6 +94,10 @@ return [
         'dateReturn' => 'Ngày trả:',
         'availble' => 'Sách có sẵn để mượn',
         'sure' => 'Bạn có chắc chắn?',
+        'no_category' => 'Chưa có danh mục',
+        'view' => 'Lượt xem:',
+        'sku' => 'Sku:',
+        'office' => 'Văn phòng:',
     ],
 
     'review' => [
