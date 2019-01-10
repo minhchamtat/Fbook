@@ -94,6 +94,10 @@ return [
         'dateReturn' => 'Date return:',
         'availble' => 'Book availble to borrow',
         'sure' => 'Are you sure?',
+        'no_category' => 'No category',
+        'view' => 'View:',
+        'sku' => 'Sku:',
+        'office' => 'Office:',
     ],
 
     'review' => [

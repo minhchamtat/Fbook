@@ -11,6 +11,8 @@ use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\FollowRepository;
 use App\Repositories\Contracts\NotificationRepository;
 use App\Repositories\Contracts\UsermetaRepository;
+use App\Repositories\Contracts\BookmetaRepository;
+use App\Repositories\Contracts\BookRepository;
 use App\Eloquent\Owner;
 use App\Eloquent\BookUser;
 use Auth;
@@ -31,6 +33,10 @@ class UserController extends Controller
 
     protected $usermeta;
 
+    protected $bookmeta;
+
+    protected $book;
+
     public function __construct(
         OwnerRepository $owner,
         BookUserRepository $bookUser,
@@ -38,7 +44,9 @@ class UserController extends Controller
         UserRepository $user,
         FollowRepository $follow,
         NotificationRepository $notification,
-        UsermetaRepository $usermeta
+        UsermetaRepository $usermeta,
+        BookmetaRepository $bookmeta,
+        BookRepository $book
     ) {
         $this->middleware('auth');
         $this->owner = $owner;
@@ -48,6 +56,8 @@ class UserController extends Controller
         $this->follow = $follow;
         $this->notification = $notification;
         $this->usermeta = $usermeta;
+        $this->bookmeta = $bookmeta;
+        $this->book = $book;
     }
 
     public function myProfile()
@@ -147,16 +157,40 @@ class UserController extends Controller
     public function sharingBook($id)
     {
         try {
+            $with = [
+                'office',
+            ];
+            // save book office in table bookmeta
+            $bookOffice = $this->book->find((int)$id, $with)->office;
+            $userOffice = Auth::user()->office;
+
+            if (!$userOffice) {
+                $userOffice = 'Hanoi Office';
+            }
+            $data['book_id'] = $id;
+            foreach ($bookOffice as $office) {
+                if ($userOffice != $office->key) {
+                    $this->bookmeta->store($data);
+                } else {
+                    $this->bookmeta->updateBookOffice($office->id);
+                }
+            }
+
+            //save book owner in table owner
             $result = $this->owner->store([
                 'user_id' => Auth::id(),
                 'book_id' => $id,
             ]);
+
+            //get avatar user
             $data = Auth::user()->only('id', 'name', 'avatar');
             $data['avatar'] = $data['avatar'];
 
             if (is_null($data['avatar'])) {
                 $data['avatar'] = asset(config('view.image_paths.user') . '1.png');
             }
+
+            // up point for user sharing
             if ($result !== true) {
                 $record = $this->reputation->store([
                     'point' => config('model.reputation.share_book'),
@@ -182,11 +216,30 @@ class UserController extends Controller
     public function removeOwner($id)
     {
         try {
+            $with = [
+                'office',
+            ];
+            // delete or update book office in table bookmeta
+            $bookOffice = $this->book->find((int)$id, $with)->office;
+            $userOffice = Auth::user()->office;
+
+            if (!$userOffice) {
+                $userOffice = 'Hanoi Office';
+            }
+            $data['book_id'] = $id;
+            foreach ($bookOffice as $office) {
+                if ($userOffice == $office->key) {
+                    $this->bookmeta->destroyBookOffice($office->id);
+                }
+            }
+
+            // delete book request when owner hasn't book
             $this->bookUser->destroy([
                 'book_id' => $id,
                 'owner_id' => Auth::id(),
             ]);
 
+            // delete owner
             $this->owner->destroy([
                 'user_id' => Auth::id(),
                 'book_id' => $id,
