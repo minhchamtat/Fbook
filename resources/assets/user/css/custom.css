@@ -892,7 +892,7 @@ i.fa.fa-times-circle {
 }
 
 .modal-content {
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 .badge-danger {
@@ -1047,13 +1047,14 @@ div.suggestion-entern:hover {
     cursor: pointer;
 }
 
-#top .modal-header {
+.top-phone {
     background: #5bc0de;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .modal-header h4 {
     font-family: 'Open Sans', sans-serif;
-    color: #ffffff;
+    color: #333;
 }
 
 a.view-all {
@@ -1499,7 +1500,242 @@ span.category-book a:hover {
 }
 
 .menu-area ul li > a {
+}
+
+#setting {
+    color: #373c40;
+    font-family: Verdana,Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin:10px;
+}
+
+#setting {
+    font-size: 70%;
+}
+
+#setting p {
+    padding: 7px 0 7px 0;
+    font-weight: 500;
+    font-size: 10pt;
+}
+
+#setting h4 {
+    padding:1px;
+    color: #acacac;
+    font-size:12pt;
+    font-weight:100;
+    text-transform:uppercase;
+}
+
+#setting .register {
+    width:800px;
+    margin: 0px auto 0px auto;
+    height:530px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+}
+
+#setting p {
+    font-size: 10pt;
+    clear:both;
+    margin: 0;
+    padding:4px;
+}
+
+#setting .register fieldset.row2 {
+    border-top:1px solid #f1f1f1;
+    border-right:1px solid #f1f1f1;
+    height:220px;
+    padding:5px;
+    float:left;
+    width: 200px;
+}
+
+#setting .register fieldset.row3 {
+    border-top:1px solid #f1f1f1;
+    padding:5px;
+    float:left;
+    margin-bottom:15px;
+    width:580px;
+}
+
+#setting .register .infobox{
+    background: #f7f8e0;
+    margin-top: -15px;
+    margin-left: 10px;
+    border: 1px solid #f7f8e0;
+    padding:5px;
+    font-size:9px;
+}
+
+#setting .register legend {
+    color: #5cb85c;
+    padding:2px;
+    font-weight:bold;
+    font-size: 21px;
+    font-weight:100;
+}
+
+#setting .register label {
+    font-size: 16px;
+    color:#444;
+    float: left;
+    text-align: right;
+    margin-right: 15px;
+    margin-top:2px;
+    margin-left: 10px;
+}
+
+#setting .register label.optional {
+    float: left;
+    text-align: right;
+    margin-right: 6px;
+    margin-top:2px;
+    color: #a3a3a3;
+}
+
+#setting .register label.obinfo {
+    float:right;
+    padding:3px;
+    font-style:italic;
+}
+
+#setting .register input {
+    width: 140px;
+    color: #505050;
+    float: left;
+}
+
+#setting .register input[type=radio] {
+    float:left;
+    width:30px;
     cursor: pointer;
+}
+
+#setting .register label.gender {
+    margin-top:-1px;
+    margin-bottom:2px;
+    float:left;
+    text-align:left;
+    line-height:19px;
+}
+
+#setting p.info {
+    font-size:7pt;
+    color: gray;
+}
+
+#setting p.agreement {
+    margin-left:15px;
+}
+
+#setting p.agreement label {
+    width:390px;
+    text-align:left;
+    margin-top:3px;
+}
+
+#telephone-avatar {
+    color: #151515;
+    margin-left: 20px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 43px;
+    text-align: center;
+    float: left;
+}
+
+#telephone-text {
+    color: #151515;
+    font-size: 22px;
+    float: left;
+    display: inline-block;
+    line-height: 43px;
+    margin-left: 7px;
+}
+
+#telephone-class {
+    margin-top: 20px;
+}
+
+#settings-a {
+    cursor: pointer;
+}
+
+.fb-avatar-profile {
+    border-radius: 50%;
+    margin: -200px 10px 0px 37px;
+    z-index: 9;
+    width: 20%;
+}
+
+#setting-phone .setting-phone {
+    width: 40% !important;
+}
+
+#phone-add .phone-add {
+    font-size: 15px;
+    color: red;
+    float: left;
+    margin: 5px 10px 10px 10px;
+}
+
+#phone-add {
+    margin-top: 10px;
+}
+
+#phone-add .phone-edit {
+    cursor: pointer;
+    font-size: 15px;
+    color: #0000000;
+    float: left;
+    margin: 5px 10px 10px 10px;
+}
+
+.error-phone {
+    margin: 5px 0px 0px 10px;
+    color: red;
+    float: left;
+    font-size: 15px;
+}
+
+.success-phone {
+    margin: 5px 0px 0px 10px;
+    color: #0b6121;
+    float: left;
+    font-size: 15px;
+}
+
+.success-phone #error-phone {
+    color: red;
+    float: left;
+    font-size: 15px;
+}
+
+#success-phone {
+    margin: 5px 0px 0px 10px;
+    color: red;
+    float: left;
+    font-size: 15px;
+}
+
+.infobox p {
+    color:gray;
+}
+
+#phone_setting {
+    display: none;
+    width: 260px !important;
+}
+
+#phone-add .phone {
+    float: left;
+    font-size: 18px;
+    margin-left: 10px;
 }
 
 .modal-description {

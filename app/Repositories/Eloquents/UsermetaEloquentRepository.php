@@ -22,6 +22,16 @@ class UsermetaEloquentRepository extends AbstractEloquentRepository implements U
             ->get();
     }
 
+
+    public function getDataSetting($data = [], $with = [], $dataSelect = ['*'])
+    {
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->where($data)
+            ->first();
+    }
+
     public function updateDisplayPhone($id, $display)
     {
         $countDisplay = $this->model()->where('user_id', $id)->where('key', 'display_phone')->first();

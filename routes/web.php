@@ -49,6 +49,9 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/notification-update', 'NotificationController@updateNotification');
             Route::get('/notifications/viewed', 'NotificationController@markRead')->name('markread');
             Route::post('books/returning/{id}', 'UserController@returnBook')->name('return-book');
+            Route::post('/settings/{phone}/{display}', 'SettingController@postSaveSetting');
+            Route::post('/setting/display', 'SettingController@postSetting')->name('settings');
+            Route::post('/setting-phone/{request}/{radio}', 'SettingController@getPhoneSetting');
         });
     });
     

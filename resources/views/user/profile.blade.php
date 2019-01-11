@@ -6,7 +6,7 @@
         <div class="container">
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
-                <img align="left" src="{{ $user->avatar ? asset($user->avatar) : asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-image-profile thumbnail">
+                <img align="left" src="{{ $user->avatar ? asset($user->avatar) : asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-avatar-profile thumbnail">
                 <div class="fb-profile-text floatleft">
                     @if ($user)
                         <h1 class="name-avatar">{{ $user->name }}</h1>
@@ -48,10 +48,24 @@
                                             {{ strlen(strip_tags($user->email)) > 16 ? '...' : '' }}
                                         </span>
                                     </li>
-                                    <li title="{{ __('settings.profile.phone') }}" class="list-group-item">
-                                        <i class="fa fa-phone-square" aria-hidden="true"></i>
-                                        <span>{{ $user->phone ? $user->phone : __('settings.profile.no_phone') }}</span>
-                                    </li>
+                                    @if (!empty($phoneUser))
+                                        @if ($phoneUser == '0'))
+                                            <li title="{{ __('settings.profile.phone') }}" class="list-group-item">
+                                                <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                                <span>{{ $user->phone ? $user->phone : __('settings.profile.no_phone') }}</span>
+                                            </li>
+                                        @else
+                                            <li title="{{ __('settings.profile.phone') }}" class="list-group-item">
+                                                <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                                <span>{{ trans('page.phone') }}</span>
+                                            </li>
+                                        @endif
+                                    @else
+                                        <li title="{{ __('settings.profile.phone') }}" class="list-group-item">
+                                            <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                            <span>{{ $user->phone ? $user->phone : __('settings.profile.no_phone') }}</span>
+                                        </li>
+                                    @endif
                                     <li title="Employee Code" class="list-group-item">
                                         <i class="fa fa-barcode" aria-hidden="true"></i>
                                         <span>{{ $user->employee_code ? $user->employee_code : __('settings.profile.no_code') }}</span>
