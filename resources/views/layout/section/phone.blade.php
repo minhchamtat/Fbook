@@ -7,6 +7,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{ trans('page.addNumber') }}</h4>
                 </div>
+                {!! Form::open(['method' => 'post']) !!}
                 <div class="modal-body">
                     <div class="modal-phone">
                         <div class="error-phone"></div>
@@ -33,6 +34,7 @@
                 <div class="modal-footer">
                     {!! Form::button(trans('page.addPhone'), ['id' => 'modal_phone', 'class' => 'btn btn-info']) !!}
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
