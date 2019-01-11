@@ -72,7 +72,9 @@ class BookController extends Controller
     {
         $with = [
             'medias',
-            'owners',
+            'owners.office',
+            'categories',
+            'countReview',
         ];
         $categories = $this->category->getData();
         $offices = $this->office->getData();

@@ -98,6 +98,8 @@ return [
         'view' => 'View:',
         'sku' => 'Sku:',
         'office' => 'Office:',
+        'not_date' => 'Unknown',
+        'list_borrow' => 'List Borrowing',
     ],
 
     'review' => [

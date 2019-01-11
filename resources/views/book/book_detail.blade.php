@@ -49,7 +49,7 @@
                                                     @if (count($book->owners) > 0)
                                                         @foreach ($book->owners as $owner)
                                                             <div class="owner mr-6" id="{{ 'user-' . $owner->id }}">
-                                                                <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }} ({{ $owner->office->name }})">
+                                                                <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }} ({{ $owner->office->name ? $owner->office->name : '' }})">
                                                                     <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
                                                                 </a>
                                                                 <span class="owner-office">{{ $owner->office->address }}</span>
@@ -132,16 +132,23 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="product-reviews-summary pt-0">
-                                            <div class="rating-summary">
-                                                <p class="mb-0"><b>{{ __('settings.book.userBorrow') }}</b></p>
-                                                <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? __('settings.book.dateReturn') : '' }}</p>
-                                            </div>
-                                            <div class="reviews-actions book-type">
-                                               <b class="mb-0 text-danger">{{ $bookTypeStatus['userBorrow'] ? $bookTypeStatus['userBorrow'] : __('settings.book.availble') }}</b>
-                                               <p class="mb-0">{{ $bookTypeStatus['dateReturn'] ? $bookTypeStatus['dateReturn'] : '' }}</p>
-                                            </div>
+                                        <div class="list-item">
+                                            <h4>{{ count($bookTypeStatus) > 0 ? __('settings.book.list_borrow') : '' }}</h4>
                                         </div>
+                                        @foreach ($bookTypeStatus as $item)
+                                            <div class="product-reviews-summary pt-0">
+                                                <div class="rating-summary">
+                                                    <p class="mb-0"><b>{{ __('settings.book.userBorrow') }}</b></p>
+                                                    <p class="mb-0">{{ $item ? __('settings.book.dateReturn') : '' }}</p>
+                                                    <p class="mb-0">{{ $item['owner'] ? __('settings.book.owners') : '' }}</p>
+                                                </div>
+                                                <div class="reviews-actions book-type">
+                                                    <b class="mb-0 text-danger">{{ $item['userBorrow'] ? $item['userBorrow'] : __('settings.book.availble') }}</b>
+                                                    <p class="mb-0">{{ !is_null($item['dateReturn']) ? $item['dateReturn'] : __('settings.book.not_date') }}</p>
+                                                    <p class="mb-0">{{ isset($item['owner']) ? $item['owner'] : '' }}</p>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                         <div class="product-add-form">
                                             @if ($book->owners->count() > 0)
                                                 <form>
