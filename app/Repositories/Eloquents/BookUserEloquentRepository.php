@@ -100,9 +100,6 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             ->select($dataSelect)
             ->with($with)
             ->where($data)
-            ->whereHas('book', function ($query) {
-                $query->where('deleted_at', null);
-            })
             ->orderBy($attribute[0], $attribute[1])
             ->paginate(config('view.paginate.book_request'));
     }
