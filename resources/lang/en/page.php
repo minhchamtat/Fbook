@@ -68,6 +68,7 @@ return [
     'save' => 'Save',
     'telephone' => 'Telephone',
     'profile' => 'Profile',
+    'overt' => 'Overt',
     'personalSetting' => 'Personal Settings',
     'warning' => 'Display phone numbers so people can easily contact you!',
     'close' => 'Close',

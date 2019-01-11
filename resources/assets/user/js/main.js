@@ -20,7 +20,6 @@
     var textRetype = 'Select ok to re-enter!';
     var textThank = 'Thank you!';
     var textReturn = 'Returning';
-    var textError = 'Invalid phone number!';
     if (language == 'vi') {
         textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
         textLogin = 'Bạn cần đăng nhập để tiếp tục';
@@ -41,7 +40,6 @@
         textRetype = 'Chọn ok để nhập lại!';
         textThank = 'Cảm ơn!';
         textReturn = 'Đang trả';
-        textError = 'Số điện thoại không hợp lệ!';
     }
     var header = $('#header-sticky');
     var win = $(window);
@@ -723,27 +721,23 @@
     });
 
     $('#modal_phone').on('click', function() {
-        if (($('#phone_value').val()) == '') {
-            $('.error-phone').html('<p>' + textError + '</p>');
-        } else {
-            $.ajax({
-                url: '/my-phone/' + $('#phone_value').val() + '/' + $('.message_pri:checked').val(),
-                method: 'POST',
-                success: function(res) {
-                    if (res.data == 1) {
-                        swal(textSuccess, textThank, 'success');
-                        $('#myModal').modal('toggle');
-                    } else {
-                        swal({
-                          title: textPhone,
-                          text: textRetype,
-                          icon: 'warning',
-                          dangerMode: true,
-                      });
-                    }
+        $.ajax({
+            url: '/my-phone/' + $('#phone_value').val() + '/' + $('.message_pri:checked').val(),
+            method: 'POST',
+            success: function(res) {
+                if (res.data == 1) {
+                    swal(textSuccess, textThank, 'success');
+                    $('#myModal').modal('toggle');
+                } else {
+                    swal({
+                      title: textPhone,
+                      text: textRetype,
+                      icon: 'warning',
+                      dangerMode: true,
+                  });
                 }
-            })
-        }
+            }
+        })
     });
 
     $(document).on('click', '.sharing-page .pagination a', function(e){
