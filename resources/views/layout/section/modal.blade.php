@@ -29,13 +29,10 @@
                                                 @if (count($book->owners) > 0)
                                                     @foreach ($book->owners as $owner)
                                                         <div class="owner" id="{{ 'user-' . $owner->id }}">
-                                                            <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }}
-                                                                ({{ $owner->office->name ? $owner->office->name : '' }})">
+                                                            <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }} ({{ $owner->office ? $owner->office->name : '' }})">
                                                                 <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
                                                             </a>
-                                                            <span class="owner-office">
-                                                                {{ $owner->office->name ? $owner->office->name : '' }}
-                                                            </span>
+                                                            <span class="owner-office">{{ $owner->office ? $owner->office->address : '' }}</span>
                                                         </div>
                                                     @endforeach
                                                 @else

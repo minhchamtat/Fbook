@@ -1,7 +1,6 @@
 {{ Html::script('assets/user/js/setting.js') }}
 <div id="setting">
     <div class="register">
-        {!! Form::open(array('method' => 'POST')) !!}
         <div class="register">
             <fieldset class="row2">
                 <legend>{{ trans('page.personalSetting') }}
@@ -24,7 +23,7 @@
                 </div>
                 <div id="phone-add">
                     @if ($phone != null)
-                        <p class="phone">{{ $phone }}</p>
+                        <p id="phone-hide" class="phone">{{ $phone }}</p>
                     @endif
                     <a id="displays" class="phone-edit">{{ trans('page.editPhone') }}</a>
                     <div id="display-radio"></div>
@@ -34,7 +33,6 @@
                     <div class="success-phone"></div>
                 </div>
                 <p>
-                    <label>{{ trans('page.overt') }}</label>
                     <div id="display-radio"></div>
                     {!! Form::radio('phone', 1, ($displayPhone->value == 1)?1:0,  ['class' => 'setting-phone']) !!}
                     <label class="gender">{{ trans('page.public') }}</label>
@@ -60,7 +58,6 @@
                     <div class="error-phone"></div>
                 </div>
                 <p>
-                    <label>{{ trans('page.overt') }}</label>
                     <div id="display-radio"></div>
                     {!! Form::radio('phone', 1, true, ['class' => 'setting-phones']) !!}
                     <label class="gender">{{ trans('page.public') }}</label>
@@ -71,7 +68,6 @@
                 </div>
             </fieldset>
             @endif
-            {!! Form::close() !!}
         </div>
     </div>
 </div>
