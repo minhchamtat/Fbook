@@ -66,18 +66,6 @@
                                             <b>{{ __('settings.modal.view') }}</b>
                                             <span>{{ $book->count_viewed ? $book->count_viewed : '0' }}</span>
                                         </div>
-                                        <div class="single-info">
-                                            <b>{{ __('settings.modal.office') }}</b>
-                                            @if (count($book->office) > 0)
-                                                @foreach ($book->office as $office)
-                                                    @if (!empty($office))
-                                                        <span class="label label-info">{{ $office->key }}</span>
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                <span class="text-danger">{{ __('settings.modal.no_office') }}</span>
-                                            @endif
-                                        </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="single-info">
