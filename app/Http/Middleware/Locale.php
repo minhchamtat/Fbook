@@ -45,6 +45,7 @@ class Locale
                 \Session::put('website-language', $language);
                 config(['app.locale' => $language]);
             }
+            $cache = Cache::put('language', $language, config('view.limit.minutes'));
         } else {
             $cache = Cache::get('language');
             if (isset($cache)) {
