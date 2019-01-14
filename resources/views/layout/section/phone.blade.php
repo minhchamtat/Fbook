@@ -10,7 +10,7 @@
                 {!! Form::open(['method' => 'post']) !!}
                 <div class="modal-body">
                     <div class="modal-phone">
-                        <div class="error-phone"></div>
+                        <div style="text-align: center;" class="error-phone"></div>
                         {!! Form::text('phone', null, ['id' => 'phone_value', 'required', 'class' => 'form-control']) !!}
                         <div class="phone-display">
                             <div class="display">
