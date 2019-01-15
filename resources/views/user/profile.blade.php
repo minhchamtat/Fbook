@@ -48,16 +48,16 @@
                                             {{ strlen(strip_tags($user->email)) > 16 ? '...' : '' }}
                                         </span>
                                     </li>
-                                    @if (!empty($phoneUser))
-                                        @if ($phoneUser == '0'))
+                                    @if (isset($phoneUser))
+                                        @if ($phoneUser == 0)
                                             <li title="{{ __('settings.profile.phone') }}" class="list-group-item">
                                                 <i class="fa fa-phone-square" aria-hidden="true"></i>
-                                                <span>{{ $user->phone ? $user->phone : __('settings.profile.no_phone') }}</span>
+                                                <span>{{ trans('page.phone') }}</span>
                                             </li>
                                         @else
                                             <li title="{{ __('settings.profile.phone') }}" class="list-group-item">
                                                 <i class="fa fa-phone-square" aria-hidden="true"></i>
-                                                <span>{{ trans('page.phone') }}</span>
+                                                <span>{{ $user->phone ? $user->phone : __('settings.profile.no_phone') }}</span>
                                             </li>
                                         @endif
                                     @else
