@@ -122,90 +122,70 @@
                     <div class="tab-pane" id="reading" value="true"></div>
                     <div class="tab-pane" id="returned" value="true"></div>
                     <div class="tab-pane" id="following" value="false">
-                        @if (count($followings))
-                            @for ($i = 0; $i < count($followings); $i++)
-                                <div class="book-status followings" id="following{{ $i }}">
-                                    <div class="row">
-                                        @foreach ($followings[$i] as $u)
-                                            <div class="col-sm-6 col-md-4">
-                                                <div class="d-flex exhibition-item user">
-                                                    <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                                        @if ($u->avatar == null)
-                                                            <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                        @if (count($followings) > 0)
+                            <div class="book-status followings">
+                                <div class="row">
+                                    @foreach ($followings as $u)
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="d-flex exhibition-item user">
+                                                <a href="{{ route('user', $u->id) }}" class="a-follow">
+                                                    <img src="{{ $u->avatar ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                                                </a>
+                                                <div class="user-info overflow-hidden">
+                                                    <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
+                                                    <div class="subscribe">
+                                                        @if (in_array($u->id, $followingIds))
+                                                            <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.following') }}</button>
+                                                        @elseif (Auth::id() == $u->id)
                                                         @else
-                                                            <img src="{{ $u->avatar }}" class="avatar-icon">
+                                                            <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>
                                                         @endif
-                                                    </a>
-                                                    <div class="user-info overflow-hidden">
-                                                        <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
-                                                        <div class="subscribe">
-                                                            @if (in_array($u->id, $followingIds))
-                                                                <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.following') }}</button>
-                                                            @elseif (Auth::id() == $u->id)
-                                                            @else
-                                                                <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            @endfor
+                            </div>
                             <div class="pagination-area mt-50">
                                 <div class="page-number">
                                     <ul class="pagination">
-                                        <li class="disabled"><a>«</a></li>
-                                        @for ($i = 0; $i < count($followings); $i++)
-                                            <li class="status-page"><a data-target="following" href="#following{{ $i }}">{{ $i + 1 }}</a></li>
-                                        @endfor
-                                        <li><a>»</a></li>
+                                        {{ $followings->links() }}
                                     </ul>
                                 </div>
                             </div>
                         @endif
                     </div>
                     <div class="tab-pane" id="followers" value="false">
-                        @if (count($followers))
-                            @for ($i = 0; $i < count($followers); $i++)
-                                <div class="book-status follower" id="follower{{ $i }}">
-                                    <div class="row">
-                                        @foreach ($followers[$i] as $u)
-                                            <div class="col-sm-6 col-md-4">
-                                                <div class="d-flex exhibition-item user">
-                                                    <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                                        @if ($u->avatar == null)
-                                                            <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                        @if (count($followers) > 0)
+                            <div class="book-status follower">
+                                <div class="row">
+                                    @foreach ($followers as $u)
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="d-flex exhibition-item user">
+                                                <a href="{{ route('user', $u->id) }}" class="a-follow">
+                                                    <img src="{{ $u->avatar ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                                                </a>
+                                                <div class="user-info overflow-hidden">
+                                                    <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
+                                                    <div class="subscribe">
+                                                        @if (in_array($u->id, $followingIds))
+                                                            <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.following') }}</button>
+                                                        @elseif (Auth::id() == $u->id)
                                                         @else
-                                                            <img src="{{ $u->avatar }}" class="avatar-icon">
+                                                            <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>
                                                         @endif
-                                                    </a>
-                                                    <div class="user-info overflow-hidden">
-                                                        <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
-                                                        <div class="subscribe">
-                                                            @if (in_array($u->id, $followingIds))
-                                                                <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.following') }}</button>
-                                                            @elseif (Auth::id() == $u->id)
-                                                            @else
-                                                                <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            @endfor
+                            </div>
                             <div class="pagination-area mt-50">
                                 <div class="page-number">
                                     <ul class="pagination">
-                                        <li class="disabled"><a>«</a></li>
-                                        @for ($i = 0; $i < count($followers); $i++)
-                                            <li class="status-page"><a data-target="follower" href="#follower{{ $i }}">{{ $i + 1 }}</a></li>
-                                        @endfor
-                                        <li><a>»</a></li>
+                                        {{ $followers->links() }}
                                     </ul>
                                 </div>
                             </div>

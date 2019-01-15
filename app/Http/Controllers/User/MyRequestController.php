@@ -30,8 +30,9 @@ class MyRequestController extends Controller
             'book',
         ];
         $books = $this->bookUser->getDataRequest($data, $with);
+        $bookStatus = $books->where('type', config('view.request.reading'))->pluck('book_id')->toArray();
 
-        return view('user.my_request', compact('books'));
+        return view('user.my_request', compact('books', 'bookStatus'));
     }
 
     public function create()

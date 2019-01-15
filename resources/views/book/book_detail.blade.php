@@ -136,20 +136,29 @@
                                         <div class="list-item">
                                             <h4>{{ count($bookTypeStatus) > 0 ? __('settings.book.list_borrow') : '' }}</h4>
                                         </div>
-                                        @foreach ($bookTypeStatus as $item)
-                                            <div class="product-reviews-summary pt-0">
-                                                <div class="rating-summary">
-                                                    <p class="mb-0"><b>{{ __('settings.book.userBorrow') }}</b></p>
-                                                    <p class="mb-0">{{ $item ? __('settings.book.dateReturn') : '' }}</p>
-                                                    <p class="mb-0">{{ $item['owner'] ? __('settings.book.owners') : '' }}</p>
+                                        <div class="row">
+                                            @foreach ($bookTypeStatus as $item)
+                                                <div class="col-sm-6">
+                                                    <div class="product-reviews-summary pt-0">
+                                                        <div class="rating-summary">
+                                                            <p class="mb-0">
+                                                                <b>{{ __('settings.book.userBorrow') }}</b>
+                                                                <b class="mb-0 text-danger">{{ $item['userBorrow'] ? $item['userBorrow'] : __('settings.book.availble') }}</b>
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <b>{{ $item ? __('settings.book.dateReturn') : '' }}</b>
+                                                                <span class="mb-0">{{ !is_null($item['dateReturn']) ? $item['dateReturn'] : __('settings.book.not_date') }}</span>
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <b>{{ $item['owner'] ? __('settings.book.owners') : '' }}</b>
+                                                                <span class="mb-0">{{ isset($item['owner']) ? $item['owner'] : '' }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="reviews-actions book-type">
-                                                    <b class="mb-0 text-danger">{{ $item['userBorrow'] ? $item['userBorrow'] : __('settings.book.availble') }}</b>
-                                                    <p class="mb-0">{{ !is_null($item['dateReturn']) ? $item['dateReturn'] : __('settings.book.not_date') }}</p>
-                                                    <p class="mb-0">{{ isset($item['owner']) ? $item['owner'] : '' }}</p>
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
+
                                         <div class="product-add-form">
                                             @if ($book->owners->count() > 0)
                                                 <form>
@@ -321,8 +330,7 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
-
-                                                {{ $reviews->links() }}
+                                                {{ $reviews->appends(Request::all())->links() }}
                                             @else
                                                 <div class="alert alert-info">
                                                     {{ __('page.reviews.noReview') }}

@@ -45,7 +45,6 @@ class HomeController extends Controller
             'owners.office',
             'countReview',
             'categories',
-            'office',
         ];
         $offices = $this->office->getData()->pluck('name', 'id');
         $topViewed = $this->book->getTopViewedBook($with);

@@ -21,6 +21,8 @@
     var textThank = 'Thank you!';
     var textReturn = 'Returning';
     var textError = 'Invalid phone number!';
+    var textAlert = 'Book has borrowed';
+    var textWaiting = 'Please waiting owner book confirm. Thank you!';
     if (language == 'vi') {
         textShare = 'Bạn có chắc chắn muốn chia sẻ cuốn sách này?';
         textLogin = 'Bạn cần đăng nhập để tiếp tục';
@@ -42,6 +44,8 @@
         textThank = 'Cảm ơn!';
         textReturn = 'Đang trả';
         textError = 'Số điện thoại không hợp lệ!';
+        textAlert = 'Sách đang được mượn';
+        textWaiting = 'Vui lòng đợi chủ sở hữu xác nhận. Cảm ơn bạn!';
     }
     var header = $('#header-sticky');
     var win = $(window);
@@ -477,12 +481,6 @@
         });
     });
 
-    $('.book-status').hide();
-
-    $('.book-status#sharing0').show();
-    $('.book-status#follower0').show();
-    $('.book-status#following0').show();
-
     $('.status-tabs a').on('shown.bs.tab', function(event){
         var e = $(event.target).attr('href');
         var status = $(e).attr('id');
@@ -580,9 +578,10 @@
         var e = $(event.target).attr('href');
         var type = $(e).attr('id');
         var book_id = $('.detail-tabs').attr('data-id');
+        var url = window.location.href;
         if ($(e).attr('status') == 'none') {
             $.ajax({
-                url: '/book-detail',
+                url: url,
                 type: 'POST',
                 data: {
                     type: type,
@@ -592,14 +591,14 @@
             .done(function(res) {
                 $(e).attr('status', 'done');
                 $(e).html(res);
-                $('.book-status').hide();
-                $('.book-status#' + type + '0').show();
+                // $('.book-status').hide();
+                // $('.book-status#' + type + '0').show();
             })
             .fail(function() {
                 //
             });
         }
-        $('.book-status#' + type + '0').show();
+        // $('.book-status#' + type + '0').show();
     });
 
     $('#bell-notification').on('click', function(event) {
@@ -800,6 +799,11 @@
                 $('#returning').html(res);
                 $('.book-status').hide();
                 $('.book-status#' + 'returning' + '0').show();
+                swal({
+                    text: textWaiting,
+                    icon: 'success',
+                    buttons: false,
+                });
             })
             .fail(function() {
                 //
@@ -823,6 +827,15 @@
         })
     });
 
+    $('button.approve.disabled').click(function() {
+        swal({
+            text: textAlert,
+            icon: 'warning',
+            buttons: false,
+        });
+
+        return false;
+    })
 })(jQuery);
 
     submitForms = function() {

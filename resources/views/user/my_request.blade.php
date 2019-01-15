@@ -77,8 +77,8 @@
                                         @php \Carbon\Carbon::setLocale('vi'); @endphp
                                     @endif
                                     <td>
-                                        <p>{{ $book->created_at->format('d/m/y h:i:s') }}</p>
-                                        {{ $book->created_at->diffForHumans(\Carbon\Carbon::now()) }}
+                                        <p>{{ $book->created_at ? $book->created_at->format('d/m/y h:i:s') : '' }}</p>
+                                        {{ $book->created_at ? $book->created_at->diffForHumans(\Carbon\Carbon::now()) : __('settings.book.not_date') }}
                                     </td>
                                     <td>
                                         @php $date = date('d/m/y', strtotime($book->created_at) + $book->days_to_read * 86400 );  @endphp
@@ -94,12 +94,12 @@
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', $book->type) !!}
                                                 @if ($book->type == config('view.request.reading'))
-                                                    {!! Form::button(__('settings.request.returned'), 
-                                                        ['class' => 'btn btn-return btn-sm notify-2', 
+                                                    {!! Form::button(__('settings.request.returned'),
+                                                        ['class' => 'btn btn-return btn-sm notify-2',
                                                         'type' => 'submit', 'disabled' => 'disabled']) !!}
-                                                @else 
-                                                    {!! Form::button(__('settings.request.returned'), 
-                                                        ['class' => 'btn btn-return btn-sm notify-2', 
+                                                @else
+                                                    {!! Form::button(__('settings.request.returned'),
+                                                        ['class' => 'btn btn-return btn-sm notify-2',
                                                         'type' => 'submit']) !!}
                                                 @endif
                                             {!! Form::close() !!}
@@ -108,7 +108,7 @@
                                         <td class="product-remove">
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', $book->type) !!}
-                                                {!! Form::button(__('settings.request.approve'), ['class' => 'btn btn-info btn-sm approve notify-2', 'type' => 'submit']) !!}
+                                                {!! Form::button(__('settings.request.approve'), ['class' => 'btn btn-info btn-sm approve notify-2 ' . (in_array($book->book_id, $bookStatus) ? 'disabled' : ''), 'type' => 'submit']) !!}
                                             {!! Form::close() !!}
                                             {!! Form::open(['method' => 'patch', 'route' => ['my-request.update', $book->id], 'id' => $book->id]) !!}
                                                 {!! Form::hidden('status', 'dismiss') !!}

@@ -1085,6 +1085,12 @@ a.view-all {
 .product-add-form form a.disabled {
     pointer-events: none;
     cursor: not-allowed;
+    color: #fff;
+}
+
+.list-item h4 {
+    text-align: center;
+    margin: 20px 0;
 }
 
 .book-type {
@@ -1093,7 +1099,7 @@ a.view-all {
 
 .mb-0 {
     margin-bottom: 0;
-    line-height: 35px;
+    line-height: 40px;
 }
 
 .text-danger {
@@ -1841,4 +1847,8 @@ span.owner-office {
 
 #phone_modal .modal-content {
     width: 400px;
+}
+
+.shop-main-area #th .row div[class^="col-"] {
+    padding-right: 0;
 }

@@ -104,7 +104,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                 $query->where('deleted_at', null);
             })
             ->orderBy($attribute[0], $attribute[1])
-            ->paginate(config('view.paginate.book_request'));
+            ->paginate(config('view.paginate.book_request'), ['*'], isset($data['type']) ? $data['type'] : '');
     }
 
     public function getDetailData($request)
@@ -114,10 +114,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                 'user',
             ];
 
-            return $this->getData($request, $with)
-                ->pluck('user')
-                ->unique()
-                ->chunk(config('view.paginate.follow_user'));
+            return $this->getDataRequest($request, $with);
         } catch (Exception $e) {
             return null;
         }
@@ -153,6 +150,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     {
         $bookUser = $this->model()->where('book_id', $id)
                     ->where('user_id', Auth::id())
+                    ->where('type', '<>', config('view.request.returned'))
                     ->orderBy('created_at', 'desc')
                     ->first();
         $data['type'] = config('view.request.returning');
@@ -217,6 +215,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     {
         return $this->model()->where('book_id', $idBook)
                     ->where('user_id', Auth::id())
+                    ->where('type', '<>', config('view.request.returned'))
                     ->orderByDesc('created_at')
                     ->first();
     }
