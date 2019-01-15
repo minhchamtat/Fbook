@@ -28,7 +28,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('books', 'BookController');
         Route::get('books/category/{slug}', 'BookController@getBookCategory')->name('book.category');
         Route::get('books/office/{slug}', 'BookController@getBookOffice')->name('book.office');
-        Route::post('/book-detail', 'BookController@getDetailData');
+        Route::post('/books/{slug}', 'BookController@getDetailData');
 
         Route::group(['middleware' => 'auth'], function () {
             Route::resource('/books/{slug}/review', 'ReviewBookController');
@@ -39,7 +39,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/books/cancelBorrowing/{bookId}', 'UserController@cancelBorrowing');
             Route::get('/my-profile', 'UserController@myProfile')->name('my-profile');
             Route::post('/my-profile/{id}', 'UserController@postMyProfile')->name('profile');
-            Route::resource('my-request', 'MyRequestController');
+            Route::resource('my-request', 'MyRequestController')->only(['index', 'update']);
             Route::post('/my-profile/{request}/{id}', 'UserController@getBooks');
             Route::get('/users/{id}', 'UserController@getUser')->name('user');
             Route::post('/follow/{id}', 'UserController@follow');
@@ -54,7 +54,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/setting-phone/{request}/{radio}', 'SettingController@postPhoneSetting');
         });
     });
-    
+
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/listbook', 'BookController@ajaxShow')->name('book.show');
         Route::resource('/book', 'BookController')->except(['show']);

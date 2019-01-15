@@ -140,7 +140,7 @@ return [
         'close' => 'x',
         'choose_time_to_borrow' => 'Bạn muốn mượn cuốn sách này trong bao lâu:',
         'days' => 'ngày',
-        'count_review' => 'Số đáng giá:',
+        'count_review' => 'Số đánh giá:',
         'description' => 'Mô tả',
         'view' => 'Lượt xem:',
         'office' => 'Offices:',
@@ -218,7 +218,7 @@ return [
         'notifications' => [
             'show_more' => 'Xem thêm',
             'name' => 'Thông báo',
-            'viewed' => 'Đánh dấu là đã đọc',
+            'viewed' => 'Đánh dấu tất cả là đã đọc',
         ],
     ],
     'lang' => [

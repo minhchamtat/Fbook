@@ -3899,36 +3899,7 @@ nav.menu .cr-dropdown ul {
     padding-left: 10px;
     padding-right: 10px;
 }
-.pagination-area {
-    border-top: 1px solid #ccc;
-    padding: 15px 0;
-}
-.pagination-area .list-page p {
-    margin-bottom: 0;
-    color: #666666;
-    font-size: 14px;
-    line-height: 32px;
-}
-.pagination-area .page-number {
-    float: right;
-}
-.pagination-area .page-number ul li {
-    display: inline-block;
-}
-.pagination-area .page-number ul li a {
-    color: #333;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: normal;
-    line-height: 32px;
-    padding: 0 4px;
-    font-weight: 400;
-}
-.pagination-area .page-number ul li a.active {
-    color: #f07c29;
-    font-size: 14px;
-}
+
 .product-wrapper-content .product-link {
     opacity: 1;
     padding-bottom: 0px;

@@ -215,7 +215,7 @@ return [
         'notifications' => [
             'show_more' => 'Show more',
             'name' => 'Notifications',
-            'viewed' => 'Mark as read',
+            'viewed' => 'Mark all as read',
         ],
         'search' => 'Search',
         'dashboard' => 'Dashboard',

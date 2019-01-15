@@ -190,7 +190,7 @@
                                                                             <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }} ({{ $owner->office ? $owner->office->name : '' }})">
                                                                                 <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
                                                                             </a>
-                                                                            <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name }} ({{ $owner->office ? $owner->office->name : '' }})">
+                                                                            <span class="owner-office">{{ $owner->office ? $owner->office->address : '' }}</span>
                                                                         </div>
                                                                     @endforeach
                                                                 @else
