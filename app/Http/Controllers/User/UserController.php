@@ -117,8 +117,8 @@ class UserController extends Controller
                 ->paginate(config('view.limit.related_book'));
         $status = config('view.status.sharing');
         $followingIds = Auth::user()->followings->pluck('id')->toArray();
-        $followers = $user->followers()->paginate(config('view.paginate.follow_user'));
-        $followings = $user->followings()->paginate(config('view.paginate.follow_user'));
+        $followers = $user->followers()->paginate(config('view.paginate.follow_user'), ['*'], 'followers');
+        $followings = $user->followings()->paginate(config('view.paginate.follow_user'), ['*'], 'followings');
 
         return view('user.profile', compact(
             'user',

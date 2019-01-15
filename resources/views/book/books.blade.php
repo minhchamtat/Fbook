@@ -39,8 +39,8 @@
                             @foreach ($categories as $key => $category)
                                 <li>
                                     <a href="{{ route('book.category', $category->slug . '-' . $category->id) }}" class="{{ isset($cate) && $cate->name == $category->name ? 'active' : '' }}" title="{{ $category->name }}">
-                                        {{ substr(($category->name), 0, 29) }}{{ strlen(($category->name)) >= 26 ? '...' : '' }}
-                                        <p>({{ $category->books_count }})</p>
+                                        <span class="cate-name">{{ $category->name }}</span>
+                                        <span class="count-cate">({{ $category->books_count }})</span>
                                     </a>
                                 </li>
                             @endforeach

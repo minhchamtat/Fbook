@@ -150,7 +150,7 @@
                             <div class="pagination-area mt-50">
                                 <div class="page-number">
                                     <ul class="pagination">
-                                        {{ $followings->links() }}
+                                        {{ $followings->appends(Request::all())->links() }}
                                     </ul>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@
                             <div class="pagination-area mt-50">
                                 <div class="page-number">
                                     <ul class="pagination">
-                                        {{ $followers->links() }}
+                                        {{ $followers->appends(Request::all())->links() }}
                                     </ul>
                                 </div>
                             </div>
