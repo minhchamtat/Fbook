@@ -23,38 +23,7 @@ class SettingController extends Controller
 
     public function postSaveSetting($phone, $display)
     {
-        if ($phone == 0) {
-            if (isset($display)) {
-                $id = Auth::id();
-                $this->usermeta->updateDisplayPhone($id, $display);
-
-                return response()->json([
-                    'data' => '0',
-                ]);
-            } else {
-                return response()->json([
-                    'data' => '1',
-                ]);
-            }
-        } else {
-            $pattern = '/^(\+84|0)\d{9,10}$/';
-            if (!preg_match($pattern, $phone)) {
-                return response()->json([
-                    'data' => '1',
-                ]);
-            } else {
-                $id = Auth::id();
-                $data = [
-                    'phone' => $phone,
-                ];
-                $this->user->update($id, $data);
-                $this->usermeta->updateDisplayPhone($id, $display);
-
-                return response()->json([
-                    'data' => '0',
-                ]);
-            }
-        }
+        return $this->postPhoneSetting($phone, $display);
     }
 
     public function postSetting()
@@ -65,13 +34,16 @@ class SettingController extends Controller
             'user_id' => $id,
         ];
         $displayPhone = $this->usermeta->getDataSetting($data);
-        $phones = $this->user->find($id)->get();
+        $data = [
+            'id' => $id,
+        ];
+        $phones = $this->user->phoneUser($data);
         $phone = $phones[0]->phone;
 
         return view('layout.section.setting', compact('displayPhone', 'phone'));
     }
 
-    public function getPhoneSetting($phone, $radio)
+    public function postPhoneSetting($phone, $radio)
     {
         $pattern = '/^(\+84|0)\d{9,10}$/';
         if (preg_match($pattern, $phone)) {
@@ -86,7 +58,10 @@ class SettingController extends Controller
                 'user_id' => $id,
             ];
             $displayPhone = $this->usermeta->getDataSetting($dataPhone);
-            $phones = $this->user->find($id)->get();
+            $data = [
+                'id' => $id,
+            ];
+            $phones = $this->user->phoneUser($data);
             $phone = $phones[0]->phone;
 
             return view('layout.section.setting_phone', compact('displayPhone', 'phone'));
