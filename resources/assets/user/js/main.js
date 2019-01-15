@@ -755,7 +755,7 @@
     {
         $.ajax({
             type: 'post',
-            url: 'my-profile/' + $('#userId').val() + '/?page=' + page,
+            url: '/my-profile/' + $('#userId').val() + '/?page=' + page,
         })
         .success(function(data) {
             $('#sharing').html(data);
@@ -770,6 +770,7 @@
             });
         });
     }
+    
     $(document).on('submit', '#returning-book', function(e) {
         e.preventDefault();
         var obj = $('.btn-returning');
@@ -836,6 +837,23 @@
 
         return false;
     })
+
+    $(document).on('click', '.text-right .page-number .pagination a', function(event){
+        event.preventDefault();
+        var url = $(event.target).attr('href');
+        $.ajax({
+            url: url,
+            type: 'POST',
+        })
+        .done(function(res) {
+            $(event).attr('status', 'done');
+            $('#waiting').html(res);
+        })
+        .fail(function() {
+                //
+            });
+    });
+
 })(jQuery);
 
     submitForms = function() {
