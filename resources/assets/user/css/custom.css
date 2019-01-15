@@ -1849,6 +1849,22 @@ span.owner-office {
     width: 400px;
 }
 
-.shop-main-area #th .row div[class^="col-"] {
+.shop-main-area #th .row div[class^="col-"], .tab-content .col-lg-3.col-md-4.col-sm-6 {
     padding-right: 0;
+}
+
+.left-menu ul li a span {
+    float: unset;
+    font-size: 16px;
+}
+
+.left-menu ul li a {
+    display: flex;
+}
+
+span.cate-name {
+    width: 75%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

@@ -104,7 +104,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                 $query->where('deleted_at', null);
             })
             ->orderBy($attribute[0], $attribute[1])
-            ->paginate(config('view.paginate.book_request'), ['*'], isset($data['type']) ? $data['type'] : '');
+            ->paginate(config('view.paginate.book_request'), ['*'], isset($data['type']) ? $data['type'] : 'page');
     }
 
     public function getDetailData($request)
