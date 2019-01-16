@@ -125,7 +125,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="banner-img-2">
-                    <a href="{{ asset(config('view.links.banner')) }}"><img src="{{ asset(config('view.image_paths.banner') . 'state-of-chance.png') }}" alt="banner" /></a>
+                    <a href="{{ asset(config('view.links.banner')) }}">
+                        <img src="{{ bannerImg() }}" alt="banner" />
+                    </a>
                 </div>
             </div>
         </div>
