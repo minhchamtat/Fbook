@@ -243,4 +243,21 @@ return [
     ],
 
     'vote' => 'Bạn không thể vote cho bài của mình',
+
+    'time' => [
+        'short' => [
+            'seconds' => 'giây',
+            'minutes' => 'phút',
+            'hours' => 'giờ',
+            'days' => 'ngày',
+            'weeks' => 'tuần',
+        ],
+        'full' => [
+            'seconds' => 'giây',
+            'minutes' => 'phút',
+            'hours' => 'giờ',
+            'days' => 'ngày',
+            'weeks' => 'tuần',
+        ],
+    ],
 ];

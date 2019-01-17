@@ -73,16 +73,12 @@
                                         {{ $book->days_to_read }} {{ __('settings.request.day') }}
                                     </td>
                                     <td>{{ $book->user->name }}</td>
-                                    @if (Session::get('website-language') == 'vi')
-                                        @php \Carbon\Carbon::setLocale('vi'); @endphp
-                                    @endif
                                     <td>
                                         <p>{{ $book->created_at ? $book->created_at->format('d/m/y h:i:s') : '' }}</p>
-                                        {{ $book->created_at ? $book->created_at->diffForHumans(\Carbon\Carbon::now()) : __('settings.book.not_date') }}
+                                        {{ setTimeDefault($book->created_at) }}
                                     </td>
                                     <td>
-                                        @php $date = date('d/m/y', strtotime($book->created_at) + $book->days_to_read * 86400 );  @endphp
-                                        {{ $date }}
+                                        {{ getDay($book->created_at, $book->days_to_read) }}
                                     </td>
                                     <td class="type">
                                         <label class="stt bg-{{ $book->type }}">{{ $book->type }}</label>

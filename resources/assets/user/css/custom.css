@@ -1868,3 +1868,24 @@ span.cate-name {
     white-space: nowrap;
     overflow: hidden;
 }
+
+.new.notify {
+    background-color: #edf2fa !important; 
+}
+
+.new.notify:hover, .old.notify:hover {
+    background-color: #f6f6f6 !important;
+}
+
+span.media-heading {
+    font-weight: bold !important;
+    color: #000 !important;
+}
+
+span.item-message {
+    color: #000 !important;
+}
+
+div.media-body.notify {
+    text-transform: none !important;
+}
