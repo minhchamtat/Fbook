@@ -170,7 +170,7 @@
                                                     <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
                                                     <div class="subscribe">
                                                         @if (in_array($u->id, $followingIds))
-                                                            <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.following') }}</button>
+                                                            <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.followers') }}</button>
                                                         @elseif (Auth::id() == $u->id)
                                                         @else
                                                             <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>

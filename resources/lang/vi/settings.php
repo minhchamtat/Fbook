@@ -160,7 +160,7 @@ return [
         'introduction' => 'Giới thiệu',
         'follow' => 'Theo dõi',
         'followers' => 'Người theo dõi',
-        'following' => 'Người đang theo dõi',
+        'following' => 'Đang theo dõi',
         'sharing' => 'Chia sẻ',
         'waiting' => 'Đang chờ',
         'reading' => 'Đang đọc',
