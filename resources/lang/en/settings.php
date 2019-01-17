@@ -244,4 +244,21 @@ return [
     ],
 
     'vote' => 'You can’t vote your review',
+
+    'time' => [
+        'short' => [
+            'seconds' => 's',
+            'minutes' => 'm',
+            'hours' => 'h',
+            'days' => 'd',
+            'weeks' => 'w',
+        ],
+        'full' => [
+            'seconds' => 'seconds',
+            'minutes' => 'minutes',
+            'hours' => 'hours',
+            'days' => 'days',
+            'weeks' => 'weeks',
+        ],
+    ],
 ];

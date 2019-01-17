@@ -29,8 +29,8 @@ class Locale
             'user_id' => Auth::id(),
             'key' => 'website-language',
         ];
-        $setting = $this->usermeta->getData($data)->first();
         if (Auth::check()) {
+            $setting = $this->usermeta->find($data);
             if (!isset($setting)) {
                 if (\Session::get('website-language') == 'vi') {
                     $language = \Session::get('website-language', 'vi');
@@ -41,7 +41,7 @@ class Locale
                 }
                 $this->usermeta->settingLanguage(Auth::id(), $language);
             } else {
-                $language = $this->usermeta->find($data)->value;
+                $language = $setting->value;
                 \Session::put('website-language', $language);
                 config(['app.locale' => $language]);
             }
