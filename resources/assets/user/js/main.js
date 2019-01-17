@@ -854,6 +854,26 @@
             });
     });
 
+    $(document).on('click', '.search-title .pagination a', function(event){
+        event.preventDefault();
+        var url = $(event.target).attr('href');
+        var id = $(this).children().first().attr('id');
+        var type = $('.active #status').text();
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: {
+                type: type
+            },
+        })
+        .done(function(res) {
+            $('#search').html(res);
+        })
+        .fail(function() {
+                //
+            });
+    });
+
 })(jQuery);
 
     submitForms = function() {

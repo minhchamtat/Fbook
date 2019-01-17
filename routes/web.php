@@ -20,6 +20,7 @@ Route::group(['middleware' => 'locale'], function () {
     Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
     Route::post('/header-search', 'HomeController@searchAjax');
     Route::get('/search', 'HomeController@search')->name('search');
+    Route::post('/search', 'HomeController@searchPageAjax');
 
     Route::get('login/framgia', 'Auth\LoginController@redirectToProvider')->name('framgia.login');
     Route::get('login/framgia/callback', 'Auth\LoginController@handleProviderCallback');
