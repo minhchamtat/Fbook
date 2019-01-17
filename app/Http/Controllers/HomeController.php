@@ -117,13 +117,30 @@ class HomeController extends Controller
             'owners.office',
             'medias',
         ];
-        $data['users'] = $this->user->search('name', $request->req);
-        $data['titles'] = $this->book->search('title', $request->req, $with);
-        $data['authors'] = $this->book->search('author', $request->req, $with);
-        $data['descriptions'] = $this->book->search('description', $request->req, $with);
+        $data['users'] = $this->user->search('name', $request->req)->paginate(5, ['*'], 'users');
+        $data['titles'] = $this->book->search('title', $request->req, 'titles', $with);
+        $data['authors'] = $this->book->search('author', $request->req, 'authors', $with);
+        $data['descriptions'] = $this->book->search('description', $request->req, 'descriptions', $with);
         $data['key'] = $request->req;
+        $data['page'] = 'Title';
 
         return view('search', $data);
+    }
+
+    public function searchPageAjax(SearchRequest $request)
+    {
+        $data['page'] = $request->type;
+        $with = [
+            'owners.office',
+            'medias',
+        ];
+        $data['users'] = $this->user->search('name', $request->req)->paginate(config('view.pageUser'), ['*'], 'users');
+        $data['titles'] = $this->book->search('title', $request->req, 'titles', $with);
+        $data['authors'] = $this->book->search('author', $request->req, 'authors', $with);
+        $data['descriptions'] = $this->book->search('description', $request->req, 'descriptions', $with);
+        $data['key'] = $request->req;
+
+        return view('layout.section.search_page', $data);
     }
 
     public function getPhone($phone, $radio)
