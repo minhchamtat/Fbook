@@ -507,6 +507,28 @@
             .fail(function() {
                 //
             });
+        } else if ($(e).attr('value') == 'agree') {
+            $.ajax({
+                url: '/my-profiles/' + status + '/' + $('#userId').val(),
+                method:'POST',
+            })
+            .done(function(res) {
+                $(e).attr('value', false);
+                $(e).html(res);
+                var star = $('.rating');
+                star.each(function () {
+                    var rating = $(this).data('rating');
+                    $(this).barrating({
+                        theme: 'fontawesome-stars-o',
+                        initialRating: rating,
+                        readonly: true,
+                    });
+                });
+                $('.book-status#' + status + '0').show();
+            })
+            .fail(function() {
+                //
+            });
         }
     });
 
@@ -857,8 +879,7 @@
     $(document).on('click', '.search-title .pagination a', function(event){
         event.preventDefault();
         var url = $(event.target).attr('href');
-        var id = $(this).children().first().attr('id');
-        var type = $('.active #status').text();
+        var type = $('#search-page .active').find('[id]').attr('value');
         $.ajax({
             url: url,
             type: 'post',
@@ -872,6 +893,35 @@
         .fail(function() {
                 //
             });
+    });
+
+    $(document).on('click', '.profile .pagination a', function(event){
+        event.preventDefault();
+        var url = $(event.target).attr('href');
+        var status = $('#profile-page .active').find('[id]').attr('href');
+        $.ajax({
+            url: url,
+            type: 'post',
+        })
+        .done(function(res) {
+            $(status).html(res);
+        })
+        .fail(function() {
+                //
+            });
+    });
+
+    $(document).on('click', '.follows .pagination a', function(e){
+        e.preventDefault();
+        var url = $(e.target).attr('href');
+        var status = $('#profile-page .active').find('[id]').attr('href');
+        $.ajax({
+            type: 'post',
+            url: url,
+        })
+        .done(function(res) {
+            $(status).html(res);
+        })
     });
 
 })(jQuery);

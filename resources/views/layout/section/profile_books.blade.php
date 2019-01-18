@@ -79,4 +79,9 @@
         @include('layout.section.modal')
     @endforeach
 </div>
+<div class="text-center">
+    <div class="profile">
+        {{ $books->appends(Request::all())->links() }}
+    </div>
+</div>
 @endif
