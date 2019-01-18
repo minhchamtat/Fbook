@@ -29,7 +29,7 @@
                                     null,
                                     [
                                         'class' => 'rating',
-                                        'data-rating' => $book->avg_star
+                                        'data-rating' => $latestBook[$i]->avg_star
                                     ])
                                 !!}
                             </div>
@@ -93,7 +93,7 @@
                                     null,
                                     [
                                         'class' => 'rating',
-                                        'data-rating' => $book->avg_star
+                                        'data-rating' => $latestBook[$i]->avg_star
                                     ])
                                 !!}
                             </div>

@@ -120,6 +120,7 @@ return [
         'user' => 'USER',
         'top_author' => 'Thành viên tích cực',
         'book' => 'sách',
+        'top_sharing' => 'Người chia sẻ nhiều nhất'
     ],
 
     'error' => [

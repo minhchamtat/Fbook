@@ -120,6 +120,7 @@ return [
         'user' => 'USER',
         'top_author' => 'Top Author',
         'book' => 'books',
+        'top_sharing' => 'Top Sharing',
     ],
 
     'error' => [

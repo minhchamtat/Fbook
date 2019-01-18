@@ -1,8 +1,8 @@
 @if ($bestSharing->user)
-    <div class="product-wrapper no-slide">
-        <div class="product-img">
+    <div class="product no-slide image">
+        <div class="product-img image">
             <a href="{{ route('user', $bestSharing->user->id) }}" title="{{ $bestSharing->user->name }}">
-                <img src="{{ $bestSharing->user->avatar ? $bestSharing->user->avatar : asset(config('view.image_paths.user') . '1.png') }}" alt="book" class="primary" />
+                <img src="{{ $bestSharing->user->avatar ? $bestSharing->user->avatar : asset(config('view.image_paths.user') . '1.png') }}" alt="book" class="primary-image" />
             </a>
         </div>
         <div class="product-details text-center">
