@@ -138,7 +138,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title text-center mb-25">
-                    <h2>{{ trans('settings.home.top_author') }}</h2>
+                    <h2>{{ trans('settings.home.top_sharing') }}</h2>
                 </div>
             </div>
             <div class="tab-active tab-author owl-carousel">

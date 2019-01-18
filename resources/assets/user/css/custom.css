@@ -1889,3 +1889,20 @@ span.item-message {
 div.media-body.notify {
     text-transform: none !important;
 }
+
+i.fa.fa-bell {
+    color: #6494fb !important;
+}
+
+.product.no-slide.image {
+    padding-bottom: 5px;
+    transition: .5s;
+}
+
+.product-img.image {
+    border-radius: 50%;
+}
+
+img.primary-image {
+    border-radius: 50%;
+}
