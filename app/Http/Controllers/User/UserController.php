@@ -95,9 +95,28 @@ class UserController extends Controller
             ->load([
                 'books',
             ]);
-        $books = $user->books()->where('type', $status)->with(['owners', 'medias'])->get();
+        $books = $user->books()->where('type', $status)->with(['owners', 'medias'])
+            ->paginate(config('view.paginate.book_profile'), ['*'], $status);
 
         return view('layout.section.profile_books', compact('books', 'status'));
+    }
+
+    public function postFollowProfile($status, $id)
+    {
+        $selects = [
+            'id',
+        ];
+        $followingIds = Auth::user()->followings->pluck('id')->toArray();
+        $user = $this->user->find($id, $status, $selects);
+        if ($status == 'followers') {
+            $followers = $user->followers()->paginate(config('view.paginate.book_request'), ['*'], $status);
+
+            return view('layout.section.follow', compact('followers', 'followingIds'));
+        } else {
+            $followings = $user->followings()->paginate(config('view.paginate.book_request'), ['*'], $status);
+
+            return view('layout.section.follow', compact('followings', 'followingIds'));
+        }
     }
 
     public function getUserInfo($user, $id, $phone)

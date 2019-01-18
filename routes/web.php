@@ -39,9 +39,11 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/books/borrowing/{id}', 'UserController@borrowingBook');
             Route::post('/books/cancelBorrowing/{bookId}', 'UserController@cancelBorrowing');
             Route::get('/my-profile', 'UserController@myProfile')->name('my-profile');
+            Route::post('/my-profile', 'UserController@myProfiles');
             Route::post('/my-profile/{id}', 'UserController@postMyProfile')->name('profile');
             Route::resource('my-request', 'MyRequestController')->only(['index', 'update']);
             Route::post('/my-profile/{request}/{id}', 'UserController@getBooks');
+            Route::post('/my-profiles/{status}/{id}', 'UserController@postFollowProfile');
             Route::get('/users/{id}', 'UserController@getUser')->name('user');
             Route::post('/follow/{id}', 'UserController@follow');
             Route::post('/unfollow/{id}', 'UserController@unfollow');

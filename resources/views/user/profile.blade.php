@@ -104,13 +104,13 @@
             </div>
             <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                 <div class="mb-30">
-                    <ul class="nav nav-tabs status-tabs" role="tablist">
+                    <ul class="nav nav-tabs status-tabs" role="tablist" id="profile-page">
                         <li class="active"><a href="#sharing" data-toggle="tab">{{ trans('settings.profile.sharing') }}</a></li>
-                        <li><a href="#waiting" data-toggle="tab">{{ trans('settings.profile.waiting') }}</a></li>
-                        <li><a href="#reading" data-toggle="tab">{{ trans('settings.profile.reading') }}</a></li>
-                        <li><a href="#returned" data-toggle="tab">{{ trans('settings.profile.returned') }}</a></li>
-                        <li><a href="#following" data-toggle="tab">{{ trans('settings.profile.following') }}</a></li>
-                        <li><a href="#followers" data-toggle="tab">{{ trans('settings.profile.followers') }}</a></li>
+                        <li><a id="borrow" href="#waiting" data-toggle="tab">{{ trans('settings.profile.waiting') }}</a></li>
+                        <li><a id="borrow" href="#reading" data-toggle="tab">{{ trans('settings.profile.reading') }}</a></li>
+                        <li><a id="borrow" href="#returned" data-toggle="tab">{{ trans('settings.profile.returned') }}</a></li>
+                        <li><a id="borrow" href="#followings" data-toggle="tab">{{ trans('settings.profile.following') }}</a></li>
+                        <li><a id="borrow" href="#followers" data-toggle="tab">{{ trans('settings.profile.followers') }}</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
@@ -121,76 +121,8 @@
                     <div class="tab-pane" id="waiting" value="true"></div>
                     <div class="tab-pane" id="reading" value="true"></div>
                     <div class="tab-pane" id="returned" value="true"></div>
-                    <div class="tab-pane" id="following" value="false">
-                        @if (count($followings) > 0)
-                            <div class="book-status followings">
-                                <div class="row">
-                                    @foreach ($followings as $u)
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="d-flex exhibition-item user">
-                                                <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                                    <img src="{{ $u->avatar ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
-                                                </a>
-                                                <div class="user-info overflow-hidden">
-                                                    <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
-                                                    <div class="subscribe">
-                                                        @if (in_array($u->id, $followingIds))
-                                                            <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.following') }}</button>
-                                                        @elseif (Auth::id() == $u->id)
-                                                        @else
-                                                            <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="pagination-area mt-50">
-                                <div class="page-number">
-                                    <ul class="pagination">
-                                        {{ $followings->appends(Request::all())->links() }}
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="tab-pane" id="followers" value="false">
-                        @if (count($followers) > 0)
-                            <div class="book-status follower">
-                                <div class="row">
-                                    @foreach ($followers as $u)
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="d-flex exhibition-item user">
-                                                <a href="{{ route('user', $u->id) }}" class="a-follow">
-                                                    <img src="{{ $u->avatar ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
-                                                </a>
-                                                <div class="user-info overflow-hidden">
-                                                    <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>
-                                                    <div class="subscribe">
-                                                        @if (in_array($u->id, $followingIds))
-                                                            <button data-id="{{ $u->id }}" class="btn btn-follow following btn-md">{{ trans('settings.profile.followers') }}</button>
-                                                        @elseif (Auth::id() == $u->id)
-                                                        @else
-                                                            <button data-id="{{ $u->id }}" class="btn btn-follow follow btn-md">{{ trans('settings.profile.follow') }}</button>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="pagination-area mt-50">
-                                <div class="page-number">
-                                    <ul class="pagination">
-                                        {{ $followers->appends(Request::all())->links() }}
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
+                    <div class="tab-pane" id="followings" value="agree"></div>
+                    <div class="tab-pane" id="followers" value="agree"></div>
                 </div>
             </div>
         </div>

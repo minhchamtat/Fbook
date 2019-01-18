@@ -75,6 +75,8 @@
     @include('layout.section.modal')
 @endforeach
 
-<div class="sharing-page">
-    {!! $books->links() !!}
+<div class="text-center">
+    <div class="sharing-page">
+        {!! $books->links() !!}
+    </div>
 </div>

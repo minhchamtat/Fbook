@@ -15,12 +15,12 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="breadcrumbs-menu">
-                        <ul>
+                        <ul id="search-page">
                             <li>{{ trans('page.searchBy') }}</li>
-                            <li class="active"><a id="status" href="#title" data-toggle="tab">{{ trans('page.summary') }}</a></li>
-                            <li><a id="status" href="#author" data-toggle="tab">{{ trans('page.book.author') }}</a></li>
-                            <li><a id="status" href="#description" data-toggle="tab">{{ trans('page.book.description') }}</a></li>
-                            <li><a id="status" href="#users" data-toggle="tab">{{ trans('settings.admin.layout.users') }}</a></li>
+                            <li class="active"><a id="status" value="Title" href="#title" data-toggle="tab">{{ trans('page.summary') }}</a></li>
+                            <li><a id="status" value="Author" href="#author" data-toggle="tab">{{ trans('page.book.author') }}</a></li>
+                            <li><a id="status" value="Description" href="#description" data-toggle="tab">{{ trans('page.book.description') }}</a></li>
+                            <li><a id="status" value="Users" href="#users" data-toggle="tab">{{ trans('settings.admin.layout.users') }}</a></li>
                         </ul>
                     </div>
                 </div>
