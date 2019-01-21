@@ -108,6 +108,6 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
 
     public function countReview()
     {
-        return $this->model()->all()->count();
+        return $this->model()->count();
     }
 }

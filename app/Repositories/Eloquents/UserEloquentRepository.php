@@ -58,7 +58,7 @@ class UserEloquentRepository extends AbstractEloquentRepository implements UserR
 
     public function countUser()
     {
-        return $this->model()->all()->count();
+        return $this->model()->count();
     }
 
     public function phoneUser($data, $dataSelect = ['*'])

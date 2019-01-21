@@ -46,13 +46,14 @@ class HomeController extends Controller
             'countReview',
             'categories',
         ];
+        $take = config('view.taking_numb.latest_book');
         $offices = $this->office->getData()->pluck('name', 'id');
-        $topViewed = $this->book->getTopViewedBook($with);
-        $topReview = $this->book->getTopReviewBook($with);
-        $topInteresting = $this->book->getTopInterestingBook($with);
-        $latestBook = $this->book->getLatestBook($with);
+        $topViewed = $this->book->getTopViewedBook($with, [], $take);
+        $topReview = $this->book->getTopReviewBook($with, [], $take);
+        $topInteresting = $this->book->getTopInterestingBook($with, [], $take);
+        $latestBook = $this->book->getLatestBook($with, [], $take);
         $bestSharings = $this->book->getBestSharing();
-        $officeBooks = $this->book->getOfficeBooks($offices, $with);
+        $officeBooks = $this->book->getOfficeBooks($offices, ['medias']);
         $totalUser = $this->user->countUser();
         $totalBook = $this->book->countBook();
         $totalReview = $this->review->countReview();
@@ -63,9 +64,7 @@ class HomeController extends Controller
             'topViewed',
             'latestBook',
             'bestSharings',
-            'hotUser',
             'officeBooks',
-            'flag',
             'totalUser',
             'totalBook',
             'totalReview'
