@@ -4,9 +4,9 @@
 }
 
 hr {
-    margin: 20px;
     border: none;
     border-bottom: thin solid rgba(255, 255, 255, .1);
+    background-color: #ccc;
 }
 
 div.title {
@@ -1512,24 +1512,7 @@ span.category-book a:hover {
 .menu-area ul li > a {
 }
 
-#setting {
-    color: #373c40;
-    font-family: Verdana,Arial, Helvetica, sans-serif;
-    height: 100%;
-    margin:10px;
-}
-
-#setting {
-    font-size: 70%;
-}
-
-#setting p {
-    padding: 7px 0 7px 0;
-    font-weight: 500;
-    font-size: 10pt;
-}
-
-#setting h4 {
+#main h4 {
     padding:1px;
     color: #acacac;
     font-size:12pt;
@@ -1537,108 +1520,38 @@ span.category-book a:hover {
     text-transform:uppercase;
 }
 
-#setting .register {
-    width:800px;
-    margin: 0px auto 0px auto;
-    height:530px;
-    -moz-border-radius:20px;
-    -webkit-border-radius:20px;
-}
-
-#setting p {
-    font-size: 10pt;
-    clear:both;
-    margin: 0;
-}
-
-#setting .register fieldset.row2 {
-    border-top:1px solid #f1f1f1;
-    border-right:1px solid #f1f1f1;
-    height:500px;
-    padding:5px;
-    float:left;
-    width: 200px;
-}
-
-#setting .register fieldset.row3 {
-    border-top:1px solid #f1f1f1;
-    padding:5px;
-    float:left;
-    margin-bottom:15px;
-    width:580px;
-}
-
-#setting .register .infobox{
-    background: #f7f8e0;
-    margin-top: -15px;
-    margin-left: 10px;
+.infobox{
+    background: #e4e63269;
     border: 1px solid #f7f8e0;
-    padding:5px;
-    font-size:9px;
+    padding: 5px;
+    font-size: 12px;
 }
 
-#setting .register legend {
-    color: #5cb85c;
-    padding:2px;
-    font-weight:bold;
-    font-size: 21px;
-    font-weight:100;
-}
-
-#setting .register label {
-    font-size: 16px;
-    color:#444;
-    float: left;
-    text-align: right;
-    margin-right: 15px;
-    margin-top:2px;
-    margin-left: 10px;
-}
-
-#setting .register label.optional {
-    float: left;
-    text-align: right;
-    margin-right: 6px;
-    margin-top:2px;
-    color: #a3a3a3;
-}
-
-#setting .register label.obinfo {
-    float:right;
-    padding:3px;
-    font-style:italic;
-}
-
-#setting .register input {
-    width: 140px;
-    color: #505050;
-    float: left;
-}
-
-#setting .register input[type=radio] {
+.setting-phones input[type=radio] {
     float:left;
     width:30px;
     cursor: pointer;
 }
 
-#setting .register label.gender {
-    margin-top:-1px;
-    margin-bottom:2px;
-    float:left;
-    text-align:left;
-    line-height:19px;
+input.setting-phones, input.setting-phone {
+    margin-left: 10px !important;
 }
 
-#setting p.info {
+label.gender {
+    margin-bottom:2px;
+    color: #666 !important;
+}
+
+#main p.info {
     font-size:7pt;
     color: gray;
 }
 
-#setting p.agreement {
+#main p.agreement {
     margin-left:15px;
 }
 
-#setting p.agreement label {
+#main p.agreement label {
     width:390px;
     text-align:left;
     margin-top:3px;
@@ -1667,7 +1580,7 @@ span.category-book a:hover {
     margin-left: 7px;
 }
 
-#telephone-class {
+.settings {
     margin-top: 20px;
 }
 
@@ -1702,7 +1615,7 @@ span.category-book a:hover {
     font-size: 15px;
     color: #0000000;
     float: left;
-    margin: 7px 10px 10px 10px;
+    margin: 3px 10px 10px 10px;
 }
 
 .error-phone {
@@ -1727,7 +1640,7 @@ span.category-book a:hover {
 }
 
 #success {
-    margin: 5px 0px 0px 10px;
+    margin: 3px 0px 0px 10px;
     color: #5858fa;
     float: left;
     font-size: 15px !important;
@@ -1905,4 +1818,56 @@ i.fa.fa-bell {
 
 img.primary-image {
     border-radius: 50%;
+}
+
+div.single-most-product.top-interesting {
+    padding-bottom: 8px !important;
+}
+
+div.most-product-content.top-interesting {
+    padding: 20px 0 0 15px !important;
+}
+
+li.language {
+    font-size: 20px;
+    padding-left: 20px;
+    margin-top: 60%;
+}
+
+li.language > a {
+    color: #000 !important;
+}
+
+.row.header {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #38d03e;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+div.footer {
+    margin: 0 0 0 10px; 
+}
+
+div#main {
+    margin-top: 20px;
+    font-family: Verdana,Arial, Helvetica, sans-serif;
+}
+
+div#main > div.container {
+    width: 100% !important;
+    margin-bottom: 20px;
+}
+
+.display-radio {
+    clear: both;
+}
+
+label.language {
+    color: #666666 !important;
+}
+
+input.save-language {
+    margin-left: 10px;
 }

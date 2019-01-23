@@ -62,3 +62,21 @@ function getDay($value1, $value2)
 {
     return date('d/m/y', strtotime($value1) + $value2 * 86400);
 }
+
+function translate($value)
+{
+    switch ($value) {
+        case 'waiting':
+            return __('settings.book.waiting');
+            break;
+        case 'reading':
+            return __('settings.book.reading');
+            break;
+        case 'returning':
+            return __('settings.book.returning');
+            break;
+        default:
+            return __('settings.book.returned');
+            break;
+    }
+}

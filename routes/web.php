@@ -55,6 +55,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/settings/{phone}/{display}', 'SettingController@postSaveSetting');
             Route::post('/setting/display', 'SettingController@postSetting')->name('settings');
             Route::post('/setting-phone/{request}/{radio}', 'SettingController@postPhoneSetting');
+            Route::post('language/{language}', 'SettingController@postLanguage')->name('setting.language');
         });
     });
 
