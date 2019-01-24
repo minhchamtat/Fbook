@@ -263,4 +263,17 @@ return [
             'weeks' => 'weeks',
         ],
     ],
+
+    'notifications' => [
+        'review' => 'Review your book: ',
+        'follow' => 'Follow you',
+        'upvote' => 'Upvote your review for the book: ',
+        'downvote' => 'Downvote your review for the book: ',
+        'waiting' => 'Borrowing your book: ',
+        'returning' => 'Return your book: ',
+        'returned' => ' Has returned the book: ',
+        'reading' => ' Has approve request to borrow: ',
+        'prompt' => 'You will be returned book soon',
+        'cancel' => ' Has refuse request borrow: ',
+    ],
 ];

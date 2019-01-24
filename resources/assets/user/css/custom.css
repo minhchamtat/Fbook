@@ -903,10 +903,6 @@ i.fa.fa-times-circle {
     background-color: #f9423a;
 }
 
-#noti-detail .old {
-    background-color: #fff !important;
-}
-
 .container .old {
     background-color: #fff !important;
 }
@@ -1831,7 +1827,7 @@ span.cate-name {
 }
 
 .new.notification:hover, .old.notification:hover {
-    background-color: #f6f6f6 !important;
+    background-color: #e9ebee !important;
 }
 
 span.media-heading {
@@ -1926,4 +1922,10 @@ div.qr-code {
     display: inline-block;
     float: left;
     margin-left: 20px;
+}
+
+h4.h4 {
+    color: #000 !important;
+    text-align: left;
+    font-size: 18px;
 }
