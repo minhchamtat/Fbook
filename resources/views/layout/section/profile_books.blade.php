@@ -41,7 +41,7 @@
                             @for ($i = 0; $i < 2; $i++)
                                 <div class="owner" id="{{ 'user-' . $item->owners[$i]->id }}">
                                     <a href="{{ route('user', $item->owners[$i]->id) }}" title="{{ $item->owners[$i]->name }}">
-                                        <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                        <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                     </a>
                                 </div>
                             @endfor
@@ -54,7 +54,7 @@
                                     @for ($i = 0; $i < $item->owners->count(); $i++)
                                         <div class="owner" id="{{ 'user-' . $item->owners[$i]->id }}">
                                             <a href="{{ route('user', $item->owners[$i]->id) }}" title="{{ $item->owners[$i]->name }}">
-                                                <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                             </a>
                                         </div>
                                     @endfor
@@ -64,7 +64,7 @@
                             @for ($i = 0; $i < $item->owners->count(); $i++)
                                 <div class="owner" id="{{ 'user-' . $item->owners[$i]->id }}">
                                     <a href="{{ route('user', $item->owners[$i]->id) }}" title="{{ $item->owners[$i]->name }}">
-                                        <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                        <img src="{{ $item->owners[$i]->avatar ? $item->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                     </a>
                                 </div>
                             @endfor

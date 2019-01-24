@@ -33,12 +33,12 @@
                                                     <a class="search-img" href="{{ route('user', $owner->id) }}"
                                                         title="{{ $owner->name }} ( {{ $owner->office->name }} )">
                                                         @if ($owner->avatar != '')
-                                                        <img class="user-search" src="{{ $owner->avatar }}">
+                                                        <img class="user-search" src="{{ $owner->avatar }}" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                                         @else
                                                         <img class="user-search" src="{{ asset(config('view.image_paths.user') . '1.png') }}">
                                                         @endif
                                                         @if ($owner->office)
-                                                        <span class="address"> 
+                                                        <span class="address">
                                                             {{ $owner->office->address }}
                                                         </span>
                                                         @endif
@@ -92,12 +92,12 @@
                                                     <a class="search-img" href="{{ route('user', $owner->id) }}"
                                                         title="{{ $owner->name }} ( {{ $owner->office->name }} )">
                                                         @if ($owner->avatar != '')
-                                                        <img class="user-search" src="{{ $owner->avatar }}">
+                                                        <img class="user-search" src="{{ $owner->avatar }}" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                                         @else
                                                         <img class="user-search" src="{{ asset(config('view.image_paths.user') . '1.png') }}">
                                                         @endif
                                                         @if ($owner->office)
-                                                        <span class="address"> 
+                                                        <span class="address">
                                                             {{ $owner->office->address }}
                                                         </span>
                                                         @endif
@@ -151,12 +151,12 @@
                                                     <a class="search-img" href="{{ route('user', $owner->id) }}"
                                                         title="{{ $owner->name }} ( {{ $owner->office->name }} )">
                                                         @if ($owner->avatar != '')
-                                                        <img class="user-search" src="{{ $owner->avatar }}">
+                                                        <img class="user-search" src="{{ $owner->avatar }}" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                                         @else
                                                         <img class="user-search" src="{{ asset(config('view.image_paths.user') . '1.png') }}">
                                                         @endif
                                                         @if ($owner->office)
-                                                        <span class="address"> 
+                                                        <span class="address">
                                                             {{ $owner->office->address }}
                                                         </span>
                                                         @endif
@@ -195,7 +195,7 @@
                                         <div class="media">
                                             <div>
                                                 @if ($user->avatar)
-                                                <img src="{{ $user->avatar }}" alt="item" class="media-oject mg-thumbnail avatar-icon"/>
+                                                <img src="{{ $user->avatar }}" alt="item" class="media-oject mg-thumbnail avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';"/>
                                                 @else
                                                 <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-oject mg-thumbnail avatar-icon"/>
                                                 @endif

@@ -57,7 +57,7 @@ return [
     'clickMore' => 'Xem thêm',
     'keySearch' => 'Từ khóa:',
     'searchBy' => 'Tìm kiếm theo:',
-    'addNumber' => 'Thêm số điện thoại',
+    'addNumber' => 'Cập nhật số điện thoại',
     'addPhone' => 'Thêm',
     'display' => 'Hiển thị:',
     'public' => 'Mọi người',
@@ -72,4 +72,5 @@ return [
     'warning' => 'Hiển thị số điện thoại để mọi người dễ dàng liên lạc với bạn!',
     'close' => 'Tắt',
     'editPhone' => 'Sửa',
+    'enterPhone' => 'Nhập số điện thoại của bạn',
 ];
