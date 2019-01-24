@@ -57,7 +57,7 @@ return [
     'clickMore' => 'Show more',
     'keySearch' => 'Search for keyword:',
     'searchBy' => 'Search by:',
-    'addNumber' => 'Add phone number',
+    'addNumber' => 'Update your phone number',
     'addPhone' => 'Add',
     'display' => 'Display:',
     'public' => 'Public',
@@ -72,4 +72,5 @@ return [
     'warning' => 'Display phone numbers so people can easily contact you!',
     'close' => 'Close',
     'editPhone' => 'Edit',
+    'enterPhone' => 'Enter your phone number',
 ];

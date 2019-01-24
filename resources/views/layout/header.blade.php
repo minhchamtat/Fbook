@@ -62,7 +62,7 @@
                                     <div class="dropdown">
                                         <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             @if(Auth::user()->avatar)
-                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" class="avatar">
+                                                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" class="avatar" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                             @else
                                                 <img src="{{ asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="avatar">
                                             @endif

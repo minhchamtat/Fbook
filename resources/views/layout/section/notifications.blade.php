@@ -8,7 +8,7 @@
         @if (isset($notifications) && count($notifications) > 0)
             @foreach ($notifications as $item)
                 @if (!is_null($item->route))
-                    <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }} notify" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
+                    <li class="result-entry {{ $item->viewed == 0 ? 'new' : 'old' }} notification" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">
                         <a href="{{ route($item->route, $item->link) }}" class="result-link" title="{{ $item->message }}" data-id={{ $item->id }}>
                             <div class="media single-noti">
                                 <div>
@@ -18,7 +18,7 @@
                                         <img src="{{ asset(config('view.image_paths.user') . 'default.jpg') }}" alt="woman" class="media-object mg-thumbnail avatar-icon" />
                                     @endif
                                 </div>
-                                <div class="media-body notify">
+                                <div class="media-body notification">
                                     <span class="media-heading">{{ ($item->userSend->id == Auth::id()) ? 'Me' : $item->userSend->name }}</span>
                                     <span class="item-message">{{ $item->message }}</span>
                                     <p><i class="fa fa-bell"></i>
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </a>
-                    </li> 
+                    </li>
                 @endif
             @endforeach
             <li class="result-entry text-center" data-suggestion="#" data-position="1" data-type="type" data-analytics-type="merchant">

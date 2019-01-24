@@ -5,7 +5,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="d-flex exhibition-item user">
                 <a href="{{ route('user', $u->id) }}" class="a-follow">
-                    <img src="{{ $u->avatar ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon">
+                    <img src="{{ $u->avatar ? $u->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                 </a>
                 <div class="user-info overflow-hidden">
                     <a href="{{ route('user', $u->id) }}" class="link"><b>{{ $u->name }}</b></a>

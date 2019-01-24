@@ -10,8 +10,8 @@
                 {!! Form::open(['method' => 'post']) !!}
                 <div class="modal-body">
                     <div class="modal-phone">
-                        <div style="text-align: center;" class="error-phone"></div>
-                        {!! Form::text('phone', null, ['id' => 'phone_value', 'required', 'class' => 'form-control']) !!}
+                        <div class="error-phone"></div>
+                        {!! Form::text('phone', null, ['id' => 'phone_value', 'required', 'class' => 'form-control', 'placeHolder' => __('page.enterPhone')]) !!}
                         <div class="phone-display">
                             <div class="display">
                                 <h4>{{ trans('page.display') }}</h4>
@@ -32,7 +32,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    {!! Form::button(trans('page.addPhone'), ['id' => 'modal_phone', 'class' => 'btn btn-info']) !!}
+                    <button type="button" class="btn btn-white btn-cancel" data-dismiss="modal">{{ __('page.cancel') }}</button>
+                    {!! Form::button(trans('page.save'), ['id' => 'modal_phone', 'class' => 'btn btn-info']) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

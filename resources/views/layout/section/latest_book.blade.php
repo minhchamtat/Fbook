@@ -103,7 +103,7 @@
                                     @for ($j = 0; $j < 2; $j++)
                                         <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
                                             <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
-                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                             </a>
                                         </div>
                                     @endfor
@@ -116,7 +116,7 @@
                                             @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
                                                 <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
                                                     <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
-                                                        <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                        <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                                     </a>
                                                 </div>
                                             @endfor
@@ -126,7 +126,7 @@
                                     @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
                                         <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
                                             <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
-                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                                             </a>
                                         </div>
                                     @endfor

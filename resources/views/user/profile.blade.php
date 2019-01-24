@@ -6,7 +6,7 @@
         <div class="container">
             <div class="fb-profile">
                 <img align="left" class="fb-image-lg" src="{{ asset(config('view.image_paths.banner') . '32.jpg') }}" alt="banner"/>
-                <img align="left" src="{{ $user->avatar ? asset($user->avatar) : asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-avatar-profile thumbnail">
+                <img align="left" src="{{ $user->avatar ? asset($user->avatar) : asset(config('view.image_paths.user') . '1.png') }}" alt="avatar" class="fb-avatar-profile thumbnail" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
                 <div class="fb-profile-text floatleft">
                     @if ($user)
                         <h1 class="name-avatar">{{ $user->name }}</h1>
