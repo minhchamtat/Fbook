@@ -1915,3 +1915,15 @@ label.language {
 input.save-language {
     margin-left: 10px;
 }
+
+div.view-sku {
+    display: inline-block;
+    float: left;
+    padding-top: 14px;
+}
+
+div.qr-code {
+    display: inline-block;
+    float: left;
+    margin-left: 20px;
+}

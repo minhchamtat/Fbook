@@ -150,4 +150,6 @@ return [
         'loop_time' => '0 3 * * *',
     ],
 
+    'link' => 'http://localhost:8000/books/',
+
 ];
