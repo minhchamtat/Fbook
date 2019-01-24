@@ -81,7 +81,8 @@
                                         {{ getDay($book->created_at, $book->days_to_read) }}
                                     </td>
                                     <td class="type">
-                                        <label class="stt bg-{{ $book->type }}">{{ $book->type }}</label>
+                                        <label class="stt bg-{{ $book->type }}">{{ translate($book->type) }}
+                                        </label>
                                     </td>
                                     @if ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))
                                         <td></td>

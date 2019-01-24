@@ -56,4 +56,15 @@
         document.getElementById('displays').style.display = 'none';
     });
 
+    $('.save-language').on('click', function() {
+            var language = $('input[name="language"]:checked').val();
+            $.ajax({
+                url: '/language/' + language,
+                type: 'POST',
+                success:function(response) {
+                    window.location.reload(true);
+                }
+            });
+        });
+
 })(jQuery);

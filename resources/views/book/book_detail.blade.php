@@ -374,7 +374,7 @@
                                 <div class="product-active owl-carousel">
                                     <div class="product-total-2">
                                         @for ($i = 0; $i < count($topInteresting); $i++)
-                                            <div class="single-most-product bd mb-18">
+                                            <div class="single-most-product top-interesting bd mb-18">
                                                 @if ($topInteresting[$i]->medias->count() > 0)
                                                     <div class="most-product-img">
                                                         <a href="{{ route('books.show', $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id) }}">
@@ -390,7 +390,10 @@
                                                         </a>
                                                     </div>
                                                 @endif
-                                                <div class="most-product-content">
+                                                <div class="most-product-content top-interesting">
+                                                    <h4>
+                                                        <a href="{{ route('books.show', ['id' => $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id]) }}">{{ $topInteresting[$i]->title }}</a>
+                                                    </h4>
                                                     <div class="product-rating">
                                                         {!! Form::select('rating',
                                                            [
@@ -408,9 +411,6 @@
                                                             ])
                                                         !!}
                                                     </div>
-                                                    <h4>
-                                                        <a href="{{ route('books.show', ['id' => $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id]) }}">{{ $topInteresting[$i]->title }}</a>
-                                                    </h4>
                                                 </div>
                                             </div>
                                         @endfor

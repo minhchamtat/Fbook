@@ -225,6 +225,7 @@ return [
     'lang' => [
         'en' => 'English',
         'vi' => 'Tiếng Việt',
+        'language' => 'Ngôn ngữ',
     ],
 
     'success' => [

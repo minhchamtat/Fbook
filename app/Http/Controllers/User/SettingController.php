@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UsermetaRepository;
 use App\Repositories\Contracts\UserRepository;
 use Auth;
+use Session;
 
 class SettingController extends Controller
 {
@@ -33,14 +34,20 @@ class SettingController extends Controller
             'key' => 'display_phone',
             'user_id' => $id,
         ];
-        $displayPhone = $this->usermeta->getDataSetting($data);
-        $data = [
+        $displayPhone = $this->usermeta->find($data);
+        // $data = [
+        //     'id' => $id,
+        // ];
+        $phones = $this->user->phoneUser([
             'id' => $id,
-        ];
-        $phones = $this->user->phoneUser($data);
+        ]);
         $phone = $phones[0]->phone;
+        $language = $this->usermeta->find([
+            'key' => 'website-language',
+            'user_id' => $id,
+        ]);
 
-        return view('layout.section.setting', compact('displayPhone', 'phone'));
+        return view('layout.section.setting', compact('displayPhone', 'phone', 'language'));
     }
 
     public function postPhoneSetting($phone, $radio)
@@ -63,12 +70,28 @@ class SettingController extends Controller
             ];
             $phones = $this->user->phoneUser($data);
             $phone = $phones[0]->phone;
+            $language = $this->usermeta->find([
+                'key' => 'website-language',
+                'user_id' => $id,
+            ]);
 
-            return view('layout.section.setting_phone', compact('displayPhone', 'phone'));
+            return view('layout.section.setting_phone', compact('displayPhone', 'phone', 'language'));
         } else {
             return response()->json([
                 'data' => '0',
             ]);
         }
+    }
+
+    public function postLanguage($language)
+    {
+        $data = [
+            'user_id' => Auth::id(),
+            'key' => 'website-language',
+        ];
+        $this->usermeta->settingLanguage(Auth::id(), $language);
+        Session::put('website-language', $this->usermeta->find($data)->value);
+
+        return response()->json($language);
     }
 }
