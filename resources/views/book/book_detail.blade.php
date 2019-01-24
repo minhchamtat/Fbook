@@ -49,8 +49,8 @@
                                                     @if (count($book->owners) > 0)
                                                         @foreach ($book->owners as $owner)
                                                             <div class="owner mr-6" id="{{ 'user-' . $owner->id }}">
-                                                                <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }}
-                                                                    ({{ $owner->office ? $owner->office->name : '' }})">
+                                                                <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }}({{
+                                                                    $owner->office ? $owner->office->name : '' }})">
                                                                     <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
                                                                 </a>
                                                                 <span class="owner-office">{{ $owner->office ? $owner->office->address : '' }}</span>
@@ -87,13 +87,19 @@
                                                     {{ count($book->reviews) . ' ' . (count($book->reviews) <= 1 ? __('settings.book.review') : __('settings.default.reviews')) }}
                                                 </a>
                                             </div>
-                                            <div class="reviews-actions-book">
-                                                <b>{{ __('settings.book.view') }}</b>
-                                                <span>{{ $book->count_viewed ? $book->count_viewed : '0' }}</span>
+                                            <div class="view-sku">
+                                                <div class="reviews-actions-book">
+                                                    <b>{{ __('settings.book.view') }}</b>
+                                                    <span>{{ $book->count_viewed ? $book->count_viewed : '0' }}</span>
+                                                </div>
+                                                <div class="reviews-actions-book">
+                                                    <b>{{ __('settings.book.sku') }}</b>
+                                                    <span>{{ $book->sku ? $book->sku : '0' }}</span>
+                                                </div>
                                             </div>
-                                            <div class="reviews-actions-book">
-                                                <b>{{ __('settings.book.sku') }}</b>
-                                                <span>{{ $book->sku ? $book->sku : '0' }}</span>
+                                            <div class="qr-code">
+                                                {!! QrCode::size(100)->generate(
+                                                    Request::url(config('view.link') . $book->slug . '-' . $book->id)); !!}
                                             </div>
                                         </div>
                                     </div>

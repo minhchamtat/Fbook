@@ -1906,3 +1906,15 @@ i.fa.fa-bell {
 img.primary-image {
     border-radius: 50%;
 }
+
+div.view-sku {
+    display: inline-block;
+    float: left;
+    padding-top: 14px;
+}
+
+div.qr-code {
+    display: inline-block;
+    float: left;
+    margin-left: 20px;
+}
