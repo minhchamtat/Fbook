@@ -48,11 +48,15 @@ class BookController extends Controller
     public function ajaxShow()
     {
         try {
+            $limit = $this->book->countBook();
             $books = $this->book->getData(
                 [],
                 [],
-                ['id', 'title', 'author', 'publish_date', 'total_pages', 'avg_star', 'count_viewed', 'slug']
+                ['id', 'title', 'author', 'publish_date', 'total_pages', 'avg_star', 'count_viewed', 'slug'],
+                ['id', 'desc'],
+                $limit
             );
+
             return Datatables::of($books)
                 ->make(true);
         } catch (Exception $e) {
