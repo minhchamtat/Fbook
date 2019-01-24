@@ -196,8 +196,7 @@
                                                     @else
                                                         <a data-toggle="modal" href="{{ Auth::check() ? '#borrowingModal' : '' }}"
                                                             data-id="{{ $book->id }}"
-                                                            class="{{ Auth::check() ? 'btn-borrow book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}"
-                                                            >
+                                                            class="{{ Auth::check() ? 'btn-borrow book-info-link' : 'login' }} {{ $isOwner ? 'disabled' : '' }}">
                                                             {{ trans('settings.book.borrow_book') }}
                                                         </a>
                                                     @endif

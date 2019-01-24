@@ -27,7 +27,8 @@
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group">
                                     <div class="col-0">
-                                        <img class="rounded float-right avatar-edit" src="{{ $user->avatar }}">
+                                        <img class="rounded float-right avatar-edit" src="
+                                        {{ $user->avatar ? $user->avatar : asset(config('view.image_paths.user') . '1.png') }}">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row input-ne">
