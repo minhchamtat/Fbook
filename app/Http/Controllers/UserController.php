@@ -8,6 +8,7 @@ use App\Repositories\Contracts\RoleRepository;
 use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\RoleUserRepository;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
 use App\Eloquent\User;
 use Session;
 
@@ -131,7 +132,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(EditUserRequest $request, $id)
     {
         try {
             $this->repository->update($id, $request->all());
@@ -141,7 +142,7 @@ class UserController extends Controller
             }
             Session::flash('success', trans('settings.success.store'));
             
-            return back();
+            return redirect()->route('users.index');
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
             

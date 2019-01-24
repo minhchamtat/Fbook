@@ -159,7 +159,8 @@ class BookController extends Controller
             ];
             $id = last(explode('-', $slug));
             $book = $this->book->find($id, $this->with);
-            $topInteresting = $this->book->getTopInterestingBook($with);
+            $take = config('view.taking_numb.best_sharing_book');
+            $topInteresting = $this->book->getTopInterestingBook($with, [], $take);
             Event::fire('count.view', $book);
 
             if (!empty($book)) {

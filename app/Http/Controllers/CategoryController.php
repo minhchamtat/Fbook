@@ -69,7 +69,7 @@ class CategoryController extends Controller
             $request->merge(['slug' => $slug]);
             $category->update($request->all());
 
-            return back()->with('success', __('admin.success'));
+            return redirect()->route('category.index')->with('success', __('admin.success'));
         } catch (Exception $e) {
             Session::flash('unsuccess', trans('settings.unsuccess.error', ['messages' => $e->getMessage()]));
 
