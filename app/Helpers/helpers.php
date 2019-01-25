@@ -75,8 +75,20 @@ function translate($value)
         case 'returning':
             return __('settings.book.returning');
             break;
-        default:
+        case 'returned':
             return __('settings.book.returned');
+            break;
+        case config('view.notifications.waiting'):
+            return __('settings.notifications.waiting');
+            break;
+        case config('view.notifications.returning'):
+            return __('settings.notifications.returning');
+            break;
+        case config('view.notifications.returned'):
+            return __('settings.notifications.returned');
+            break;
+        default:
+            return __('settings.notifications.reading');
             break;
     }
 }

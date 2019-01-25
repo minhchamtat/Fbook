@@ -51,7 +51,8 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     if ($record->target) {
                         $book = $record->target->book;
                         if ($book) {
-                            $message = config('view.notifications.' . $record->target->type) . $book->title;
+                            $message = translate(config('view.notifications.' . $record->target->type))
+                                . $book->title;
                             $record = array_add($record, 'message', $message);
                             if ($record->target->type == config('view.request.waiting') ||
                                 $record->target->type == config('view.request.returning')) {
@@ -69,7 +70,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                 case config('model.target_type.review'):
                     $book = $record->target->book;
                     if ($book) {
-                        $record = array_add($record, 'message', config('view.notifications.review') . $book->title);
+                        $record = array_add($record, 'message', __('settings.notifications.review') . $book->title);
                         $record = array_add($record, 'route', config('view.notifications.route.review'));
                         $link = [
                             $book->slug . '-' . $book->id,
@@ -81,7 +82,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     break;
 
                 case config('model.target_type.follow'):
-                    $record = array_add($record, 'message', config('view.notifications.follow'));
+                    $record = array_add($record, 'message', __('settings.notifications.follow'));
                     $record = array_add($record, 'route', config('view.notifications.route.user'));
                     $record = array_add($record, 'link', $record->send_id);
                     array_push($allRecords, $record);
@@ -93,13 +94,13 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                         $record = array_add(
                             $record,
                             'message',
-                            config('view.notifications.upvote') . $book->title
+                            __('settings.notifications.upvote') . $book->title
                         );
                     } elseif ($record->target->status == -1) {
                         $record = array_add(
                             $record,
                             'message',
-                            config('view.notifications.downvote') . $book->title
+                            __('settings.notifications.downvote') . $book->title
                         );
                     }
                     $record = array_add($record, 'route', config('view.notifications.route.review'));
@@ -112,7 +113,7 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     break;
 
                 case config('model.target_type.user'):
-                    $record = array_add($record, 'message', config('view.notifications.prompt'));
+                    $record = array_add($record, 'message', __('settings.notifications.prompt'));
                     $record = array_add($record, 'route', config('view.notifications.route.owner_prompt'));
                     $record = array_add($record, 'link', null);
                     array_push($allRecords, $record);
