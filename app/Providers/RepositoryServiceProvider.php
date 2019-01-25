@@ -75,6 +75,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\UsermetaRepository',
             'App\Repositories\Eloquents\UsermetaEloquentRepository',
         ],
+        [
+            'App\Repositories\Contracts\OptionRepository',
+            'App\Repositories\Eloquents\OptionEloquentRepository',
+        ],
     ];
 
     /**
