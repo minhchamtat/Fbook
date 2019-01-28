@@ -20,6 +20,21 @@ class OptionEloquentRepository extends AbstractEloquentRepository implements Opt
         ->get();
     }
 
+    public function setting()
+    {
+        $data['textFooters'] = Option::where(['key' => 'text_footer'])->get();
+        $data['banners'] = Option::where(['key' => 'banner'])->get();
+        $data['bannerBooks'] = Option::where(['key' => 'banner_book'])->first();
+        $data['apps'] = Option::where(['key' => 'app'])->get();
+        $data['textBanners'] = Option::where(['key' => 'text_banner'])->get();
+        $data['textApps'] = Option::where(['key' => 'app_text'])->get();
+        $data['contacts'] = Option::where(['key' => 'contact'])->get();
+        $data['address'] = Option::where(['key' => 'address'])->get();
+        $data['emails'] = Option::where(['key' => 'email'])->get();
+        
+        return $data;
+    }
+
     public function updateImgtOption($value, $key)
     {
         $countOption = $this->model()->where('key', $key)->first();
@@ -63,7 +78,7 @@ class OptionEloquentRepository extends AbstractEloquentRepository implements Opt
 
             return $countTextApp->update($data);
         } else {
-            $data['key'] = 'app-text';
+            $data['key'] = 'app_text';
             $data['value'] = $value;
 
             return $this->model()->create($data);

@@ -45,7 +45,7 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.help') }}</h4>
-                            <p>{{ __('settings.default.call') }} : 84-4-3795-5417</p>
+                            <p>{{ __('settings.default.call') }} : {{ $contacts[0]['value'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="banner-shadow-hover xs-mb">
-                    <img src="{{ asset(config('view.image_paths.banner') . 'banner-sach.png') }}" alt="banner" width="100%" />
+                    <img src="{{ asset(config('view.image_paths.banner') . $bannerBooks[0]['value']) }}" alt="banner" width="100%" />
                 </div>
             </div>
         </div>
@@ -221,7 +221,7 @@
                         <a><i class="fa fa-book" aria-hidden="true"></i></a>
                     </div>
                     <div class="twitter-text">
-                        <p>{{ __('page.twitter') }}</p>
+                        <p>{{ $textFooters[0]['value'] }}</p>
                     </div>
                 </div>
             </div>
@@ -231,41 +231,17 @@
                 </div>
                 <div class="link-follow">
                     <ul>
+                        @if (isset($apps) && count($apps) > 0)
+                        @foreach ($apps as $key => $app)
+                        @if (isset($textApps[$key]))
                         <li>
                             <a href="{{ asset(config('view.links.wsm')) }}" target="_blank">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'wsm_logo.png') }}" data-toggle="tolltip" title="WSM" alt="WSM"/>
+                                <img src="{{ asset(config('view.image_paths.logo') . $app->value) }}" data-toggle="tolltip" title={{ $textApps[$key]['value'] }} alt="WSM"/>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ asset(config('view.links.fask')) }}" target="_blank">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fask_logo.png') }}" data-toggle="tolltip" title="FAsk" alt=""/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ asset(config('view.links.fitm')) }}" target="_blank">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fitm.png') }}" data-toggle="tolltip" title="FITM" alt=""/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ asset(config('view.links.fclub')) }}" target="_blank">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fclub_logo.png') }}" data-toggle="tolltip" title="FClub" alt=""/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ asset(config('view.links.fgas')) }}" target="_blank">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fgas_logo.png') }}" data-toggle="tolltip" title="FGas" alt=""/>
-                            </a>
-                        </li>
-                        <li class="hidden-sm">
-                            <a href="{{ asset(config('view.links.fsurvey')) }}" target="_blank">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'fsurvey_logo.png') }}" data-toggle="tolltip" title="FSurvey" alt=""/>
-                            </a>
-                        </li>
-                        <li class="hidden-sm">
-                            <a href="#">
-                                <img src="{{ asset(config('view.image_paths.logo') . 'logo4.png') }}" data-toggle="tolltip" title="FBook" alt=""/>
-                            </a>
-                        </li>
+                        @endif
+                        @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>

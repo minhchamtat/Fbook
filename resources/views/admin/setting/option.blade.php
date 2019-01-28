@@ -137,12 +137,12 @@
                             </div>
                             @endforeach
                             @endif
-                            @if (isset($bannerBook))
+                            @if (isset($bannerBooks))
                             <div class="article">
-                                {!! Form::open(['method' => 'POST', 'id' => 'uploatImg' . $bannerBook->id, 'files' => true]) !!}
-                                {!! Form::hidden('banners', $bannerBook->id) !!}
-                                {!! Form::file('img', ['values' => $bannerBook->id, 'class' => 'form-control hidden img-file', 'id' => 'banner' . $bannerBook->id, 'required', 'onchange' => 'changeImg(this)', 'accept' => 'image/png, image/jpeg, image/jpg']) !!}
-                                <img values="{{ $bannerBook->id }}" id="img-banners{{ $bannerBook->id }}" class="thumbs avatar" src="{{ asset(config('view.image_paths.banner') . $bannerBook->value) }}">
+                                {!! Form::open(['method' => 'POST', 'id' => 'uploatImg' . $bannerBooks->id, 'files' => true]) !!}
+                                {!! Form::hidden('banners', $bannerBooks->id) !!}
+                                {!! Form::file('img', ['values' => $bannerBooks->id, 'class' => 'form-control hidden img-file', 'id' => 'banner' . $bannerBooks->id, 'required', 'onchange' => 'changeImg(this)', 'accept' => 'image/png, image/jpeg, image/jpg']) !!}
+                                <img values="{{ $bannerBooks->id }}" id="img-banners{{ $bannerBooks->id }}" class="thumbs avatar" src="{{ asset(config('view.image_paths.banner') . $bannerBooks->value) }}">
                                 {!! Form::close() !!}
                                 <div class="title text-banner">{{ trans('admin.option.bookBanner') }}</div>
                             </div>
