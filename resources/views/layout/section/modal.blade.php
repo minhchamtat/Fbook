@@ -30,7 +30,7 @@
                                                     @foreach ($book->owners as $owner)
                                                         <div class="owner" id="{{ 'user-' . $owner->id }}">
                                                             <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }} ({{ $owner->office ? $owner->office->name : '' }})">
-                                                                <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
+                                                                <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};">
                                                             </a>
                                                             <span class="owner-office">{{ $owner->office ? $owner->office->address : '' }}</span>
                                                         </div>

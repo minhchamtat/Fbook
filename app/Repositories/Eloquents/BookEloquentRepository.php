@@ -185,26 +185,22 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             $ids = app(Bookmeta::class)
                 ->where('key', $value)
                 ->where('value', '>', 0)
-                ->inRandomOrder()
-                ->take(config('view.random_numb.book'))
                 ->pluck('book_id');
-
             $data->push(
                 [
                     'id' => $key,
                     'office' => $value,
                     'books' => $this->model()
-                        ->select($this->onlyAttributes)
-                        ->with($with)
-                        ->whereIn('id', $ids)
-                        ->get(),
+                    ->select($this->onlyAttributes)
+                    ->with($with)
+                    ->whereIn('id', $ids)
+                    ->inRandomOrder()
+                    ->take(config('view.random_numb.book'))
+                    ->get(),
                 ]
             );
         }
 
-        if (count($data) > config('view.random_numb.office')) {
-            $data = $data->random(config('view.random_numb.office'));
-        }
         return $data;
     }
 
