@@ -70,5 +70,11 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('/roles', 'RoleController');
         Route::resource('/offices', 'OfficeController');
         Route::resource('/users', 'UserController');
+        Route::get('/setting', 'SettingController@indexSetting')->name('setting');
+        Route::post('/setting/text', 'SettingController@postEditText');
+        Route::post('/setting/img', 'SettingController@postEditImg')->name('settingImg');
+        Route::post('/setting/text/banner/', 'SettingController@postEditTextBanner');
+        Route::post('/setting/app/', 'SettingController@postAddApp');
+        Route::post('/setting/delete/app/', 'SettingController@postDeleteApp')->name('deleteApp');
     });
 });
