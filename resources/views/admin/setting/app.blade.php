@@ -8,13 +8,13 @@
             </div>
             <div class="m-widget4__info" data-toggle="modal" data-target="#myModalApps{{ $app->id }}">
                 <span class="m-widget4__title">
-                    {{ $textApps[$key]->value }}
+                    {{ $textApps[$key]['value'] }}
                 </span>
             </div>
             <span class="m-widget4__ext">
-                {!! Form::open(['route' => ['deleteApp'], 'method' => 'post', 'id' => 'delete-app']) !!}
+                {!! Form::open(['route' => ['deleteApp'], 'method' => 'post', 'id' => 'delete-app' . $app->id]) !!}
                 {!! Form::hidden('idApp', $app->id) !!}
-                {!! Form::hidden('idText', $textApps[$key]->id) !!}
+                {!! Form::hidden('idText', $textApps[$key]['id']) !!}
                 <button type="submit" class="btn btn-danger m-btn m-btn--custom btn-9 btn-sm" title={{ trans('admin.delete') }}>
                     <i class="fa fa-trash"></i>
                 </button>

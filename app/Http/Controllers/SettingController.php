@@ -27,18 +27,7 @@ class SettingController extends Controller
 
     public function indexSetting()
     {
-        $data['text'] = $this->getOption('text_footer');
-        $data['banners'] = $this->getOption('banner');
-        $data['bannerBook'] = $this->getOption('banner-sach')->first();
-        $data['logo'] = $this->getOption('logo')->first();
-        $data['apps'] = $this->getOption('app');
-        $data['textBanners'] = $this->getOption('text_banner');
-        $data['textApps'] = $this->getOption('app-text');
-        $data['contacts'] = $this->getOption('contact');
-        $data['address'] = $this->getOption('address');
-        $data['emails'] = $this->getOption('email');
-
-        return view('admin.setting.option', $data);
+        return view('admin.setting.option');
     }
 
     public function postEditText(Request $request)
@@ -95,7 +84,7 @@ class SettingController extends Controller
                     $value = $request->name;
                     $this->option->updateTextApp($id, $value);
                     $data['apps'] = $this->getOption('app');
-                    $data['textApps'] = $this->getOption('app-text');
+                    $data['textApps'] = $this->getOption('app_text');
                     session()->flash('success', __('admin.success'));
 
                     return view('admin.setting.app', $data);
@@ -116,14 +105,14 @@ class SettingController extends Controller
                     $value = $request->name;
                     $this->option->updateTextApp($idText, $value);
                     $data['apps'] = $this->getOption('app');
-                    $data['textApps'] = $this->getOption('app-text');
+                    $data['textApps'] = $this->getOption('app_text');
                     session()->flash('success', __('admin.success'));
 
                     return view('admin.setting.app', $data);
                 } else {
                     $this->option->updateTextApp($idText, $value);
                     $data['apps'] = $this->getOption('app');
-                    $data['textApps'] = $this->getOption('app-text');
+                    $data['textApps'] = $this->getOption('app_text');
                     session()->flash('success', __('admin.success'));
 
                     return view('admin.setting.app', $data);
@@ -139,8 +128,10 @@ class SettingController extends Controller
     public function postDeleteApp(Request $request)
     {
         try {
-            $this->option->deleteApp($request->idText);
-            $this->option->deleteApp($request->idApp);
+            $idText = $request->idText;
+            $idApp = $request->idApp;
+            $this->option->deleteApp($idText);
+            $this->option->deleteApp($idApp);
             session()->flash('success', __('admin.success'));
 
             return redirect()->back();

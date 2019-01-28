@@ -32,13 +32,13 @@
                 <h4 class="text-white">{{ __('settings.default.contact') }}</h4>
                 <ul class="contact list-unstyled footer">
                     <li>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> 13F Keangnam Landmark 72 Tower, Plot E6, Pham Hung Road, Nam Tu Liem, Ha Noi, Viet Nam.
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>{{ $address[0]['value'] }}
                     </li>
                     <li>
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i> education@framgia.com
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>{{ $emails[0]['value'] }}
                     </li>
                     <li>
-                        <i class="fa fa-phone" aria-hidden="true"></i> 84-4-3795-5417
+                        <i class="fa fa-phone" aria-hidden="true"></i>{{ $contacts[0]['value'] }}
                     </li>
                 </ul>
             </div>
