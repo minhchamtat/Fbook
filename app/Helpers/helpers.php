@@ -84,6 +84,9 @@ function translate($value)
         case 'returned':
             return __('settings.book.returned');
             break;
+        case 'cancel':
+            return __('settings.book.cancel');
+            break;
         case config('view.notifications.waiting'):
             return __('settings.notifications.waiting');
             break;

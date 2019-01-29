@@ -84,6 +84,7 @@ return [
         'reading' => 'Reading',
         'returning' => 'Returning',
         'returned' => 'Returned',
+        'cancel' => 'Cancel',
         'no_user' => 'No User!',
         'cancel_borrowing' => 'Cancel Borrowing',
         'booklist' => 'Book List',
