@@ -252,6 +252,14 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             ->paginate(config('view.pageFull'), ['*'], $page);
     }
 
+    public function searchPage($attribute, $data)
+    {
+        return $this->model()
+            ->select($this->onlyAttributes)
+            ->fullTextSearch($attribute, $data)
+            ->get();
+    }
+
     public function updateStar($data, $id)
     {
         $book = $this->model()->findOrFail($id);
