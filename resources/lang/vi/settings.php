@@ -84,6 +84,7 @@ return [
         'reading' => 'Đang đọc',
         'returning' => 'Đang trả',
         'returned' => 'Đã đọc',
+        'cancel' => 'Hủy cho mượn',
         'no_user' => 'Không có người dùng nào!',
         'cancel_borrowing' => 'Hủy yêu cầu mượn',
         'booklist' => 'Danh sách',
