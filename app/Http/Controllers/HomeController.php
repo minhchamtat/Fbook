@@ -103,7 +103,7 @@ class HomeController extends Controller
     {
         if ($request->req != '') {
             $result = collect([
-                'titles' => $this->book->search('title', $request->req)->take(config('view.paginate.book_request')),
+                'titles' => $this->book->searchPage('title', $request->req)->take(config('view.paginate.book_request')),
             ]);
         }
 
@@ -121,7 +121,7 @@ class HomeController extends Controller
         $data['authors'] = $this->book->search('author', $request->req, 'authors', $with);
         $data['descriptions'] = $this->book->search('description', $request->req, 'descriptions', $with);
         $data['key'] = $request->req;
-        $data['page'] = 'Title';
+        $data['page'] = trans('page.summary');
 
         return view('search', $data);
     }
