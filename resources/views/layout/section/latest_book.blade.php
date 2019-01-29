@@ -3,7 +3,9 @@
         <div class="tab-total">
             <div class="product-wrapper mb-40">
                 <div class="product-img">
-                    <img src="{{ asset(config('view.image_paths.book') . ($latestBook[$i]->medias->count() > 0 ? $latestBook[$i]->medias[0]->path : 'default.jpg')) }}" alt="book" class="primary no-trans" />
+                    <a href="{{ route('books.show', $latestBook[$i]->slug . '-' . $latestBook[$i]->id) }}">
+                        <img src="{{ asset(config('view.image_paths.book') . ($latestBook[$i]->medias->count() > 0 ? $latestBook[$i]->medias[0]->path : 'default.jpg')) }}" alt="book" class="primary" />
+                    </a>
                     <div class="quick-view">
                         <a class="action-view" href="#" data-target="#productModal{{ $latestBook[$i]->id }}" data-toggle="modal" title="Quick View">
                             <i class="fa fa-search-plus"></i>
@@ -43,11 +45,20 @@
                                             </a>
                                         </div>
                                     @endfor
-                                    <div class="owner">
+                                    <div class="owner owner-show">
                                         <a href="/" title="{{ 'And more' }}" class="owner-more">
                                             <span>+</span>
                                             <span>{{ $countOwnerLatest - 2 }}</span>
                                         </a>
+                                        <div class="owner-hover">
+                                            @for ($i = 0; $i < $latestBook->owners->count(); $i++)
+                                                <div class="owner" id="{{ 'user-' . $latestBook->owners[$i]->id }}">
+                                                    <a href="{{ route('user', $latestBook->owners[$i]->id) }}" title="{{ $latestBook->owners[$i]->name }}">
+                                                        <img src="{{ $latestBook->owners[$i]->avatar ? $latestBook->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};">
+                                                    </a>
+                                                </div>
+                                            @endfor
+                                        </div>
                                     </div>
                                 @else
                                     @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
@@ -103,7 +114,7 @@
                                     @for ($j = 0; $j < 2; $j++)
                                         <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
                                             <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
-                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$j]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};">
                                             </a>
                                         </div>
                                     @endfor
@@ -116,7 +127,7 @@
                                             @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
                                                 <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
                                                     <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
-                                                        <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
+                                                        <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};">
                                                     </a>
                                                 </div>
                                             @endfor
@@ -126,7 +137,7 @@
                                     @for ($j = 0; $j < $latestBook[$i]->owners->count(); $j++)
                                         <div class="owner" id="{{ 'user-' . $latestBook[$i]->owners[$j]->id }}">
                                             <a href="{{ route('user', $latestBook[$i]->owners[$j]->id) }}" title="{{ $latestBook[$i]->owners[$j]->name }}">
-                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src='http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';">
+                                                <img src="{{ $latestBook[$i]->owners[$j]->avatar ? $latestBook[$i]->owners[$j]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};">
                                             </a>
                                         </div>
                                     @endfor
