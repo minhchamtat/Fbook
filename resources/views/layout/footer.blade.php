@@ -32,13 +32,19 @@
                 <h4 class="text-white">{{ __('settings.default.contact') }}</h4>
                 <ul class="contact list-unstyled footer">
                     <li>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>{{ $address[0]['value'] }}
+                        @if (isset($address) && count($address) > 0)
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>{{ $address[0]['value'] }}
+                        @endif
                     </li>
                     <li>
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>{{ $emails[0]['value'] }}
+                        @if (isset($emails) && count($emails) > 0)
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>{{ $emails[0]['value'] }}
+                        @endif
                     </li>
                     <li>
-                        <i class="fa fa-phone" aria-hidden="true"></i>{{ $contacts[0]['value'] }}
+                        @if (isset($contacts) && count($contacts) > 0)
+                            <i class="fa fa-phone" aria-hidden="true"></i>{{ $contacts[0]['value'] }}
+                        @endif
                     </li>
                 </ul>
             </div>

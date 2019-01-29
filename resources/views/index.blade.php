@@ -45,7 +45,9 @@
                         </div>
                         <div class="banner-text">
                             <h4>{{ __('settings.default.help') }}</h4>
-                            <p>{{ __('settings.default.call') }} : {{ $contacts[0]['value'] }}</p>
+                            @if (isset($contacts) && count($contacts) > 0)
+                                <p>{{ __('settings.default.call') }} : {{ $contacts[0]['value'] }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -174,7 +176,9 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="banner-shadow-hover xs-mb">
-                    <img src="{{ asset(config('view.image_paths.banner') . $bannerBooks[0]['value']) }}" alt="banner" width="100%" />
+                    @if (isset($bannerBooks))
+                        <img src="{{ asset(config('view.image_paths.banner') . $bannerBooks->value) }}" alt="banner" width="100%" />
+                    @endif
                 </div>
             </div>
         </div>
@@ -235,7 +239,7 @@
                         @foreach ($apps as $key => $app)
                         @if (isset($textApps[$key]))
                         <li>
-                            <a href="{{ asset(config('view.links.wsm')) }}" target="_blank">
+                            <a href="{{ config('view.links.http') . $textApps[$key]['value'] . config('view.links.wsm') }}" target="_blank">
                                 <img src="{{ asset(config('view.image_paths.logo') . $app->value) }}" data-toggle="tolltip" title={{ $textApps[$key]['value'] }} alt="WSM"/>
                             </a>
                         </li>
