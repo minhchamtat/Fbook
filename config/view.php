@@ -108,7 +108,7 @@ return [
         ],
         'from' => ' from you',
     ],
-    
+
     'links' => [
         'feedback' => 'https://docs.google.com/forms/d/e/1FAIpQLSeVwREJ9vbPHB3LGDudz9ieePp3Z9xJG96e48_5i9VQj4r5zQ/viewform',
         'instruction' => '',
@@ -116,7 +116,7 @@ return [
         'club' => 'https://www.facebook.com/groups/framgia.reading.book.club/',
         'wsm' => '.framgia.vn/',
         'http' => 'http://',
-        'avatar' => 'http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png',
+        'avatar' => "'http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png'",
     ],
 
     'social' => [
