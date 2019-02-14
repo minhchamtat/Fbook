@@ -181,7 +181,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
     public function getTypeBook($idBook)
     {
         $bookTypes = $this->model()
-                    ->select('days_to_read', 'user_id', 'owner_id', 'created_at')
+                    ->select('days_to_read', 'user_id', 'owner_id', 'created_at', 'updated_at')
                     ->where('book_id', $idBook)
                     ->where('type', config('view.request.reading'))
                     ->get();
@@ -191,7 +191,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             foreach ($bookTypes as $key => $bookType) {
                 $data[$key]['dateReturn'] = null;
                 if (!is_null($bookType->created_at)) {
-                    $data[$key]['dateReturn'] = date('d/m/y', strtotime($bookType->created_at)
+                    $data[$key]['dateReturn'] = date('d/m/y', strtotime($bookType->updated_at)
                                                 + $bookType->days_to_read * 86400);
                 }
                 $data[$key]['userBorrow'] = $bookType->user->name;

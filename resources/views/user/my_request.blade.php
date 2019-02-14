@@ -73,15 +73,30 @@
                                         {{ $book->days_to_read }} {{ __('settings.request.day') }}
                                     </td>
                                     <td>{{ $book->user->name }}</td>
-                                    <td>
-                                        <p>{{ $book->created_at ? $book->created_at->format('d/m/y h:i:s') : '' }}</p>
-                                        {{ setTimeDefault($book->created_at) }}
-                                    </td>
-                                    <td>
-                                        {{ getDay($book->created_at, $book->days_to_read) }}
-                                    </td>
+                                    @if ($book->type != config('view.request.waiting'))
+                                        @if ($book->type == config('view.request.reading'))
+                                            <td>
+                                                <p>{{ $book->updated_at ? $book->updated_at->format('d/m/y h:i:s') : '' }}</p>
+                                                {{ setTimeDefault($book->updated_at) }}
+                                            </td>
+                                            <td>
+                                                {{ getDay($book->updated_at, $book->days_to_read) }}
+                                            </td>
+                                        @else 
+                                            <td>
+                                                <p>{{ $book->created_at ? $book->created_at->format('d/m/y h:i:s') : '' }}</p>
+                                                {{ setTimeDefault($book->created_at) }}
+                                            </td>
+                                            <td>
+                                                {{ getDay($book->updated_at, $book->days_to_read) }}
+                                        @endif
+                                    @else
+                                        <td></td>
+                                        <td></td>
+                                    @endif
                                     <td class="type">
-                                        <label class="stt bg-{{ $book->type }}">{{ translate($book->type) }}
+                                        <label class="stt bg-{{ $book->type }}">
+                                            {{ $book->type != config('view.request.returned') ? translate($book->type) : __('settings.book.returned') }}
                                         </label>
                                     </td>
                                     @if ($book->type == config('view.request.returned') || $book->type == config('view.request.cancel'))
@@ -95,7 +110,7 @@
                                                         ['class' => 'btn btn-return btn-sm notify-2',
                                                         'type' => 'submit', 'disabled' => 'disabled']) !!}
                                                 @else
-                                                    {!! Form::button(__('settings.request.returned'),
+                                                    {!! Form::button(__('settings.request.accept'),
                                                         ['class' => 'btn btn-return btn-sm notify-2',
                                                         'type' => 'submit']) !!}
                                                 @endif
