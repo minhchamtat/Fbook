@@ -49,7 +49,7 @@ class HomeController extends Controller
         $take = config('view.taking_numb.latest_book');
         $offices = $this->office->getData()->pluck('name', 'id');
         $topViewed = $this->book->getTopViewedBook($with, [], $take);
-        $topReview = $this->book->getTopReviewBook($with, [], $take);
+        $topReview = $this->book->getTopReviewBook([], $take);
         $topInteresting = $this->book->getTopInterestingBook($with, [], $take);
         $latestBook = $this->book->getLatestBook($with, [], $take);
         $bestSharings = $this->book->getBestSharing();

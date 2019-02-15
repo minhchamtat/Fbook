@@ -271,7 +271,7 @@ return [
         'follow' => 'đang theo dõi bạn',
         'upvote' => 'bình chọn cho bình luận của bạn về cuốn sách: ',
         'downvote' => 'không hài lòng với bình luận của bạn về cuốn sách: ',
-        'waiting' => 'muốn mượn nách của bạn: ',
+        'waiting' => 'muốn mượn sách của bạn: ',
         'returning' => 'đang trả sách cho bạn: ',
         'returned' => ' đã trả sách cho bạn: ',
         'reading' => ' đã chấp nhận cho mượn sách: ',

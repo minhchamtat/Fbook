@@ -123,19 +123,25 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         return $books;
     }
 
-    public function getTopReviewBook($with = [], $data = [], $take = [])
+    public function getTopReviewBook($data = [], $take = [])
     {
-        $ids = app(Bookmeta::class)->where('key', 'count_review')
+        $with = [
+            'book',
+            'book.medias',
+            'book.owners.office',
+            'book.countReview',
+            'book.categories',
+        ];
+        $bookmeta = app(Bookmeta::class)->where('key', 'count_review')
             ->orderBy('value', 'desc')
             ->take($take)
-            ->pluck('book_id');
-
-        if (!empty($ids)) {
-            $books = $this->model()
-            ->select($this->onlyAttributes)
             ->with($with)
-            ->whereIn('id', $ids)
             ->get();
+        $books = [];
+        if (!empty($bookmeta)) {
+            foreach ($bookmeta as $value) {
+                array_push($books, $value->book);
+            }
 
             return $books;
         }
