@@ -122,7 +122,7 @@
                                                         @for ($i = 0; $i < 2; $i++)
                                                             <div class="owner" id="{{ 'user-' . $book->owners[$i]->id }}">
                                                                 <a href="{{ route('user', $book->owners[$i]->id) }}" title="{{ $book->owners[$i]->name }}">
-                                                                    <img src="{{ $book->owners[$i]->avatar ? $book->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                    <img src="{{ $book->owners[$i]->avatar ? $book->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};" class="owner-avatar-icon">
                                                                 </a>
                                                             </div>
                                                         @endfor
@@ -135,7 +135,7 @@
                                                                 @for ($i = 0; $i < $book->owners->count(); $i++)
                                                                     <div class="owner" id="{{ 'user-' . $book->owners[$i]->id }}">
                                                                         <a href="{{ route('user', $book->owners[$i]->id) }}" title="{{ $book->owners[$i]->name }}">
-                                                                            <img src="{{ $book->owners[$i]->avatar ? $book->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                            <img src="{{ $book->owners[$i]->avatar ? $book->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};" class="owner-avatar-icon">
                                                                         </a>
                                                                     </div>
                                                                 @endfor
@@ -145,7 +145,7 @@
                                                         @for ($i = 0; $i < $book->owners->count(); $i++)
                                                             <div class="owner" id="{{ 'user-' . $book->owners[$i]->id }}">
                                                                 <a href="{{ route('user', $book->owners[$i]->id) }}" title="{{ $book->owners[$i]->name }}">
-                                                                    <img src="{{ $book->owners[$i]->avatar ? $book->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon">
+                                                                    <img src="{{ $book->owners[$i]->avatar ? $book->owners[$i]->avatar : asset(config('view.image_paths.user') . '1.png') }}" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};" class="owner-avatar-icon">
                                                                 </a>
                                                             </div>
                                                         @endfor
