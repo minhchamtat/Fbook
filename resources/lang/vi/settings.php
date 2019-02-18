@@ -152,7 +152,7 @@ return [
         'category' => 'Danh mục:',
         'sku' => 'SKU:',
         'author' => 'Tác giả:',
-        'no_owners' => 'Hiện tại chưa có ai sở hữu cuốn sách này',
+        'no_owners' => 'Chưa ai sở hữu cuốn sách này',
         'no_office' => 'Không có văn phòng nào',
         'no_category' => 'Không có danh mục',
         'no_author' => 'Không có tác giả',

@@ -1929,3 +1929,7 @@ h4.h4 {
     text-align: left;
     font-size: 18px;
 }
+
+span.no_onwer {
+    line-height: 3.3em;
+}
