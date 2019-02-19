@@ -45,8 +45,8 @@
                                         <div class="product-reviews-summary owner-list">
                                             <div class="rating-summary ofl-x">
                                                 <p class="share-by"><b>{{ trans('settings.book.owners') }}</b></p>
-                                                <div class="owner-avatar">
-                                                    @if (count($book->owners) > 0)
+                                                @if (count($book->owners) > 0)
+                                                    <div class="owner-avatar">
                                                         @foreach ($book->owners as $owner)
                                                             <div class="owner mr-6" id="{{ 'user-' . $owner->id }}">
                                                                 <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }}({{
@@ -56,10 +56,10 @@
                                                                 <span class="owner-office">{{ $owner->office ? $owner->office->address : '' }}</span>
                                                             </div>
                                                         @endforeach
-                                                    @else
-                                                        <span class="text-danger">{{ __('settings.modal.no_owners') }}</span>
-                                                    @endif
-                                                </div>
+                                                    </div>
+                                                @else
+                                                    <span class="text-danger no_onwer">{{ __('settings.modal.no_owners') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="product-reviews-summary lh-35">
