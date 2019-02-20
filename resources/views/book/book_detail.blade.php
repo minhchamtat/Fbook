@@ -226,7 +226,7 @@
                                         </div>
                                         <div class="product-social-links">
                                             <div class="product-addto-links-text">
-                                                <p class="more hideContent">{!! ($book->description) !!}</p>
+                                                <p class="more hideContent">{!! strip_tags(($book->description)) !!}</p>
                                             </div>
                                             <div class="more-link">
                                                 <a href="#">{{ __('page.book.show') }}</a>
