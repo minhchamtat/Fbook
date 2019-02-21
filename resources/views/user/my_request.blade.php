@@ -74,7 +74,6 @@
                                     </td>
                                     <td>{{ $book->user->name }}</td>
                                     @if ($book->type != config('view.request.waiting'))
-                                        @if ($book->type == config('view.request.reading'))
                                             <td>
                                                 <p>{{ $book->updated_at ? $book->updated_at->format('d/m/y h:i:s') : '' }}</p>
                                                 {{ setTimeDefault($book->updated_at) }}
@@ -82,14 +81,6 @@
                                             <td>
                                                 {{ getDay($book->updated_at, $book->days_to_read) }}
                                             </td>
-                                        @else 
-                                            <td>
-                                                <p>{{ $book->created_at ? $book->created_at->format('d/m/y h:i:s') : '' }}</p>
-                                                {{ setTimeDefault($book->created_at) }}
-                                            </td>
-                                            <td>
-                                                {{ getDay($book->updated_at, $book->days_to_read) }}
-                                        @endif
                                     @else
                                         <td></td>
                                         <td></td>

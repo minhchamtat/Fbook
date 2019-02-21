@@ -31,6 +31,13 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             ->get();
     }
 
+    public function updateBookUser($type, $id)
+    {
+        DB::select(
+            "UPDATE book_user SET type = '$type' WHERE id = $id"
+        );
+    }
+
     public function store($data)
     {
         return $this->model()->create($data);
@@ -71,21 +78,24 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                 switch ($data['status']) {
                     case config('view.request.waiting'):
                         $type['type'] = 'reading';
+                        $bookRequest->update($type);
                         break;
                     case config('view.request.reading'):
-                        $type['type'] = 'returning';
+                        $type = 'returning';
+                        $this->updateBookUser($type, $bookRequest->id);
                         break;
                     case config('view.request.returning'):
-                        $type['type'] = 'returned';
+                        $type = 'returned';
+                        $this->updateBookUser($type, $bookRequest->id);
                         break;
                     case config('view.request.dismiss'):
                         $type['type'] = 'cancel';
+                        $bookRequest->update($type);
                         break;
                     default:
                         # code...
                         break;
                 }
-                $bookRequest->update($type);
 
                 return $bookRequest;
             }
@@ -153,7 +163,8 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                     ->where('type', '<>', config('view.request.returned'))
                     ->orderBy('created_at', 'desc')
                     ->first();
-        $data['type'] = config('view.request.returning');
+        $type = config('view.request.returning');
+        
         $this->notification->destroy([
             'send_id' => $bookUser->owner_id,
             'receive_id' => $bookUser->user_id,
@@ -168,7 +179,7 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
             'viewed' => config('model.viewed.false'),
         ]);
 
-        return $bookUser->update($data);
+        return $this->updateBookUser($type, $bookUser->id);
     }
 
     /**
