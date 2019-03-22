@@ -269,6 +269,7 @@ return [
     'notifications' => [
         'review' => 'bình luận về sách của bạn: ',
         'follow' => 'đang theo dõi bạn',
+        'create_book' => 'đã tạo mới cuốn sách :',
         'upvote' => 'bình chọn cho bình luận của bạn về cuốn sách: ',
         'downvote' => 'không hài lòng với bình luận của bạn về cuốn sách: ',
         'waiting' => 'muốn mượn sách của bạn: ',
