@@ -112,5 +112,9 @@ return [
         'imgHome' => 'Image Home',
         'option' => 'Options',
         'appName' => 'App name',
+        'textBanner' => '(Text banner Home)',
+        'phoneHome' => '(Phone company)',
+        'gmailHome' => '(Gmail company)',
+        'addressHome' => '(Address company)',
     ],
 ];
