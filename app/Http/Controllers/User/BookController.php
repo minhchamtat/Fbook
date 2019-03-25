@@ -15,6 +15,7 @@ use App\Repositories\Contracts\OfficeRepository;
 use App\Repositories\Contracts\BookUserRepository;
 use Auth;
 use App\Repositories\Contracts\BookmetaRepository;
+use App\Repositories\Contracts\NotificationRepository;
 use Session;
 use App\Events\ViewBook;
 use Event;
@@ -37,6 +38,8 @@ class BookController extends Controller
 
     protected $bookUser;
 
+    protected $notification;
+
     protected $with = [
         'medias',
         'categories',
@@ -53,7 +56,8 @@ class BookController extends Controller
         ReviewBookRepository $review,
         OfficeRepository $office,
         BookmetaRepository $bookmeta,
-        BookUserRepository $bookUser
+        BookUserRepository $bookUser,
+        NotificationRepository $notification
     ) {
         $this->book = $book;
         $this->category = $category;
@@ -64,6 +68,7 @@ class BookController extends Controller
         $this->office = $office;
         $this->bookmeta = $bookmeta;
         $this->bookUser = $bookUser;
+        $this->notification = $notification;
         $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update']]);
         $this->middleware('viewed.book', ['only' => ['create']]);
     }
@@ -114,6 +119,7 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
+        $followers = Auth::user()->followers->pluck('id');
         try {
             //save book
             $slug = str_slug($request->title);
@@ -134,6 +140,18 @@ class BookController extends Controller
                 'book_id' => $book->id,
             ];
             $this->owner->store($data);
+            if ($followers) {
+                foreach ($followers as $follower) {
+                    $info = [
+                        'send_id' => Auth::id(),
+                        'receive_id' => $follower,
+                        'target_type' => config('model.target_type.book'),
+                        'target_id' => $book->id,
+                        'viewed' => config('model.viewed.false'),
+                    ];
+                    $this->notification->store($info);
+                }
+            }
             Session::flash('success', trans('settings.success.store'));
 
             return redirect()->route('books.show', $book->slug . '-' . $book->id);

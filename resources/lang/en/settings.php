@@ -270,6 +270,7 @@ return [
     'notifications' => [
         'review' => 'Review your book: ',
         'follow' => 'Follow you',
+        'create_book' => 'has created a book: ',
         'upvote' => 'Upvote your review for the book: ',
         'downvote' => 'Downvote your review for the book: ',
         'waiting' => 'Borrowing your book: ',

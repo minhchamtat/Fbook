@@ -118,7 +118,20 @@ class NotificationEloquentRepository extends AbstractEloquentRepository implemen
                     $record = array_add($record, 'link', null);
                     array_push($allRecords, $record);
                     break;
-
+                
+                case config('model.target_type.book'):
+                    if ($record->target) {
+                        $book = $record->target;
+                        $record = array_add(
+                            $record,
+                            'message',
+                            __('settings.notifications.create_book') . $book->title
+                        );
+                        $record = array_add($record, 'route', config('view.notifications.route.book'));
+                        $record = array_add($record, 'link', $book->slug . '-' . $book->id);
+                    }
+                    array_push($allRecords, $record);
+                    break;
                 default:
                     break;
             }
