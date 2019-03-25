@@ -26,8 +26,22 @@
                         <div class="m-widget4 m-widget4--chart-bottom">
                             @if (isset($textBanners) && count($textBanners) > 0)
                             <ul>
-                                @foreach ($textBanners as $textBanner)
-                                    @include ('admin.setting.text')
+                                @foreach ($textBanners as $keyText => $textBanner)
+                                    <div id="hover-app" class="m-widget4__item">
+                                    <div class="m-widget4__info" data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}">
+                                        <span class="m-widget4__title">
+                                            <div id="text-banner{{ $textBanner->id }}">
+                                                <p>{{ $textBanner->value }}</p>
+                                            </div>
+                                            <p>{{ trans('admin.option.textBanner') }}</p>
+                                        </span>
+                                    </div>
+                                    <span class="m-widget4__ext">
+                                        <span data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}" class="btn btn-info m-btn m-btn--custom btn-sm" title={{ trans('admin.option.editText') }}>
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                    </span> 
+                                </div>
                                 @endforeach
                                 @foreach ($textBanners as $textBanner)
                                     @include ('admin.setting.option_edit')
@@ -36,8 +50,22 @@
                             @endif
                             @if (isset($contacts) && count($textBanners) > 0)
                             <ul>
-                                @foreach ($contacts as $textBanner)
-                                    @include ('admin.setting.text')
+                                @foreach ($contacts as $keyContact => $textBanner)
+                                <div id="hover-app" class="m-widget4__item">
+                                    <div class="m-widget4__info" data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}">
+                                        <span class="m-widget4__title">
+                                            <div id="text-banner{{ $textBanner->id }}">
+                                                <p>{{ $textBanner->value }}</p>
+                                            </div>
+                                            <p>{{ trans('admin.option.phoneHome') }}</p>
+                                        </span>
+                                    </div>
+                                    <span class="m-widget4__ext">
+                                        <span data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}" class="btn btn-info m-btn m-btn--custom btn-sm" title={{ trans('admin.option.editText') }}>
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                    </span> 
+                                </div>
                                 @endforeach
                                 @foreach ($contacts as $textBanner)
                                     @include ('admin.setting.option_edit')
@@ -46,8 +74,22 @@
                             @endif
                             @if (isset($emails) && count($textBanners) > 0)
                             <ul>
-                                @foreach ($emails as $textBanner)
-                                    @include ('admin.setting.text')
+                                @foreach ($emails as $keyEmail => $textBanner)
+                                <div id="hover-app" class="m-widget4__item">
+                                    <div class="m-widget4__info" data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}">
+                                        <span class="m-widget4__title">
+                                            <div id="text-banner{{ $textBanner->id }}">
+                                                <p>{{ $textBanner->value }}</p>
+                                            </div>
+                                            <p>{{ trans('admin.option.gmailHome') }}</p>
+                                        </span>
+                                    </div>
+                                    <span class="m-widget4__ext">
+                                        <span data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}" class="btn btn-info m-btn m-btn--custom btn-sm" title={{ trans('admin.option.editText') }}>
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                    </span> 
+                                </div>
                                 @endforeach
                                 @foreach ($emails as $textBanner)
                                     @include ('admin.setting.option_edit')
@@ -56,8 +98,22 @@
                             @endif
                             @if (isset($address) && count($textBanners) > 0)
                             <ul>
-                                @foreach ($address as $textBanner)
-                                    @include ('admin.setting.text')
+                                @foreach ($address as $keyAddress => $textBanner)
+                                <div id="hover-app" class="m-widget4__item">
+                                    <div class="m-widget4__info" data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}">
+                                        <span class="m-widget4__title">
+                                            <div id="text-banner{{ $textBanner->id }}">
+                                                <p>{{ $textBanner->value }}</p>
+                                            </div>
+                                            <p>{{ trans('admin.option.addressHome') }}</p>
+                                        </span>
+                                    </div>
+                                    <span class="m-widget4__ext">
+                                        <span data-toggle="modal" data-target="#myModalText{{ $textBanner->id }}" class="btn btn-info m-btn m-btn--custom btn-sm" title={{ trans('admin.option.editText') }}>
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                    </span> 
+                                </div>
                                 @endforeach
                                 @foreach ($address as $textBanner)
                                     @include ('admin.setting.option_edit')

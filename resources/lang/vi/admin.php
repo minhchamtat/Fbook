@@ -112,5 +112,9 @@ return [
         'imgHome' => 'Ảnh Trang Chủ',
         'option' => 'Tùy chọn',
         'appName' => 'Tên ứng dụng',
+        'textBanner' => '(Chữ quảng cáo trang chủ)',
+        'phoneHome' => '(Số điện thoại công ty)',
+        'gmailHome' => '(Gmail công ty)',
+        'addressHome' => '(Địa chỉ công ty)',
     ],
 ];
