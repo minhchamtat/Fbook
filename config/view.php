@@ -114,15 +114,15 @@ return [
         'instruction' => '',
         'banner' => 'https://viblo.asia/announcements/gioi-thieu-state-of-chain-tieu-diem-hackathon-meet-up-blockchain-nam-2018-YWOZrpmp5Q0',
         'club' => 'https://www.facebook.com/groups/framgia.reading.book.club/',
-        'wsm' => '.framgia.vn/',
+        'wsm' => '.sun-asterisk.vn/',
         'http' => 'http://',
-        'avatar' => "'http://edev.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png'",
+        'avatar' => "'https://edev.sun-asterisk.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png'",
     ],
 
     'social' => [
-        'facebook' => 'https://www.facebook.com/FramgiaVietnam',
-        'linkedIn' => 'https://www.linkedin.com/company/framgia-vietnam/',
-        'gitHub' =>'https://github.com/framgia',
+        'facebook' => 'https://www.facebook.com/SunAsteriskVietnam',
+        'linkedIn' => 'https://www.linkedin.com/company/sun-asterisk-vietnam/',
+        'gitHub' => 'https://github.com/sun-asterisk',
     ],
 
     'text' => '<p><br><i><b><span><h1><h2><h3><h4><h5><h6><strong><em>',
