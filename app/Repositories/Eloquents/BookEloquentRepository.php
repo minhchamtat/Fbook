@@ -118,9 +118,12 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'created_at',
             'desc',
         ];
-        $books = $this->getData($with, $data, $this->onlyAttributes, $attribute, $take);
+        if (!\Cache::has('latestBook')) {
+            $books = $this->setCache($attribute);
+            \Cache::put('latestBook', $books, 1440);
+        }
 
-        return $books;
+        return \Cache::get('latestBook');
     }
 
     public function getTopReviewBook($data = [], $take = [])
@@ -132,21 +135,26 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'book.countReview',
             'book.categories',
         ];
-        $bookmeta = app(Bookmeta::class)->where('key', 'count_review')
+        if (!\Cache::has('topReview')) {
+            $bookmeta = app(Bookmeta::class)->where('key', 'count_review')
             ->orderBy('value', 'desc')
             ->take($take)
             ->with($with)
             ->get();
-        $books = [];
-        if (!empty($bookmeta)) {
-            foreach ($bookmeta as $value) {
-                array_push($books, $value->book);
+            $books = [];
+            if (!empty($bookmeta)) {
+                foreach ($bookmeta as $value) {
+                    array_push($books, $value->book);
+                }
+                \Cache::put('topReview', $books, 1440);
+
+                return \Cache::get('topReview');
             }
 
-            return $books;
+            return null;
         }
 
-        return null;
+        return \Cache::get('topReview');
     }
 
     public function getTopViewedBook($with = [], $data = [], $take = [])
@@ -155,10 +163,12 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'count_viewed',
             'desc',
         ];
+        if (!\Cache::has('topViewed')) {
+            $books = $this->setCache($attribute);
+            \Cache::put('topViewed', $books, 1440);
+        }
 
-        $books = $this->getData($with, $data, $this->onlyAttributes, $attribute, $take);
-
-        return $books;
+        return \Cache::get('topViewed');
     }
 
     public function getTopInterestingBook($with = [], $data = [], $take = [])
@@ -167,47 +177,56 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
             'avg_star',
             'desc',
         ];
-        $books = $this->getData($with, $data, $this->onlyAttributes, $attribute, $take);
+        if (!\Cache::has('topInteresting')) {
+            $books = $this->setCache($attribute);
+            \Cache::put('topInteresting', $books, 1440);
+        }
 
-        return $books;
+        return \Cache::get('topInteresting');
     }
 
     public function getBestSharing($with = [], $data = [])
     {
-        $users = app(Owner::class)->select('user_id', DB::raw('count(book_id) as total'))
+        if (!\Cache::has('bestSharings')) {
+            $users = app(Owner::class)->select('user_id', DB::raw('count(book_id) as total'))
             ->groupBy('user_id')
             ->orderBy('total', 'desc')
             ->take(config('view.taking_numb.author'))
             ->with(['user.office'])
             ->get();
+            \Cache::put('bestSharings', $users, 1440);
+        }
 
-        return $users;
+        return \Cache::get('bestSharings');
     }
 
     public function getOfficeBooks($offices, $with = [])
     {
-        $data = collect();
-        foreach ($offices as $key => $value) {
-            $ids = app(Bookmeta::class)
-                ->where('key', $value)
-                ->where('value', '>', 0)
-                ->pluck('book_id');
-            $data->push(
-                [
-                    'id' => $key,
-                    'office' => $value,
-                    'books' => $this->model()
-                    ->select($this->onlyAttributes)
-                    ->with($with)
-                    ->whereIn('id', $ids)
-                    ->inRandomOrder()
-                    ->take(config('view.random_numb.book'))
-                    ->get(),
-                ]
-            );
+        if (!\Cache::has('officeBooks')) {
+            $data = collect();
+            foreach ($offices as $key => $value) {
+                $ids = app(Bookmeta::class)
+                    ->where('key', $value)
+                    ->where('value', '>', 0)
+                    ->pluck('book_id');
+                $data->push(
+                    [
+                        'id' => $key,
+                        'office' => $value,
+                        'books' => $this->model()
+                        ->select($this->onlyAttributes)
+                        ->with($with)
+                        ->whereIn('id', $ids)
+                        ->inRandomOrder()
+                        ->take(config('view.random_numb.book'))
+                        ->get(),
+                    ]
+                );
+            }
+            \Cache::put('officeBooks', $data, 1440);
         }
 
-        return $data;
+        return \Cache::get('officeBooks');
     }
 
     public function getBookCategory($id)
@@ -295,5 +314,18 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
         $book->update($data);
 
         return $book;
+    }
+
+    public function setCache($attribute = [])
+    {
+        $with = [
+            'medias',
+            'owners.office',
+            'countReview',
+            'categories',
+        ];
+        $take = config('view.taking_numb.latest_book');
+
+        return $this->getData($with, [], $this->onlyAttributes, $attribute, $take);
     }
 }
