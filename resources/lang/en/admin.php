@@ -45,6 +45,9 @@ return [
         'category' => 'Category',
         'newCate' => 'New Category',
         'listCate' => 'List Category',
+        'office' => 'Office',
+        'newOffice' => 'New Office',
+        'listOffice' => 'List Offices',
         'post' => 'Posts',
         'listPost' => 'List Post',
         'newPost' => 'Add new Post',
@@ -75,17 +78,30 @@ return [
             'sku' => 'Sku of book...',
             'chooseFile' => 'Choose file',
         ],
+        'office' => 'Office',
     ],
     'cate' => [
         'cate' => 'Category',
         'listCate' => 'List Category',
-        'newCate' => ' New Category',
+        'newCate' => 'New Category',
         'editCate' => 'Edit Category',
         'index' => 'Index',
         'name' => 'Name',
         'placeHolder' => [
             'title' => 'Title in here ...',
-        ]
+        ],
+    ],
+    'office' => [
+        'office' => 'Office',
+        'listOffice' => 'List Office',
+        'newOffice' => 'New Office',
+        'editOffice' => 'Edit Office',
+        'address' => 'Address',
+        'placeHolder' => [
+            'title' => 'Title in here ...',
+            'address' => 'Address in here...',
+        ],
+        'wsm_workspace_id' => 'WSM Workspace id',
     ],
     'user' => [
         'user' => 'User',

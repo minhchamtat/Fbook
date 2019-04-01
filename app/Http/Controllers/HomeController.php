@@ -47,7 +47,13 @@ class HomeController extends Controller
             'categories',
         ];
         $take = config('view.taking_numb.latest_book');
-        $offices = $this->office->getData()->pluck('name', 'id');
+        
+        if (!\Cache::has('offices')) {
+            $offices = $this->office->getData()->pluck('name', 'id');
+            \Cache::put('offices', $offices, 1440);
+        } else {
+            $offices = \Cache::get('offices');
+        }
         $topViewed = $this->book->getTopViewedBook($with, [], $take);
         $topReview = $this->book->getTopReviewBook([], $take);
         $topInteresting = $this->book->getTopInterestingBook($with, [], $take);

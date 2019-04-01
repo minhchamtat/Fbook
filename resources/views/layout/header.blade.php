@@ -162,24 +162,13 @@
                                     <a>{{ __('settings.default.office') }}<i class="fa fa-angle-down"></i></a>
                                     <div class="sub-menu sub-menu-2">
                                         <ul>
-                                            <li>
-                                                <a href="{{ route('book.office', 'handico-office') }}">Handico
-                                                    Office</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('book.office', 'tran-khat-chan') }}">Tran Khat
-                                                    Chan</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('book.office', 'hcmc-office') }}">HCMC Office</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('book.office', 'da-nang-office') }}">Da Nang
-                                                    Office</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('book.office', 'hanoi-office') }}">Hanoi Office</a>
-                                            </li>
+                                            @foreach ($offices as $office)
+                                                <li>
+                                                    <a href="{{ route('book.office', str_slug($office->name)) }}">
+                                                        {{ $office->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 <li>

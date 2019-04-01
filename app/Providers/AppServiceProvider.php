@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Eloquent\User;
 use App\Eloquent\Notification;
+use App\Eloquent\Office;
 use Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 $view->with('roles', null);
             }
+            $view->with('offices', Office::getAll());
         });
     }
 

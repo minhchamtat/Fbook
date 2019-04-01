@@ -15,15 +15,10 @@ class OfficeEloquentRepository extends AbstractEloquentRepository implements Off
 
     public function getData($data = [], $with = [], $dataSelect = ['*'])
     {
-        if (!\Cache::has('offices')) {
-            $offices = $this->model()
-                ->select($dataSelect)
-                ->with($with)
-                ->get();
-            \Cache::put('offices', $offices, 1440);
-        }
-
-        return \Cache::get('offices');
+        return $this->model()
+            ->select($dataSelect)
+            ->with($with)
+            ->get();
     }
 
     public function find($slug)
@@ -36,5 +31,12 @@ class OfficeEloquentRepository extends AbstractEloquentRepository implements Off
         }
 
         return $data;
+    }
+
+    public function store($data = [])
+    {
+        $this->model()->create($data);
+
+        return \Cache::put('offices', $this->getData(), 1440);
     }
 }

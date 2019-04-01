@@ -45,6 +45,9 @@ return [
         'category' => 'Danh mục',
         'newCate' => 'Thêm mới',
         'listCate' => 'Danh sách',
+        'office' => 'Văn phòng',
+        'newOffice' => 'Thêm mới',
+        'listOffice' => 'Danh sách',
         'post' => 'Bài viết',
         'listPost' => 'Danh sách',
         'newPost' => 'Thêm mới',
@@ -75,6 +78,7 @@ return [
             'sku' => 'Nhập mã Sku của sách...',
             'chooseFile' => 'Chọn tệp',
         ],
+        'office' => 'Văn phòng',
     ],
     'cate' => [
         'cate' => 'Danh mục',
@@ -86,6 +90,18 @@ return [
         'placeHolder' => [
             'title' => 'Nhập tên danh mục...',
         ]
+    ],
+    'office' => [
+        'office' => 'Văn phòng',
+        'listOffice' => 'Danh sách',
+        'newOffice' => ' Thêm văn phòng mới',
+        'editOffice' => 'Chỉnh sửa văn phòng',
+        'address' => 'Địa chỉ',
+        'placeHolder' => [
+            'title' => 'Nhập tên văn phòng...',
+            'address' => 'Nhập địa chỉ văn phòng...'
+        ],
+        'wsm_workspace_id' => 'WSM Workspace id',
     ],
     'user' => [
         'user' => 'Thành viên',

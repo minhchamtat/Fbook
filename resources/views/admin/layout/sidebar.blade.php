@@ -79,6 +79,38 @@
                     </ul>
                 </div>
             </li>
+            <li class="m-menu__item  m-menu__item--submenu
+            @if (Route::is('offices.index') || Route::is('offices.create') || Route::is('offices.edit'))
+                {{ 'm-menu__item--open' }}
+            @endif"
+                aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon far fa-building"></i>
+                    <span class="m-menu__link-text">{{ __('admin.sidebar.office') }}</span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="m-menu__submenu ">
+                    <span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item {{ Route::is('offices.index') ? 'active' : '' }}" aria-haspopup="true">
+                            <a href="{{ route('offices.index') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.listOffice') }}</span>
+                            </a>
+                        </li>
+                        <li class="m-menu__item {{ Route::is('offices.create') ? 'active' : '' }}" aria-haspopup="true">
+                            <a href="{{ route('offices.create') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">{{ __('admin.sidebar.newOffice') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-multimedia-1"></i>

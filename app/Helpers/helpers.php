@@ -99,3 +99,14 @@ function translate($value)
             break;
     }
 }
+
+function splitAddressOffice($value)
+{
+    $address = explode(' ', $value);
+    $office = '';
+    foreach ($address as $add) {
+        $office .= $add[0];
+    }
+
+    return $office;
+}

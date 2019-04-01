@@ -18,14 +18,8 @@ class Office extends Model
         return $this->hasMany(User::class);
     }
 
-    public function getAddressAttribute()
+    public static function getAll()
     {
-        $address = explode(' ', $this->attributes['address']);
-        $office = '';
-        foreach ($address as $add) {
-            $office .= $add[0];
-        }
-
-        return $office;
+        return static::select('id', 'name')->get();
     }
 }

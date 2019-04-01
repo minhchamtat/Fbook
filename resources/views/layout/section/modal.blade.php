@@ -32,7 +32,7 @@
                                                             <a href="{{ route('user', $owner->id) }}" title="{{ $owner->name ? $owner->name : '' }} ({{ $owner->office ? $owner->office->name : '' }})">
                                                                 <img src="{{ $owner->avatar ? $owner->avatar : asset(config('view.image_paths.user') . '1.png') }}" class="owner-avatar-icon" onerror="this.onerror=null;this.src={{ config('view.links.avatar') }};">
                                                             </a>
-                                                            <span class="owner-office">{{ $owner->office ? $owner->office->address : '' }}</span>
+                                                            <span class="owner-office">{{ $owner->office ? splitAddressOffice($owner->office->address) : '' }}</span>
                                                         </div>
                                                     @endforeach
                                                 @else
