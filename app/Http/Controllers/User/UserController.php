@@ -127,9 +127,13 @@ class UserController extends Controller
                 'key' => 'display_phone',
             ];
             $phones = $this->usermeta->getData($data);
-            if (isset($phones[0]->value)) {
+            if (empty($phones[0]->value)) {
                 $phoneUser = $phones[0]->value;
+            } else {
+                $phoneUser = 1;
             }
+        } else {
+            $phoneUser = 1;
         }
         $books = $user->ownerBooks()->where('user_id', $id)
                 ->with(['owners', 'medias'])

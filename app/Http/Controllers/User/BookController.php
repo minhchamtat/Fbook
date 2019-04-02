@@ -85,7 +85,7 @@ class BookController extends Controller
         $offices = $this->office->getData();
         $books = $this->book->getBookPaginate($with);
 
-        return view('book.books', compact('categories', 'offices', 'books', 'data'));
+        return view('book.books', compact('categories', 'offices', 'books'));
     }
 
     public function getBookCategory($slug)
@@ -97,7 +97,7 @@ class BookController extends Controller
             ->paginate(config('view.paginate.book'));
         $cate = $this->category->find($id);
 
-        return view('book.books', compact('categories', 'offices', 'books', 'cate', 'data'));
+        return view('book.books', compact('categories', 'offices', 'books', 'cate'));
     }
 
     public function getBookOffice($slug)
@@ -107,7 +107,7 @@ class BookController extends Controller
         $books = $this->book->getBookOffice($slug);
         $off = $this->office->find($slug);
 
-        return view('book.books', compact('categories', 'offices', 'books', 'off', 'data'));
+        return view('book.books', compact('categories', 'offices', 'books', 'off'));
     }
 
     public function create()
