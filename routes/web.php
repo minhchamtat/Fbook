@@ -63,6 +63,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::get('/listbook', 'BookController@ajaxShow')->name('book.show');
         Route::resource('/book', 'BookController')->except(['show']);
         Route::resource('/category', 'CategoryController')->except(['show']);
+        Route::resource('offices', 'OfficeController')->except(['show']);
         Route::get('/post', 'HomeController@index');
         Route::get('/reputation', 'HomeController@index');
         Route::get('/tag', 'HomeController@index');

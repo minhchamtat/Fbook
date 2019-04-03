@@ -39,7 +39,7 @@
                                                         @endif
                                                         @if ($owner->office)
                                                         <span class="address">
-                                                            {{ $owner->office->address }}
+                                                            {{ splitAddressOffice($owner->office->address) }}
                                                         </span>
                                                         @endif
                                                     </a>
@@ -98,7 +98,7 @@
                                                         @endif
                                                         @if ($owner->office)
                                                         <span class="address">
-                                                            {{ $owner->office->address }}
+                                                            {{ splitAddressOffice($owner->office->address) }}
                                                         </span>
                                                         @endif
                                                     </a>
@@ -157,7 +157,7 @@
                                                         @endif
                                                         @if ($owner->office)
                                                         <span class="address">
-                                                            {{ $owner->office->address }}
+                                                            {{ splitAddressOffice($owner->office->address) }}
                                                         </span>
                                                         @endif
                                                     </a>
