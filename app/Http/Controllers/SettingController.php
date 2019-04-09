@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\OptionRepository;
 use Session;
+use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
@@ -56,6 +57,7 @@ class SettingController extends Controller
                 $id = $request->banners;
                 $this->option->updateBanner($id, $img);
             }
+            Cache::flush();
         }
     }
 
