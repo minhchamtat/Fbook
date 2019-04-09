@@ -115,6 +115,7 @@ return [
         'best_sharing' => 'Chia sẻ nhiều nhất',
         'latest_books' => 'Sách mới nhất',
         'top_interesting' => 'Được yêu thích nhất',
+        'top_borrowed' => 'Được mượn nhiều nhất',
         'top_rating' => 'Bình chọn nhiều nhất',
         'top_review' => 'Đánh giá nhiều nhất',
         'top_view' => 'Xem nhiều nhất',

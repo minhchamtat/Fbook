@@ -97,4 +97,26 @@ class BookmetaEloquentRepository extends AbstractEloquentRepository implements B
             return $e->getMessage();
         }
     }
+
+    public function updateReturned($id, $data)
+    {
+        return $this->model()->where('book_id', $id)->update($data);
+    }
+
+    public function insertReturned($data)
+    {
+        return $this->model()
+            ->create($data);
+    }
+
+    public function findReturned($id)
+    {
+        return $this->model()
+            ->select('*')
+            ->where([
+                ['book_id', '=', $id],
+                ['key', '=', 'count_returned'],
+            ])
+            ->first();
+    }
 }

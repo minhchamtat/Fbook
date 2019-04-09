@@ -230,4 +230,21 @@ class BookUserEloquentRepository extends AbstractEloquentRepository implements B
                     ->orderByDesc('created_at')
                     ->first();
     }
+
+    public function findId($id)
+    {
+        return $this->model()->where('id', $id)->first();
+    }
+
+    public function countReturned($id)
+    {
+        $result = $this->model()
+            ->select(DB::raw('COUNT(user_id) as book_returned'))
+            ->where('book_id', $id)
+            ->where('type', 'returned')
+            ->groupBy('book_id')
+            ->first();
+
+        return $result;
+    }
 }

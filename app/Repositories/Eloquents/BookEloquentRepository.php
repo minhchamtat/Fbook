@@ -328,4 +328,37 @@ class BookEloquentRepository extends AbstractEloquentRepository implements BookR
 
         return $this->getData($with, [], $this->onlyAttributes, $attribute, $take);
     }
+
+    public function getTopBorrowed($with = [], $data = [], $take = [])
+    {
+        $attribute = [
+            'avg_star',
+            'desc',
+        ];
+
+        return $this->setCacheBorrowed($attribute);
+    }
+
+    public function getDatas($with = [], $data = [], $dataSelect = ['books.*'], $attribute = ['id', 'desc'], $take = [])
+    {
+        return $this->model()
+            ->select('books.*')
+            ->join('bookmeta', 'books.id', '=', 'bookmeta.book_id')
+            ->where('key', 'count_returned')
+            ->with($with)
+            ->orderBy($attribute[0], $attribute[1])
+            ->take($take)
+            ->get();
+    }
+
+    public function setCacheBorrowed($attribute = [])
+    {
+        $with = [
+            'medias',
+            'countReview',
+        ];
+        $take = config('view.taking_numb.latest_book');
+
+        return $this->getDatas($with, [], $this->onlyAttributes, $attribute, $take);
+    }
 }

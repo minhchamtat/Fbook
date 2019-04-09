@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\BookUserRepository;
 use App\Repositories\Contracts\NotificationRepository;
+use App\Repositories\Contracts\BookmetaRepository;
 use Auth;
 
 class MyRequestController extends Controller
@@ -14,11 +15,13 @@ class MyRequestController extends Controller
 
     public function __construct(
         BookUserRepository $bookUser,
-        NotificationRepository $notification
+        NotificationRepository $notification,
+        BookmetaRepository $bookMeta
     ) {
         $this->middleware('auth');
         $this->bookUser = $bookUser;
         $this->notification = $notification;
+        $this->bookMeta = $bookMeta;
     }
 
     public function index()
@@ -79,6 +82,21 @@ class MyRequestController extends Controller
                 'viewed' => config('model.viewed.false'),
             ];
             $this->notification->store($data);
+        }
+
+        if ($request->status == 'returning') {
+            $bookId = $this->bookUser->findId($id)->book_id;
+            $countReturnedBook = $this->bookUser->countReturned($bookId);
+            $findReturned = $this->bookMeta->findReturned($bookId);
+            if (empty($findReturned->key)) {
+                $this->bookMeta->insertReturned([
+                    'key' => 'count_returned',
+                    'value' => $countReturnedBook->book_returned,
+                    'book_id' => $bookId,
+                ]);
+            } else {
+                $this->bookMeta->updateReturned($bookId, ['value' => $countReturnedBook->book_returned]);
+            }
         }
 
         return back()->with('success', __('page.success'));

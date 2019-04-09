@@ -181,6 +181,7 @@ class BookController extends Controller
             $book = $this->book->find($id, $this->with);
             $take = config('view.taking_numb.best_sharing_book');
             $topInteresting = $this->book->getTopInterestingBook($with, [], $take);
+            $topBorrowed = $this->book->getTopBorrowed($with, [], $take);
             Event::fire('count.view', $book);
 
             if (!empty($book)) {
@@ -237,6 +238,7 @@ class BookController extends Controller
                         'book',
                         'relatedBooks',
                         'topInteresting',
+                        'topBorrowed',
                         'flag',
                         'reviews',
                         'isOwner',

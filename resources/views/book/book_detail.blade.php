@@ -371,25 +371,25 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="shop-left">
-                        @if (isset($topInteresting))
+                        @if (isset($topBorrowed))
                             <div class="left-title mb-20">
-                                <h4>{{ trans('settings.home.top_interesting') }}</h4>
+                                <h4>{{ trans('settings.home.top_borrowed') }}</h4>
                             </div>
                             <div class="random-area mb-30">
                                 <div class="product-active owl-carousel">
                                     <div class="product-total-2">
-                                        @for ($i = 0; $i < count($topInteresting); $i++)
+                                        @for ($i = 0; $i < count($topBorrowed); $i++)
                                             <div class="single-most-product top-interesting bd mb-18">
-                                                @if ($topInteresting[$i]->medias->count() > 0)
+                                                @if ($topBorrowed[$i]->medias->count() > 0)
                                                     <div class="most-product-img">
-                                                        <a href="{{ route('books.show', $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id) }}">
-                                                            <img src="{{ asset(config('view.image_paths.book') . $topInteresting[$i]->medias[0]->path) }}"
+                                                        <a href="{{ route('books.show', $topBorrowed[$i]->slug . '-' . $topBorrowed[$i]->id) }}">
+                                                            <img src="{{ asset(config('view.image_paths.book') . $topBorrowed[$i]->medias[0]->path) }}"
                                                                  alt="book"/>
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="most-product-img">
-                                                        <a href="{{ route('books.show', $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id) }}">
+                                                        <a href="{{ route('books.show', $topBorrowed[$i]->slug . '-' . $topBorrowed[$i]->id) }}">
                                                             <img src="{{ asset(config('view.image_paths.book') . 'default.jpg') }}"
                                                                  alt="woman"/>
                                                         </a>
@@ -397,7 +397,7 @@
                                                 @endif
                                                 <div class="most-product-content top-interesting">
                                                     <h4>
-                                                        <a href="{{ route('books.show', ['id' => $topInteresting[$i]->slug . '-' . $topInteresting[$i]->id]) }}">{{ $topInteresting[$i]->title }}</a>
+                                                        <a href="{{ route('books.show', ['id' => $topBorrowed[$i]->slug . '-' . $topBorrowed[$i]->id]) }}">{{ $topBorrowed[$i]->title }}</a>
                                                     </h4>
                                                     <div class="product-rating">
                                                         {!! Form::select('rating',
@@ -412,7 +412,7 @@
                                                             null,
                                                             [
                                                                 'class' => 'rating',
-                                                                'data-rating' => $topInteresting[$i]->avg_star
+                                                                'data-rating' => $topBorrowed[$i]->avg_star
                                                             ])
                                                         !!}
                                                     </div>

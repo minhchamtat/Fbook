@@ -115,6 +115,7 @@ return [
         'best_sharing' => 'Best Sharing',
         'latest_books' => 'Latest Books',
         'top_interesting' => 'Top Interesting',
+        'top_borrowed' => 'Top Borrowed',
         'top_rating' => 'Top Rating',
         'top_review' => 'Top Review',
         'top_view' => 'Top View',
